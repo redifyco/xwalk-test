@@ -1,5 +1,5 @@
 mountpoints:
-  /react-app:
-    url: "https://author-p153267-e1585828.adobeaemcloud.com/bin/franklin.delivery/redifyco/react-app/main"
+  /:
+    url: "https://author-p153267-e1585828.adobeaemcloud.com/bin/franklin.delivery/redifyco/xwalk-test/main"
     type: "markup"
     suffix: ".html"
