@@ -15,8 +15,7 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "quote"
+      "fragment"
     ]
   },
   {
@@ -39,9 +38,5 @@
       "button",
       "title"
     ]
-  },
-  {
-    "id": "feature-grid",
-    "components": ["text", "image", "button", "title", "icon"]
   }
 ]
