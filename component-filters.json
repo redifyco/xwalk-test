@@ -39,5 +39,9 @@
       "button",
       "title"
     ]
+  },
+  {
+    "id": "feature-grid",
+    "components": ["text", "image", "button", "title", "icon"]
   }
 ]

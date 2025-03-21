@@ -209,5 +209,41 @@
         "value": ""
       }
     ]
+  },
+  {
+    "component": "array",
+    "name": "features",
+    "label": "Features",
+    "minItems": 4,
+    "maxItems": 4,
+    "items": {
+      "component": "object",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "featureTitle",
+          "label": "Feature Title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "featureSubtitle",
+          "label": "Feature Subtitle",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "icon",
+          "label": "Icon",
+          "valueType": "string"
+        }
+      ]
+    }
   }
 ]
