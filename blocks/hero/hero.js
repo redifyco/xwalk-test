@@ -1,10 +1,10 @@
-async function decorate(block) {
-  const htmlClass = document.documentElement;
-  const isContained = htmlClass.classList.contains('adobe-ue-edit');
-  console.log('document.documentElement:', htmlClass);
-  console.log('isContained:', isContained);
+export default async function decorate(block) {
+  console.log('block', block);
+  console.log('window', window);
+  const htmlClass = document.querySelector('html');
+  console.log('document', document);
 
-  if (isContained) {
+  if (htmlClass === 'adobe-ue-edit') {
     const textElement = document.querySelector('.hero h1').innerHTML;
     const picture = block.querySelector('picture');
 
@@ -99,7 +99,3 @@ async function decorate(block) {
 
   block.appendChild(section);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  decorate(document.querySelector('.block'));
-});
