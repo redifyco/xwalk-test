@@ -1,7 +1,11 @@
 export default async function decorate(block) {
   console.log('block', block);
-  console.log('window', window);
+  console.log('window', window.origin);
   console.log('document', document);
+
+  if (window.origin === 'https://author-p153267-e1585828.adobeaemcloud.com') {
+    return;
+  }
   const heroDiv = document.querySelector('.hero');
 
   // Trova l'elemento <img> dentro il <picture>
