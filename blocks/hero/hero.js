@@ -1,9 +1,11 @@
 export default async function decorate(block) {
   // console.log('block', block);
   // console.log('window', window.origin);
+  const htmlClass = document.querySelector('html').className;
   console.log('document', document);
+  console.log('htmlClass', htmlClass);
 
-  if (window.origin === 'https://author-p153267-e1585828.adobeaemcloud.com') {
+  if (htmlClass === 'adobe-ue-edit') {
     const textElement = document.querySelector('.hero h1').innerHTML;
     const picture = block.querySelector('picture');
 
