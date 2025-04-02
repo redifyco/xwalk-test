@@ -3,6 +3,8 @@ export default async function decorate(block) {
   console.log('window', window);
 
   if (window.origin.includes('adobeaemcloud.com')) {
+    const test = document.querySelectorAll('[data-aue-prop]');
+    console.log('test', test);
     const titleElement = document.querySelector('.hero h1').innerHTML;
     const subTitleElement = document.querySelector('.hero p').innerHTML;
     const picture = block.querySelector('picture');
