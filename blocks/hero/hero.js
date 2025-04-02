@@ -1,15 +1,15 @@
 export default async function decorate(block) {
   console.log('block', block);
+  console.log('window', window);
+  console.log('document', document);
   const heroDiv = document.querySelector('.hero');
 
   // Trova l'elemento <img> dentro il <picture>
   const imgElement = heroDiv.querySelector('picture img');
   const textElement = heroDiv.querySelector('h1').innerHTML;
-  console.log('textElement', heroDiv.querySelector('h1').innerHTML);
 
   // Recupera l'URL dell'immagine
   const imageUrl = imgElement ? imgElement.src : null;
-  console.log('textElement', textElement);
 
   // Clear the block content
   block.textContent = '';
