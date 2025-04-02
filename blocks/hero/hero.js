@@ -21,11 +21,11 @@ export default async function decorate(block) {
 
   // Create the first div
   const div1 = document.createElement('div');
-  // div1.className = 'relative z-10 flex h-dvh w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11';
+  div1.className = 'relative z-10 flex h-dvh w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11';
 
   // Create the h1
   const h1 = document.createElement('h1');
-  // h1.className = 'text-5xl font-semibold uppercase lg:text-[130px] 2xl:text-8xl 2xl:text-[180px]';
+  h1.className = 'text-5xl font-semibold uppercase lg:text-[130px] 2xl:text-8xl 2xl:text-[180px]';
   h1.innerHTML = textElement;
 
   div1.appendChild(h1);
