@@ -42,7 +42,7 @@ export default async function decorate(block) {
 
   // Create the h2
   const h2 = document.createElement('h2');
-  // h2.className = 'w-full text-6xl text-white uppercase lg:text-8xl xl:text-9xl';
+  h2.className = 'w-full text-6xl text-white uppercase lg:text-8xl xl:text-9xl';
   h2.innerHTML = "What <span class='font-joyful-lg lowercase'>drives</span> us";
   div2.appendChild(h2);
 
@@ -52,13 +52,13 @@ export default async function decorate(block) {
 
   // Create the paragraph
   const p2 = document.createElement('p');
-  // p2.className = 'text-white';
+  p2.className = 'text-white';
   p2.textContent = 'The ocean is life, it’s culture, it’s the heartbeat of communities worldwide. At the MSC Foundation, we work to safeguard and empower this vital connection, ensuring a thriving future for both people and the blue planet.';
   contentDiv.appendChild(p2);
 
   // Create the button
   const button = document.createElement('button');
-  // button.className = 'group relative inline-block w-fit p-2';
+  button.className = 'group relative inline-block w-fit p-2';
   button.innerHTML = `
   <span class="button-line-absolute-white -top-1 -right-1 h-0.5 w-6/12 group-hover:w-9/12"></span>
   <span class="button-line-absolute-white -top-1 -right-1 h-full w-0.5 group-hover:h-9/12"></span>
