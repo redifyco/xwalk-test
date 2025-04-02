@@ -16,7 +16,7 @@ export default async function decorate(block) {
     title.textContent = textElement;
 
     if (picture) {
-      picture.className = 'h-[300px]';
+      picture.querySelector('img').className = 'h-[300px]';
       section.appendChild(picture);
     }
 
