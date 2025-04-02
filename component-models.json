@@ -176,18 +176,18 @@
         "multi": false
       },
       {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "text",
         "label": "Subtitle",
         "value": ""
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
       }
     ]
   }
