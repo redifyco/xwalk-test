@@ -1,10 +1,10 @@
 export default async function decorate(block) {
   // console.log('block', block);
   // console.log('window', window.origin);
-  const htmlClass = document.documentElement; // modo più affidabile per ottenere l'elemento html
+  const htmlClass = document.documentElement;
+  const isContained = htmlClass.classList.contains('adobe-ue-edit');
   console.log('document.documentElement:', htmlClass);
-  console.log('classList:', htmlClass.classList);
-  console.log('outerHTML:', htmlClass.outerHTML); // questo mostrerà l'elemento HTML completo con tutti i suoi attributi
+  console.log('isContained:', isContained);
 
   if (htmlClass === 'adobe-ue-edit') {
     const textElement = document.querySelector('.hero h1').innerHTML;
