@@ -16,12 +16,12 @@ export default async function decorate(block) {
 
   // Create the section
   const section = document.createElement('section');
-  // section.className = `flex flex-col bg-gray-500 bg-[url(${imageUrl})] bg-cover bg-center bg-no-repeat text-white lg:bg-[url(${imageUrl})]`;
-  // section.style.backgroundImage = `url(${imageUrl})`;
+  section.className = `flex flex-col bg-gray-500 bg-[url(${imageUrl})] bg-cover bg-center bg-no-repeat text-white lg:bg-[url(${imageUrl})]`;
+  section.style.backgroundImage = `url(${imageUrl})`;
 
   // Create the first div
   const div1 = document.createElement('div');
-  div1.className = 'relative z-10 flex h-dvh w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11';
+  // div1.className = 'relative z-10 flex h-dvh w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11';
 
   // Create the h1
   const h1 = document.createElement('h1');
