@@ -1,10 +1,8 @@
 export default async function decorate(block) {
   console.log('block', block);
   console.log('window', window);
-  const htmlClass = document.querySelector('html');
-  console.log('document', document);
 
-  if (htmlClass === 'adobe-ue-edit') {
+  if (window.origin.includes('adobeaemcloud.com')) {
     const textElement = document.querySelector('.hero h1').innerHTML;
     const picture = block.querySelector('picture');
 
