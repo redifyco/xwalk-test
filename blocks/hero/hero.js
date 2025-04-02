@@ -3,7 +3,8 @@ export default async function decorate(block) {
   console.log('window', window);
 
   if (window.origin.includes('adobeaemcloud.com')) {
-    const textElement = document.querySelector('.hero h1').innerHTML;
+    const titleElement = document.querySelector('.hero h1').innerHTML;
+    const subTitleElement = document.querySelector('.hero p').innerHTML;
     const picture = block.querySelector('picture');
 
     block.textContent = '';
@@ -12,7 +13,11 @@ export default async function decorate(block) {
 
     const title = document.createElement('h1');
     title.className = 'absolute inset-0';
-    title.textContent = textElement;
+    title.textContent = titleElement;
+
+    const subTitle = document.createElement('p');
+    title.className = 'absolute inset-0';
+    title.textContent = subTitleElement;
 
     if (picture) {
       picture.querySelector('img').className = 'h-[300px] w-full object-cover';
@@ -20,6 +25,7 @@ export default async function decorate(block) {
     }
 
     section.appendChild(title);
+    section.appendChild(subTitle);
     block.appendChild(section);
     return;
   }
