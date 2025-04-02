@@ -32,13 +32,13 @@ export default async function decorate(block) {
 
   // Create the paragraph
   const p1 = document.createElement('p');
-  // p1.className = 'w-3/4 text-sm lg:text-xl 2xl:w-2/3 2xl:text-2xl';
+  p1.className = 'w-3/4 text-sm lg:text-xl 2xl:w-2/3 2xl:text-2xl';
   p1.textContent = '"We all have the duty to leave a better world for future generations" Capt. Gianluigi Aponte - MSC Foundation Chair';
   div1.appendChild(p1);
 
   // Create the second div
   const div2 = document.createElement('div');
-  // div2.className = 'hidden h-dvh w-full items-center justify-between px-40 lg:flex lg:gap-20 xl:px-64 2xl:gap-64 2xl:px-80';
+  div2.className = 'hidden h-dvh w-full items-center justify-between px-40 lg:flex lg:gap-20 xl:px-64 2xl:gap-64 2xl:px-80';
 
   // Create the h2
   const h2 = document.createElement('h2');
