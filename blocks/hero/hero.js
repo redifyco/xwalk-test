@@ -1,7 +1,7 @@
 export default async function decorate(block) {
   // console.log('block', block);
   // console.log('window', window.origin);
-  // console.log('document', document);
+  console.log('document', document);
 
   if (window.origin === 'https://author-p153267-e1585828.adobeaemcloud.com') {
     const textElement = document.querySelector('.hero h1').innerHTML;
@@ -9,14 +9,14 @@ export default async function decorate(block) {
 
     block.textContent = '';
     const section = document.createElement('section');
-    section.className = 'relative flex h-[300px] items-center justify-center';
+    section.className = 'relative';
 
     const title = document.createElement('h1');
-    title.className = 'relative z-10 text-5xl font-semibold text-white';
+    title.className = 'absolute inset-0';
     title.textContent = textElement;
 
     if (picture) {
-      picture.className = 'absolute inset-0 z-0';
+      picture.className = 'h-[300px]';
       section.appendChild(picture);
     }
 
