@@ -183,7 +183,7 @@
         "valueType": "string"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "subtitle",
         "label": "Subtitle",
         "description": ""
