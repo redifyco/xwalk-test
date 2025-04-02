@@ -181,8 +181,14 @@
   .relative {
     position: relative;
   }
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
+  }
   .-top-1 {
     top: calc(var(--spacing) * -1);
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
   }
   .-right-1 {
     right: calc(var(--spacing) * -1);
@@ -192,6 +198,9 @@
   }
   .-left-1 {
     left: calc(var(--spacing) * -1);
+  }
+  .z-0 {
+    z-index: 0;
   }
   .z-10 {
     z-index: 10;
@@ -243,6 +252,9 @@
   }
   .h-0\.5 {
     height: calc(var(--spacing) * 0.5);
+  }
+  .h-\[300px\] {
+    height: 300px;
   }
   .h-dvh {
     height: 100dvh;
@@ -297,6 +309,9 @@
   }
   .justify-between {
     justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
   }
   .justify-end {
     justify-content: flex-end;

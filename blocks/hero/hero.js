@@ -4,13 +4,27 @@ export default async function decorate(block) {
   // console.log('document', document);
 
   if (window.origin === 'https://author-p153267-e1585828.adobeaemcloud.com') {
-    const heroDiv = document.querySelector('.hero');
-    const textElement = heroDiv.querySelector('h1');
-    textElement.classList.add('text-5xl', 'absolute', 'top-0');
-    console.log('textElement', textElement);
+    const textElement = document.querySelector('.hero h1').innerHTML;
+    const picture = block.querySelector('picture');
 
+    block.textContent = '';
+    const section = document.createElement('section');
+    section.className = 'relative flex h-[300px] items-center justify-center';
+
+    const title = document.createElement('h1');
+    title.className = 'relative z-10 text-5xl font-semibold text-white';
+    title.textContent = textElement;
+
+    if (picture) {
+      picture.className = 'absolute inset-0 z-0';
+      section.appendChild(picture);
+    }
+
+    section.appendChild(title);
+    block.appendChild(section);
     return;
   }
+
   const heroDiv = document.querySelector('.hero');
 
   // Trova l'elemento <img> dentro il <picture>
