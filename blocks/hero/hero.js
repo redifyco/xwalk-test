@@ -3,7 +3,8 @@ export default async function decorate(block) {
   // console.log('window', window.origin);
   const htmlClass = document.querySelector('html');
   console.log('document', document);
-  console.log('htmlClass', htmlClass);
+  console.log('htmlClassv1', htmlClass);
+  console.log('htmlClassv1', htmlClass.className);
 
   if (htmlClass === 'adobe-ue-edit') {
     const textElement = document.querySelector('.hero h1').innerHTML;
