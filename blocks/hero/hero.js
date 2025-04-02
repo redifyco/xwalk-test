@@ -60,10 +60,10 @@ export default async function decorate(block) {
   const button = document.createElement('button');
   // button.className = 'group relative inline-block w-fit p-2';
   button.innerHTML = `
-<!--  <span class="button-line-absolute-white -top-1 -right-1 h-0.5 w-6/12 group-hover:w-9/12"></span>-->
-<!--  <span class="button-line-absolute-white -top-1 -right-1 h-full w-0.5 group-hover:h-9/12"></span>-->
-<!--  <span class="button-line-absolute-white -bottom-1 -left-1 h-0.5 w-6/12 group-hover:w-9/12"></span>-->
-<!--  <span class="button-line-absolute-white -bottom-1 -left-1 h-full w-0.5 group-hover:h-9/12"></span>-->
+  <span class="button-line-absolute-white -top-1 -right-1 h-0.5 w-6/12 group-hover:w-9/12"></span>
+  <span class="button-line-absolute-white -top-1 -right-1 h-full w-0.5 group-hover:h-9/12"></span>
+  <span class="button-line-absolute-white -bottom-1 -left-1 h-0.5 w-6/12 group-hover:w-9/12"></span>
+  <span class="button-line-absolute-white -bottom-1 -left-1 h-full w-0.5 group-hover:h-9/12"></span>
   <span class="px-4 py-2 text-white">Learn more About Us</span>
 `;
   contentDiv.appendChild(button);
