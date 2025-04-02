@@ -6,9 +6,9 @@ export default async function decorate(block) {
   if (window.origin === 'https://author-p153267-e1585828.adobeaemcloud.com') {
     const heroDiv = document.querySelector('.hero');
     const textElement = heroDiv.querySelector('h1');
+    textElement.classList.add('text-5xl', 'absolute', 'top-0');
     console.log('textElement', textElement);
 
-    block.appendChild(heroDiv);
     return;
   }
   const heroDiv = document.querySelector('.hero');
