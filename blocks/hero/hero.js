@@ -1,13 +1,14 @@
 export default async function decorate(block) {
-  console.log('block', block);
-  console.log('window', window.origin);
-  console.log('document', document);
+  // console.log('block', block);
+  // console.log('window', window.origin);
+  // console.log('document', document);
 
   if (window.origin === 'https://author-p153267-e1585828.adobeaemcloud.com') {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = './custom_hero.css';
-    document.head.appendChild(link);
+    const heroDiv = document.querySelector('.hero');
+    const textElement = heroDiv.querySelector('h1');
+    console.log('textElement', textElement);
+
+    block.appendChild(heroDiv);
     return;
   }
   const heroDiv = document.querySelector('.hero');
