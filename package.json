@@ -11,6 +11,7 @@
     "build:json:models": "merge-json-cli -i \"models/_component-models.json\" -o \"component-models.json\"",
     "build:json:definitions": "merge-json-cli -i \"models/_component-definition.json\" -o \"component-definition.json\"",
     "build:json:filters": "merge-json-cli -i \"models/_component-filters.json\" -o \"component-filters.json\"",
+    "build:css": "npx @tailwindcss/cli -i ./styles/styles.css -o ./styles/stylecompiled.css --watch",
     "prepare": "husky"
   },
   "repository": {
@@ -38,5 +39,8 @@
     "stylelint": "16.12.0",
     "stylelint-config-standard": "36.0.1",
     "tailwindcss": "^4.0.17"
+  },
+  "dependencies": {
+    "tailwind-scrollbar": "^4.0.2"
   }
 }
