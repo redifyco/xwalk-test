@@ -1,7 +1,7 @@
 export default async function decorate(block) {
   // console.log('block', block);
   // console.log('window', window.origin);
-  const htmlClass = document.querySelector('html').className;
+  const htmlClass = document.querySelector('html');
   console.log('document', document);
   console.log('htmlClass', htmlClass);
 
