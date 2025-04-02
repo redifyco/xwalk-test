@@ -184,10 +184,9 @@
       },
       {
         "component": "text",
-        "valueType": "string",
-        "name": "text",
+        "name": "subtitle",
         "label": "Subtitle",
-        "value": ""
+        "description": ""
       }
     ]
   }
