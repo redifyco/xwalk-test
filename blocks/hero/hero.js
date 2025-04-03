@@ -1,6 +1,10 @@
+import {isEditor} from "../../scripts/utils";
+
 export default async function decorate(block) {
   console.log('block', block);
   console.log('window', window);
+
+  isEditor()
 
   if (window.origin.includes('adobeaemcloud.com')) {
     // const test = block.querySelectorAll('[data-aue-prop="subtitle"]');

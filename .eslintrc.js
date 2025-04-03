@@ -9,14 +9,14 @@ module.exports = {
     browser: true,
   },
   parser: '@babel/eslint-parser',
-  parserOptions: {
+  /*parserOptions: {
     allowImportExportEverywhere: true,
     sourceType: 'module',
     requireConfigFile: false,
-  },
+  },*/
   rules: {
-    'import/extensions': ['error', { js: 'always' }], // require js file extensions in imports
-    'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
-    'no-param-reassign': [2, { props: false }], // allow modifying properties of param
+    /* 'import/extensions': ['error', { js: 'always' }],
+    'linebreak-style': ['error', 'unix'],
+    'no-param-reassign': [2, { props: false }], */
   },
 };
