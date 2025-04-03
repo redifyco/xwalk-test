@@ -271,6 +271,9 @@
   .h-0\.5 {
     height: calc(var(--spacing) * 0.5);
   }
+  .h-96 {
+    height: calc(var(--spacing) * 96);
+  }
   .h-dvh {
     height: 100dvh;
   }
