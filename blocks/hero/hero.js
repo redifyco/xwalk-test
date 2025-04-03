@@ -1,13 +1,12 @@
 import {isEditorMode} from "../../scripts/utils.js";
 
 
-console.log('window.origin', window.origin)
 
 export default async function decorate(block) {
 
 
 
-  if (isEditorMode) {
+/*  if (isEditorMode) {
     const secondDiv = [...block.children][2]
     const paragraph = [...secondDiv.children][0]
     const content = document.createElement('div')
@@ -18,7 +17,7 @@ export default async function decorate(block) {
     block.textContent = ''
     block.appendChild(content)
    return
-  }
+  }*/
 
   const heroDiv = document.querySelector('.hero');
 
@@ -39,7 +38,7 @@ export default async function decorate(block) {
 
   // Create the first div
   const div1 = document.createElement('div');
-  div1.className = 'relative h-dvh z-10 flex w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11';
+  div1.className = `relative ${isEditorMode ? '' : 'h-dvh'}  z-10 flex w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11`;
 
   // Create the h1
   const h1 = document.createElement('h1');

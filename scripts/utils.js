@@ -1,1 +1,1 @@
-export const isEditorMode = document.querySelectorAll('html')[0].className
+export const isEditorMode = window.origin.includes('adobeaemcloud')
