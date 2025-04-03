@@ -1,7 +1,8 @@
-import {isEditorMode} from "../../scripts/utils.js";
+import {isEditorMode, aemLog} from "../../scripts/utils.js";
+
+console.log('aemLog', aemLog)
 
 
-console.log('document in hero.js', document.querySelectorAll('html')[0].classList.value)
 export default async function decorate(block) {
   console.log('block', block)
 
