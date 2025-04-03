@@ -1,7 +1,1 @@
-
-export const isEditor = () => {
-  console.log('window.origin', window.origin)
-  /* if (window.origin.includes('adobeaemcloud.com')) {
-
-  } */
-};
+export const isEditorMode = window.origin.includes('adobeaemcloud.com');

@@ -1,38 +1,11 @@
-import {isEditor} from "../../scripts/utils";
+import {isEditorMode} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
   console.log('block', block);
-  console.log('window', window);
 
-  isEditor()
 
-  if (window.origin.includes('adobeaemcloud.com')) {
-    // const test = block.querySelectorAll('[data-aue-prop="subtitle"]');
-    const titleElement = document.querySelector('.hero h1').innerHTML;
-    const subTitleElement = document.querySelector('.hero p').innerHTML;
-    const picture = block.querySelector('picture');
-
-    block.textContent = '';
-    const section = document.createElement('section');
-    section.className = 'relative';
-
-    const title = document.createElement('h1');
-    title.className = 'absolute inset-0';
-    title.textContent = titleElement;
-
-    const subTitle = document.createElement('p');
-    title.className = 'absolute inset-0';
-    title.textContent = subTitleElement;
-
-    if (picture) {
-      picture.querySelector('img').className = 'h-[300px] w-full object-cover';
-      section.appendChild(picture);
-    }
-
-    section.appendChild(title);
-    section.appendChild(subTitle);
-    block.appendChild(section);
-    return;
+  if (!isEditorMode) {
+   return
   }
 
   const heroDiv = document.querySelector('.hero');
