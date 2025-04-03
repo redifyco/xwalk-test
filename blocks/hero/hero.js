@@ -5,6 +5,8 @@ import {isEditorMode} from "../../scripts/utils.js";
 export default async function decorate(block) {
 
 
+  console.log('isEditorMode', isEditorMode)
+
 
 /*  if (isEditorMode) {
     const secondDiv = [...block.children][2]
@@ -55,7 +57,7 @@ export default async function decorate(block) {
 
   // Create the second div
   const div2 = document.createElement('div');
-  div2.className = 'hidden h-dvh w-full items-center justify-between px-40 lg:flex lg:gap-20 xl:px-64 2xl:gap-64 2xl:px-80';
+  div2.className = `hidden ${isEditorMode ? 'h-96' : 'h-dvh'} w-full items-center justify-between px-40 lg:flex lg:gap-20 xl:px-64 2xl:gap-64 2xl:px-80`;
 
   // Create the h2
   const h2 = document.createElement('h2');
