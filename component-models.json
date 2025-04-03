@@ -189,6 +189,16 @@
         "value": "",
         "label": "Subtitle",
         "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "button Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "button Text"
       }
     ]
   }

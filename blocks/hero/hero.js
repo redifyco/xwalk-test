@@ -3,11 +3,6 @@ import {isEditorMode} from "../../scripts/utils.js";
 export default async function decorate(block) {
   const inEditorMode = isEditorMode();
 
-  // Estrai i contenuti dai div nell'ordine in cui appaiono nel block
-  // Primo div: contiene l'immagine
-  // Secondo div: contiene il titolo
-  // Terzo div: contiene il sottotitolo (potenzialmente rich text)
-
   // Recupera tutti i div di primo livello
   const divs = Array.from(block.children);
 
@@ -24,10 +19,9 @@ export default async function decorate(block) {
   // TITOLO: secondo div
   let title = "";
   if (divs[1]) {
-    // Naviga fino al contenuto effettivo
     const titleContainer = divs[1].querySelector('div');
     if (titleContainer) {
-      title = titleContainer.innerHTML; // Usa innerHTML per preservare eventuali tag HTML
+      title = titleContainer.innerHTML;
     }
   }
 
@@ -36,7 +30,31 @@ export default async function decorate(block) {
   if (divs[2]) {
     const subtitleContainer = divs[2].querySelector('div');
     if (subtitleContainer) {
-      subtitle = subtitleContainer.innerHTML; // Preserva il rich text
+      subtitle = subtitleContainer.innerHTML;
+    }
+  }
+
+  // BUTTON TEXT: quarto div
+  let buttonText = "Learn more About Us"; // valore predefinito
+  if (divs[3]) {
+    const buttonTextContainer = divs[3].querySelector('div');
+    if (buttonTextContainer) {
+      buttonText = buttonTextContainer.textContent.trim();
+    }
+  }
+
+  // BUTTON LINK: quinto div (potrebbe contenere un link)
+  let buttonLink = "#"; // valore predefinito
+  if (divs[4]) {
+    const linkElement = divs[4].querySelector('a');
+    if (linkElement) {
+      buttonLink = linkElement.href;
+    } else {
+      // Se non c'è un link, usa il testo come URL
+      const buttonLinkContainer = divs[4].querySelector('div');
+      if (buttonLinkContainer && buttonLinkContainer.textContent.trim()) {
+        buttonLink = buttonLinkContainer.textContent.trim();
+      }
     }
   }
 
@@ -71,44 +89,23 @@ export default async function decorate(block) {
   p1.innerHTML = subtitle || '"We all have the duty to leave a better world for future generations" Capt. Gianluigi Aponte - MSC Foundation Chair';
   div1.appendChild(p1);
 
-  // Create the second div
-  const div2 = document.createElement('div');
-  div2.className = `hidden ${heightClass} w-full items-center justify-between px-40 lg:flex lg:gap-20 xl:px-64 2xl:gap-64 2xl:px-80`;
-
-  // Create the h2
-  const h2 = document.createElement('h2');
-  h2.className = 'w-full text-6xl text-white uppercase lg:text-8xl xl:text-9xl';
-  h2.innerHTML = "What <span class='font-joyful-lg lowercase'>drives</span> us";
-  div2.appendChild(h2);
-
-  // Create the content div con margine condizionale
-  const mtClass = inEditorMode ? 'mt-32' : 'mt-64';
-  const contentDiv = document.createElement('div');
-  contentDiv.className = `${mtClass} flex w-9/12 flex-col gap-3 lg:gap-10 2xl:gap-16`;
-
-  // Create the paragraph
-  const p2 = document.createElement('p');
-  p2.className = 'text-white';
-  p2.textContent = "The ocean is life, it's culture, it's the heartbeat of communities worldwide. At the MSC Foundation, we work to safeguard and empower this vital connection, ensuring a thriving future for both people and the blue planet.";
-  contentDiv.appendChild(p2);
-
-  // Create the button
-  const button = document.createElement('button');
-  button.className = 'group relative inline-block w-fit p-2';
-  button.innerHTML = `
-  <span class="button-line-absolute-white -top-1 -right-1 h-0.5 w-6/12 group-hover:w-9/12"></span>
-  <span class="button-line-absolute-white -top-1 -right-1 h-full w-0.5 group-hover:h-9/12"></span>
-  <span class="button-line-absolute-white -bottom-1 -left-1 h-0.5 w-6/12 group-hover:w-9/12"></span>
-  <span class="button-line-absolute-white -bottom-1 -left-1 h-full w-0.5 group-hover:h-9/12"></span>
-  <span class="px-4 py-2 text-white">Learn more About Us</span>
-  `;
-  contentDiv.appendChild(button);
-  div2.appendChild(contentDiv);
+  // Aggiungiamo il pulsante alla prima sezione
+  if (buttonText) {
+    const primaryButton = document.createElement('a');
+    primaryButton.href = buttonLink;
+    primaryButton.className = 'group relative inline-block w-fit p-2 mt-4';
+    primaryButton.innerHTML = `
+      <span class="button-line-absolute-white -top-1 -right-1 h-0.5 w-6/12 group-hover:w-9/12"></span>
+      <span class="button-line-absolute-white -top-1 -right-1 h-full w-0.5 group-hover:h-9/12"></span>
+      <span class="button-line-absolute-white -bottom-1 -left-1 h-0.5 w-6/12 group-hover:w-9/12"></span>
+      <span class="button-line-absolute-white -bottom-1 -left-1 h-full w-0.5 group-hover:h-9/12"></span>
+      <span class="px-4 py-2 text-white">${buttonText}</span>
+    `;
+    div1.appendChild(primaryButton);
+  }
 
   // Append everything to the section
   section.appendChild(div1);
-  section.appendChild(div2);
-
   block.appendChild(section);
 
   // Aggiungiamo class al body per stili globali in editor mode
