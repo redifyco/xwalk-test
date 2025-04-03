@@ -62,7 +62,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // Imposta altezza predefinita basata sulla modalità
-  const heightClass = inEditorMode ? 'h-[600px]' : 'h-dvh';
+  const heightClass = inEditorMode ? 'h-[800px]' : 'h-dvh';
 
   // Create the section
   const section = document.createElement('section');
