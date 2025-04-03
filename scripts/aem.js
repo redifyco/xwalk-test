@@ -128,13 +128,14 @@ function sampleRUM(checkpoint, data) {
   }
 }
 
+console.log('document', document.querySelectorAll('html')[0].classList)
+
 /**
  * Setup block utils.
  */
 function setup() {
   window.hlx = window.hlx || {};
   window.hlx.RUM_MASK_URL = 'full';
-  window.hlx.ENVIRONMENT = 'adobeaemcloud';
   window.hlx.RUM_MANUAL_ENHANCE = true;
   window.hlx.codeBasePath = '';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
