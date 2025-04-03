@@ -1,6 +1,6 @@
-import {isEditorMode, aemLog} from "../../scripts/utils.js";
+import {isEditorMode} from "../../scripts/utils.js";
 
-console.log('aemLog', aemLog)
+console.log('isEditorMode', isEditorMode)
 
 
 export default async function decorate(block) {
