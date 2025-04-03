@@ -10,6 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
+
+console.log('digitalData', digitalData)
+
 /* eslint-env browser */
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
