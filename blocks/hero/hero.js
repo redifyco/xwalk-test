@@ -1,7 +1,7 @@
 import {isEditorMode} from "../../scripts/utils.js";
 
 
-console.log('EXC', document.getElementById('exc'))
+console.log('window.origin', window.origin)
 
 export default async function decorate(block) {
 
