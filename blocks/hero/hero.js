@@ -1,9 +1,7 @@
 import {isEditorMode} from "../../scripts/utils.js";
 
-console.log('isEditorMode', isEditorMode)
 
-
-console.log('window log hero.js', window)
+console.log('EXC', document.getElementById('exc'))
 
 export default async function decorate(block) {
 
