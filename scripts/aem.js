@@ -11,7 +11,6 @@
  */
 
 
-console.log('digitalData', digitalData)
 
 /* eslint-env browser */
 function sampleRUM(checkpoint, data) {
