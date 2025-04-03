@@ -1,10 +1,19 @@
 import {isEditorMode} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
-  console.log('block', block);
+  console.log('block', block)
 
 
-  if (!isEditorMode) {
+  if (isEditorMode) {
+    const secondDiv = [...block.children][2]
+    const paragraph = [...secondDiv.children][0]
+    const content = document.createElement('div')
+    content.innerHTML = paragraph.innerHTML
+    content.className = 'bg-orange-500 mt-64'
+
+    console.log('block',block)
+    block.textContent = ''
+    block.appendChild(content)
    return
   }
 
