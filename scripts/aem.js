@@ -128,7 +128,7 @@ function sampleRUM(checkpoint, data) {
   }
 }
 
-console.log('document', document.querySelectorAll('html')[0].classList)
+console.log('document in aem.js', document.querySelectorAll('html')[0].classList.value)
 
 /**
  * Setup block utils.
