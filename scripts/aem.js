@@ -10,8 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-console.log('window log aem.js', window)
-
+console.log('EXC aem', document.getElementById('exc'))
 /* eslint-env browser */
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
