@@ -243,10 +243,9 @@
     "id": "text-background",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "title",
-        "raw": true,
         "label": "Title",
         "value": ""
       },
