@@ -280,45 +280,24 @@
       "component": "text",
       "valueType": "string",
       "name": "title",
-      "label": "Title",
+      "label": "Titolo",
       "multi": false
     },
     {
       "component": "richtext",
       "name": "description",
-      "label": "Description",
+      "label": "Descrizione",
       "valueType": "string"
-    },
-    {
-      "component": "compound",
-      "name": "logos",
-      "label": "Logos",
-      "multi": true,
-      "maxItems": 7,
-      "fields": [
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "image",
-          "label": "Logo Image",
-          "multi": false
-        },
-        {
-          "component": "aem-content",
-          "name": "link",
-          "label": "Logo Link"
-        }
-      ]
-    },
-    {
-      "component": "aem-content",
-      "name": "buttonLink",
-      "label": "Button Link"
     },
     {
       "component": "text",
       "name": "buttonText",
-      "label": "Button Text"
+      "label": "Testo Pulsante"
+    },
+    {
+      "component": "text",
+      "name": "buttonLink",
+      "label": "Link Pulsante"
     }
   ]
 },{
@@ -328,20 +307,21 @@
       "component": "reference",
       "valueType": "string",
       "name": "image",
-      "label": "Logo Image",
-      "multi": false
-    },
-    {
-      "component": "aem-content",
-      "name": "link",
-      "label": "Logo Link",
+      "label": "Immagine Logo",
       "multi": false
     },
     {
       "component": "text",
       "valueType": "string",
-      "name": "altText",
-      "label": "Alternative Text",
+      "name": "link",
+      "label": "Link Logo",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "alt",
+      "label": "Testo Alternativo",
       "multi": false
     }
   ]

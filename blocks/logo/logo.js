@@ -1,36 +1,35 @@
 export default function decorate(block) {
-  // Estrai l'immagine del logo
-  const imgElement = block.querySelector('img');
+  // Rimuovi tutte le classi esistenti e aggiungi solo quelle necessarie
+  block.className = 'block logo';
 
-  // Estrai il link se presente
-  const linkElement = block.querySelector('a');
+  // Estrai l'immagine
+  const img = block.querySelector('img');
+  if (img) {
+    // Assicurati che l'immagine abbia le classi corrette
+    img.className = 'w-20 2xl:w-40';
 
-  // Svuota il blocco per ricostruirlo
-  block.textContent = '';
+    // Estrai il link se esiste
+    const linkCell = block.querySelector('div:nth-child(2)');
+    const linkUrl = linkCell?.textContent.trim();
 
-  // Crea la struttura del logo
-  if (imgElement) {
-    // Applica le classi Tailwind appropriate
-    imgElement.className = 'w-20 2xl:w-40';
+    // Rimuovi tutti i contenuti esistenti
+    block.textContent = '';
 
     // Se c'è un link, avvolgi l'immagine nel link
-    if (linkElement) {
-      // Rimuovi eventuali contenuti dal link e inserisci solo l'immagine
-      linkElement.textContent = '';
-      linkElement.appendChild(imgElement);
-      block.appendChild(linkElement);
+    if (linkUrl && linkUrl !== '') {
+      const link = document.createElement('a');
+      link.href = linkUrl;
+      link.appendChild(img.cloneNode(true));
+      block.appendChild(link);
     } else {
-      // Altrimenti, aggiungi semplicemente l'immagine
-      block.appendChild(imgElement);
+      block.appendChild(img.cloneNode(true));
     }
   } else {
     // Se non c'è un'immagine, crea un placeholder
+    block.textContent = '';
     const placeholder = document.createElement('div');
     placeholder.className = 'w-20 h-20 2xl:w-40 2xl:h-40 border border-dashed flex items-center justify-center';
     placeholder.textContent = 'Logo';
     block.appendChild(placeholder);
   }
-
-  // Stile complessivo del blocco
-  block.classList.add('logo-item');
 }
