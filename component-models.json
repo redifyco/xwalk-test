@@ -197,8 +197,8 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "background-image",
-        "label": "Background Image",
+        "name": "image",
+        "label": "Image",
         "multi": false
       },
       {
@@ -209,11 +209,9 @@
         "value": ""
       },
       {
-        "component": "richtext",
-        "valueType": "string",
+        "component": "text",
         "name": "subtitle",
-        "label": "Subtitle",
-        "value": ""
+        "label": "Subtitle"
       },
       {
         "component": "aem-content",
