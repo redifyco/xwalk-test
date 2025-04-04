@@ -42,6 +42,11 @@
   },
   {
     "id": "text-background",
-    "components": []
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
   }
 ]
