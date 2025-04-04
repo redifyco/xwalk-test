@@ -1,46 +1,35 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
-
 export default function decorate(block) {
-  // Recupera i dati dal div del blocco con nomi coerenti
-  // con component-definition.json
-  const logoData = block.firstElementChild;
+  // Rimuovi tutte le classi esistenti e aggiungi solo quelle necessarie
+  block.className = 'block logo';
 
-  // Crea un nuovo elemento logo con la struttura appropriata
-  const logoElement = document.createElement('div');
-  logoElement.className = 'logo-element';
+  // Estrai l'immagine
+  const img = block.querySelector('img');
+  if (img) {
+    // Assicurati che l'immagine abbia le classi corrette
+    img.className = 'w-20 2xl:w-40';
 
-  // Gestione immagine del logo
-  const logoImage = logoData.querySelector('img');
-  if (logoImage) {
-    const picture = createOptimizedPicture(logoImage.src, logoImage.alt, false);
-    const imageWrapper = document.createElement('div');
-    imageWrapper.className = 'logo-image';
-    imageWrapper.appendChild(picture);
-    logoElement.appendChild(imageWrapper);
-  }
+    // Estrai il link se esiste
+    const linkCell = block.querySelector('div:nth-child(2)');
+    const linkUrl = linkCell?.textContent.trim();
 
-  // Gestione link se presente
-  const logoLink = logoData.querySelector('a');
-  if (logoLink) {
-    const linkWrapper = document.createElement('div');
-    linkWrapper.className = 'logo-link';
-    const newLink = document.createElement('a');
-    newLink.href = logoLink.href;
-    newLink.target = logoLink.target || '_blank';
+    // Rimuovi tutti i contenuti esistenti
+    block.textContent = '';
 
-    // Se c'è del testo nel link, preservalo
-    if (logoLink.textContent.trim()) {
-      newLink.textContent = logoLink.textContent;
+    // Se c'è un link, avvolgi l'immagine nel link
+    if (linkUrl && linkUrl !== '') {
+      const link = document.createElement('a');
+      link.href = linkUrl;
+      link.appendChild(img.cloneNode(true));
+      block.appendChild(link);
     } else {
-      // Altrimenti potrebbe essere solo un link wrapper per l'immagine
-      newLink.textContent = logoImage ? logoImage.alt : 'Visita il sito';
+      block.appendChild(img.cloneNode(true));
     }
-
-    linkWrapper.appendChild(newLink);
-    logoElement.appendChild(linkWrapper);
+  } else {
+    // Se non c'è un'immagine, crea un placeholder
+    block.textContent = '';
+    const placeholder = document.createElement('div');
+    placeholder.className = 'w-20 h-20 2xl:w-40 2xl:h-40 border border-dashed flex items-center justify-center';
+    placeholder.textContent = 'Logo';
+    block.appendChild(placeholder);
   }
-
-  // Svuota il blocco e aggiungi l'elemento logo formattato
-  block.textContent = '';
-  block.appendChild(logoElement);
 }

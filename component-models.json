@@ -274,35 +274,55 @@
       }
     ]
   },{
-    "id": "logo-showcase",
-      "fields": [
-        {
-          "component": "richtext",
-          "name": "text",
-          "value": "",
-          "label": "Text",
-          "valueType": "string"
-        }
-      ]
-  },{
+  "id": "logo-showcase",
+  "fields": [
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "title",
+      "label": "Titolo",
+      "multi": false
+    },
+    {
+      "component": "richtext",
+      "name": "description",
+      "label": "Descrizione",
+      "valueType": "string"
+    },
+    {
+      "component": "text",
+      "name": "buttonText",
+      "label": "Testo Pulsante"
+    },
+    {
+      "component": "text",
+      "name": "buttonLink",
+      "label": "Link Pulsante"
+    }
+  ]
+},{
   "id": "logo",
   "fields": [
     {
       "component": "reference",
       "valueType": "string",
       "name": "image",
-      "label": "Image",
+      "label": "Immagine Logo",
       "multi": false
     },
     {
-      "component": "aem-content",
+      "component": "text",
+      "valueType": "string",
       "name": "link",
-      "label": "Logo Link"
+      "label": "Link Logo",
+      "multi": false
     },
     {
       "component": "text",
-      "name": "Alternative text",
-      "label": "alternative logo Text"
+      "valueType": "string",
+      "name": "alt",
+      "label": "Testo Alternativo",
+      "multi": false
     }
   ]
 }
