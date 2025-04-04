@@ -282,12 +282,6 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
-        },
-        {
-          "component": "logo",
-          "name": "logo",
-          "label": "logo",
-          "multi": true
         }
       ]
   },{
