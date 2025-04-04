@@ -29,6 +29,36 @@
           }
         }
       }
+    },
+    {
+      "title": "Subtitle",
+      "id": "richtext",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Subtitle",
+              "model": "richtext"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Button text",
+      "id": "button",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Button text",
+              "model": "button"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
