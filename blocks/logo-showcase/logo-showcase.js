@@ -23,37 +23,51 @@ export default function decorate(block) {
 
   // Contenitore per i loghi
   const logoContainer = document.createElement('div');
-  logoContainer.className = 'flex h-32 items-center justify-center gap-2 overflow-x-scroll 2xl:h-52 2xl:items-center 2xl:gap-8';
+  logoContainer.className = 'flex flex-wrap items-center justify-center gap-8 mt-8 2xl:mt-16';
 
-  // Tutti i loghi dovrebbero essere contenuti in una div specifica (es. la terza div)
-  const logoItems = block.querySelectorAll('.block.logo');
+  // Cerca gli item di tipo logo
+  // La terza div contiene gli elementi logo
+  const logoWrapper = block.children[2]?.children[0];
+  if (logoWrapper) {
+    // Ogni riga nella tabella è un logo separato
+    [...logoWrapper.children].forEach((row) => {
+      if (row.tagName === 'DIV') {
+        // Ogni logo deve avere un'immagine nella prima colonna
+        const img = row.querySelector('img');
+        if (img) {
+          // Imposta lo stile dell'immagine
+          img.className = 'w-20 2xl:w-40';
 
-  // Se non ci sono loghi espliciti, cerchiamo le immagini
-  if (logoItems.length === 0) {
-    const images = block.querySelectorAll('img');
-    images.forEach(img => {
-      const clone = img.cloneNode(true);
-      clone.className = 'w-20 2xl:w-40';
+          // Controlla se c'è un link
+          const linkCell = row.querySelector('div:nth-child(2)');
+          const linkUrl = linkCell?.textContent.trim();
 
-      // Se l'immagine è dentro un link, preserviamo il link
-      if (img.parentElement.tagName === 'A') {
-        const link = img.parentElement.cloneNode(false);
-        link.appendChild(clone);
-        logoContainer.appendChild(link);
-      } else {
-        logoContainer.appendChild(clone);
+          // Creiamo un nuovo elemento per il logo
+          const logoElement = document.createElement('div');
+          logoElement.className = 'logo-item p-4 flex items-center justify-center';
+
+          if (linkUrl && linkUrl !== '') {
+            // Se c'è un link, crea un elemento <a> con l'immagine all'interno
+            const link = document.createElement('a');
+            link.href = linkUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.appendChild(img.cloneNode(true));
+            logoElement.appendChild(link);
+          } else {
+            // Altrimenti, aggiungi solo l'immagine
+            logoElement.appendChild(img.cloneNode(true));
+          }
+
+          logoContainer.appendChild(logoElement);
+        }
       }
-    });
-  } else {
-    // Altrimenti usiamo i blocchi logo esistenti
-    logoItems.forEach(logo => {
-      logoContainer.appendChild(logo);
     });
   }
 
   section.appendChild(logoContainer);
 
-  // Bottone (ultima div)
+  // Bottone (quarta div)
   const buttonDiv = block.querySelector('div:nth-child(4)');
   if (buttonDiv) {
     const buttonText = buttonDiv.textContent.trim();
@@ -62,7 +76,7 @@ export default function decorate(block) {
     if (buttonText) {
       const button = document.createElement('a');
       button.href = buttonLink;
-      button.className = 'group border-primary relative inline-block border p-2 2xl:border-0';
+      button.className = 'group border-primary relative inline-block border p-2 mt-8 2xl:mt-16 2xl:border-0';
 
       // Aggiungi gli elementi decorativi
       const spans = [
