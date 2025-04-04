@@ -201,5 +201,78 @@
         "label": "button Text"
       }
     ]
+  },
+  {
+    "id": "hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "raw": true,
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "subtitle",
+        "value": "",
+        "label": "Subtitle",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "button Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "button Text"
+      }
+    ]
+    },{
+    "id": "text-background",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "raw": true,
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "subtitle",
+        "value": "",
+        "label": "Subtitle",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "button Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "button Text"
+      }
+    ]
   }
 ]
