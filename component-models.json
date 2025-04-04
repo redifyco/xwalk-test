@@ -178,67 +178,20 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "title",
-        "raw": true,
-        "label": "Title",
+        "name": "imageAlt",
+        "label": "Alt",
         "value": ""
       },
       {
         "component": "richtext",
-        "name": "subtitle",
+        "name": "text",
         "value": "",
-        "label": "Subtitle",
+        "label": "Text",
         "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "link",
-        "label": "button Link"
-      },
-      {
-        "component": "text",
-        "name": "linkText",
-        "label": "button Text"
       }
     ]
   },
   {
-    "id": "hero",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "raw": true,
-        "label": "Title",
-        "value": ""
-      },
-      {
-        "component": "richtext",
-        "name": "subtitle",
-        "value": "",
-        "label": "Subtitle",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "link",
-        "label": "button Link"
-      },
-      {
-        "component": "text",
-        "name": "linkText",
-        "label": "button Text"
-      }
-    ]
-    },{
     "id": "text-background",
     "fields": [
       {
@@ -273,57 +226,5 @@
         "label": "button Text"
       }
     ]
-  },{
-  "id": "logo-showcase",
-  "fields": [
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "title",
-      "label": "Titolo",
-      "multi": false
-    },
-    {
-      "component": "richtext",
-      "name": "description",
-      "label": "Descrizione",
-      "valueType": "string"
-    },
-    {
-      "component": "text",
-      "name": "buttonText",
-      "label": "Testo Pulsante"
-    },
-    {
-      "component": "text",
-      "name": "buttonLink",
-      "label": "Link Pulsante"
-    }
-  ]
-},{
-  "id": "logo",
-  "fields": [
-    {
-      "component": "reference",
-      "valueType": "string",
-      "name": "image",
-      "label": "Immagine Logo",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "link",
-      "label": "Link Logo",
-      "multi": false
-    },
-    {
-      "component": "text",
-      "valueType": "string",
-      "name": "alt",
-      "label": "Testo Alternativo",
-      "multi": false
-    }
-  ]
-}
+  }
 ]

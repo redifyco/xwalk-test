@@ -16,8 +16,7 @@
       "cards",
       "columns",
       "fragment",
-      "text-background",
-      "logo-showcase"
+      "text-background"
     ]
   },
   {
@@ -42,9 +41,7 @@
     ]
   },
   {
-    "id": "logos",
-    "components": [
-      "logo"
-    ]
+    "id": "text-background",
+    "components": []
   }
 ]
