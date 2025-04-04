@@ -239,42 +239,41 @@
       }
     ]
     },{
-      "id": "text-background",
-      "fields": [
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "image",
-          "label": "Image",
-          "multi": false
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "title",
-          "raw": true,
-          "label": "Title",
-          "value": ""
-        },
-        {
-          "component": "richtext",
-          "name": "subtitle",
-          "value": "",
-          "label": "Subtitle",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "link",
-          "label": "button Link"
-        },
-        {
-          "component": "text",
-          "name": "linkText",
-          "label": "button Text"
-        }
-      ]
-    },{
+    "id": "text-background",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "background-image",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "subtitle",
+        "value": "",
+        "label": "Subtitle",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "button Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "button Text"
+      }
+    ]
+  },{
     "id": "logo-showcase",
       "fields": [
         {
