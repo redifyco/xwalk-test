@@ -210,20 +210,20 @@
       },
       {
         "component": "richtext",
+        "valueType": "string",
         "name": "subtitle",
-        "value": "",
         "label": "Subtitle",
-        "valueType": "string"
+        "value": ""
       },
       {
         "component": "aem-content",
         "name": "link",
-        "label": "button Link"
+        "label": "Button Link"
       },
       {
         "component": "text",
         "name": "linkText",
-        "label": "button Text"
+        "label": "Button Text"
       }
     ]
   }
