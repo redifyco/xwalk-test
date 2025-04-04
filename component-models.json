@@ -239,40 +239,78 @@
       }
     ]
     },{
-    "id": "text-background",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "raw": true,
-        "label": "Title",
-        "value": ""
-      },
-      {
-        "component": "richtext",
-        "name": "subtitle",
-        "value": "",
-        "label": "Subtitle",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "link",
-        "label": "button Link"
-      },
-      {
-        "component": "text",
-        "name": "linkText",
-        "label": "button Text"
-      }
-    ]
-  }
+      "id": "text-background",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "raw": true,
+          "label": "Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "subtitle",
+          "value": "",
+          "label": "Subtitle",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "button Link"
+        },
+        {
+          "component": "text",
+          "name": "linkText",
+          "label": "button Text"
+        }
+      ]
+    },{
+    "id": "logo-showcase",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
+        },
+        {
+          "component": "logo",
+          "name": "logo",
+          "label": "logo",
+          "multi": true
+        }
+      ]
+  },{
+  "id": "logo",
+  "fields": [
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "image",
+      "label": "Image",
+      "multi": false
+    },
+    {
+      "component": "aem-content",
+      "name": "link",
+      "label": "Logo Link"
+    },
+    {
+      "component": "text",
+      "name": "Alternative text",
+      "label": "alternative logo Text"
+    }
+  ]
+}
 ]

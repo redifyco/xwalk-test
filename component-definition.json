@@ -171,6 +171,36 @@
               }
             }
           }
+        },
+        {
+          "title": "Logo showcase",
+          "id": "logo-showcase",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "logo-showcase",
+                  "model": "logo-showcase"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "logo",
+          "id": "logo",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "logo",
+                  "model": "logo"
+                }
+              }
+            }
+          }
         }
       ]
     }
