@@ -238,8 +238,7 @@
         "label": "button Text"
       }
     ]
-    },
-  {
+    },{
     "id": "text-background",
     "fields": [
       {
@@ -274,5 +273,37 @@
         "label": "button Text"
       }
     ]
-  }
+  },{
+    "id": "logo-showcase",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
+        }
+      ]
+  },{
+  "id": "logo",
+  "fields": [
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "image",
+      "label": "Image",
+      "multi": false
+    },
+    {
+      "component": "aem-content",
+      "name": "link",
+      "label": "Logo Link"
+    },
+    {
+      "component": "text",
+      "name": "Alternative text",
+      "label": "alternative logo Text"
+    }
+  ]
+}
 ]
