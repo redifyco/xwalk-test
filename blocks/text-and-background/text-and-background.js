@@ -1,11 +1,12 @@
 import {isEditorMode} from "../../scripts/utils.js";
+import {createWhiteBorderButton} from "../../components/button.js";
 
 export default async function decorate(block) {
   const inEditorMode = isEditorMode();
   const backgroundImage = block.querySelector('div:first-child picture img') || '';
   const titleHTML = block.querySelector('div:nth-child(2) div').innerHTML || '';
   const descriptionHTML = block.querySelector('div:nth-child(3) div').innerHTML;
-  const buttonHTML = block.querySelector('div:nth-child(4) div p').innerHTML;
+  const buttonObject = block.querySelector('div:nth-child(4) div p a');
 
 
   block.textContent = '';
@@ -24,7 +25,8 @@ export default async function decorate(block) {
   /*CONTAINER DESCRIPTION + BUTTON*/
   const containerDescription = document.createElement('div');
   containerDescription.className = 'lg:translate-y-20 flex flex-col gap-10 lg:text-xl'
-  containerDescription.innerHTML = descriptionHTML + buttonHTML;
+  containerDescription.innerHTML = descriptionHTML;
+  containerDescription.appendChild(createWhiteBorderButton(buttonObject.title, buttonObject.href))
 
 
   /*CONTAINER TEXT*/
@@ -32,6 +34,7 @@ export default async function decorate(block) {
   containerText.className = 'text-end h-full lg:gap-32 w-2/3 lg:w-full gap-16  lg:text-start text-white justify-center lg:flex-row flex-col flex items-center'
   containerText.appendChild(containerTitle)
   containerText.appendChild(containerDescription)
+
 
   section.appendChild(containerText)
 
