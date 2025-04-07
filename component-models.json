@@ -367,6 +367,47 @@
     ]
   },
   {
+    "id": "dynamic-news-grid",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "sectionTitle",
+        "label": "Section Title",
+        "value": "Latest News"
+      },
+      {
+        "component": "aem-content",
+        "name": "newsRootSection",
+        "label": "News Root Section"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "numberOfNewsToShow",
+        "label": "Number of News to Show Before Read More",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "viewMoreButton",
+        "label": "View More Button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link (Optional)"
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
