@@ -53,11 +53,11 @@ export default async function decorate(block) {
   const containerDescription = document.createElement('div');
   containerDescription.className = 'lg:translate-y-20 leading-5 lg:leading-10 flex items-end lg:items-start flex-col gap-10 lg:text-xl'
   containerDescription.innerHTML = descriptionHTML;
-  containerDescription.appendChild(createWhiteBorderButton(buttonObject.title, buttonObject.href))
+  containerDescription.appendChild(createWhiteBorderButton(buttonObject.title, buttonObject.href, !backgroundImage))
 
   /*CONTAINER TEXT*/
   const containerText = document.createElement('div');
-  containerText.className = `text-end h-full max-w-5xl w-3/4 lg:gap-32 lg:w-full gap-16  lg:text-start justify-center lg:flex-row flex-col flex items-center ${backgroundImage?.src ? 'text-white' : 'text-current'}`
+  containerText.className = `text-end h-full max-w-5xl w-3/4 lg:gap-32 lg:w-full gap-16 lg:text-start justify-center lg:flex-row flex-col flex items-center ${backgroundImage?.src ? 'text-white' : 'text-primary'}`
   containerText.appendChild(containerTitle)
   containerText.appendChild(containerDescription)
 
