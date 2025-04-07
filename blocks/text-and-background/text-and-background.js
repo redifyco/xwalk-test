@@ -7,13 +7,17 @@ export default async function decorate(block) {
   const titleHTML = block.querySelector('div:nth-child(2) div').innerHTML || '<p>What drives us</p>';
   const descriptionHTML = block.querySelector('div:nth-child(3) div').innerHTML || '<p>The ocean is life, it’s culture, it’s the heartbeat of communities worldwide. At the MSC Foundation, we work to safeguard and empower this vital connection, ensuring a thriving future for both people and the blue planet. </p>';
   const buttonObject = block.querySelector('div:nth-child(4) div p a') || {title: 'Learn more about us', href: '#'};
+  // const mobileHeight = block.querySelector('div:nth-child(5) div p') || '500'
+  // const desktopHeight = block.querySelector('div:nth-child(5) div p') || '1000'
 
+  // console.log('mobileHeightSection', mobileHeight)
+  // console.log('desktopHeightSection', desktopHeight)
 
   block.textContent = '';
 
   /*SECTION*/
   const section = document.createElement('section');
-  section.className = 'bg-no-repeat bg-cover flex justify-end lg:justify-center bg-center px-4 lg:px-40 xl:px-64 2xl:px-80 py-40'
+  section.className = `bg-no-repeat bg-cover flex justify-end lg:justify-center bg-center px-4 lg:px-40 xl:px-64 2xl:px-80 py-40`
   section.style.backgroundImage = `url(${backgroundImage.src})`;
 
 

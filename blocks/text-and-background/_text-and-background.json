@@ -50,16 +50,98 @@
           "label": "Button Text"
         },
         {
-          "component": "number",
-          "name": "mobile-section-height",
-          "label": "Mobile Section Height",
-          "value": "500"
+          "component": "select",
+          "name": "mobile-height",
+          "label": "Mobile Height",
+          "options": [
+            {
+              "name": "100px",
+              "value": "100"
+            },
+            {
+              "name": "200px",
+              "value": "200"
+            },
+            {
+              "name": "300px",
+              "value": "300"
+            },
+            {
+              "name": "400px",
+              "value": "400"
+            },
+            {
+              "name": "500px",
+              "value": "500"
+            },
+            {
+              "name": "600px",
+              "value": "600"
+            },
+            {
+              "name": "700px",
+              "value": "700"
+            },
+            {
+              "name": "800px",
+              "value": "800"
+            },
+            {
+              "name": "900px",
+              "value": "900"
+            },
+            {
+              "name": "1000px",
+              "value": "1000"
+            }
+          ]
         },
         {
-          "component": "number",
-          "name": "desktop-section-height",
-          "label": "Desktop Section Height",
-          "value": "1000"
+          "component": "select",
+          "name": "desktop-height",
+          "label": "Desktop Height",
+          "options": [
+            {
+              "name": "100px",
+              "value": "100"
+            },
+            {
+              "name": "200px",
+              "value": "200"
+            },
+            {
+              "name": "300px",
+              "value": "300"
+            },
+            {
+              "name": "400px",
+              "value": "400"
+            },
+            {
+              "name": "500px",
+              "value": "500"
+            },
+            {
+              "name": "600px",
+              "value": "600"
+            },
+            {
+              "name": "700px",
+              "value": "700"
+            },
+            {
+              "name": "800px",
+              "value": "800"
+            },
+            {
+              "name": "900px",
+              "value": "900"
+            },
+            {
+              "name": "1000px",
+              "value": "1000"
+            }
+          ]
         }
       ]
     }
