@@ -46,60 +46,189 @@
           "name": "buttonLink",
           "label": "Button Link"
         },
+
         {
-          "component": "collection",
-          "name": "cards",
-          "label": "Cards",
-          "valueType": "array",
-          "minItems": 1,
-          "maxItems": 4,
-          "fields": [
+          "component": "reference",
+          "valueType": "string",
+          "name": "cardImage1",
+          "label": "Card 1 - Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "cardTitle1",
+          "label": "Card 1 - Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "cardDescription1",
+          "value": "",
+          "label": "Card 1 - Description",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "cardIcon1",
+          "label": "Card 1 - Icon",
+          "multi": false
+        },
+        {
+          "component": "select",
+          "name": "cardStyle1",
+          "label": "Card 1 - Style",
+          "valueType": "string",
+          "options": [
             {
-              "component": "reference",
-              "valueType": "string",
-              "name": "cardImage",
-              "label": "Card Image",
-              "multi": false
+              "value": "titleOnTop",
+              "label": "Title on Top"
             },
             {
-              "component": "text",
-              "valueType": "string",
-              "name": "cardTitle",
-              "label": "Card Title",
-              "value": ""
-            },
-            {
-              "component": "richtext",
-              "name": "cardDescription",
-              "value": "",
-              "label": "Card Description",
-              "valueType": "string"
-            },
-            {
-              "component": "reference",
-              "valueType": "string",
-              "name": "cardIcon",
-              "label": "Card Icon",
-              "multi": false
-            },
-            {
-              "component": "select",
-              "name": "cardStyle",
-              "label": "Card Style",
-              "valueType": "string",
-              "options": [
-                {
-                  "value": "titleOnTop",
-                  "label": "Title on Top"
-                },
-                {
-                  "value": "titleOnBottom",
-                  "label": "Title on Bottom"
-                }
-              ],
-              "value": "titleOnTop"
+              "value": "titleOnBottom",
+              "label": "Title on Bottom"
             }
-          ]
+          ],
+          "value": "titleOnTop"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "cardImage2",
+          "label": "Card 2 - Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "cardTitle2",
+          "label": "Card 2 - Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "cardDescription2",
+          "value": "",
+          "label": "Card 2 - Description",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "cardIcon2",
+          "label": "Card 2 - Icon",
+          "multi": false
+        },
+        {
+          "component": "select",
+          "name": "cardStyle2",
+          "label": "Card 2 - Style",
+          "valueType": "string",
+          "options": [
+            {
+              "value": "titleOnTop",
+              "label": "Title on Top"
+            },
+            {
+              "value": "titleOnBottom",
+              "label": "Title on Bottom"
+            }
+          ],
+          "value": "titleOnTop"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "cardImage3",
+          "label": "Card 3 - Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "cardTitle3",
+          "label": "Card 3 - Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "cardDescription3",
+          "value": "",
+          "label": "Card 3 - Description",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "cardIcon3",
+          "label": "Card 3 - Icon",
+          "multi": false
+        },
+        {
+          "component": "select",
+          "name": "cardStyle3",
+          "label": "Card 3 - Style",
+          "valueType": "string",
+          "options": [
+            {
+              "value": "titleOnTop",
+              "label": "Title on Top"
+            },
+            {
+              "value": "titleOnBottom",
+              "label": "Title on Bottom"
+            }
+          ],
+          "value": "titleOnTop"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "cardImage4",
+          "label": "Card 4 - Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "cardTitle4",
+          "label": "Card 4 - Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "cardDescription4",
+          "value": "",
+          "label": "Card 4 - Description",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "cardIcon4",
+          "label": "Card 4 - Icon",
+          "multi": false
+        },
+        {
+          "component": "select",
+          "name": "cardStyle4",
+          "label": "Card 4 - Style",
+          "valueType": "string",
+          "options": [
+            {
+              "value": "titleOnTop",
+              "label": "Title on Top"
+            },
+            {
+              "value": "titleOnBottom",
+              "label": "Title on Bottom"
+            }
+          ],
+          "value": "titleOnTop"
         }
       ]
     }
