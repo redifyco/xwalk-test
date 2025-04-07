@@ -17,7 +17,8 @@
       "columns",
       "fragment",
       "text-background",
-      "cards-with-images"
+      "cards-with-images",
+      "dynamic-news-grid"
     ]
   },
   {
