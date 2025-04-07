@@ -51,10 +51,6 @@
           {
             "name": "h6",
             "value": "h6"
-          },
-          {
-            "name": "prova",
-            "value": "prova2"
           }
         ]
       }
@@ -316,22 +312,26 @@
         "valueType": "string",
         "name": "title",
         "label": "Title",
-        "value": ""
+        "value": "What drives Us",
+        "placeholder": "What drives Us"
       },
       {
         "component": "text",
         "name": "subtitle",
-        "label": "Subtitle"
+        "label": "Subtitle",
+        "value": "The ocean is life, it’s culture, it’s the heartbeat of communities worldwide. At the MSC Foundation, we work to safeguard and empower this vital connection, ensuring a thriving future for both people and the blue planet. "
       },
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Button Link"
+        "label": "Button Link",
+        "value": "https://www.google.com"
       },
       {
         "component": "text",
         "name": "linkText",
-        "label": "Button Text"
+        "label": "Button Text",
+        "value": "Learn More About Us"
       }
     ]
   }
