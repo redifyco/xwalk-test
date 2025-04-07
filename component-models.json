@@ -182,11 +182,11 @@
         "options": [
           {
             "value": "titleOnTop",
-            "label": "Title on Top"
+            "name": "Title on Top"
           },
           {
             "value": "titleOnBottom",
-            "label": "Title on Bottom"
+            "name": "Title on Bottom"
           }
         ],
         "value": "titleOnTop"
@@ -227,11 +227,11 @@
         "options": [
           {
             "value": "titleOnTop",
-            "label": "Title on Top"
+            "name": "Title on Top"
           },
           {
             "value": "titleOnBottom",
-            "label": "Title on Bottom"
+            "name": "Title on Bottom"
           }
         ],
         "value": "titleOnTop"
@@ -272,11 +272,11 @@
         "options": [
           {
             "value": "titleOnTop",
-            "label": "Title on Top"
+            "name": "Title on Top"
           },
           {
             "value": "titleOnBottom",
-            "label": "Title on Bottom"
+            "name": "Title on Bottom"
           }
         ],
         "value": "titleOnTop"
@@ -317,11 +317,11 @@
         "options": [
           {
             "value": "titleOnTop",
-            "label": "Title on Top"
+            "name": "Title on Top"
           },
           {
             "value": "titleOnBottom",
-            "label": "Title on Bottom"
+            "name": "Title on Bottom"
           }
         ],
         "value": "titleOnTop"
