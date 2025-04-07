@@ -190,28 +190,24 @@
         "valueType": "string"
       },
       {
-        "component": "link",
+        "component": "aem-content",
         "name": "facebookLink",
-        "label": "Facebook Link",
-        "valueType": "object"
+        "label": "Facebook Link"
       },
       {
-        "component": "link",
+        "component": "aem-content",
         "name": "linkedinLink",
-        "label": "LinkedIn Link",
-        "valueType": "object"
+        "label": "LinkedIn Link"
       },
       {
-        "component": "link",
+        "component": "aem-content",
         "name": "instagramLink",
-        "label": "Instagram Link",
-        "valueType": "object"
+        "label": "Instagram Link"
       },
       {
-        "component": "link",
+        "component": "aem-content",
         "name": "youtubeLink",
-        "label": "YouTube Link",
-        "valueType": "object"
+        "label": "YouTube Link"
       }
     ]
   },
