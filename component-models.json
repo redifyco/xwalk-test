@@ -195,7 +195,7 @@
     "id": "text-background",
     "fields": [
       {
-        "component": "image",
+        "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Image",
