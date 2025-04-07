@@ -56,12 +56,7 @@
   "filters": [
     {
       "id": "text-background",
-      "components": [
-        "text",
-        "image",
-        "button",
-        "title"
-      ]
+      "components": []
     }
   ]
 }
