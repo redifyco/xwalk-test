@@ -2,6 +2,7 @@ import {isEditorMode} from "../../scripts/utils.js";
 import {createWhiteBorderButton} from "../../components/button.js";
 
 export default async function decorate(block) {
+  console.log('block', block)
   const inEditorMode = isEditorMode();
   const backgroundImage = block.querySelector('div:first-child picture img') || '';
   const titleHTML = block.querySelector('div:nth-child(2) div').innerHTML || '';
