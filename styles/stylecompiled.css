@@ -228,32 +228,17 @@
   .h-0\.5 {
     height: calc(var(--spacing) * 0.5);
   }
-  .h-\[100px\] {
-    height: 100px;
-  }
   .h-\[200px\] {
     height: 200px;
-  }
-  .h-\[300px\] {
-    height: 300px;
   }
   .h-\[400px\] {
     height: 400px;
   }
-  .h-\[500px\] {
-    height: 500px;
-  }
   .h-\[600px\] {
     height: 600px;
   }
-  .h-\[700px\] {
-    height: 700px;
-  }
   .h-\[800px\] {
     height: 800px;
-  }
-  .h-\[900px\] {
-    height: 900px;
   }
   .h-\[1000px\] {
     height: 1000px;
@@ -380,29 +365,29 @@
       }
     }
   }
-  .lg\:h-\[100px\] {
-    @media (width >= 64rem) {
-      height: 100px;
-    }
-  }
-  .lg\:h-\[200px\] {
-    @media (width >= 64rem) {
+  .md\:h-\[200px\] {
+    @media (width >= 48rem) {
       height: 200px;
     }
   }
-  .lg\:h-\[300px\] {
-    @media (width >= 64rem) {
-      height: 300px;
-    }
-  }
-  .lg\:h-\[400px\] {
-    @media (width >= 64rem) {
+  .md\:h-\[400px\] {
+    @media (width >= 48rem) {
       height: 400px;
     }
   }
-  .lg\:h-\[500px\] {
-    @media (width >= 64rem) {
-      height: 500px;
+  .md\:h-\[600px\] {
+    @media (width >= 48rem) {
+      height: 600px;
+    }
+  }
+  .md\:h-\[800px\] {
+    @media (width >= 48rem) {
+      height: 800px;
+    }
+  }
+  .md\:h-\[1000px\] {
+    @media (width >= 48rem) {
+      height: 1000px;
     }
   }
   .lg\:h-\[600px\] {
@@ -410,19 +395,9 @@
       height: 600px;
     }
   }
-  .lg\:h-\[700px\] {
-    @media (width >= 64rem) {
-      height: 700px;
-    }
-  }
   .lg\:h-\[800px\] {
     @media (width >= 64rem) {
       height: 800px;
-    }
-  }
-  .lg\:h-\[900px\] {
-    @media (width >= 64rem) {
-      height: 900px;
     }
   }
   .lg\:h-\[1000px\] {

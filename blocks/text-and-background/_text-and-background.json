@@ -63,7 +63,7 @@
               "value": "400"
             },
             {
-              "name": "600px",
+              "name": "default",
               "value": "600"
             },
             {
@@ -106,7 +106,7 @@
               "value": "600"
             },
             {
-              "name": "800px",
+              "name": "default",
               "value": "800"
             },
             {
