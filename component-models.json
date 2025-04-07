@@ -226,7 +226,8 @@
         "valueType": "string",
         "name": "title",
         "label": "Title",
-        "value": "What drives Us"
+        "value": "What drives Us",
+        "placeholder": "What drives Us"
       },
       {
         "component": "text",
