@@ -26,7 +26,7 @@ export default async function decorate(block) {
   const containerDescription = document.createElement('div');
   containerDescription.className = 'lg:translate-y-20 flex flex-col gap-10 lg:text-xl'
   containerDescription.innerHTML = descriptionHTML;
-  containerDescription.appendChild(createWhiteBorderButton(buttonObject.title, buttonObject.href))
+  // containerDescription.appendChild(createWhiteBorderButton(buttonObject.title, buttonObject.href))
 
 
   /*CONTAINER TEXT*/
