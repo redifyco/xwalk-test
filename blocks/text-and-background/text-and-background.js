@@ -4,8 +4,8 @@ import {createWhiteBorderButton} from "../../components/button.js";
 
 export default async function decorate(block) {
   const inEditorMode = isEditorMode();
-  const backgroundImage = block.querySelector('div:first-child picture img') || {src: 'assets/images/hero-bg.png'};
-  const titleHTML = block.querySelector('div:nth-child(2) div').innerHTML || '<p>What drives us</p>';
+  const backgroundImage = block.querySelector('div:first-child picture img');
+  const titleHTML = block.querySelector('div:nth-child(2) div').innerHTML || '<h1>What drives us</h1>';
   const descriptionHTML = block.querySelector('div:nth-child(3) div').innerHTML || '<p>The ocean is life, it’s culture, it’s the heartbeat of communities worldwide. At the MSC Foundation, we work to safeguard and empower this vital connection, ensuring a thriving future for both people and the blue planet. </p>';
   const buttonObject = block.querySelector('div:nth-child(4) div p a') || {title: 'Learn more about us', href: '#'};
   const mobileHeight = block.querySelector('div:nth-child(5) div p')?.innerHTML || '600'
@@ -41,7 +41,7 @@ export default async function decorate(block) {
   /*SECTION*/
   const section = document.createElement('section');
   section.className = `bg-no-repeat bg-cover flex justify-end lg:justify-center bg-center lg:px-20 px-4 py-40 ${buildHeight}`
-  section.style.backgroundImage = `url(${backgroundImage.src})`;
+  section.style.backgroundImage = `url(${backgroundImage?.src})` || '';
 
 
   /*CONTAINER TITLE*/
@@ -57,7 +57,7 @@ export default async function decorate(block) {
 
   /*CONTAINER TEXT*/
   const containerText = document.createElement('div');
-  containerText.className = 'text-end h-full max-w-5xl w-3/4 lg:gap-32 lg:w-full gap-16  lg:text-start text-white justify-center lg:flex-row flex-col flex items-center'
+  containerText.className = `text-end h-full max-w-5xl w-3/4 lg:gap-32 lg:w-full gap-16  lg:text-start justify-center lg:flex-row flex-col flex items-center ${backgroundImage?.src ? 'text-white' : 'text-current'}`
   containerText.appendChild(containerTitle)
   containerText.appendChild(containerDescription)
 
