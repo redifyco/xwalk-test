@@ -1,0 +1,108 @@
+{
+  "definitions": [
+    {
+      "title": "Cards with Images",
+      "id": "cards-with-images",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Cards with Images",
+              "model": "cards-with-images"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "cards-with-images",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "sectionTitle",
+          "label": "Section Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "introductoryDescription",
+          "value": "",
+          "label": "Introductory Description",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "buttonText",
+          "label": "Button Text",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "buttonLink",
+          "label": "Button Link"
+        },
+        {
+          "component": "collection",
+          "name": "cards",
+          "label": "Cards",
+          "valueType": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "fields": [
+            {
+              "component": "reference",
+              "valueType": "string",
+              "name": "cardImage",
+              "label": "Card Image",
+              "multi": false
+            },
+            {
+              "component": "text",
+              "valueType": "string",
+              "name": "cardTitle",
+              "label": "Card Title",
+              "value": ""
+            },
+            {
+              "component": "richtext",
+              "name": "cardDescription",
+              "value": "",
+              "label": "Card Description",
+              "valueType": "string"
+            },
+            {
+              "component": "reference",
+              "valueType": "string",
+              "name": "cardIcon",
+              "label": "Card Icon",
+              "multi": false
+            },
+            {
+              "component": "select",
+              "name": "cardStyle",
+              "label": "Card Style",
+              "valueType": "string",
+              "options": [
+                {
+                  "value": "titleOnTop",
+                  "label": "Title on Top"
+                },
+                {
+                  "value": "titleOnBottom",
+                  "label": "Title on Bottom"
+                }
+              ],
+              "value": "titleOnTop"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
