@@ -1,6 +1,4 @@
 export function createWhiteBorderButton(label = 'Donate Now', href = '#') {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'mt-10 flex w-full justify-center lg:mt-0 lg:justify-start lg:px-40 xl:px-56';
 
   const link = document.createElement('a');
   link.href = href;
@@ -28,7 +26,6 @@ export function createWhiteBorderButton(label = 'Donate Now', href = '#') {
   link.appendChild(bottomLine);
   link.appendChild(bottomLeftLine);
   link.appendChild(text);
-  wrapper.appendChild(link);
 
-  return wrapper;
+  return link;
 }

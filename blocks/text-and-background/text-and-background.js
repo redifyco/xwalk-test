@@ -2,12 +2,11 @@ import {isEditorMode} from "../../scripts/utils.js";
 import {createWhiteBorderButton} from "../../components/button.js";
 
 export default async function decorate(block) {
-  console.log('block', block)
   const inEditorMode = isEditorMode();
-  const backgroundImage = block.querySelector('div:first-child picture img') || '';
-  const titleHTML = block.querySelector('div:nth-child(2) div').innerHTML || '';
-  const descriptionHTML = block.querySelector('div:nth-child(3) div').innerHTML;
-  const buttonObject = block.querySelector('div:nth-child(4) div p a');
+  const backgroundImage = block.querySelector('div:first-child picture img') || {src: 'assets/images/hero-bg.png'};
+  const titleHTML = block.querySelector('div:nth-child(2) div').innerHTML || '<p>What drives us</p>';
+  const descriptionHTML = block.querySelector('div:nth-child(3) div').innerHTML || '<p>The ocean is life, it’s culture, it’s the heartbeat of communities worldwide. At the MSC Foundation, we work to safeguard and empower this vital connection, ensuring a thriving future for both people and the blue planet. </p>';
+  const buttonObject = block.querySelector('div:nth-child(4) div p a') || {title: 'Learn more about us', href: '#'};
 
 
   block.textContent = '';
@@ -27,8 +26,7 @@ export default async function decorate(block) {
   const containerDescription = document.createElement('div');
   containerDescription.className = 'lg:translate-y-20 flex flex-col gap-10 lg:text-xl'
   containerDescription.innerHTML = descriptionHTML;
-  // containerDescription.appendChild(createWhiteBorderButton(buttonObject.title, buttonObject.href))
-
+  containerDescription.appendChild(createWhiteBorderButton(buttonObject.title, buttonObject.href))
 
   /*CONTAINER TEXT*/
   const containerText = document.createElement('div');
