@@ -6,6 +6,8 @@
   :root, :host {
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-orange-100: oklch(0.954 0.038 75.164);
+    --color-orange-500: oklch(0.705 0.213 47.604);
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-md: 28rem;
@@ -238,6 +240,9 @@
   .h-0\.5 {
     height: calc(var(--spacing) * 0.5);
   }
+  .h-20 {
+    height: calc(var(--spacing) * 20);
+  }
   .h-\[200px\] {
     height: 200px;
   }
@@ -331,6 +336,9 @@
   .items-end {
     align-items: flex-end;
   }
+  .justify-between {
+    justify-content: space-between;
+  }
   .justify-center {
     justify-content: center;
   }
@@ -349,6 +357,12 @@
   }
   .border-white {
     border-color: var(--color-white);
+  }
+  .bg-orange-100 {
+    background-color: var(--color-orange-100);
+  }
+  .bg-orange-500 {
+    background-color: var(--color-orange-500);
   }
   .bg-cover {
     background-size: cover;
