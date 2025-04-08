@@ -430,8 +430,8 @@
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "menu",
-        "label": "Menu"
+        "name": "header-text",
+        "label": "Header Text"
       },
       {
         "component": "aem-content",
@@ -442,22 +442,6 @@
         "component": "text",
         "name": "link-text",
         "label": "Button Text"
-      },
-      {
-        "id": "menu-container",
-        "fields": [
-          {
-            "component": "richtext",
-            "valueType": "string",
-            "name": "menu-title",
-            "label": "Menu Title"
-          },
-          {
-            "component": "richtext",
-            "name": "menu-submenu",
-            "label": "Menu Submenu"
-          }
-        ]
       }
     ]
   },

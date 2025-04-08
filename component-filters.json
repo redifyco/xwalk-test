@@ -45,7 +45,11 @@
   {
     "id": "header",
     "components": [
-      "header"
+      "container",
+      {
+        "id": "richtext",
+        "title": "Menu"
+      }
     ]
   },
   {
