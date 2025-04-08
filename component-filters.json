@@ -2,8 +2,7 @@
   {
     "id": "main",
     "components": [
-      "section",
-      "header"
+      "section"
     ]
   },
   {
@@ -45,7 +44,9 @@
   },
   {
     "id": "header",
-    "components": []
+    "components": [
+      "container"
+    ]
   },
   {
     "id": "text-background",
