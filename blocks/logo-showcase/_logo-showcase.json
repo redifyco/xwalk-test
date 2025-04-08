@@ -1,0 +1,174 @@
+{
+  "definitions": [
+    {
+      "title": "Logo Showcase",
+      "id": "logo-showcase",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Logo Showcase",
+              "model": "logo-showcase"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "logo-showcase",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "sectionTitle",
+          "label": "Section Title",
+          "value": "Our Partners"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "logo1",
+          "label": "Partner 1 - Logo",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "partnerName1",
+          "label": "Partner 1 - Name",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "websiteLink1",
+          "label": "Partner 1 - Website Link (Optional)"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "logo2",
+          "label": "Partner 2 - Logo",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "partnerName2",
+          "label": "Partner 2 - Name",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "websiteLink2",
+          "label": "Partner 2 - Website Link (Optional)"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "logo3",
+          "label": "Partner 3 - Logo",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "partnerName3",
+          "label": "Partner 3 - Name",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "websiteLink3",
+          "label": "Partner 3 - Website Link (Optional)"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "logo4",
+          "label": "Partner 4 - Logo",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "partnerName4",
+          "label": "Partner 4 - Name",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "websiteLink4",
+          "label": "Partner 4 - Website Link (Optional)"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "logo5",
+          "label": "Partner 5 - Logo",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "partnerName5",
+          "label": "Partner 5 - Name",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "websiteLink5",
+          "label": "Partner 5 - Website Link (Optional)"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "logo6",
+          "label": "Partner 6 - Logo",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "partnerName6",
+          "label": "Partner 6 - Name",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "websiteLink6",
+          "label": "Partner 6 - Website Link (Optional)"
+        },
+
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "logo7",
+          "label": "Partner 7 - Logo",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "partnerName7",
+          "label": "Partner 7 - Name",
+          "value": ""
+        },
+        {
+          "component": "aem-content",
+          "name": "websiteLink7",
+          "label": "Partner 7 - Website Link (Optional)"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
