@@ -1,14 +1,9 @@
 [
   {
-    "id": "header",
-    "components": [
-      "header"
-    ]
-  },
-  {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "header"
     ]
   },
   {
