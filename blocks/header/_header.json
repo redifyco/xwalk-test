@@ -67,7 +67,7 @@
     {
       "id": "header",
       "components": [
-        "menu-container"
+        "header"
       ]
     }
   ]
