@@ -423,24 +423,24 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
-        "label": "Image",
+        "name": "logo-image",
+        "label": "Logo Image",
         "multi": false
       },
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "title",
-        "label": "Title"
+        "name": "menu",
+        "label": "Menu"
       },
       {
         "component": "aem-content",
-        "name": "link",
+        "name": "link-button",
         "label": "Button Link"
       },
       {
         "component": "text",
-        "name": "linkText",
+        "name": "link-text",
         "label": "Button Text"
       }
     ]
