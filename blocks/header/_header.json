@@ -31,8 +31,8 @@
         {
           "component": "richtext",
           "valueType": "string",
-          "name": "header-text",
-          "label": "Header Text"
+          "name": "menu",
+          "label": "Menu"
         },
         {
           "component": "aem-content",
@@ -47,16 +47,5 @@
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "header",
-      "components": [
-        "container",
-        {
-          "id": "richtext",
-          "title": "Menu"
-        }
-      ]
-    }
-  ]
+  "filters": []
 }

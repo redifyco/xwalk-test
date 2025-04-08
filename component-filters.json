@@ -2,8 +2,7 @@
   {
     "id": "main",
     "components": [
-      "section",
-      "header"
+      "section"
     ]
   },
   {
@@ -41,16 +40,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "header",
-    "components": [
-      "container",
-      {
-        "id": "richtext",
-        "title": "Menu"
-      }
     ]
   },
   {
