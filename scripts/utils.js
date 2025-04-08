@@ -10,3 +10,11 @@ export const isEditorMode = () => {
 };
 
 
+export function classNames(classes) {
+  return Object.entries(classes)
+    .filter(([_, value]) => Boolean(value))
+    .map(([key]) => key)
+    .join(' ');
+}
+
+
