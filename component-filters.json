@@ -45,7 +45,7 @@
   {
     "id": "header",
     "components": [
-      "container"
+      "text"
     ]
   },
   {
