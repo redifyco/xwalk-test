@@ -45,28 +45,18 @@
           "label": "Button Text"
         },
         {
-          "id": "container",
+          "id": "menu-container",
           "fields": [
             {
-              "component": "container",
-              "label": "Menu Container",
-              "name": "menu-container",
+              "component": "richtext",
               "valueType": "string",
-              "collapsible": true,
-              "fields": [
-                {
-                  "component": "text",
-                  "label": "Menu Title",
-                  "name": "menu-title",
-                  "valueType": "string"
-                },
-                {
-                  "component": "richtext",
-                  "label": "Submenu",
-                  "name": "submenu-menu",
-                  "valueType": "string"
-                }
-              ]
+              "name": "menu-title",
+              "label": "Menu Title"
+            },
+            {
+              "component": "richtext",
+              "name": "menu-submenu",
+              "label": "Menu Submenu"
             }
           ]
         }
@@ -77,7 +67,7 @@
     {
       "id": "header",
       "components": [
-        "container"
+        "menu-container"
       ]
     }
   ]
