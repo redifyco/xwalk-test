@@ -43,6 +43,32 @@
           "component": "text",
           "name": "link-text",
           "label": "Button Text"
+        },
+        {
+          "id": "container",
+          "fields": [
+            {
+              "component": "container",
+              "label": "Menu Container",
+              "name": "menu-container",
+              "valueType": "string",
+              "collapsible": true,
+              "fields": [
+                {
+                  "component": "text",
+                  "label": "Menu Title",
+                  "name": "menu-title",
+                  "valueType": "string"
+                },
+                {
+                  "component": "richtext",
+                  "label": "Submenu",
+                  "name": "submenu-menu",
+                  "valueType": "string"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -51,7 +77,7 @@
     {
       "id": "header",
       "components": [
-        "text"
+        "container"
       ]
     }
   ]
