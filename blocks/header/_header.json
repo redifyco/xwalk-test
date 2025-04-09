@@ -43,20 +43,11 @@
           "component": "text",
           "name": "link-text",
           "label": "Button Text"
-        },
-        {
-          "component": "aem-content",
-          "name": "link",
-          "label": "Seleziona un link",
-          "description": "Scegli una pagina interna o inserisci un URL esterno.",
-          "valueType": "string",
-          "picker": {
-            "rootPath": "/content",
-            "filter": "hierarchy"
-          }
         }
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    "link-block"
+  ]
 }
