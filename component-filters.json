@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "header"
     ]
   },
   {
@@ -18,7 +19,8 @@
       "fragment",
       "text-background",
       "cards-with-images",
-      "dynamic-news-grid"
+      "dynamic-news-grid",
+      "custom-block"
     ]
   },
   {
