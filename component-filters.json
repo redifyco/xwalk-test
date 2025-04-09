@@ -19,8 +19,7 @@
       "fragment",
       "text-background",
       "cards-with-images",
-      "dynamic-news-grid",
-      "link-block"
+      "dynamic-news-grid"
     ]
   },
   {
@@ -44,7 +43,6 @@
       "title"
     ]
   },
-  "link-block",
   {
     "id": "text-background",
     "components": []
