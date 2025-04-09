@@ -9,6 +9,7 @@
     --color-orange-100: oklch(0.954 0.038 75.164);
     --color-orange-300: oklch(0.837 0.128 66.29);
     --color-orange-500: oklch(0.705 0.213 47.604);
+    --color-purple-500: oklch(0.627 0.265 303.9);
     --color-gray-100: oklch(0.967 0.003 264.542);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -345,6 +346,9 @@
   .items-end {
     align-items: flex-end;
   }
+  .justify-between {
+    justify-content: space-between;
+  }
   .justify-center {
     justify-content: center;
   }
@@ -353,6 +357,9 @@
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
   }
   .gap-10 {
     gap: calc(var(--spacing) * 10);
@@ -372,6 +379,12 @@
   }
   .bg-orange-300 {
     background-color: var(--color-orange-300);
+  }
+  .bg-orange-500 {
+    background-color: var(--color-orange-500);
+  }
+  .bg-purple-500 {
+    background-color: var(--color-purple-500);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -518,6 +531,42 @@
     &::after {
       content: var(--tw-content);
       background-repeat: no-repeat;
+    }
+  }
+  .after\:\!fill-white {
+    &::after {
+      content: var(--tw-content);
+      fill: var(--color-white) !important;
+    }
+  }
+  .after\:fill-white {
+    &::after {
+      content: var(--tw-content);
+      fill: var(--color-white);
+    }
+  }
+  .after\:\!stroke-white {
+    &::after {
+      content: var(--tw-content);
+      stroke: var(--color-white) !important;
+    }
+  }
+  .after\:stroke-white {
+    &::after {
+      content: var(--tw-content);
+      stroke: var(--color-white);
+    }
+  }
+  .after\:\!text-white {
+    &::after {
+      content: var(--tw-content);
+      color: var(--color-white) !important;
+    }
+  }
+  .after\:text-white {
+    &::after {
+      content: var(--tw-content);
+      color: var(--color-white);
     }
   }
   .lg\:h-\[600px\] {
