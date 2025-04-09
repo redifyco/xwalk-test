@@ -1,112 +1,7 @@
 import {getMetadata} from '../../scripts/aem.js';
 import {loadFragment} from '../fragment/fragment.js';
 
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
 
-function closeOnEscape(e) {
-  if (e.code === 'Escape') {
-    const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
-    }
-  }
-}
-
-function closeOnFocusLost(e) {
-  const nav = e.currentTarget;
-  if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections, false);
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
-    }
-  }
-}
-
-function openOnKeydown(e) {
-  const focused = document.activeElement;
-  const isNavDrop = focused.className === 'nav-drop';
-  if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
-    const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
-    // eslint-disable-next-line no-use-before-define
-    toggleAllNavSections(focused.closest('.nav-sections'));
-    focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
-  }
-}
-
-function focusNavSection() {
-  document.activeElement.addEventListener('keydown', openOnKeydown);
-}
-
-/**
- * Toggles all nav sections
- * @param {Element} sections The container element
- * @param {Boolean} expanded Whether the element should be expanded or collapsed
- */
-function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', expanded);
-  });
-}
-
-/**
- * Toggles the entire nav
- * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
- */
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
-  const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-  // enable nav dropdown keyboard accessibility
-  const navDrops = navSections.querySelectorAll('.nav-drop');
-  if (isDesktop.matches) {
-    navDrops.forEach((drop) => {
-      if (!drop.hasAttribute('tabindex')) {
-        drop.setAttribute('tabindex', 0);
-        drop.addEventListener('focus', focusNavSection);
-      }
-    });
-  } else {
-    navDrops.forEach((drop) => {
-      drop.removeAttribute('tabindex');
-      drop.removeEventListener('focus', focusNavSection);
-    });
-  }
-
-  // enable menu collapse on escape keypress
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-    // collapse menu on focus lost
-    nav.addEventListener('focusout', closeOnFocusLost);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
-    nav.removeEventListener('focusout', closeOnFocusLost);
-  }
-}
-
-/**
- * loads and decorates the header, mainly the nav
- * @param {Element} block The header block element
- */
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
@@ -115,15 +10,58 @@ export default async function decorate(block) {
   block.textContent = ''
 
 
-  /*WRAPPER*/
-  block.className = 'bg-orange-100 h-20';
-  console.log('block', block)
+  const logoImage = fragment.querySelector('picture img')
+  block.appendChild(logoImage)
 
+  const menuContainer = fragment.querySelector('.default-content-wrapper ul');
+  const subMenuStates = new Map();
+
+  menuContainer.querySelectorAll(':scope > li').forEach((menu) => {
+    const subMenu = menu.querySelector('ul');
+    subMenu.className = 'invisible absolute p-4 pt-10 text-lg bg-white shadow-lg flex flex-col gap-2 w-max';
+    const menuWrapper = document.createElement('div');
+    const menuTitle = menuWrapper.appendChild(menu.querySelector('p'));
+    menuTitle.className = 'text-primary text-lg flex items-center after:mt-2 gap-2 after:size-4 after:bg-[url(/assets/icons/chevron-down-theme.svg)] after:flex after:bg-contain after:bg-no-repeat !font-medium cursor-pointer';
+
+    menuWrapper.appendChild(menuTitle);
+    menuWrapper.appendChild(subMenu);
+
+    subMenuStates.set(menuTitle, false);
+
+    menuTitle.addEventListener("click", () => {
+      const isCurrentlyOpen = subMenuStates.get(menuTitle);
+
+      // Close all submenus
+      subMenuStates.forEach((_, title) => {
+        const targetMenu = title.nextElementSibling;
+        targetMenu.classList.remove('visible')
+        targetMenu.classList.add('invisible')
+
+        subMenuStates.set(title, false);
+      });
+
+      // Toggle clicked submenu
+      if (!isCurrentlyOpen) {
+        subMenu.classList.remove('invisible')
+        subMenu.classList.add('visible')
+        subMenu.querySelectorAll(':scope > li').forEach((item) => {
+          item.className = ' after:size-4 flex items-center gap-2 after:bg-[url(/assets/icons/chevron-right-black.svg)] after:bg-contain after:bg-no-repeat after:block'
+        })
+        subMenuStates.set(menuTitle, true);
+      }
+    });
+
+    block.appendChild(menuWrapper);
+  });
+
+
+  const buttonLink = fragment.querySelector('div:nth-child(4) div p a');
+
+  /*WRAPPER*/
+  block.className = 'flex fixed items-center gap-2';
 
   /*CONTAINER*/
-  const container = document.createElement('div');
-  container.className = 'flex justify-between items-center h-full px-4 lg:px-20';
-  
 
-  console.log('fragment', fragment)
+  /*APPEND*/
+
 }

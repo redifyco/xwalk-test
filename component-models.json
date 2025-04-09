@@ -367,6 +367,18 @@
     ]
   },
   {
+    "id": "custom-block",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "custom-title",
+        "label": "Custom Title",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "dynamic-news-grid",
     "fields": [
       {
