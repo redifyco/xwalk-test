@@ -442,6 +442,9 @@
     --tw-font-weight: var(--font-weight-medium) !important;
     font-weight: var(--font-weight-medium) !important;
   }
+  .\!text-primary {
+    color: var(--color-primary) !important;
+  }
   .text-primary {
     color: var(--color-primary);
   }

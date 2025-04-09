@@ -1,9 +1,11 @@
 import {getMetadata} from '../../scripts/aem.js';
 import {loadFragment} from '../fragment/fragment.js';
 import {createWhiteBorderButton} from "../../components/button.js";
+import {handleScrollClasses} from "../../scripts/utils.js";
 
 
 export default async function decorate(block) {
+  const scrollThreshold = 400;
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
@@ -12,6 +14,9 @@ export default async function decorate(block) {
   console.log('block', block)
 
   block.textContent = ''
+
+  block.className = 'flex px-4 fixed w-full justify-between items-center gap-2';
+  handleScrollClasses(block, scrollThreshold, 'bg-white', true);
 
 
   const logoImage = fragment.querySelector('picture img')
@@ -28,7 +33,9 @@ export default async function decorate(block) {
       subMenu.className = 'invisible absolute p-4 pt-10 text-lg bg-white shadow-lg flex flex-col gap-2 w-max';
       const menuWrapper = document.createElement('div');
       const menuTitle = menuWrapper.appendChild(menu.querySelector('p'));
-      menuTitle.className = 'text-white text-lg flex items-center after:mt-2 gap-2 after:size-4 after:bg-[url(/assets/icons/chevron-down-theme.svg)] after:flex after:bg-contain after:bg-no-repeat !font-medium cursor-pointer';
+      const afterCSS = 'after:bg-[url(/assets/icons/chevron-down-theme.svg)] after:flex after:bg-contain after:bg-no-repeat'
+      menuTitle.className = 'text-white text-lg flex items-center after:mt-2 gap-2 after:size-4 !font-medium cursor-pointer';
+      handleScrollClasses(menuTitle, scrollThreshold, '!text-primary', true);
 
       menuWrapper.appendChild(menuTitle);
       menuWrapper.appendChild(subMenu);
@@ -66,14 +73,7 @@ export default async function decorate(block) {
   const buttonLink = fragment.querySelector('.default-content-wrapper > *:nth-last-child(2)')?.innerHTML;
   const buttonText = fragment.querySelector('.default-content-wrapper > *:last-child')?.innerHTML;
   if (buttonLink && buttonText) {
-    block.appendChild(createWhiteBorderButton(buttonText, buttonLink))
+    block.appendChild(createWhiteBorderButton(buttonText, buttonLink, false, scrollThreshold))
   }
-
-  /*WRAPPER*/
-  block.className = 'flex px-4 fixed w-full justify-between items-center gap-2';
-
-  /*CONTAINER*/
-
-  /*APPEND*/
 
 }

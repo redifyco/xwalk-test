@@ -17,4 +17,16 @@ export function classNames(classes) {
     .join(' ');
 }
 
+export function handleScrollClasses(node, threshold, cssClasses, removeOnScroll = true) {
+  const classes = Array.isArray(cssClasses) ? cssClasses : [cssClasses];
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > threshold) {
+      node.classList.add(...classes);
+    } else if (removeOnScroll) {
+      node.classList.remove(...classes);
+    }
+  });
+}
+
 

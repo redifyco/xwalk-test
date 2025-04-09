@@ -1,5 +1,7 @@
-export function createWhiteBorderButton(label = 'Donate Now', href = '#', themeColor = false) {
+export function createWhiteBorderButton(label = 'Donate Now', href = '#', themeColor = false, scrollThreshold) {
 
+
+  console.log('themeCOlor', themeColor)
 
   const animatedLinesColor = themeColor ? 'button-line-absolute-theme' : 'button-line-absolute-white';
 
@@ -29,6 +31,36 @@ export function createWhiteBorderButton(label = 'Donate Now', href = '#', themeC
   link.appendChild(bottomLine);
   link.appendChild(bottomLeftLine);
   link.appendChild(text);
+
+  if (scrollThreshold) {
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        topLine.classList.remove('button-line-absolute-white');
+        topRightLine.classList.remove('button-line-absolute-white');
+        bottomLine.classList.remove('button-line-absolute-white');
+        bottomLeftLine.classList.remove('button-line-absolute-white');
+        text.classList.remove('text-white');
+        topLine.classList.add('button-line-absolute-theme');
+        topRightLine.classList.add('button-line-absolute-theme');
+        bottomLine.classList.add('button-line-absolute-theme');
+        bottomLeftLine.classList.add('button-line-absolute-theme');
+        text.classList.add('text-primary');
+      } else {
+        console.log('sono nel else')
+        topLine.classList.add('button-line-absolute-white');
+        topRightLine.classList.add('button-line-absolute-white');
+        bottomLine.classList.add('button-line-absolute-white');
+        bottomLeftLine.classList.add('button-line-absolute-white');
+        text.classList.add('text-white');
+        topLine.classList.remove('button-line-absolute-theme');
+        topRightLine.classList.remove('button-line-absolute-theme');
+        bottomLine.classList.remove('button-line-absolute-theme');
+        bottomLeftLine.classList.remove('button-line-absolute-theme');
+        text.classList.remove('text-primary');
+      }
+    })
+  }
 
   return link;
 }
