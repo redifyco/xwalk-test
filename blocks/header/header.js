@@ -15,14 +15,32 @@ export default async function decorate(block) {
 
   block.textContent = ''
 
-  block.className = 'flex px-4 fixed w-full justify-between items-center gap-2';
+  block.className = 'flex h-24 px-4 fixed transition-colors duration-300 w-full justify-between items-center gap-2';
   handleScrollClasses(block, scrollThreshold, 'bg-white', true);
 
 
-  const logoImage = fragment.querySelector('picture img')
-  if (logoImage) {
-    block.appendChild(logoImage)
+  const darkLogo = fragment.querySelector('p:nth-child(1) img');
+  const lightLogo = fragment.querySelector('p:nth-child(2) img');
+
+  if (darkLogo && lightLogo) {
+    block.appendChild(darkLogo)
+    darkLogo.className = 'hidden'
+    block.appendChild(lightLogo)
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > scrollThreshold) {
+        lightLogo.classList.add('hidden')
+        darkLogo.classList.remove('hidden')
+        darkLogo.classList.add('block')
+      } else {
+        darkLogo.classList.add('hidden')
+        darkLogo.classList.remove('block')
+        lightLogo.classList.add('block')
+        lightLogo.classList.remove('hidden')
+      }
+    })
   }
+  
 
   const containerListMenu = fragment.querySelector('.default-content-wrapper ul');
   if (containerListMenu) {
@@ -33,7 +51,6 @@ export default async function decorate(block) {
       subMenu.className = 'invisible absolute p-4 pt-10 text-lg bg-white shadow-lg flex flex-col gap-2 w-max';
       const menuWrapper = document.createElement('div');
       const menuTitle = menuWrapper.appendChild(menu.querySelector('p'));
-      const afterCSS = 'after:bg-[url(/assets/icons/chevron-down-theme.svg)] after:flex after:bg-contain after:bg-no-repeat'
       menuTitle.className = 'text-white text-lg flex items-center after:mt-2 gap-2 after:size-4 !font-medium cursor-pointer';
       handleScrollClasses(menuTitle, scrollThreshold, '!text-primary', true);
 
