@@ -43,6 +43,10 @@
     ]
   },
   {
+    "id": "header",
+    "components": []
+  },
+  {
     "id": "text-background",
     "components": []
   }

@@ -57,5 +57,9 @@
     }
   ],
   "filters": [
+    {
+      "id": "header",
+      "components": []
+    }
   ]
 }
