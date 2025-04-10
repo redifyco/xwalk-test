@@ -10,12 +10,10 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
 
-  console.log('fragment', fragment)
-  console.log('block', block)
 
   block.textContent = ''
 
-  block.className = 'flex h-24 px-4 fixed transition-colors duration-300 w-full justify-between items-center gap-2';
+  block.className = 'flex h-24 z-20 px-4 fixed transition-colors duration-300 w-full justify-between items-center gap-2';
   handleScrollClasses(block, scrollThreshold, 'bg-white', true);
 
 
@@ -40,7 +38,7 @@ export default async function decorate(block) {
       }
     })
   }
-  
+
 
   const containerListMenu = fragment.querySelector('.default-content-wrapper ul');
   if (containerListMenu) {
@@ -98,10 +96,10 @@ export default async function decorate(block) {
     block.appendChild(containerListMenu)
   }
 
-  const buttonLink = fragment.querySelector('.default-content-wrapper > *:nth-last-child(2)')?.innerHTML;
+  const buttonLink = fragment.querySelector('.default-content-wrapper > *:nth-last-child(2) a');
   const buttonText = fragment.querySelector('.default-content-wrapper > *:last-child')?.innerHTML;
   if (buttonLink && buttonText) {
-    block.appendChild(createWhiteBorderButton(buttonText, buttonLink, false, scrollThreshold))
+    block.appendChild(createWhiteBorderButton(buttonText, buttonLink.href, false, scrollThreshold))
   }
 
 }

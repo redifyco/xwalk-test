@@ -1,8 +1,5 @@
 export function createWhiteBorderButton(label = 'Donate Now', href = '#', themeColor = false, scrollThreshold) {
 
-
-  console.log('themeCOlor', themeColor)
-
   const animatedLinesColor = themeColor ? 'button-line-absolute-theme' : 'button-line-absolute-white';
 
   const link = document.createElement('a');
@@ -33,7 +30,6 @@ export function createWhiteBorderButton(label = 'Donate Now', href = '#', themeC
   link.appendChild(text);
 
   if (scrollThreshold) {
-
     window.addEventListener('scroll', () => {
       if (window.scrollY > 400) {
         topLine.classList.remove('button-line-absolute-white');
