@@ -42,9 +42,7 @@ export default async function decorate(block) {
 
       subMenuStates.set(menuTitle, false);
 
-      menuTitle.addEventListener("click", () => {
-        const isCurrentlyOpen = subMenuStates.get(menuTitle);
-
+      const closeAllMenu = () => {
         // Close all submenus
         subMenuStates.forEach((_, title) => {
           const targetMenu = title.nextElementSibling;
@@ -53,6 +51,19 @@ export default async function decorate(block) {
 
           subMenuStates.set(title, false);
         });
+      }
+
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('header')) {
+          closeAllMenu();
+        }
+      });
+
+      menuTitle.addEventListener("click", () => {
+        const isCurrentlyOpen = subMenuStates.get(menuTitle);
+
+        // Close all submenus
+        closeAllMenu()
 
         // Toggle clicked submenu
         if (!isCurrentlyOpen) {
