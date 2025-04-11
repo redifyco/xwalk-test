@@ -43,7 +43,6 @@ export function createWhiteBorderButton(label = 'Donate Now', href = '#', themeC
         bottomLeftLine.classList.add('button-line-absolute-theme');
         text.classList.add('text-primary');
       } else {
-        console.log('sono nel else')
         topLine.classList.add('button-line-absolute-white');
         topRightLine.classList.add('button-line-absolute-white');
         bottomLine.classList.add('button-line-absolute-white');
