@@ -743,9 +743,17 @@
     --tw-duration: 1000ms;
     transition-duration: 1000ms;
   }
+  .duration-1500 {
+    --tw-duration: 1500ms;
+    transition-duration: 1500ms;
+  }
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
+  }
+  .ease-linear {
+    --tw-ease: linear;
+    transition-timing-function: linear;
   }
   .group-hover\:h-9\/12 {
     &:is(:where(.group):hover *) {

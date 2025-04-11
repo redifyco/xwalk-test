@@ -80,7 +80,7 @@ export function headerMobile(block, fragment, scrollThreshold, darkLogo, lightLo
   const mobileContainer = document.createElement('div');
   const navigationContainer = document.createElement('div');
   navigationContainer.className = 'w-full h-24 justify-between px-4 items-center flex';
-  mobileContainer.className = 'h-24 flex flex-col items-center overflow-hidden duration-1000 ease-in-out fixed lg:hidden z-20 w-full bg-white';
+  mobileContainer.className = 'h-24 flex flex-col items-center overflow-hidden duration-1000 fixed lg:hidden z-20 w-full bg-white';
 
   // Hamburger button
   const hamburgerButton = createHamburgerButton(menuState, mobileContainer, containerMenu, body);
@@ -139,10 +139,10 @@ function createHamburgerButton(menuState, mobileContainer, containerMenu, body) 
   hamburgerButton.className = 'cursor-pointer relative size-8';
 
   const hamburgerIconOpen = document.createElement('span');
-  hamburgerIconOpen.innerHTML = `<ion-icon class='text-primary absolute inset-0 transition-all opacity-100 rotate-0 ease-in-out duration-1000' id="hamburgerIconOpen" size="large" name="menu-outline"></ion-icon>`;
+  hamburgerIconOpen.innerHTML = `<ion-icon class='text-primary absolute inset-0 transition-transform opacity-100 rotate-0 ease-in-out duration-500' id="hamburgerIconOpen" size="large" name="menu-outline"></ion-icon>`;
 
   const hamburgerIconClose = document.createElement('span');
-  hamburgerIconClose.innerHTML = `<ion-icon class='text-primary absolute inset-0 opacity-0 transition-all rotate-0 ease-in-out duration-1000' id="hamburgerIconClose" size="large" name="close-outline"></ion-icon>`;
+  hamburgerIconClose.innerHTML = `<ion-icon class='text-primary absolute inset-0 opacity-0 transition-all rotate-0 ease-in-out duration-500' id="hamburgerIconClose" size="large" name="close-outline"></ion-icon>`;
 
   hamburgerButton.appendChild(hamburgerIconOpen);
   hamburgerButton.appendChild(hamburgerIconClose);
