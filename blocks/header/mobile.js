@@ -9,8 +9,6 @@ export function headerMobile(block, fragment, scrollThreshold, darkLogo, lightLo
   const menuState = new Map();
 
 
-  console.log('fragment', fragment)
-
   // Menu container
   const containerMenu = document.createElement('div');
   containerMenu.className = 'hidden h-0 px-4 text-xl w-full';
