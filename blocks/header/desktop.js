@@ -8,8 +8,8 @@ export function headerDesktop(block, fragment, scrollThreshold, darkLogo, lightL
   handleScrollClasses(desktopContainer, scrollThreshold, 'bg-white', true);
 
   // Retrieve button data from the fragment
-  const buttonLink = fragment.querySelector('.default-content-wrapper > *:nth-last-child(2) a');
-  const buttonText = fragment.querySelector('.default-content-wrapper > *:last-child')?.innerHTML;
+  const buttonLink = fragment.querySelector('.default-content-wrapper > *:nth-last-child(6) a');
+  const buttonText = fragment.querySelector('.default-content-wrapper > *:nth-last-child(5)')?.innerHTML;
 
   // Create chevron icon
   const chevronDownIcon = createChevronIcon();

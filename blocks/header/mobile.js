@@ -1,20 +1,28 @@
 export function headerMobile(block, fragment, scrollThreshold, darkLogo, lightLogo, containerListMenu) {
   const body = document.querySelector('body');
-  const buttonLink = fragment.querySelector('.default-content-wrapper > *:nth-last-child(2) a');
-  const buttonText = fragment.querySelector('.default-content-wrapper > *:last-child')?.innerHTML;
+  const buttonLink = fragment.querySelector('.default-content-wrapper > *:nth-last-child(6) a');
+  const buttonText = fragment.querySelector('.default-content-wrapper > *:nth-last-child(5)')?.innerHTML;
+  const facebookLink = fragment.querySelector('.default-content-wrapper  p:nth-child(6) a')?.href;
+  const instagramLink = fragment.querySelector('.default-content-wrapper  p:nth-child(7) a')?.href;
+  const linkedinLink = fragment.querySelector('.default-content-wrapper  p:nth-child(8) a')?.href;
+  const youtubeLink = fragment.querySelector('.default-content-wrapper  p:nth-child(9) a')?.href;
   const menuState = new Map();
+
+
+  console.log('fragment', fragment)
 
   // Menu container
   const containerMenu = document.createElement('div');
   containerMenu.className = 'hidden h-0 px-4 text-xl w-full';
 
   const divContainerSocial = document.createElement('div')
-  divContainerSocial.className = 'bg-gray-200 flex mt-10'
+  divContainerSocial.className = ' flex-col gap-8 flex mt-10'
 
   // Chevron icon
   const chevronRightIcon = document.createElement('span');
   chevronRightIcon.className = 'flex';
   chevronRightIcon.innerHTML = `<ion-icon class='' size="large" name="chevron-forward-outline"></ion-icon>`;
+
 
   if (containerListMenu) {
     containerListMenu.querySelectorAll(':scope > li').forEach((menu) => {
@@ -90,7 +98,7 @@ export function headerMobile(block, fragment, scrollThreshold, darkLogo, lightLo
 
   // Button link
   const button = document.createElement('a');
-  button.className = 'text-primary font-semibold';
+  button.className = 'text-primary font-semibold w-fit';
   button.textContent = buttonText;
   button.href = buttonLink.href;
 
@@ -106,9 +114,22 @@ export function headerMobile(block, fragment, scrollThreshold, darkLogo, lightLo
   mobileContainer.appendChild(containerMenu);
   if (button) {
     const buttonContainerSocial = button.cloneNode(true)
-    buttonContainerSocial.className = 'border border-primary text-base py-2 px-4 text-primary h-full'
+    buttonContainerSocial.className = 'border w-fit border-primary text-base py-2 px-4 text-primary h-full'
 
     divContainerSocial.appendChild(buttonContainerSocial)
+  }
+
+  if (facebookLink && instagramLink && linkedinLink && youtubeLink) {
+    const div = document.createElement('div')
+    div.innerHTML = `
+    <div class='text-black/40 gap-2 flex items-center'>
+        <a href="${facebookLink}"><ion-icon size="large" name="logo-facebook"></ion-icon></a>
+        <a href="${instagramLink}"><ion-icon size="large" name="logo-instagram"></ion-icon></a>
+        <a href="${linkedinLink}"><ion-icon size="large" name="logo-linkedin"></ion-icon></a>
+        <a href="${youtubeLink}"><ion-icon size="large" name="logo-youtube"></ion-icon></a>
+    </div>
+    `
+    divContainerSocial.appendChild(div)
   }
   containerMenu.appendChild(divContainerSocial)
 

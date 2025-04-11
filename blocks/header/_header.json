@@ -41,37 +41,44 @@
           "component": "richtext",
           "valueType": "string",
           "name": "menu",
-          "label": "Menu"
+          "label": "Menu",
+          "required": true
         },
         {
           "component": "aem-content",
           "name": "link-button",
-          "label": "Button Link"
+          "label": "Button Link",
+          "required": true
         },
         {
           "component": "text",
           "name": "link-text",
-          "label": "Button Text"
+          "label": "Button Text",
+          "required": true
         },
         {
           "component": "aem-content",
           "name": "facebook-social",
-          "label": "Facebook Link"
+          "label": "Facebook Link",
+          "required": true
         },
         {
           "component": "aem-content",
           "name": "instagram-social",
-          "label": "Instagram Link"
+          "label": "Instagram Link",
+          "required": true
         },
         {
           "component": "aem-content",
           "name": "linkedin-social",
-          "label": "Linkedin Link"
+          "label": "Linkedin Link",
+          "required": true
         },
         {
           "component": "aem-content",
           "name": "youtube-social",
-          "label": "Youtube Link"
+          "label": "Youtube Link",
+          "required": true
         }
       ]
     }
