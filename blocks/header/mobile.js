@@ -8,6 +8,9 @@ export function headerMobile(block, fragment, scrollThreshold, darkLogo, lightLo
   const containerMenu = document.createElement('div');
   containerMenu.className = 'hidden h-0 px-4 text-xl w-full';
 
+  const divContainerSocial = document.createElement('div')
+  divContainerSocial.className = 'bg-gray-200 flex mt-10'
+
   // Chevron icon
   const chevronRightIcon = document.createElement('span');
   chevronRightIcon.className = 'flex';
@@ -97,9 +100,17 @@ export function headerMobile(block, fragment, scrollThreshold, darkLogo, lightLo
     darkLogo.classList.remove('hidden');
     navigationContainer.appendChild(darkLogo.cloneNode(true));
   }
+
   navigationContainer.appendChild(button);
   mobileContainer.appendChild(navigationContainer);
   mobileContainer.appendChild(containerMenu);
+  if (button) {
+    const buttonContainerSocial = button.cloneNode(true)
+    buttonContainerSocial.className = 'border border-primary text-base py-2 px-4 text-primary h-full'
+
+    divContainerSocial.appendChild(buttonContainerSocial)
+  }
+  containerMenu.appendChild(divContainerSocial)
 
   return mobileContainer;
 }

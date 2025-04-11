@@ -52,6 +52,26 @@
           "component": "text",
           "name": "link-text",
           "label": "Button Text"
+        },
+        {
+          "component": "aem-content",
+          "name": "facebook-social",
+          "label": "Facebook Link"
+        },
+        {
+          "component": "aem-content",
+          "name": "instagram-social",
+          "label": "Instagram Link"
+        },
+        {
+          "component": "aem-content",
+          "name": "linkedin-social",
+          "label": "Linkedin Link"
+        },
+        {
+          "component": "aem-content",
+          "name": "youtube-social",
+          "label": "Youtube Link"
         }
       ]
     }
