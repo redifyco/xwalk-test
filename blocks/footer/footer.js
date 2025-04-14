@@ -1,6 +1,6 @@
-import { getMetadata } from "../../scripts/aem.js";
-import { loadFragment } from "../fragment/fragment.js";
 import { getJsonFromHtml } from "../../scripts/utils.js";
+import {getMetadata} from '../../scripts/aem.js';
+import {loadFragment} from '../fragment/fragment.js';
 
 /**
  * loads and decorates the footer
@@ -15,14 +15,11 @@ export default async function decorate(block) {
 
   const data = fragment.querySelector(".default-content-wrapper");
   const darkLogo = data.querySelector("p:nth-child(1) img");
-  console.log("default-content-wrapper", data);
+  const facebookLink = fragment.querySelector('.default-content-wrapper  p:nth-child(3) a')?.href;
+  const instagramLink = fragment.querySelector('.default-content-wrapper  p:nth-child(4) a')?.href;
+  const linkedinLink = fragment.querySelector('.default-content-wrapper  p:nth-child(5) a')?.href;
+  const youtubeLink = fragment.querySelector('.default-content-wrapper  p:nth-child(6) a')?.href;
 
-    const facebookLink = fragment.querySelector('.default-content-wrapper  p:nth-child(3) a')?.href;
-    const instagramLink = fragment.querySelector('.default-content-wrapper  p:nth-child(4) a')?.href;
-    const linkedinLink = fragment.querySelector('.default-content-wrapper  p:nth-child(5) a')?.href;
-    const youtubeLink = fragment.querySelector('.default-content-wrapper  p:nth-child(6) a')?.href;
-
-  console.log("linkedinLink", linkedinLink);
 
   const navigationListHTML = data.querySelector("ul");
   const navigationListJson = getJsonFromHtml(navigationListHTML);
@@ -45,12 +42,11 @@ export default async function decorate(block) {
             (item) =>
               ` <ul class="flex flex-col justify-center lg:items-start items-center gap-2">
                 <h6 class="text-2xl hidden lg:block uppercase font-semibold">${item.title}</h6>
-${item.subItems
-                  .map(
-                    (subItem) => `
-                        <li class="text-xs py-1 lg:text-xl font-light">
-                            <a href="${subItem.href}">${subItem.title}</a>
-                        </li>`
+                    ${item.subItems
+                        .map((subItem) => `
+                           <li class="text-xs py-1 lg:text-xl font-light">
+                                <a href="${subItem.href}">${subItem.title}</a>
+                            </li>`
                   )
                   .join(" ")}
                 </ul>`
@@ -64,6 +60,4 @@ ${item.subItems
 					<a href="${youtubeLink}"><ion-icon size="large" name="logo-youtube"></ion-icon></a>
 				</div>
 		</div>`;
-
-  console.log("fragment", fragment);
 }
