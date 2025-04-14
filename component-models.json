@@ -408,6 +408,50 @@
     ]
   },
   {
+    "id": "footer",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo-image-dark",
+        "label": "Dark Logo Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "menu",
+        "label": "Menu",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "facebook-social",
+        "label": "Facebook Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "instagram-social",
+        "label": "Instagram Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "linkedin-social",
+        "label": "Linkedin Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "youtube-social",
+        "label": "Youtube Link",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
