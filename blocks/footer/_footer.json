@@ -36,6 +36,13 @@
           "required": true
         },
         {
+          "component": "text",
+          "valueType": "string",
+          "name": "copyright",
+          "label": "Copyright",
+          "required": true
+        },
+        {
           "component": "aem-content",
           "name": "facebook-social",
           "label": "Facebook Link",
