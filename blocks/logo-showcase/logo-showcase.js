@@ -6,8 +6,8 @@ export default async function decorate(block) {
     const textSection = block.querySelector(":scope > div:nth-child(2) div") || "No description";
     const partners = Array.from(block.querySelectorAll(":scope > div:nth-child(n+3):not(:last-child)"));
     const buttonData = block.querySelectorAll(":scope > div:last-child");
-    const buttonTitle = buttonData.length > 0 ? buttonData[0].querySelector("p")?.textContent.trim() : "No button title";
-    const buttonLink = buttonData.length > 0 ? buttonData[0].querySelector("div a")?.textContent.trim() : "No button Link";
+    const buttonTitle =  buttonData[0].querySelector("p")?.textContent.trim() || "No button title";
+    const buttonLink =  buttonData[0].querySelector("div a")?.textContent.trim() || "#";
     const partnersData = processDivsToObject(partners);
     const containerSection = document.createElement('section')
 
