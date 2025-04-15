@@ -727,6 +727,18 @@
         "component": "aem-content",
         "name": "websiteLink7",
         "label": "Partner 7 - Website Link (Optional)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "button_text",
+        "label": "Button text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "button_link",
+        "label": "Button Link"
       }
     ]
   },
