@@ -20,9 +20,8 @@ export default async function decorate(block) {
 
     block.textContent = "";
 
-    const footerDiv = document.querySelector(".footer-wrapper");
 
-    footerDiv.innerHTML = /* html */ `
+    block.innerHTML = /* html */ `
     <div class="bg-primary px-4 lg:p-20 gap-10 w-full xl:flex-nowrap flex-wrap lg:flex-row lg:gap-20 flex items-center p-14 flex-col justify-center lg:justify-between text-white">
       <div>
         <img class="max-w-80" src="${darkLogo.src}" alt="" />
