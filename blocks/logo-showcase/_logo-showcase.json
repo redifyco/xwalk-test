@@ -27,7 +27,13 @@
           "label": "Section Title",
           "value": "Our Partners"
         },
-
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "subTitle",
+          "label": "Sub Title",
+          "value": ""
+        },
         {
           "component": "reference",
           "valueType": "string",
