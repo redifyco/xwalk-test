@@ -21,7 +21,7 @@
       "id": "logo-showcase",
       "fields": [
         {
-          "component": "text",
+          "component": "richtext",
           "valueType": "string",
           "name": "sectionTitle",
           "label": "Section Title",
