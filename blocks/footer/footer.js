@@ -18,10 +18,11 @@ export default async function decorate(block) {
     const navigationListJson = getJsonFromHtml(navigationListHTML);
     const copyRightText = fragment.querySelector(".default-content-wrapper p:nth-child(3)");
 
+    const footerContainer = document.createElement('div');
     block.textContent = "";
 
 
-    block.innerHTML = /* html */ `
+    footerContainer.innerHTML = /* html */ `
     <div class="bg-primary px-4 lg:p-20 gap-10 w-full xl:flex-nowrap flex-wrap lg:flex-row lg:gap-20 flex items-center p-14 flex-col justify-center lg:justify-between text-white">
       <div>
         <img class="max-w-80" src="${darkLogo.src}" alt="" />
@@ -64,4 +65,6 @@ export default async function decorate(block) {
       <p class="lg:hidden block text-xs">${copyRightText.textContent}</p>
     </div>
   `;
+
+    block.append(footerContainer)
 }
