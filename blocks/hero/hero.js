@@ -2,8 +2,6 @@ import {buildHeight, classNames} from "../../scripts/utils.js";
 
 
 export default async function decorate(block) {
-    console.log('decorate', block)
-
     const backgroundImage = block.querySelector(':scope > div:nth-child(1) img').src || ''
     const title = block.querySelector(':scope > div:nth-child(2) p').textContent || ''
     const subTitle = block.querySelector(':scope > div:nth-child(3) p').textContent || ''
@@ -11,22 +9,18 @@ export default async function decorate(block) {
     const linkedinLink = block.querySelector(":scope > div:nth-child(5) a")?.href;
     const instagramLink = block.querySelector(":scope > div:nth-child(6) a")?.href;
     const youtubeLink = block.querySelector(":scope > div:nth-child(7) a")?.href;
-    const mobileHeight = '200'
-    const desktopHeight = '1000'
-
+    const mobileHeight = block.querySelector(":scope > div:nth-child(8) p")?.textContent;
+    const desktopHeight = block.querySelector(":scope > div:nth-child(9) p")?.textContent;
     const calculatedSectionHeight = buildHeight(mobileHeight, desktopHeight)
-
-    const containerSection  = document.createElement('section')
 
     block.textContent = ''
 
+    const containerSection  = document.createElement('section')
+    containerSection.className = 'flex flex-col bg-gray-500 bg-cover bg-center bg-no-repeat text-white'
+    containerSection.style.backgroundImage = `url('${backgroundImage}')`
 
-    containerSection.innerHTML = `
-    <section
-      class="flex flex-col bg-gray-500 bg-cover bg-center bg-no-repeat text-white"
-      style="background-image: url('${backgroundImage}')"
-    >
-      <div
+    containerSection.innerHTML =
+      `<div
         class="relative z-10 flex w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11 ${calculatedSectionHeight}"
       >
         <h1
@@ -41,7 +35,6 @@ export default async function decorate(block) {
           <social-icons facebook="${facebookLink}" instagram="${instagramLink}" linkedin="${linkedinLink}" youtube="${youtubeLink}"></social-icons>
         </div>
       </div>
-    </section>
     `
 
     block.append(containerSection)
