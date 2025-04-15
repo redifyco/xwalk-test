@@ -6,6 +6,19 @@
     src: url('/assets/fonts/Joyful.otf');
 }
 
+@theme {
+    --animate-slide: slide 5s linear infinite;
+
+    @keyframes slide {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-51.2%);
+        }
+    }
+}
+
 .button-line-absolute-theme {@apply bg-primary absolute hidden transition-all duration-500 lg:block}
 .button-line-absolute-white {@apply bg-white absolute hidden transition-all duration-500 lg:block}
 .small-layout-padding {@apply px-4 gap-8 py-14 lg:gap-16 lg:px-16 lg:py-30 flex flex-col}

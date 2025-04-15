@@ -62,3 +62,27 @@ export function getJsonFromHtml(htmlList) {
     return result;
 }
 
+/*Logo Showcase*/
+export function processDivsToObject(divs) {
+    const result = [];
+
+    // Process the divs in groups of 3
+    for (let i = 0; i < divs.length; i += 3) {
+        const imageDiv = divs[i];
+        const titleDiv = divs[i + 1];
+        const linkDiv = divs[i + 2];
+
+        const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
+        const title = titleDiv?.textContent.trim() || 'Untitled';
+        const link = linkDiv?.textContent.trim() || 'No link';
+
+        result.push({
+            image,
+            title,
+            link,
+        });
+    }
+
+    return result;
+}
+
