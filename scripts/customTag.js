@@ -28,3 +28,32 @@ export class CustomButton extends HTMLElement {
 
 // Register the custom element
 customElements.define('custom-button', CustomButton);
+
+export class SocialIcons extends HTMLElement {
+    connectedCallback() {
+        const facebookLink = this.getAttribute('facebook') || '#';
+        const instagramLink = this.getAttribute('instagram') || '#';
+        const linkedinLink = this.getAttribute('linkedin') || '#';
+        const youtubeLink = this.getAttribute('youtube') || '#';
+
+        this.innerHTML = `
+      <div class="text-white gap-2 flex items-center">
+        <a href="${facebookLink}">
+          <ion-icon size="large" name="logo-facebook"></ion-icon>
+        </a>
+        <a href="${instagramLink}">
+          <ion-icon size="large" name="logo-instagram"></ion-icon>
+        </a>
+        <a href="${linkedinLink}">
+          <ion-icon size="large" name="logo-linkedin"></ion-icon>
+        </a>
+        <a href="${youtubeLink}">
+          <ion-icon size="large" name="logo-youtube"></ion-icon>
+        </a>
+      </div>
+    `;
+    }
+}
+
+// Register the custom element
+customElements.define('social-icons', SocialIcons);
