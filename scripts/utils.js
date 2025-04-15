@@ -86,3 +86,31 @@ export function processDivsToObject(divs) {
     return result;
 }
 
+
+export function buildHeight(mobileHeight, desktopHeight) {
+
+    return classNames({
+        ['h-[200px]']: mobileHeight === '200',
+        ['h-[400px]']: mobileHeight === '400',
+        ['h-[600px]']: mobileHeight === '600',
+        ['h-[800px]']: mobileHeight === '800',
+        ['h-[1000px]']: mobileHeight === '1000',
+        ['h-[1200px]']: mobileHeight === '1200',
+        ['h-[1400px]']: mobileHeight === '1400',
+        ['h-[1600px]']: mobileHeight === '1600',
+        ['h-[1800px]']: mobileHeight === '1800',
+        ['h-[2000px]']: mobileHeight === '2000',
+        ['lg:h-[600px]']: desktopHeight === '600',
+        ['lg:h-[800px]']: desktopHeight === '800',
+        ['lg:h-[1000px]']: desktopHeight === '1000',
+        ['lg:h-[1200px]']: desktopHeight === '1200',
+        ['lg:h-[1400px]']: desktopHeight === '1400',
+        ['lg:h-[1600px]']: desktopHeight === '1600',
+        ['lg:h-[1800px]']: desktopHeight === '1800',
+        ['lg:h-[2000px]']: desktopHeight === '2000',
+        ['lg:h-[2200px]']: desktopHeight === '2200',
+        ['lg:h-[2400px]']: desktopHeight === '2400',
+    });
+
+}
+

@@ -1,3 +1,4 @@
+import {buildHeight, classNames} from "../../scripts/utils.js";
 
 
 export default async function decorate(block) {
@@ -10,6 +11,11 @@ export default async function decorate(block) {
     const linkedinLink = block.querySelector(":scope > div:nth-child(5) a")?.href;
     const instagramLink = block.querySelector(":scope > div:nth-child(6) a")?.href;
     const youtubeLink = block.querySelector(":scope > div:nth-child(7) a")?.href;
+    const mobileHeight = '200'
+    const desktopHeight = '1000'
+
+    const calculatedSectionHeight = buildHeight(mobileHeight, desktopHeight)
+
     const containerSection  = document.createElement('section')
 
     block.textContent = ''
@@ -21,7 +27,7 @@ export default async function decorate(block) {
       style="background-image: url('${backgroundImage}')"
     >
       <div
-        class="relative z-10 flex h-dvh w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11"
+        class="relative z-10 flex w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11 ${calculatedSectionHeight}"
       >
         <h1
           class="text-5xl font-semibold uppercase lg:text-[130px] 2xl:text-8xl 2xl:text-[180px]"
