@@ -9,11 +9,11 @@ export default async function decorate(block) {
     const buttonTitle = buttonData.length > 0 ? buttonData[0].querySelector("p")?.textContent.trim() : "No button title";
     const buttonLink = buttonData.length > 0 ? buttonData[0].querySelector("div a")?.textContent.trim() : "No button Link";
     const partnersData = processDivsToObject(partners);
-    const container = document.querySelector(".logo-showcase-container");
+    const containerSection = document.createElement('section')
 
     block.textContent = "";
 
-    container.innerHTML = `
+    containerSection.innerHTML = `
     <div class="flex flex-col items-center justify-center gap-8 px-4 py-14 text-center lg:gap-16 lg:px-16 lg:pb-32">
       <h2 class="text-primary text-3xl uppercase lg:text-7xl">
         ${titleSection.textContent}
@@ -54,4 +54,6 @@ export default async function decorate(block) {
       </custom-button>
     </div>
   `;
+
+    block.append(containerSection)
 }
