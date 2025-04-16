@@ -21,7 +21,7 @@
 
 .button-line-absolute-theme {@apply bg-primary absolute hidden transition-all duration-500 lg:block}
 .button-line-absolute-white {@apply bg-white absolute hidden transition-all duration-500 lg:block}
-.small-layout-padding {@apply px-4 gap-8 py-14 lg:gap-16 lg:px-16 lg:py-30 flex flex-col}
+.small-layout-padding {@apply px-4 gap-8 py-14 xl:gap-16 xl:px-16 xl:py-30 flex flex-col}
 .progress-ring__circle {
     transition: stroke-dashoffset 0.35s;
     transform: rotate(-90deg);
@@ -46,10 +46,10 @@
 }
 
 @utility vertical-card-container {
-    @apply aspect-square h-full content-center size-40 overflow-hidden rounded-2xl bg-gray-500 bg-cover bg-center lg:w-[150px] xl:w-[200px] lg:h-[600px] 2xl:h-[732px] 2xl:w-[260px] lg:rounded-none
+    @apply aspect-square h-full content-center size-40 md:size-52 overflow-hidden rounded-2xl bg-gray-500 bg-cover bg-center xl:h-[600px] xl:w-[200px] 2xl:h-[732px] 2xl:w-[260px] xl:rounded-none
 }
 @utility vertical-card-content {
-    @apply flex h-full flex-col items-center justify-center px-4 py-16 text-center text-white lg:justify-between
+    @apply flex h-full flex-col items-center justify-center px-4 py-16 text-center text-white xl:justify-between
 }
 
 @utility clip-path-1 {

@@ -86,6 +86,36 @@ export function processDivsToObject(divs) {
     return result;
 }
 
+/*Cards With Images*/
+export function processDivsToObjectCardsWithImages(divs) {
+    const result = [];
+
+    // Process the divs in groups of 3
+    for (let i = 0; i < divs.length; i += 5) {
+        const imageDiv = divs[i]
+        const titleDiv = divs[i + 1]
+        const descriptionDiv = divs[i + 2]
+        const iconDiv = divs[i + 3]
+        const styleDiv = divs[i + 4]
+
+         const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
+         const title = titleDiv.querySelector('div p')?.textContent || 'Untitled';
+         const description = descriptionDiv.querySelector('div p')?.textContent || 'No description';
+        const icon = iconDiv?.querySelector('img')?.getAttribute('src') || '';
+         const style = styleDiv.querySelector('div p')?.textContent || null;
+
+        result.push({
+            image,
+            title,
+            description,
+            icon,
+            style
+        });
+    }
+
+    return result;
+}
+
 
 export function buildHeight(mobileHeight, desktopHeight) {
 
