@@ -116,6 +116,26 @@ export function processDivsToObjectCardsWithImages(divs) {
     return result;
 }
 
+/*Statistics data*/
+export function processDivsToObjectStatisticsData(divs) {
+    const result = [];
+
+    for (let i = 0; i < divs.length; i += 2) {
+        const valueDiv = divs[i]
+        const labelDiv = divs[i + 1]
+
+        const value = valueDiv.querySelector('div p')?.textContent || '0'
+        const label = labelDiv.querySelector('div p')?.textContent || 'No label'
+
+        result.push({
+            value,
+            label
+        });
+    }
+
+    return result;
+}
+
 
 export function buildHeight(mobileHeight, desktopHeight) {
 
