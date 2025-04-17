@@ -51,6 +51,20 @@
     "components": []
   },
   {
+    "id": "map-pin-filter",
+    "components": [
+      "text",
+      "image"
+    ]
+  },
+  {
+    "id": "map-filter",
+    "components": [
+      "text",
+      "map-pin"
+    ]
+  },
+  {
     "id": "statistics-data",
     "components": []
   },

@@ -837,6 +837,130 @@
     ]
   },
   {
+    "id": "map-pin",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "latitude",
+        "label": "Latitude",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "longitude",
+        "label": "Longitude",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Pin Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Pin Description",
+        "value": ""
+      },
+      {
+        "component": "image",
+        "valueType": "reference",
+        "name": "pinIcon",
+        "label": "Custom Pin Icon",
+        "multi": false
+      },
+      {
+        "component": "link",
+        "valueType": "string",
+        "name": "linkUrl",
+        "label": "Link URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "Link Text"
+      }
+    ]
+  },
+  {
+    "id": "map",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "apiKey",
+        "label": "Google Maps API Key",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "centerLat",
+        "label": "Center Latitude",
+        "value": "41.9028"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "centerLng",
+        "label": "Center Longitude",
+        "value": "12.4964"
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "zoom",
+        "label": "Zoom Level",
+        "value": 12
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "mapStyle",
+        "label": "Map Style",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "silver",
+            "label": "Silver"
+          },
+          {
+            "value": "dark",
+            "label": "Dark"
+          },
+          {
+            "value": "retro",
+            "label": "Retro"
+          }
+        ],
+        "value": "default"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "statistics-data",
     "fields": [
       {

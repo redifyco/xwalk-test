@@ -161,6 +161,18 @@ export function buildHeight(mobileHeight, desktopHeight) {
         ['lg:h-[2200px]']: desktopHeight === '2200',
         ['lg:h-[2400px]']: desktopHeight === '2400',
     });
-
 }
-
+/**
+ * Carica uno script esterno dinamicamente
+ * @param {string} url URL dello script da caricare
+ * @returns {Promise} Promise che si risolve quando lo script è caricato
+ */
+export function loadScript(url) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = url;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
