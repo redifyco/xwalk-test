@@ -140,41 +140,49 @@
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "value-stats-1",
           "label": "Stat1 - Value"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "label-stats-1",
           "label": "Stat1 - Label"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "value-stats-2",
           "label": "Stat2 - Value"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "label-stats-2",
           "label": "Stat2 - Label"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "value-stats-3",
           "label": "Stat3 - Value"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "label-stats-3",
           "label": "Stat3 - Label"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "value-stats-4",
           "label": "Stat4 - Value"
         },
         {
           "component": "text",
+          "valueType": "string",
           "name": "label-stats-4",
           "label": "Stat4 - Label"
         }
