@@ -141,42 +141,42 @@
         {
           "component": "number",
           "name": "value-stats-1",
-          "label": "Value statistic 1"
+          "label": "Stat1 - Value"
         },
         {
           "component": "text",
           "name": "label-stats-1",
-          "label": "Label statistic 1"
+          "label": "Stat1 - Label"
         },
         {
           "component": "number",
           "name": "value-stats-2",
-          "label": "Value statistic 2"
+          "label": "Stat2 - Value"
         },
         {
           "component": "text",
           "name": "label-stats-2",
-          "label": "Label statistic 2"
+          "label": "Stat2 - Label"
         },
         {
           "component": "number",
           "name": "value-stats-3",
-          "label": "Value statistic 3"
+          "label": "Stat3 - Value"
         },
         {
           "component": "text",
           "name": "label-stats-3",
-          "label": "Label statistic 3"
+          "label": "Stat3 - Label"
         },
         {
           "component": "number",
           "name": "value-stats-4",
-          "label": "Value statistic 4"
+          "label": "Stat4 - Value"
         },
         {
           "component": "text",
           "name": "label-stats-4",
-          "label": "Label statistic 4"
+          "label": "Stat4 - Label"
         }
       ]
     }
