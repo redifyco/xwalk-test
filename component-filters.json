@@ -4,7 +4,8 @@
     "components": [
       "section",
       "header",
-      "footer"
+      "footer",
+      "wrapper"
     ]
   },
   {
@@ -71,5 +72,13 @@
   {
     "id": "text-background",
     "components": []
+  },
+  {
+    "id": "wrapper",
+    "components": [
+      "hero",
+      "text-background",
+      "statistics-data"
+    ]
   }
 ]
