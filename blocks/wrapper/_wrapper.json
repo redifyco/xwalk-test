@@ -35,6 +35,7 @@
     {
       "id": "wrapper",
       "components": [
+        "section",
         "hero",
         "text-background",
         "statistics-data"
