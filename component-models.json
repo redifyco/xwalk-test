@@ -842,30 +842,25 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
-        "label": "Image",
+        "name": "background-image",
+        "label": "Background Image",
         "multi": false
       },
       {
-        "component": "richtext",
+        "component": "text",
         "valueType": "string",
         "name": "title",
         "label": "Title"
       },
       {
         "component": "text",
-        "name": "subtitle",
-        "label": "Subtitle"
+        "name": "button-text",
+        "label": "Button Text"
       },
       {
         "component": "aem-content",
         "name": "link",
         "label": "Button Link"
-      },
-      {
-        "component": "text",
-        "name": "linkText",
-        "label": "Button Text"
       },
       {
         "component": "select",
@@ -960,6 +955,46 @@
             "value": "24000"
           }
         ]
+      },
+      {
+        "component": "number",
+        "name": "value-stats-1",
+        "label": "Value statistic 1"
+      },
+      {
+        "component": "text",
+        "name": "label-stats-1",
+        "label": "Label statistic 1"
+      },
+      {
+        "component": "number",
+        "name": "value-stats-2",
+        "label": "Value statistic 2"
+      },
+      {
+        "component": "text",
+        "name": "label-stats-2",
+        "label": "Label statistic 2"
+      },
+      {
+        "component": "number",
+        "name": "value-stats-3",
+        "label": "Value statistic 3"
+      },
+      {
+        "component": "text",
+        "name": "label-stats-3",
+        "label": "Label statistic 3"
+      },
+      {
+        "component": "number",
+        "name": "value-stats-4",
+        "label": "Value statistic 4"
+      },
+      {
+        "component": "text",
+        "name": "label-stats-4",
+        "label": "Label statistic 4"
       }
     ]
   },
