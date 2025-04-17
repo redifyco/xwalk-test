@@ -10,7 +10,6 @@ export default function decorate(block) {
     const desktopHeight = block.querySelector(':scope > div:nth-child(6) div p').textContent
     const statsList = Array.from(block.querySelectorAll(':scope > div:nth-child(n+7)'))
     const JSONStatisticsData = processDivsToObjectStatisticsData(statsList)
-    console.log('JSONStatisticsData', JSONStatisticsData);
 
     const containerSection = document.createElement('section')
     containerSection.className = `flex flex-col gap-14 bg-cover bg-center justify-center bg-no-repeat py-30 lg:gap-40 lg:py-36 xl:gap-56 xl:py-64 ${buildHeight(mobileHeight, desktopHeight)}`
