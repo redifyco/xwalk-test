@@ -2,25 +2,38 @@ export class CustomButton extends HTMLElement {
     connectedCallback() {
         const label = this.textContent.trim() || '';
         const href = this.getAttribute('href') || '#';
+        const color = this.getAttribute('color') || 'primary'
+
+        const buildLineColorClass = (color) => {
+            if(color === 'white') return  'button-line-absolute-white'
+            if(color === 'primary') return 'button-line-absolute-theme'
+        }
+
+        const buildColorText = (color) => {
+            if(color === 'white') return  'text-white'
+            if(color === 'primary') return 'text-primary'
+        }
+
+
 
         this.innerHTML = `
       <a
         href="${href}"
-        class="group border-primary relative inline-block border p-2 lg:border-0"
+        class="group relative inline-block border p-2 lg:border-0 ${buildColorText(color)}"
       >
         <span
-          class="button-line-absolute-theme -top-1 -right-1 h-0.5 w-3/5 group-hover:w-9/12"
+          class="-top-1 -right-1 h-0.5 w-3/5 group-hover:w-9/12 ${buildLineColorClass(color)}"
         ></span>
         <span
-          class="button-line-absolute-theme -top-1 -right-1 h-full w-0.5 group-hover:h-9/12"
+          class="-top-1 -right-1 h-full w-0.5 group-hover:h-9/12 ${buildLineColorClass(color)}"
         ></span>
         <span
-          class="button-line-absolute-theme -bottom-1 -left-1 h-0.5 w-3/5 group-hover:w-9/12"
+          class="-bottom-1 -left-1 h-0.5 w-3/5 group-hover:w-9/12 ${buildLineColorClass(color)}"
         ></span>
         <span
-          class="button-line-absolute-theme -bottom-1 -left-1 h-full w-0.5 group-hover:h-9/12"
+          class="-bottom-1 -left-1 h-full w-0.5 group-hover:h-9/12 ${buildLineColorClass(color)}"
         ></span>
-        <span class="text-primary px-6 py-2">${label}</span>
+        <span class="px-6 py-2 ${buildColorText(color)}">${label}</span>
       </a>
     `;
     }
