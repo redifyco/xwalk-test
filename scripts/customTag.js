@@ -33,7 +33,7 @@ export class CustomButton extends HTMLElement {
         <span
           class="-bottom-1 -left-1 h-full w-0.5 group-hover:h-9/12 ${buildLineColorClass(color)}"
         ></span>
-        <span class="px-6 py-2 ${buildColorText(color)}">${label}</span>
+        <span class="px-6 py-2 md:text-2xl text-base ${buildColorText(color)}">${label}</span>
       </a>
     `;
     }
