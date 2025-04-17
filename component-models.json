@@ -957,7 +957,7 @@
         ]
       },
       {
-        "component": "number",
+        "component": "text",
         "name": "value-stats-1",
         "label": "Stat1 - Value"
       },
@@ -967,7 +967,7 @@
         "label": "Stat1 - Label"
       },
       {
-        "component": "number",
+        "component": "text",
         "name": "value-stats-2",
         "label": "Stat2 - Value"
       },
@@ -977,7 +977,7 @@
         "label": "Stat2 - Label"
       },
       {
-        "component": "number",
+        "component": "text",
         "name": "value-stats-3",
         "label": "Stat3 - Value"
       },
@@ -987,7 +987,7 @@
         "label": "Stat3 - Label"
       },
       {
-        "component": "number",
+        "component": "text",
         "name": "value-stats-4",
         "label": "Stat4 - Value"
       },
