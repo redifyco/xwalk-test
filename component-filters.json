@@ -21,7 +21,8 @@
       "text-background",
       "cards-with-images",
       "dynamic-news-grid",
-      "logo-showcase"
+      "logo-showcase",
+      "statistics-data"
     ]
   },
   {
@@ -47,6 +48,10 @@
   },
   {
     "id": "header",
+    "components": []
+  },
+  {
+    "id": "statistics-data",
     "components": []
   },
   {
