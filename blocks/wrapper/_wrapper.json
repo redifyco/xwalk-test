@@ -21,7 +21,13 @@
     {
       "id": "wrapper",
       "fields": [
-
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "background-image",
+          "label": "Background Image",
+          "multi": false
+        }
       ]
     }
   ],
