@@ -89,7 +89,7 @@
     "components": []
   },
   {
-    "id": "wrapper",
+    "id": "wrapper-section",
     "components": [
       "text",
       "image",
@@ -97,13 +97,7 @@
       "title",
       "hero",
       "cards",
-      "columns",
-      "fragment",
-      "text-background",
-      "cards-with-images",
-      "dynamic-news-grid",
-      "logo-showcase",
-      "statistics-data"
+      "columns"
     ]
   }
 ]

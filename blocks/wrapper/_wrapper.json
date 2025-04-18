@@ -1,14 +1,14 @@
 {
   "definitions": [
     {
-      "title": "Wrapper",
-      "id": "wrapper",
+      "title": "WrapperSection",
+      "id": "wrapper-section",
       "plugins": {
         "xwalk": {
           "page": {
-            "resourceType": "core/franklin/components/section/v1/section",
+            "resourceType": "core/franklin/components/section/v1/block",
             "template": {
-              "model": "wrapper"
+              "model": "wrapper-section"
             }
           }
         }
@@ -17,7 +17,7 @@
   ],
   "models": [
     {
-      "id": "wrapper",
+      "id": "wrapper-section",
       "fields": [
         {
           "component": "reference",
@@ -25,13 +25,20 @@
           "name": "background-image",
           "label": "Background Image",
           "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "custom-class",
+          "label": "Custom CSS Class",
+          "multi": false
         }
       ]
     }
   ],
   "filters": [
     {
-      "id": "wrapper",
+      "id": "wrapper-section",
       "components": [
         "text",
         "image",
@@ -39,13 +46,7 @@
         "title",
         "hero",
         "cards",
-        "columns",
-        "fragment",
-        "text-background",
-        "cards-with-images",
-        "dynamic-news-grid",
-        "logo-showcase",
-        "statistics-data"
+        "columns"
       ]
     }
   ]

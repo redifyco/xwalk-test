@@ -1248,13 +1248,20 @@
     ]
   },
   {
-    "id": "wrapper",
+    "id": "wrapper-section",
     "fields": [
       {
         "component": "reference",
         "valueType": "string",
         "name": "background-image",
         "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "custom-class",
+        "label": "Custom CSS Class",
         "multi": false
       }
     ]

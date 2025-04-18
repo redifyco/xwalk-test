@@ -296,14 +296,14 @@
           }
         },
         {
-          "title": "Wrapper",
-          "id": "wrapper",
+          "title": "WrapperSection",
+          "id": "wrapper-section",
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
+                "resourceType": "core/franklin/components/section/v1/block",
                 "template": {
-                  "model": "wrapper"
+                  "model": "wrapper-section"
                 }
               }
             }
