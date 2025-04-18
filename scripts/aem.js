@@ -703,6 +703,11 @@ async function loadSection(section, loadCallback) {
     section.dataset.sectionStatus = 'loaded';
     section.style.display = null;
   }
+  if(section.getAttribute('data-background-image')){
+    const backgroundImage = section.getAttribute('data-background-image')
+    section.className = `!bg-cover !bg-center !bg-no-repeat`;
+    section.style.background = `url('${backgroundImage}')`
+  }
 }
 
 /**

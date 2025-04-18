@@ -1,8 +1,9 @@
-import {buildHeight, classNames} from "../../scripts/utils.js";
+import {buildHeight} from "../../scripts/utils.js";
+import "../../scripts/customTag.js";
 
 
 export default async function decorate(block) {
-    const backgroundImage = block.querySelector(':scope > div:nth-child(1) img').src || ''
+    const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src || ''
     const title = block.querySelector(':scope > div:nth-child(2) p').textContent || ''
     const subTitle = block.querySelector(':scope > div:nth-child(3) p').textContent || ''
     const facebookLink = block.querySelector(":scope > div:nth-child(4) a")?.href;
@@ -13,10 +14,8 @@ export default async function decorate(block) {
     const desktopHeight = block.querySelector(":scope > div:nth-child(9) p")?.textContent;
     const calculatedSectionHeight = buildHeight(mobileHeight, desktopHeight)
 
-    block.textContent = ''
-
     const containerSection  = document.createElement('section')
-    containerSection.className = 'flex flex-col bg-gray-500 bg-cover bg-center bg-no-repeat text-white'
+    containerSection.className = 'flex flex-col bg-cover bg-center bg-no-repeat text-white'
     containerSection.style.backgroundImage = `url('${backgroundImage}')`
 
     containerSection.innerHTML =
@@ -36,7 +35,7 @@ export default async function decorate(block) {
         </div>
       </div>
     `
-
+    block.textContent = ''
     block.append(containerSection)
 
 }

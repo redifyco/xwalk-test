@@ -1,7 +1,7 @@
 import { buildHeight, processDivsToObjectStatisticsData } from "../../scripts/utils.js";
 
 export default function decorate(block) {
-    const backgroundImage = block.querySelector(":scope > div:nth-child(1) img").src;
+    const backgroundImage = block.querySelector(":scope > div:nth-child(1) img")?.src;
     const title = block.querySelector(":scope > div:nth-child(2) div p").textContent;
     const buttonText = block.querySelector(":scope > div:nth-child(3) div p").textContent;
     const buttonLink = block.querySelector(":scope > div:nth-child(4) div a").href;
