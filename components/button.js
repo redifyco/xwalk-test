@@ -31,7 +31,7 @@ export function createWhiteBorderButton(label = 'Donate Now', href = '#', themeC
 
   if (scrollThreshold) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > scrollThreshold) {
         topLine.classList.remove('button-line-absolute-white');
         topRightLine.classList.remove('button-line-absolute-white');
         bottomLine.classList.remove('button-line-absolute-white');

@@ -44,7 +44,7 @@ export default function decorate(block) {
             style="background-image: url('${card.image}')"
           >
             <div
-              class="vertical-card-content black-gradient-from-bottom lg:flex-col ${isFlexReverse ? 'lg:flex-col-reverse lg:black-gradient-from-top' : 'lg:flex-col lg:black-gradient-from-bottom'}"
+              class="vertical-card-content black-gradient-from-bottom lg:flex-col ${isFlexReverse ? 'xl:flex-col-reverse xl:black-gradient-from-top' : 'xl:flex-col xl:black-gradient-from-bottom'}"
             >
               <div
                 class="rounded-full xl:border xl:border-white xl:bg-white/30 xl:p-5"

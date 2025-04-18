@@ -26,13 +26,13 @@ export default function decorate(block) {
       </h2>
     </div>
 
-    <div class="grid grid-cols-2 justify-items-center gap-8 px-4 lg:justify-items-start lg:gap-24 lg:px-40 xl:gap-32 xl:px-56">
+    <div class="grid grid-cols-2 justify-items-center gap-8 px-4 lg:justify-items-start lg:gap-24 lg:px-24 xl:gap-32 xl:px-32">
       ${JSONStatisticsData.length > 0 ? JSONStatisticsData.map((item) => `
         <div class="flex flex-col items-center text-white lg:flex-row lg:items-end lg:gap-6">
-          <h6 class="text-6xl leading-tight font-semibold lg:text-8xl 2xl:text-9xl 2xl:leading-24">
+          <h6 class="text-6xl md:text-7xl leading-tight font-semibold 2xl:text-9xl 2xl:leading-24">
             ${item.value}
           </h6>
-          <span class="w-full text-center md:text-start text-base 2xl:text-3xl">
+          <span class="w-full text-center lg:text-start text-base 2xl:text-3xl">
             ${item.label}
           </span>
         </div>

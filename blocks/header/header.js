@@ -5,7 +5,7 @@ import {headerMobile} from "./mobile.js";
 
 
 export default async function decorate(block) {
-  const scrollThreshold = 400;
+  const scrollThreshold = 100;
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
