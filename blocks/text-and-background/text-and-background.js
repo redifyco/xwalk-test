@@ -1,5 +1,4 @@
-import { buildHeight, classNames, isEditorMode } from "../../scripts/utils.js";
-import { createWhiteBorderButton } from "../../components/button.js";
+import { buildHeight } from "../../scripts/utils.js";
 
 export default async function decorate(block) {
   const backgroundImage = block.querySelector(":scope > div:nth-child(1) div img")?.src || "";
@@ -12,7 +11,7 @@ export default async function decorate(block) {
 
   const containerSection = document.createElement("section");
   containerSection.className = `
-    flex items-center justify-end bg-cover bg-no-repeat text-white 
+    flex items-center justify-end bg-center bg-cover bg-no-repeat text-white 
     text-end px-4 md:text-start md:px-10 lg:px-20 xl:px-26 2xl:px-40 
     ${buildHeight(mobileHeight, desktopHeight)}
   `.trim();
