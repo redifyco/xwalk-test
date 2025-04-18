@@ -20,7 +20,7 @@
       "dynamic-news-grid",
       "logo-showcase",
       "statistics-data",
-      "wrapper-section"
+      "wrapper"
     ]
   },
   {
@@ -89,15 +89,10 @@
     "components": []
   },
   {
-    "id": "wrapper-section",
+    "id": "wrapper",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns"
+      "logo-showcase",
+      "hero"
     ]
   }
 ]
