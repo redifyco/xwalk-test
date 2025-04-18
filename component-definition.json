@@ -294,22 +294,6 @@
               }
             }
           }
-        },
-        {
-          "title": "Wrapper",
-          "id": "wrapper",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/section",
-                "template": {
-                  "name": "Wrapper",
-                  "filter": "wrapper",
-                  "model": "wrapper"
-                }
-              }
-            }
-          }
         }
       ]
     }

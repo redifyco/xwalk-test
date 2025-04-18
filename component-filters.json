@@ -38,8 +38,7 @@
       "cards-with-images",
       "dynamic-news-grid",
       "logo-showcase",
-      "statistics-data",
-      "wrapper"
+      "statistics-data"
     ]
   },
   {
@@ -88,14 +87,5 @@
   {
     "id": "text-background",
     "components": []
-  },
-  {
-    "id": "wrapper",
-    "components": [
-      "section",
-      "hero",
-      "text-background",
-      "statistics-data"
-    ]
   }
 ]

@@ -25,23 +25,6 @@
           "name": "background-image",
           "label": "Background Image",
           "multi": false
-        },
-        {
-          "component": "text",
-          "name": "name",
-          "label": "Section Name",
-          "description": "The label shown for this section in the Content Tree"
-        },
-        {
-          "component": "multiselect",
-          "name": "style",
-          "label": "Style",
-          "options": [
-            {
-              "name": "Highlight",
-              "value": "highlight"
-            }
-          ]
         }
       ]
     }
@@ -62,8 +45,7 @@
         "cards-with-images",
         "dynamic-news-grid",
         "logo-showcase",
-        "statistics-data",
-        "wrapper"
+        "statistics-data"
       ]
     }
   ]
