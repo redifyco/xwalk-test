@@ -1,0 +1,52 @@
+{
+  "definitions": [
+    {
+      "title": "Wrapper",
+      "id": "wrapper",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/section/v1/section",
+            "template": {
+              "model": "wrapper"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrapper",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "background-image",
+          "label": "Background Image",
+          "multi": false
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wrapper",
+      "components": [
+        "text",
+        "image",
+        "button",
+        "title",
+        "hero",
+        "cards",
+        "columns",
+        "fragment",
+        "text-background",
+        "cards-with-images",
+        "dynamic-news-grid",
+        "logo-showcase",
+        "statistics-data"
+      ]
+    }
+  ]
+}
