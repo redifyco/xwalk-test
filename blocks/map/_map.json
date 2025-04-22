@@ -38,6 +38,20 @@
       "id": "map-model",
       "fields": [
         {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "title",
+          "label": "Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "description",
+          "label": "Description",
+          "value": ""
+        },
+        {
           "component": "text",
           "valueType": "string",
           "name": "apiKey",
@@ -89,20 +103,6 @@
             }
           ],
           "value": "default"
-        },
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "title",
-          "label": "Title",
-          "value": ""
-        },
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "description",
-          "label": "Description",
-          "value": ""
         }
       ]
     },
