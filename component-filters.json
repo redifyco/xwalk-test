@@ -56,7 +56,7 @@
   {
     "id": "maps",
     "components": [
-      "map-item"
+      "map-pin"
     ]
   },
   {
