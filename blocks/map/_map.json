@@ -34,8 +34,6 @@
     {
       "id": "map-filter",
       "components": [
-        "text",
-        "map-pin"
       ]
     }
   ]
