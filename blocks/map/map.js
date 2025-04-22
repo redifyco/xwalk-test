@@ -1,7 +1,6 @@
 import { loadScript } from '../../scripts/utils.js';
 
 export default async function decorate(block) {
-    console.log('block', block)
     // Estrai le configurazioni dalla prima riga
     const config = {
         apiKey: block.querySelector('div:nth-child(1) div:nth-child(1)')?.textContent.trim() || '',
