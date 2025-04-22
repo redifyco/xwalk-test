@@ -43,8 +43,8 @@
       "id": "carousel-item-model",
       "fields": [
         {
-          "component": "image",
-          "valueType": "reference",
+          "component": "reference",
+          "valueType": "string",
           "name": "item-image",
           "label": "Item Image",
           "multi": false
