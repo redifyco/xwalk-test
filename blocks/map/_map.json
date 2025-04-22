@@ -163,7 +163,7 @@
     {
       "id": "map-filter",
       "components": [
-        "map-pin"
+        "item-map-pin"
       ]
     },
     {
