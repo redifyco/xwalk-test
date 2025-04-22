@@ -249,22 +249,6 @@
           }
         },
         {
-          "title": "Map Pin",
-          "id": "map-pin",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Map Pin",
-                  "filter": "map-pin-filter",
-                  "model": "map-pin"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Map",
           "id": "map",
           "plugins": {
@@ -275,6 +259,22 @@
                   "name": "Map",
                   "filter": "map-filter",
                   "model": "map"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Map Pin",
+          "id": "map-pin",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Map Pin",
+                  "filter": "map-pin-filter",
+                  "model": "map-pin"
                 }
               }
             }
