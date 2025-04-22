@@ -373,8 +373,7 @@
         "value": ""
       },
       {
-        "component": "link",
-        "valueType": "string",
+        "component": "aem-content",
         "name": "buttonLink",
         "label": "Button Link"
       }
