@@ -3,6 +3,7 @@ export class CustomButton extends HTMLElement {
         const label = this.textContent.trim() || '';
         const href = this.getAttribute('href') || '#';
         const color = this.getAttribute('color') || 'primary'
+        const className = this.getAttribute('className') || ''
 
         const buildLineColorClass = (color) => {
             if(color === 'white') return  'button-line-absolute-white'
@@ -19,7 +20,7 @@ export class CustomButton extends HTMLElement {
         this.innerHTML = `
       <a
         href="${href}"
-        class="group relative inline-block border p-2 lg:border-0 ${buildColorText(color)}"
+        class="group relative inline-block border p-2 lg:border-0 ${buildColorText(color)} ${className}"
       >
         <span
           class="-top-1 -right-1 h-0.5 w-3/5 group-hover:w-9/12 ${buildLineColorClass(color)}"

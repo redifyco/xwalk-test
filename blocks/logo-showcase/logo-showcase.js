@@ -2,7 +2,6 @@ import { processDivsToObject } from "../../scripts/utils.js";
 import "../../scripts/customTag.js";
 
 export default async function decorate(block) {
-    console.log('block', block)
     const titleSection = block.querySelector(":scope > div:nth-child(1) div") || "No title";
     const textSection = block.querySelector(":scope > div:nth-child(2) div") || "No description";
     const partners = Array.from(block.querySelectorAll(":scope > div:nth-child(n+3):not(:last-child)"));
