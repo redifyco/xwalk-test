@@ -25,13 +25,27 @@
       "statistics-data",
       "logo-showcase",
       "map",
-      "form"
+      "form",
+      "carousel"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "carousel-filter",
+    "components": [
+      "carousel-item"
+    ]
+  },
+  {
+    "id": "carousel-item-filter",
+    "components": [
+      "text",
+      "image"
     ]
   },
   {
