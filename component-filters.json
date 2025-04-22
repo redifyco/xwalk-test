@@ -54,7 +54,7 @@
     "components": []
   },
   {
-    "id": "map-filter",
+    "id": "mappa-filter",
     "components": [
       "map-pin"
     ]
