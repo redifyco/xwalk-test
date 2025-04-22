@@ -862,7 +862,7 @@
     ]
   },
   {
-    "id": "mappa-model",
+    "id": "map-model",
     "fields": [
       {
         "component": "text",

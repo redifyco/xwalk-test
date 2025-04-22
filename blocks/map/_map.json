@@ -1,16 +1,16 @@
 {
   "definitions": [
     {
-      "title": "Mappa",
-      "id": "mappa",
+      "title": "Map",
+      "id": "map",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Mappa",
-              "filter": "mappa-filter",
-              "model": "mappa-model"
+              "name": "Map",
+              "filter": "map-filter",
+              "model": "map-model"
             }
           }
         }
@@ -35,7 +35,7 @@
   ],
   "models": [
     {
-      "id": "mappa-model",
+      "id": "map-model",
       "fields": [
         {
           "component": "text",
@@ -161,7 +161,7 @@
   ],
   "filters": [
     {
-      "id": "mappa-filter",
+      "id": "map-filter",
       "components": [
         "map-pin"
       ]
