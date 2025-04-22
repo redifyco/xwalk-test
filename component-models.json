@@ -934,6 +934,58 @@
     ]
   },
   {
+    "id": "map-pin",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "latitude",
+        "label": "Latitude",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "longitude",
+        "label": "Longitude",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Pin Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Pin Description",
+        "value": ""
+      },
+      {
+        "component": "image",
+        "valueType": "reference",
+        "name": "pinIcon",
+        "label": "Custom Pin Icon",
+        "multi": false
+      },
+      {
+        "component": "link",
+        "valueType": "string",
+        "name": "linkUrl",
+        "label": "Link URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "Link Text"
+      }
+    ]
+  },
+  {
     "id": "statistics-data",
     "fields": [
       {

@@ -60,6 +60,13 @@
     ]
   },
   {
+    "id": "map-pin-filter",
+    "components": [
+      "text",
+      "image"
+    ]
+  },
+  {
     "id": "statistics-data",
     "components": []
   },
