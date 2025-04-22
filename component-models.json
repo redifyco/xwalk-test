@@ -862,7 +862,7 @@
     ]
   },
   {
-    "id": "maps",
+    "id": "map-model",
     "fields": [
       {
         "component": "text",
@@ -934,7 +934,7 @@
     ]
   },
   {
-    "id": "map-pin",
+    "id": "map-pin-model",
     "fields": [
       {
         "component": "text",
