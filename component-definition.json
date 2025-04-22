@@ -266,15 +266,15 @@
         },
         {
           "title": "Map Pin",
-          "id": "map-pin",
+          "id": "item-map-pin",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Map Pin",
-                  "model": "map-pin-model",
-                  "filter": "map-pin-filter"
+                  "model": "item-map-pin-model",
+                  "filter": "item-map-pin-filter"
                 }
               }
             }

@@ -934,7 +934,7 @@
     ]
   },
   {
-    "id": "map-pin-model",
+    "id": "item-map-pin-model",
     "fields": [
       {
         "component": "text",
