@@ -62,7 +62,10 @@
   },
   {
     "id": "map-filter",
-    "components": []
+    "components": [
+      "text",
+      "map-pin"
+    ]
   },
   {
     "id": "statistics-data",
