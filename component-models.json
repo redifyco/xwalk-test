@@ -862,7 +862,7 @@
     ]
   },
   {
-    "id": "card",
+    "id": "map-item",
     "fields": [
       {
         "component": "reference",
