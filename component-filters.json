@@ -24,7 +24,7 @@
       "dynamic-news-grid",
       "statistics-data",
       "logo-showcase",
-      "map",
+      "maps",
       "form"
     ]
   },
@@ -54,7 +54,7 @@
     "components": []
   },
   {
-    "id": "map",
+    "id": "maps",
     "components": [
       "map-pin"
     ]

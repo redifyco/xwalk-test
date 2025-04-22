@@ -862,7 +862,7 @@
     ]
   },
   {
-    "id": "map",
+    "id": "maps",
     "fields": [
       {
         "component": "text",
