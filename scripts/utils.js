@@ -136,6 +136,31 @@ export function processDivsToObjectStatisticsData(divs) {
     return result;
 }
 
+/*Carousel data*/
+export function processDivsToObjectCarousel(divs) {
+    const result = [];
+
+    divs.forEach((parentDiv) => {
+        const childDivs = parentDiv.querySelectorAll(':scope > div');
+
+        const image = childDivs[0]?.querySelector('img')?.getAttribute('src') || '';
+        const title = childDivs[1]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const description = childDivs[2]?.querySelector('p')?.textContent.trim() || 'No description';
+        const buttonText = childDivs[3]?.querySelector('p')?.textContent.trim() || 'No button text';
+        const buttonLink = childDivs[4]?.querySelector('a')?.getAttribute('href') || '#';
+
+        result.push({
+            image,
+            title,
+            description,
+            buttonText,
+            buttonLink,
+        });
+    });
+
+    return result;
+}
+
 
 export function buildHeight(mobileHeight, desktopHeight) {
 
