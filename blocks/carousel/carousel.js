@@ -1,8 +1,8 @@
 import { processDivsToObjectCarousel } from "../../scripts/utils.js";
 
-export default async function decorate(block) {
+export default function decorate(block) {
     let currentIndex = 0;
-    const carouselItems = block.querySelectorAll(':scope > div');
+    // const carouselItems = block.querySelectorAll(':scope > div');
     // const result = processDivsToObjectCarousel(carouselItems) || [];
 
     const updateCarousel = (index) => {
