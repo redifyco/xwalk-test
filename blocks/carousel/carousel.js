@@ -82,5 +82,5 @@ export default async function decorate(block) {
         .addEventListener('click', previousButton);
 
     block.textContent = '';
-    block.appendChild(containerSection);
+    block.append(containerSection);
 }
