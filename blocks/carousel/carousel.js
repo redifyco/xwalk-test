@@ -34,7 +34,7 @@ export default async function decorate(block) {
     containerSection.innerHTML = `
     <div
       id="carousel-div"
-      style="background-image: url('${result[currentIndex]?.image}');"
+      style="background-image: url(' ')"
       class="relative opacity-100 transition-opacity duration-500 flex h-[600px] flex-col justify-end gap-2 bg-cover bg-center px-2 py-10 shadow-lg lg:gap-4 lg:px-20"
     >
       <button
@@ -53,7 +53,6 @@ export default async function decorate(block) {
         id="carousel-title"
         class="text-sm font-semibold text-white lg:px-8 lg:text-4xl"
       >
-        ${result[currentIndex]?.title}
       </h6>
       <div class="w-full border-t-2 border-t-white"></div>
       <div
@@ -63,7 +62,7 @@ export default async function decorate(block) {
           id="carousel-description"
           class="w-9/12 text-sm lg:text-xl"
         >
-          ${result[currentIndex]?.description}
+          
         </p>
         <a href="${result[currentIndex]?.buttonLink}" id="carousel-button" class="flex items-center gap-2 text-sm lg:text-xl">
           ${result[currentIndex]?.buttonText}
