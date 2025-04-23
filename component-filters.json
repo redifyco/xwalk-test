@@ -92,7 +92,10 @@
   },
   {
     "id": "tab-section-filter",
-    "components": []
+    "components": [
+      "hero",
+      "tab-item"
+    ]
   },
   {
     "id": "text-background",
