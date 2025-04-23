@@ -81,6 +81,6 @@ export default async function decorate(block) {
         .querySelector('#previous-button')
         .addEventListener('click', previousButton);
 
-    // block.textContent = '';
+    block.textContent = '';
     block.appendChild(containerSection);
 }
