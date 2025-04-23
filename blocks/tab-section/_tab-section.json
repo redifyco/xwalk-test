@@ -1,0 +1,89 @@
+{
+  "definitions": [
+    {
+      "title": "Tab Section",
+      "id": "tab-section",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Tab Section",
+              "filter": "tab-section-filter",
+              "model": "tab-section-model"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "tab-section-model",
+      "fields": [
+        {
+          "component": "text",
+          "name": "section-title",
+          "label": "Section Title"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "statistics-image-1",
+          "label": "Stat Image 1",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "statistics-value-1",
+          "label": "Stat Value 1"
+        },
+        {
+          "component": "text",
+          "name": "statistics-description-1",
+          "label": "Stat Description 1"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "statistics-image-2",
+          "label": "Stat Image 2",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "statistics-value-2",
+          "label": "Stat Value 2"
+        },
+        {
+          "component": "text",
+          "name": "statistics-description-2",
+          "label": "Stat Description 2"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "statistics-image-3",
+          "label": "Stat Image 3",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "statistics-value-3",
+          "label": "Stat Value 3"
+        },
+        {
+          "component": "text",
+          "name": "statistics-description-3",
+          "label": "Stat Description 3"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "tab-section-filter",
+      "components": []
+    }
+  ]
+}

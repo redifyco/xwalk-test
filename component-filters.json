@@ -27,7 +27,8 @@
       "map",
       "form",
       "carousel",
-      "statistics"
+      "statistics",
+      "tab-section"
     ]
   },
   {
@@ -87,6 +88,10 @@
   },
   {
     "id": "statistics-filter",
+    "components": []
+  },
+  {
+    "id": "tab-section-filter",
     "components": []
   },
   {
