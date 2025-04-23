@@ -85,6 +85,10 @@
     "components": []
   },
   {
+    "id": "statistics-filter",
+    "components": []
+  },
+  {
     "id": "text-background",
     "components": []
   }
