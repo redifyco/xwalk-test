@@ -1259,13 +1259,36 @@
     ]
   },
   {
-    "id": "tab-section-model",
+    "id": "tab-item-model",
     "fields": [
       {
         "component": "text",
         "name": "tab-title",
         "label": "Tab Title",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "main-title",
+        "label": "Main Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "download-text",
+        "label": "Download Button Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "download-link",
+        "label": "Download Button Link"
       }
     ]
   },
