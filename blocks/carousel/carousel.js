@@ -6,7 +6,7 @@ export default async function decorate(block) {
     const result = processDivsToObjectCarousel(carouselItems) || [];
 
     const updateCarousel = (index) => {
-        const carouselDiv = document.getElementById('carousel-div');
+      /*  const carouselDiv = document.getElementById('carousel-div');
         const carouselTitle = document.getElementById('carousel-title');
         const carouselDescription = document.getElementById('carousel-description');
         const carouselButton = document.getElementById('carousel-button');
@@ -15,7 +15,7 @@ export default async function decorate(block) {
         carouselTitle.textContent = result[index].title;
         carouselDescription.textContent = result[index].description;
         carouselButton.textContent = result[index].buttonText;
-        carouselButton.href = result[index].buttonLink;
+        carouselButton.href = result[index].buttonLink;*/
     };
 
     const nextButton = () => {
