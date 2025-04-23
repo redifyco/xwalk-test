@@ -1260,7 +1260,14 @@
   },
   {
     "id": "tab-section-model",
-    "fields": []
+    "fields": [
+      {
+        "component": "text",
+        "name": "tab-title",
+        "label": "Tab Title",
+        "valueType": "string"
+      }
+    ]
   },
   {
     "id": "text-background",
