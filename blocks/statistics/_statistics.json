@@ -23,8 +23,8 @@
       "fields": [
         {
           "component": "text",
-          "name": "title",
-          "label": "Title"
+          "name": "section-title",
+          "label": "Section Title"
         },
         {
           "component": "reference",
