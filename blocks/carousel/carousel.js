@@ -79,5 +79,5 @@ export default function decorate(block) {
         .addEventListener('click', previousButton);*/
 
     block.textContent = '';
-    block.append(containerSection);
+    // block.append(containerSection);
 }
