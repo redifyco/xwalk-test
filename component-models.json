@@ -1201,126 +1201,60 @@
     "id": "statistics-model",
     "fields": [
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
+        "component": "text",
         "name": "title",
         "label": "Title"
       },
       {
-        "component": "text",
-        "name": "subtitle",
-        "label": "Subtitle"
-      },
-      {
-        "component": "aem-content",
-        "name": "link",
-        "label": "Button Link"
+        "component": "reference",
+        "valueType": "string",
+        "name": "statistics-image-1",
+        "label": "Stat Image 1",
+        "multi": false
       },
       {
         "component": "text",
-        "name": "linkText",
-        "label": "Button Text"
+        "name": "statistics-value-1",
+        "label": "Stat Value 1"
       },
       {
-        "component": "select",
-        "name": "mobile-height",
-        "label": "Mobile Height",
-        "options": [
-          {
-            "name": "200px",
-            "value": "200"
-          },
-          {
-            "name": "400px",
-            "value": "400"
-          },
-          {
-            "name": "600px",
-            "value": "600"
-          },
-          {
-            "name": "800px",
-            "value": "800"
-          },
-          {
-            "name": "1000px",
-            "value": "1000"
-          },
-          {
-            "name": "1200px",
-            "value": "1200"
-          },
-          {
-            "name": "1400px",
-            "value": "1400"
-          },
-          {
-            "name": "1600px",
-            "value": "1600"
-          },
-          {
-            "name": "1800px",
-            "value": "1800"
-          },
-          {
-            "name": "2000px",
-            "value": "2000"
-          }
-        ]
+        "component": "text",
+        "name": "statistics-description-1",
+        "label": "Stat Description 1"
       },
       {
-        "component": "select",
-        "name": "desktop-height",
-        "label": "Desktop Height",
-        "options": [
-          {
-            "name": "600px",
-            "value": "600"
-          },
-          {
-            "name": "800px",
-            "value": "800"
-          },
-          {
-            "name": "1000px",
-            "value": "1000"
-          },
-          {
-            "name": "1200px",
-            "value": "1200"
-          },
-          {
-            "name": "1400px",
-            "value": "1400"
-          },
-          {
-            "name": "1600px",
-            "value": "1600"
-          },
-          {
-            "name": "1800px",
-            "value": "1800"
-          },
-          {
-            "name": "2000px",
-            "value": "2000"
-          },
-          {
-            "name": "2200px",
-            "value": "2200"
-          },
-          {
-            "name": "24000px",
-            "value": "24000"
-          }
-        ]
+        "component": "reference",
+        "valueType": "string",
+        "name": "statistics-image-2",
+        "label": "Stat Image 2",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "statistics-value-2",
+        "label": "Stat Value 2"
+      },
+      {
+        "component": "text",
+        "name": "statistics-description-2",
+        "label": "Stat Description 2"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "statistics-image-3",
+        "label": "Stat Image 3",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "statistics-value-3",
+        "label": "Stat Value 3"
+      },
+      {
+        "component": "text",
+        "name": "statistics-description-3",
+        "label": "Stat Description 3"
       }
     ]
   },
