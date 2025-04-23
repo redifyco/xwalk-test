@@ -48,7 +48,8 @@
         "logo-showcase",
         "map",
         "form",
-        "carousel"
+        "carousel",
+        "statistics"
       ]
     }
   ]
