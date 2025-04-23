@@ -3,7 +3,7 @@ import { processDivsToObjectCarousel } from "../../scripts/utils.js";
 export default async function decorate(block) {
     let currentIndex = 0;
     const carouselItems = block.querySelectorAll(':scope > div');
-    const result = processDivsToObjectCarousel(carouselItems);
+    const result = processDivsToObjectCarousel(carouselItems) || [];
 
     const updateCarousel = (index) => {
         const carouselDiv = document.getElementById('carousel-div');
@@ -81,6 +81,6 @@ export default async function decorate(block) {
         .querySelector('#previous-button')
         .addEventListener('click', previousButton);
 
-    block.textContent = '';
+    // block.textContent = '';
     block.appendChild(containerSection);
 }
