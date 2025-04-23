@@ -34,7 +34,6 @@ export default async function decorate(block) {
     containerSection.innerHTML = `
     <div
       id="carousel-div"
-      style="background-image: url(' ')"
       class="relative opacity-100 transition-opacity duration-500 flex h-[600px] flex-col justify-end gap-2 bg-cover bg-center px-2 py-10 shadow-lg lg:gap-4 lg:px-20"
     >
       <button
@@ -64,8 +63,7 @@ export default async function decorate(block) {
         >
           
         </p>
-        <a href="${result[currentIndex]?.buttonLink}" id="carousel-button" class="flex items-center gap-2 text-sm lg:text-xl">
-          ${result[currentIndex]?.buttonText}
+        <a href="" id="carousel-button" class="flex items-center gap-2 text-sm lg:text-xl">
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </a>
       </div>
