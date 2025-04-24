@@ -161,6 +161,31 @@ export function processDivsToObjectCarousel(divs) {
     return result;
 }
 
+/*Tab Section data*/
+export function processDivsToObjectTabSection(divs) {
+    const result = [];
+
+    divs.forEach((parentDiv) => {
+        const childDivs = parentDiv.querySelectorAll(':scope > div');
+
+        const tabTitle = childDivs[0]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const mainTitle = childDivs[1]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const description = childDivs[2]?.innerHTML || 'No description';
+        const buttonText = childDivs[3]?.querySelector('p')?.textContent.trim() || 'No button text';
+        const buttonLink = childDivs[4]?.querySelector('a')?.getAttribute('href') || '#';
+
+        result.push({
+            tabTitle,
+            mainTitle,
+            description,
+            buttonText,
+            buttonLink,
+        });
+    });
+
+    return result;
+}
+
 
 export function buildHeight(mobileHeight, desktopHeight) {
 
