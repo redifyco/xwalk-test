@@ -80,6 +80,14 @@ export default function decorate(block) {
         .querySelector('#previous-button')
         .addEventListener('click', previousButton);
 
-    carouselItems.forEach(item => item.classList.add('hidden'));
+    const aemEnv = block.getAttribute('data-aue-resource')
+
+    if(!aemEnv){
+        console.log('!aemEnv', block)
+        block.textContent = ''
+    }else{
+        console.log('aemEnv', block)
+        carouselItems.forEach(item => item.classList.add('hidden'));
+    }
     block.append(containerSection);
 }
