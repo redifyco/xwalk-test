@@ -44,6 +44,13 @@
     ]
   },
   {
+    "id": "carousel-item-filter",
+    "components": [
+      "text",
+      "image"
+    ]
+  },
+  {
     "id": "columns",
     "components": [
       "column"

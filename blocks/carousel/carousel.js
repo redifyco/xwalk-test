@@ -1,10 +1,40 @@
 import { processDivsToObjectCarousel } from "../../scripts/utils.js";
 
 export default function decorate(block) {
-    console.log('block', block)
+    console.log('block', block);
+
     let currentIndex = 0;
     const carouselItems = block.querySelectorAll(':scope > div');
     const result = processDivsToObjectCarousel(carouselItems) || [];
+
+    const createCarouselHTML = (currentImage) => `
+        <div
+            style="background-image: url('${currentImage}')"
+            id="carousel-div"
+            class="relative opacity-100 transition-opacity duration-500 flex h-[600px] flex-col justify-end gap-2 bg-cover bg-center px-2 py-10 shadow-lg lg:gap-4 lg:px-20"
+        >
+            <button
+                id="previous-button"
+                class="bg-secondary absolute top-1/2 -left-3 flex size-20 items-center justify-center lg:-left-10 lg:size-30"
+            >
+                <ion-icon name="chevron-back-outline" size="large" class="text-white"></ion-icon>
+            </button>
+            <button
+                id="next-button"
+                class="bg-secondary absolute top-1/2 -right-3 flex size-20 items-center justify-center lg:-right-10 lg:size-30"
+            >
+                <ion-icon name="chevron-forward-outline" size="large" class="text-white"></ion-icon>
+            </button>
+            <h6 id="carousel-title" class="text-sm font-semibold text-white lg:px-8 lg:text-4xl"></h6>
+            <div class="w-full border-t-2 border-t-white"></div>
+            <div class="flex flex-col items-start justify-between gap-4 text-white lg:flex-row lg:items-center lg:px-8">
+                <p id="carousel-description" class="w-9/12 text-sm lg:text-xl"></p>
+                <a href="" id="carousel-button" class="flex items-center gap-2 text-sm lg:text-xl">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </a>
+            </div>
+        </div>
+    `;
 
     const updateCarousel = (index) => {
         const carouselDiv = document.getElementById('carousel-div');
@@ -12,75 +42,35 @@ export default function decorate(block) {
         const carouselDescription = document.getElementById('carousel-description');
         const carouselButton = document.getElementById('carousel-button');
 
-        carouselDiv.style.backgroundImage = `url('${result[index].image}')`;
-        carouselTitle.textContent = result[index].title;
-        carouselDescription.textContent = result[index].description;
-        carouselButton.textContent = result[index].buttonText;
-        carouselButton.href = result[index].buttonLink;
+        const item = result[index];
+        carouselDiv.style.backgroundImage = `url('${item.image}')`;
+        carouselTitle.textContent = item.title;
+        carouselDescription.textContent = item.description;
+        carouselButton.textContent = item.buttonText;
+        carouselButton.href = item.buttonLink;
     };
 
-    const nextButton = () => {
+    const handleNext = () => {
         currentIndex = (currentIndex + 1) % result.length;
         updateCarousel(currentIndex);
     };
 
-    const previousButton = () => {
+    const handlePrevious = () => {
         currentIndex = (currentIndex - 1 + result.length) % result.length;
         updateCarousel(currentIndex);
     };
 
-    const containerSection = document.createElement('section');
-    containerSection.className = 'small-layout-padding';
+    const initializeCarousel = () => {
+        const containerSection = document.createElement('section');
+        containerSection.className = 'small-layout-padding';
+        containerSection.innerHTML = createCarouselHTML(result[currentIndex]?.image);
 
-    containerSection.innerHTML = `
-    <div
-    style="background-image: url('${result[currentIndex]?.image}')"
-      id="carousel-div"
-      class="relative opacity-100 transition-opacity duration-500 flex h-[600px] flex-col justify-end gap-2 bg-cover bg-center px-2 py-10 shadow-lg lg:gap-4 lg:px-20"
-    >
-      <button
-        id="previous-button"
-        class="bg-secondary absolute top-1/2 -left-3 flex size-20 items-center justify-center lg:-left-10 lg:size-30"
-      >
-        <ion-icon name="chevron-back-outline" size="large" class="text-white"></ion-icon>
-      </button>
-      <button
-        id="next-button"
-        class="bg-secondary absolute top-1/2 -right-3 flex size-20 items-center justify-center lg:-right-10 lg:size-30"
-      >
-        <ion-icon name="chevron-forward-outline" size="large" class="text-white"></ion-icon>
-      </button>
-      <h6
-        id="carousel-title"
-        class="text-sm font-semibold text-white lg:px-8 lg:text-4xl"
-      >
-      </h6>
-      <div class="w-full border-t-2 border-t-white"></div>
-      <div
-        class="flex flex-col items-start justify-between gap-4 text-white lg:flex-row lg:items-center lg:px-8"
-      >
-        <p
-          id="carousel-description"
-          class="w-9/12 text-sm lg:text-xl"
-        >
-          
-        </p>
-        <a href="" id="carousel-button" class="flex items-center gap-2 text-sm lg:text-xl">
-          <ion-icon name="arrow-forward-outline"></ion-icon>
-        </a>
-      </div>
-    </div>
-  `;
+        containerSection.querySelector('#next-button').addEventListener('click', handleNext);
+        containerSection.querySelector('#previous-button').addEventListener('click', handlePrevious);
 
-    containerSection
-        .querySelector('#next-button')
-        .addEventListener('click', nextButton);
+        block.textContent = '';
+        block.append(containerSection);
+    };
 
-    containerSection
-        .querySelector('#previous-button')
-        .addEventListener('click', previousButton);
-
-    // block.textContent = '';
-    block.innerHTML = ''
-    block.append(containerSection);
+    initializeCarousel();
 }

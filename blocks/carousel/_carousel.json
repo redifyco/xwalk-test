@@ -84,6 +84,13 @@
       "components": [
         "carousel-item"
       ]
+    },
+    {
+      "id": "carousel-item-filter",
+      "components": [
+        "text",
+        "image"
+      ]
     }
   ]
 }
