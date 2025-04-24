@@ -90,6 +90,5 @@ export default function decorate(block) {
         tabsItems.forEach(item => item.classList.add('hidden'));
     }
 
-    block.textContent = "";
     render();
 }
