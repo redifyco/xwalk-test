@@ -19,12 +19,12 @@ export default function decorate(block) {
     };
 
     const nextButton = () => {
-        // currentIndex = (currentIndex + 1) % result.length;
+        currentIndex = (currentIndex + 1) % result.length;
         updateCarousel(currentIndex);
     };
 
     const previousButton = () => {
-        // currentIndex = (currentIndex - 1 + result.length) % result.length;
+        currentIndex = (currentIndex - 1 + result.length) % result.length;
         updateCarousel(currentIndex);
     };
 
@@ -70,13 +70,13 @@ export default function decorate(block) {
     </div>-->
   `;
 
-    containerSection
+    /*containerSection
         .querySelector('#next-button')
         .addEventListener('click', nextButton);
 
     containerSection
         .querySelector('#previous-button')
-        .addEventListener('click', previousButton);
+        .addEventListener('click', previousButton);*/
 
     block.textContent = '';
     block.append(containerSection);
