@@ -74,14 +74,26 @@ function setupMenuItems(containerListMenu, chevronDownIcon, scrollThreshold) {
     }
 
     const menuWrapper = document.createElement('div');
-    const menuTitle = menuWrapper.appendChild(menu.querySelector('p'));
+    const menuParagraph = menu.querySelector('p');
+    if (!menuParagraph) return;
+
+    const menuTitle = document.createElement('div');
+    menuTitle.innerHTML = menuParagraph.innerHTML;
+    menuWrapper.appendChild(menuTitle);
+
     if (subMenu) {
       menuTitle.appendChild(chevronDownIcon.cloneNode(true));
     }
     menuTitle.className = 'text-white text-lg flex items-center after:mt-2 gap-2 after:size-4 !font-medium cursor-pointer';
     handleScrollClasses(menuTitle, scrollThreshold, '!text-primary', true);
 
-    menuWrapper.appendChild(menuTitle);
+    if (subMenu) {
+      menuWrapper.appendChild(menuTitle);
+      menuWrapper.appendChild(subMenu);
+      subMenuStates.set(menuTitle, false);
+    } else {
+      menuWrapper.appendChild(menuTitle);
+    }
     if (subMenu) {
       menuWrapper.appendChild(subMenu);
       subMenuStates.set(menuTitle, false);

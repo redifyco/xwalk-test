@@ -39,28 +39,28 @@ export default async function decorate(block) {
           </h5>
           <ul class="flex flex-col gap-6 px-4 py-4">
             <li class="flex items-start gap-6">
-              <img
+             <!-- <img
                 src="assets/icons/environmental.svg"
                 alt="environmental icon"
-              />
+              />-->
               <span class="text-lg">Environmental Conservation</span>
             </li>
             <li class="flex items-start gap-6">
-              <img
+              <!--<img
                 src="assets/icons/community.svg"
                 alt="Community support icon"
-              />
+              />-->
               <span class="text-lg">Community Support</span>
             </li>
             <li class="flex items-start gap-6">
-              <img src="assets/icons/education.svg" alt="Education icon" />
+<!--              <img src="assets/icons/education.svg" alt="Education icon" />-->
               <span class="text-lg">Education</span>
             </li>
             <li class="flex items-start gap-6">
-              <img
+              <!--<img
                 src="assets/icons/emergency.svg"
                 alt="Emergency Relief icon"
-              />
+              />-->
               <span class="text-lg">Emergency Relief</span>
             </li>
           </ul>

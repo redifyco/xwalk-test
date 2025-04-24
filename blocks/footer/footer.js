@@ -8,11 +8,11 @@ export default async function decorate(block) {
     const fragment = await loadFragment(navPath);
 
     const data = fragment.querySelector(".default-content-wrapper");
-    const darkLogo = data.querySelector("p:nth-child(1) img");
-    const facebookLink = fragment.querySelector(".default-content-wrapper p:nth-child(4) a")?.href;
-    const instagramLink = fragment.querySelector(".default-content-wrapper p:nth-child(5) a")?.href;
-    const linkedinLink = fragment.querySelector(".default-content-wrapper p:nth-child(6) a")?.href;
-    const youtubeLink = fragment.querySelector(".default-content-wrapper p:nth-child(7) a")?.href;
+    const darkLogo = data.querySelector("p:nth-child(1) img")?.src || "";
+    const facebookLink = fragment.querySelector(".default-content-wrapper p:nth-child(4) a")?.href || "";
+    const instagramLink = fragment.querySelector(".default-content-wrapper p:nth-child(5) a")?.href || "";
+    const linkedinLink = fragment.querySelector(".default-content-wrapper p:nth-child(6) a")?.href || "";
+    const youtubeLink = fragment.querySelector(".default-content-wrapper p:nth-child(7) a")?.href || "";
 
     const navigationListHTML = data.querySelector("ul");
     const navigationListJson = getJsonFromHtml(navigationListHTML);
@@ -25,7 +25,7 @@ export default async function decorate(block) {
     footerContainer.innerHTML = /* html */ `
     <div class="bg-primary px-4 lg:p-20 gap-10 w-full xl:flex-nowrap flex-wrap lg:flex-row lg:gap-20 flex items-center p-14 flex-col justify-center lg:justify-between text-white">
       <div>
-        <img class="max-w-80" src="${darkLogo.src}" alt="" />
+        <img class="max-w-80" src="${darkLogo}" alt="" />
       </div>
 
       <div class="flex w-full lg:max-w-none max-w-96 items-center lg:items-start flex-col gap-10 lg:flex-row lg:justify-between">
