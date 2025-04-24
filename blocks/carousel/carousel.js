@@ -1,7 +1,6 @@
 import { processDivsToObjectCarousel } from "../../scripts/utils.js";
 
 export default function decorate(block) {
-    console.log('block', block)
     let currentIndex = 0;
     const carouselItems = block.querySelectorAll(':scope > div');
     const result = processDivsToObjectCarousel(carouselItems) || [];
@@ -54,6 +53,7 @@ export default function decorate(block) {
         id="carousel-title"
         class="text-sm font-semibold text-white lg:px-8 lg:text-4xl"
       >
+        ${result[currentIndex]?.title}
       </h6>
       <div class="w-full border-t-2 border-t-white"></div>
       <div
@@ -63,10 +63,10 @@ export default function decorate(block) {
           id="carousel-description"
           class="w-9/12 text-sm lg:text-xl"
         >
-          
+          ${result[currentIndex]?.description}
         </p>
-        <a href="" id="carousel-button" class="flex items-center gap-2 text-sm lg:text-xl">
-          <ion-icon name="arrow-forward-outline"></ion-icon>
+        <a href="${result[currentIndex]?.buttonLink}" id="carousel-button" class="flex items-center gap-2 text-sm lg:text-xl">
+          ${result[currentIndex]?.buttonText} <ion-icon name="arrow-forward-outline"></ion-icon>
         </a>
       </div>
     </div>
@@ -83,10 +83,8 @@ export default function decorate(block) {
     const aemEnv = block.getAttribute('data-aue-resource')
 
     if(!aemEnv){
-        console.log('!aemEnv', block)
         block.textContent = ''
     }else{
-        console.log('aemEnv', block)
         carouselItems.forEach(item => item.classList.add('hidden'));
     }
     block.append(containerSection);
