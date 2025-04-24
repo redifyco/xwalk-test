@@ -83,10 +83,13 @@ export default function decorate(block) {
         block.appendChild(containerSection);
     }
 
+        console.log('tabsItems', tabsItems)
     const aemEnv = block.getAttribute('data-aue-resource')
     if(!aemEnv){
         block.textContent = ''
     }else{
+        const image = block.querySelector(":scope > div:nth-child(1) img")
+        image.classList.add('hidden')
         tabsItems.forEach(item => item.classList.add('hidden'));
     }
 
