@@ -83,6 +83,13 @@ export default function decorate(block) {
         block.appendChild(containerSection);
     }
 
+    const aemEnv = block.getAttribute('data-aue-resource')
+    if(!aemEnv){
+        block.textContent = ''
+    }else{
+        tabsItems.forEach(item => item.classList.add('hidden'));
+    }
+
     block.textContent = "";
     render();
 }
