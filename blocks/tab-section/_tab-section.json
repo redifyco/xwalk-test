@@ -34,6 +34,24 @@
   ],
   "models": [
     {
+      "id": "tab-section",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "hero-image",
+          "label": "Hero Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "hero-tilt",
+          "label": "Hero Title",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
       "id": "tab-item-model",
       "fields": [
         {
@@ -72,7 +90,6 @@
     {
       "id": "tab-section-filter",
       "components": [
-        "hero",
         "tab-item"
       ]
     }
