@@ -2,11 +2,11 @@ import { processDivsToObjectCarousel } from "../../scripts/utils.js";
 
 export default function decorate(block) {
     let currentIndex = 0;
-    // const carouselItems = block.querySelectorAll(':scope > div');
-    // const result = processDivsToObjectCarousel(carouselItems) || [];
+    const carouselItems = block.querySelectorAll(':scope > div');
+    const result = processDivsToObjectCarousel(carouselItems) || [];
 
     const updateCarousel = (index) => {
-      /*  const carouselDiv = document.getElementById('carousel-div');
+        const carouselDiv = document.getElementById('carousel-div');
         const carouselTitle = document.getElementById('carousel-title');
         const carouselDescription = document.getElementById('carousel-description');
         const carouselButton = document.getElementById('carousel-button');
@@ -15,7 +15,7 @@ export default function decorate(block) {
         carouselTitle.textContent = result[index].title;
         carouselDescription.textContent = result[index].description;
         carouselButton.textContent = result[index].buttonText;
-        carouselButton.href = result[index].buttonLink;*/
+        carouselButton.href = result[index].buttonLink;
     };
 
     const nextButton = () => {
@@ -32,7 +32,7 @@ export default function decorate(block) {
     containerSection.className = 'small-layout-padding';
 
     containerSection.innerHTML = `
-    <div
+   <!-- <div
       id="carousel-div"
       class="relative opacity-100 transition-opacity duration-500 flex h-[600px] flex-col justify-end gap-2 bg-cover bg-center px-2 py-10 shadow-lg lg:gap-4 lg:px-20"
     >
@@ -67,18 +67,17 @@ export default function decorate(block) {
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </a>
       </div>
-    </div>
+    </div>-->
   `;
 
-/*    containerSection
+    containerSection
         .querySelector('#next-button')
         .addEventListener('click', nextButton);
 
     containerSection
         .querySelector('#previous-button')
-        .addEventListener('click', previousButton);*/
+        .addEventListener('click', previousButton);
 
-    // block.textContent = '';
+    block.textContent = '';
     block.append(containerSection);
 }
-
