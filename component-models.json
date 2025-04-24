@@ -1259,7 +1259,7 @@
     ]
   },
   {
-    "id": "tab-section",
+    "id": "tab-section-model",
     "fields": [
       {
         "component": "reference",
