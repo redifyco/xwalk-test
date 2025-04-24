@@ -80,6 +80,6 @@ export default function decorate(block) {
         .querySelector('#previous-button')
         .addEventListener('click', previousButton);
 
-    carouselItems.forEach(item => item.remove());
+    carouselItems.forEach(item => item.classList.add('hidden'));
     block.append(containerSection);
 }
