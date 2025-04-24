@@ -32,7 +32,7 @@ export default function decorate(block) {
     containerSection.className = 'small-layout-padding';
 
     containerSection.innerHTML = `
-   <!-- <div
+    <div
       id="carousel-div"
       class="relative opacity-100 transition-opacity duration-500 flex h-[600px] flex-col justify-end gap-2 bg-cover bg-center px-2 py-10 shadow-lg lg:gap-4 lg:px-20"
     >
@@ -67,17 +67,22 @@ export default function decorate(block) {
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </a>
       </div>
-    </div>-->
+    </div>
   `;
 
-    /*containerSection
+    containerSection
         .querySelector('#next-button')
         .addEventListener('click', nextButton);
 
     containerSection
         .querySelector('#previous-button')
-        .addEventListener('click', previousButton);*/
+        .addEventListener('click', previousButton);
 
-    block.textContent = '';
+    while (block.firstChild) {
+        block.removeChild(block.firstChild);
+    }
     block.append(containerSection);
+    if (result.length > 0) {
+        updateCarousel(0);
+    }
 }
