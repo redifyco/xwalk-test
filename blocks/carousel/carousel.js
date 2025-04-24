@@ -1,6 +1,8 @@
-import { processDivsToObjectCarousel } from "../../scripts/utils.js";
 
 export default function decorate(block) {
+    console.log('block', block)
    block.textContent = ''
-    block.append('<div>test</div>')
+    const test = document.createElement('div')
+    test.innerHTML = `<p>test</p>`
+    block.append(test)
 }
