@@ -16,10 +16,9 @@ export default async function decorate(block) {
 
     const navigationListHTML = data.querySelector("ul");
     const navigationListJson = getJsonFromHtml(navigationListHTML);
-    const copyRightText = fragment.querySelector(".default-content-wrapper p:nth-child(3)");
+    const copyRightText = fragment.querySelector(".default-content-wrapper p:nth-child(3)")?.textContent || "";
 
     const footerContainer = document.createElement('div');
-    block.textContent = "";
 
 
     footerContainer.innerHTML = /* html */ `
@@ -62,9 +61,10 @@ export default async function decorate(block) {
         </a>
       </div>
 
-      <p class="lg:hidden block text-xs">${copyRightText.textContent}</p>
+      <p class="lg:hidden block text-xs">${copyRightText}</p>
     </div>
   `;
 
+    block.textContent = "";
     block.append(footerContainer)
 }
