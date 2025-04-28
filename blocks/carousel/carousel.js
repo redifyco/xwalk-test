@@ -39,13 +39,13 @@ export default function decorate(block) {
     >
       <button
         id="previous-button"
-        class="bg-secondary absolute top-1/2 -left-3 flex size-20 items-center justify-center lg:-left-10 lg:size-30"
+        class="bg-secondary cursor-pointer absolute top-1/2 -left-3 flex size-20 items-center justify-center lg:-left-10 lg:size-30"
       >
         <ion-icon name="chevron-back-outline" size="large" class="text-white"></ion-icon>
       </button>
       <button
         id="next-button"
-        class="bg-secondary absolute top-1/2 -right-3 flex size-20 items-center justify-center lg:-right-10 lg:size-30"
+        class="bg-secondary cursor-pointer  absolute top-1/2 -right-3 flex size-20 items-center justify-center lg:-right-10 lg:size-30"
       >
         <ion-icon name="chevron-forward-outline" size="large" class="text-white"></ion-icon>
       </button>

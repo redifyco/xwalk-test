@@ -186,6 +186,24 @@ export function processDivsToObjectTabSection(divs) {
     return result;
 }
 
+/*Tab Section INFO data*/
+export function processDivsToObjectTabSectionInfo(divs) {
+    const result = [];
+
+    for (let i = 0; i < divs.length; i += 2) {
+
+        const title = divs[i].querySelector('div p')?.textContent || '0'
+        const description = divs[i + 1].querySelector('div p')?.textContent || 'No label'
+
+        result.push({
+            title,
+            description
+        });
+    }
+
+    return result;
+}
+
 
 export function buildHeight(mobileHeight, desktopHeight) {
 
