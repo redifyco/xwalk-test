@@ -509,6 +509,9 @@
   .w-max {
     width: max-content;
   }
+  .w-screen {
+    width: 100vw;
+  }
   .max-w-80 {
     max-width: calc(var(--spacing) * 80);
   }
@@ -607,6 +610,9 @@
   }
   .overflow-hidden {
     overflow: hidden;
+  }
+  .overflow-scroll {
+    overflow: scroll;
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
@@ -1091,6 +1097,16 @@
       outline-width: 0px;
     }
   }
+  .md\:absolute {
+    @media (width >= 48rem) {
+      position: absolute;
+    }
+  }
+  .md\:left-auto {
+    @media (width >= 48rem) {
+      left: auto;
+    }
+  }
   .md\:size-28 {
     @media (width >= 48rem) {
       width: calc(var(--spacing) * 28);
@@ -1105,6 +1121,11 @@
   .md\:w-1\/2 {
     @media (width >= 48rem) {
       width: calc(1/2 * 100%);
+    }
+  }
+  .md\:w-fit {
+    @media (width >= 48rem) {
+      width: fit-content;
     }
   }
   .md\:w-full {

@@ -28,7 +28,7 @@ export default function decorate(block) {
 
         containerSection.innerHTML = `
       <div class="small-layout-padding relative flex justify-between lg:!flex-row lg:!gap-14 xl:!gap-32 2xl:!gap-64">
-        <div class="absolute rounded-t-md overflow-hidden bg-white/50 -top-[39px] flex font-semibold 2xl:-top-[60px]">
+        <div class="absolute left-0 md:left-auto rounded-t-md md:w-fit w-screen overflow-scroll bg-white/50 -top-[39px] flex font-semibold 2xl:-top-[60px]">
           ${result.map((tab, index) => `
             <button
               data-tab-index="${index}"
@@ -83,7 +83,6 @@ export default function decorate(block) {
         block.appendChild(containerSection);
     }
 
-        console.log('tabsItems', tabsItems)
     const aemEnv = block.getAttribute('data-aue-resource')
     if(!aemEnv){
         block.textContent = ''
