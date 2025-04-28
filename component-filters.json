@@ -77,10 +77,7 @@
   },
   {
     "id": "item-map-pin-filter",
-    "components": [
-      "text",
-      "image"
-    ]
+    "components": []
   },
   {
     "id": "statistics-data",

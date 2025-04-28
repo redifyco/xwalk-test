@@ -161,8 +161,6 @@
     {
       "id": "item-map-pin-filter",
       "components": [
-        "text",
-        "image"
       ]
     }
   ]
