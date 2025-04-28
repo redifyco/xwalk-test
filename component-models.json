@@ -1007,10 +1007,10 @@
         "value": ""
       },
       {
-        "component": "image",
-        "valueType": "reference",
+        "component": "reference",
+        "valueType": "string",
         "name": "pin-icon",
-        "label": "Custom Pin Icon",
+        "label": "Pin Icon",
         "multi": false
       },
       {
