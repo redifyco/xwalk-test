@@ -1014,16 +1014,16 @@
         "multi": false
       },
       {
-        "component": "link",
-        "valueType": "string",
-        "name": "linkUrl",
-        "label": "Link URL"
-      },
-      {
         "component": "text",
         "valueType": "string",
         "name": "linkText",
         "label": "Link Text"
+      },
+      {
+        "component": "link",
+        "valueType": "string",
+        "name": "linkUrl",
+        "label": "Link URL"
       }
     ]
   },
