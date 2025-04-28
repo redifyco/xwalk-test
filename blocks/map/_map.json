@@ -138,13 +138,6 @@
           "value": ""
         },
         {
-          "component": "reference",
-          "valueType": "string",
-          "name": "pin-icon",
-          "label": "Pin Icon",
-          "multi": false
-        },
-        {
           "component": "text",
           "valueType": "string",
           "name": "linkText",
