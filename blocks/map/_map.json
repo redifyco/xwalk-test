@@ -140,7 +140,7 @@
         {
           "component": "image",
           "valueType": "reference",
-          "name": "pinIcon",
+          "name": "pin-icon",
           "label": "Custom Pin Icon",
           "multi": false
         },
@@ -151,9 +151,8 @@
           "label": "Link Text"
         },
         {
-          "component": "link",
-          "valueType": "string",
-          "name": "linkUrl",
+          "component": "aem-content",
+          "name": "link-url",
           "label": "Link URL"
         }
       ]
