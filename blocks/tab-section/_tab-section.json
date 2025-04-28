@@ -45,9 +45,86 @@
         },
         {
           "component": "text",
-          "name": "hero-tilt",
-          "label": "Hero Title",
+          "name": "side-info-box-1-title",
+          "label": "Side Info Box 1 Title",
           "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "side-info-box-1-content",
+          "label": "Side Info Box 1 Content",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "side-info-box-2-title",
+          "label": "Side Info Box 2 Title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "side-info-box-2-content",
+          "label": "Side Info Box 2 Content",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "side-info-box-3-title",
+          "label": "Side Info Box 3 Title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "side-info-box-3-content",
+          "label": "Side Info Box 3 Content",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "side-info-box-4-title",
+          "label": "Side Info Box 4 Title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "side-info-box-4-content",
+          "label": "Side Info Box 4 Content",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "side-info-box-5-title",
+          "label": "Side Info Box 5 Title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "side-info-box-5-content",
+          "label": "Side Info Box 5 Content",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "cta-box-title",
+          "label": "CTA box title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "cta-box-description",
+          "label": "CTA box description",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "cta-box-link-label",
+          "label": "CTA box link label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "cta-box-link",
+          "label": "CTA box URL"
         }
       ]
     },
