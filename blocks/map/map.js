@@ -57,8 +57,12 @@ export default async function decorate(block) {
       </div>
     `
 
-    block.textContent = '';
-    block.append(sectionContainer);
+    const aemEnv = block.getAttribute('data-aue-resource');
+    if (!aemEnv) {
+        block.textContent = '';
+    } else {
+        block.append(sectionContainer);
+    }
 
     await loadGoogleMaps(config.apiKey);
 
