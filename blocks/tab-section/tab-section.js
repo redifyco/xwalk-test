@@ -108,6 +108,10 @@ export default function decorate(block) {
         block.textContent = '';
     } else {
         const image = block.querySelector(":scope > div:nth-child(1) img");
+        const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+2):nth-child(-n+11)");
+        const CTABox = block.querySelectorAll(":scope > div:nth-child(n+12):nth-child(-n+15)");
+        firstInfoBoxes.forEach(item => item.classList.add('hidden'));
+        CTABox.forEach(item => item.classList.add('hidden'));
         image.classList.add('hidden');
         tabsItems.forEach(item => item.classList.add('hidden'));
     }
