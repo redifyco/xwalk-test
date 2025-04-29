@@ -54,12 +54,15 @@ export default async function decorate(block) {
     `
 
 
+    block.append(sectionContainer);
     const aemEnv = block.getAttribute('data-aue-resource');
     if (!aemEnv) {
         block.textContent = '';
-    block.append(sectionContainer);
     } else {
-        // block.forEach(element => element.classList.add('hidden'))
+        block.forEach(element => {
+            console.log('element', element)
+            element.classList.add('hidden')
+        })
     }
 
 
