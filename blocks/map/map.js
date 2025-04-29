@@ -59,7 +59,7 @@ export default async function decorate(block) {
         block.textContent = '';
     block.append(sectionContainer);
     } else {
-        block.forEach(element => element.classList.add('hidden'))
+        // block.forEach(element => element.classList.add('hidden'))
     }
 
 
