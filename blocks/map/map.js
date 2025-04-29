@@ -60,8 +60,8 @@ export default async function decorate(block) {
         block.textContent = '';
     } else {
         pins.forEach(item => item.classList.add('hidden'));
-
-
+        title.classList.add('hidden');
+        subTitle.classList.add('hidden');
     }
 
 
