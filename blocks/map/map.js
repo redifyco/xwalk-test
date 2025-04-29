@@ -65,6 +65,8 @@ export default async function decorate(block) {
         const centerLat = block.querySelector('div:nth-child(4)')
         const centerLag = block.querySelector('div:nth-child(5)')
         const apiKey = block.querySelector('div:nth-child(3)')
+        const zoom = block.querySelector('div:nth-child(6)')
+        zoom.classList.add('hidden');
         apiKey.classList.add('hidden');
         centerLag.classList.add('hidden');
         centerLat.classList.add('hidden');
