@@ -1016,6 +1016,27 @@
         "component": "aem-content",
         "name": "link-url",
         "label": "Link URL"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "label-1",
+        "label": "Label 1 Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "label-2",
+        "label": "Label 2 Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "label-3",
+        "label": "Label 3 Icon",
+        "multi": false
       }
     ]
   },
