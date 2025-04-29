@@ -60,6 +60,14 @@ export default async function decorate(block) {
         block.textContent = '';
     } else {
         pins.forEach(item => item.classList.add('hidden'));
+        const title = block.querySelector('div:nth-child(1)')
+        const subTitle = block.querySelector('div:nth-child(2)')
+        const centerLat = block.querySelector('div:nth-child(4)')
+        const centerLag = block.querySelector('div:nth-child(5)')
+        const apiKey = block.querySelector('div:nth-child(3)')
+        apiKey.classList.add('hidden');
+        centerLag.classList.add('hidden');
+        centerLat.classList.add('hidden');
         title.classList.add('hidden');
         subTitle.classList.add('hidden');
     }
