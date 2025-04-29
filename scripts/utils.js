@@ -204,6 +204,39 @@ export function processDivsToObjectTabSectionInfo(divs) {
     return result;
 }
 
+/*Map Section Pins data*/
+export function processDivsToObjectMapPins(divs) {
+    const result = [];
+
+    divs.forEach((parentDiv) => {
+        const childDivs = parentDiv.querySelectorAll(':scope > div');
+
+        const latitude = childDivs[0]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const longitude = childDivs[1]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const title = childDivs[2]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const description = childDivs[3]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const linkText = childDivs[4]?.querySelector('p')?.textContent.trim() || 'No link text';
+        const linkURL = childDivs[5]?.querySelector('a')?.href || 'No link url';
+        const label1 = childDivs[6]?.querySelector('img')?.src || '';
+        const label2 = childDivs[7]?.querySelector('img')?.src || '';
+        const label3 = childDivs[8]?.querySelector('img')?.src || '';
+
+        result.push({
+            latitude,
+            longitude,
+            title,
+            description,
+            linkText,
+            linkURL,
+            label1,
+            label2,
+            label3
+        });
+    });
+
+    return result;
+}
+
 
 export function buildHeight(mobileHeight, desktopHeight) {
 
