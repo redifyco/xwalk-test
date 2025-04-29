@@ -59,10 +59,7 @@ export default async function decorate(block) {
     if (!aemEnv) {
         block.textContent = '';
     } else {
-        block.forEach(element => {
-            console.log('element', element)
-            element.classList.add('hidden')
-        })
+
     }
 
 
