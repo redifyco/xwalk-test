@@ -59,6 +59,8 @@ export default async function decorate(block) {
     if (!aemEnv) {
         block.textContent = '';
     } else {
+        pins.forEach(item => item.classList.add('hidden'));
+
 
     }
 
