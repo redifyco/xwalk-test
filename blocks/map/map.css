@@ -6,6 +6,8 @@
     padding: 0 !important;
     border-radius: 0 !important;
     box-shadow: rgba(0, 0, 0, 0.55) 0 0 20px -5px;
+    max-width: 320px !important;
+    text-align: start !important;
 }
 
 .gm-style-iw-d {

@@ -1,4 +1,5 @@
 import {loadScript, processDivsToObjectMapPins} from '../../scripts/utils.js';
+import {mapStyles} from "./mapStyle.js";
 
 export default async function decorate(block) {
     // Estrai le configurazioni dalla prima riga
@@ -16,20 +17,20 @@ export default async function decorate(block) {
 
 
     const sectionContainer = document.createElement('section');
-    sectionContainer.className = 'flex flex-col gap-16 bg-white bg-cover bg-center bg-no-repeat pt-30 text-start'
+    sectionContainer.className = 'flex flex-col gap-8 lg:gap-16 bg-white bg-cover bg-center bg-no-repeat pt-30 text-center lg:text-start'
 
     sectionContainer.innerHTML = ` 
-      <div class="flex items-end justify-between px-16">
-        <h2 class="text-primary w-full text-6xl uppercase 2xl:text-7xl">
+      <div class="flex flex-col items-end justify-between small-layout-padding lg:!flex-row !py-0">
+        <h2 class="text-primary text-3xl lg:text-5x xl:text-7xl w-full uppercase 2xl:text-7xl">
           ${title}
         </h2>
-        <p class="w-9/12 text-xl font-light">
-            ${subTitle}
+        <p class="w-full lg:w-9/12 text-sm font-light lg:text-xl">
+          ${subTitle}
         </p>
       </div>
-                <div class="relative h-[1000px]">
-                  <div id="map" class="absolute inset-0"></div>
-        <div class="absolute inset-16 h-fit w-[325px] bg-white p-6">
+      <div class="relative h-[700px] lg:h-[1000px]">
+        <div id="map" class="absolute inset-0"></div>
+        <div class="absolute hidden lg:block inset-16 shadow-xl h-fit w-[325px] bg-white p-6">
           <h5
             class="border-b-primary text-primary mb-2 border-b border-solid pb-2 text-xl font-semibold"
           >
@@ -54,7 +55,6 @@ export default async function decorate(block) {
     `
 
 
-    block.append(sectionContainer);
     const aemEnv = block.getAttribute('data-aue-resource');
     if (!aemEnv) {
         block.textContent = '';
@@ -73,6 +73,7 @@ export default async function decorate(block) {
         title.classList.add('hidden');
         subTitle.classList.add('hidden');
     }
+    block.append(sectionContainer);
 
 
 
@@ -80,46 +81,7 @@ export default async function decorate(block) {
 
     const mapElement = document.getElementById('map');
     if (mapElement) {
-        const mapStyles = [
-            {featureType: "water", elementType: "geometry", stylers: [{color: "#e9e9e9"}, {lightness: 17}]},
-            {featureType: "landscape", elementType: "geometry", stylers: [{color: "#f5f5f5"}, {lightness: 20}]},
-            {
-                featureType: "road.highway",
-                elementType: "geometry.fill",
-                stylers: [{color: "#ffffff"}, {lightness: 17}]
-            },
-            {
-                featureType: "road.highway",
-                elementType: "geometry.stroke",
-                stylers: [{color: "#ffffff"}, {lightness: 29}, {weight: 0.2}]
-            },
-            {featureType: "road.arterial", elementType: "geometry", stylers: [{color: "#ffffff"}, {lightness: 18}]},
-            {featureType: "road.local", elementType: "geometry", stylers: [{color: "#ffffff"}, {lightness: 16}]},
-            {featureType: "poi", elementType: "geometry", stylers: [{color: "#f5f5f5"}, {lightness: 21}]},
-            {featureType: "poi.park", elementType: "geometry", stylers: [{color: "#dedede"}, {lightness: 21}]},
-            {
-                featureType: "all",
-                elementType: "labels.text.stroke",
-                stylers: [{visibility: "on"}, {color: "#ffffff"}, {lightness: 16}]
-            },
-            {
-                featureType: "all",
-                elementType: "labels.text.fill",
-                stylers: [{saturation: 36}, {color: "#333333"}, {lightness: 40}]
-            },
-            {featureType: "all", elementType: "labels.icon", stylers: [{visibility: "off"}]},
-            {featureType: "transit", elementType: "geometry", stylers: [{color: "#f2f2f2"}, {lightness: 19}]},
-            {
-                featureType: "administrative",
-                elementType: "geometry.fill",
-                stylers: [{color: "#fefefe"}, {lightness: 20}]
-            },
-            {
-                featureType: "administrative",
-                elementType: "geometry.stroke",
-                stylers: [{color: "#fefefe"}, {lightness: 17}, {weight: 1.2}]
-            }
-        ];
+
 
         const map = new google.maps.Map(mapElement, {
             center: {lat: config.centerLat, lng: config.centerLng},
@@ -163,20 +125,19 @@ export default async function decorate(block) {
             });
 
             const contentString = `
-                <div class="p-4 flex flex-col min-w-72 gap-2">
-                    <h3 class="text-2xl font-semibold">${pin.title}</h3>
+              <div class="p-4 flex flex-col min-w-72 gap-2">
+                <h3 class="text-xl lg:text-2xl font-semibold">${pin.title}</h3>
                 <div class="border-t border-t-black/90"></div>
-                    <p class="font-medium text-lg">${pin.description}</p>
-                    <div class="flex mt-2 items-center justify-between">
-                        <a href="${pin.linkURL}" class="text-lg font-medium text-primary outline-0 border-none flex items-center gap-2">${pin.linkText}<ion-icon name="arrow-forward-outline"></ion-icon></a>
-                        <div class="flex gap-1">
-${pin.label1 && `<img class="size-10" src="${pin.label1}" alt=""/>`}
-${pin.label2 && `<img class="size-10" src="${pin.label2}" alt=""/>`}
-${pin.label3 && `<img class="size-10" src="${pin.label3}" alt=""/>`}
-</div>
-                        </div>
-                    </div> 
+                <p class="font-medium text-base lg:text-lg">${pin.description}</p>
+                <div class="flex mt-2 items-center justify-between">
+                  <a href="${pin.linkURL}" class="text-lg font-medium text-primary outline-0 border-none flex items-center gap-2">${pin.linkText}<ion-icon name="arrow-forward-outline"></ion-icon></a>
+                  <div class="flex gap-1">
+                    ${pin.label1 && `<img class="size-10" src="${pin.label1}" alt=""/>`}
+                    ${pin.label2 && `<img class="size-10" src="${pin.label2}" alt=""/>`}
+                    ${pin.label3 && `<img class="size-10" src="${pin.label3}" alt=""/>`}
+                  </div>
                 </div>
+              </div>
             `;
 
 
