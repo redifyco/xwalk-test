@@ -50,7 +50,8 @@
         "form",
         "carousel",
         "statistics",
-        "tab-section"
+        "tab-section",
+        "text-hero-subtitle"
       ]
     }
   ]
