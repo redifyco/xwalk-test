@@ -38,8 +38,9 @@ export default function decorate(block) {
     const aemEnv = block.getAttribute('data-aue-resource');
     if (!aemEnv) {
         block.textContent = '';
+        block.append(sectionContainer);
     } else {
+        block.append(sectionContainer);
         resultItems.forEach(item => item.classList.add('hidden'));
     }
-    block.append(sectionContainer);
 }
