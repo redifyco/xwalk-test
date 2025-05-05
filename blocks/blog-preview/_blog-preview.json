@@ -68,8 +68,8 @@
         },
         {
           "component": "select",
-          "name": "titleType",
-          "label": "Title Type",
+          "name": "card-style",
+          "label": "Card Style",
           "options": [
             {
               "name": "Style 1",
