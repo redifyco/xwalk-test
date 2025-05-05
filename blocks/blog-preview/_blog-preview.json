@@ -58,12 +58,14 @@
           "component": "text",
           "valueType": "string",
           "name": "buttonText",
-          "label": "Button Text"
+          "label": "Button Text",
+          "visible": "${load-more-button}"
         },
         {
           "component": "aem-content",
           "name": "buttonLink",
-          "label": "Button Link"
+          "label": "Button Link",
+          "visible": "${load-more-button}"
         }
       ]
     }
