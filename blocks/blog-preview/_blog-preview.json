@@ -28,7 +28,7 @@
         },
         {
           "component": "boolean",
-          "valueType": "string",
+          "valueType": "boolean",
           "name": "load-more-button",
           "label": "Load More Button",
           "value": false
@@ -37,7 +37,15 @@
           "component": "number",
           "valueType": "string",
           "name": "items-to-show",
-          "label": "Items to Show"
+          "label": "Items to Show",
+          "condition": {
+            "===": [
+              {
+                "var": "load-more-button"
+              },
+              true
+            ]
+          }
         },
         {
           "component": "select",
@@ -58,30 +66,26 @@
           "component": "text",
           "valueType": "string",
           "name": "buttonText",
-          "label": "Button Text"
+          "label": "Button Text",
+          "condition": {
+            "===": [
+              {
+                "var": "load-more-button"
+              },
+              false
+            ]
+          }
         },
         {
           "component": "aem-content",
           "name": "buttonLink",
-          "label": "Button Link"
-        },
-        {
-          "component": "boolean",
-          "label": "Shall the text field be revealed?",
-          "name": "reveal",
-          "valueType": "boolean"
-        },
-        {
-          "component": "text-input",
-          "label": "Hidden text field",
-          "name": "hidden-text",
-          "valueType": "string",
+          "label": "Button Link",
           "condition": {
             "===": [
               {
-                "var": "reveal"
+                "var": "load-more-button"
               },
-              true
+              false
             ]
           }
         }
