@@ -34,35 +34,6 @@
           "value": false
         },
         {
-          "component": "number",
-          "valueType": "string",
-          "name": "items-to-show",
-          "label": "Items to Show",
-          "condition": {
-            "===": [
-              {
-                "var": "load-more-button"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "select",
-          "name": "titleType",
-          "label": "Title Type",
-          "options": [
-            {
-              "name": "Style 1",
-              "value": "card-style-1"
-            },
-            {
-              "name": "Style 2",
-              "value": "card-style-2"
-            }
-          ]
-        },
-        {
           "component": "text",
           "valueType": "string",
           "name": "buttonText",
@@ -88,6 +59,27 @@
               false
             ]
           }
+        },
+        {
+          "component": "number",
+          "valueType": "string",
+          "name": "items-to-show",
+          "label": "Items to Show"
+        },
+        {
+          "component": "select",
+          "name": "titleType",
+          "label": "Title Type",
+          "options": [
+            {
+              "name": "Style 1",
+              "value": "card-style-1"
+            },
+            {
+              "name": "Style 2",
+              "value": "card-style-2"
+            }
+          ]
         }
       ]
     }
