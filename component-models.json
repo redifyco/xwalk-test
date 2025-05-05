@@ -148,14 +148,32 @@
         "component": "text",
         "valueType": "string",
         "name": "buttonText",
-        "label": "Button Text",
-        "visible": "${load-more-button}"
+        "label": "Button Text"
       },
       {
         "component": "aem-content",
         "name": "buttonLink",
-        "label": "Button Link",
-        "visible": "${load-more-button}"
+        "label": "Button Link"
+      },
+      {
+        "component": "boolean",
+        "label": "Shall the text field be revealed?",
+        "name": "reveal",
+        "valueType": "boolean"
+      },
+      {
+        "component": "text-input",
+        "label": "Hidden text field",
+        "name": "hidden-text",
+        "valueType": "string",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
       }
     ]
   },
