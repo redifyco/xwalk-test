@@ -237,6 +237,27 @@ export function processDivsToObjectMapPins(divs) {
     return result;
 }
 
+/*Contacts Info items data*/
+export function processDivsToObjectContactsItems(divs) {
+    const result = [];
+
+    divs.forEach((parentDiv) => {
+        const childDivs = parentDiv.querySelectorAll(':scope > div');
+
+        const image = childDivs[0]?.querySelector('img')?.src || '';
+        const label = childDivs[1]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const link = childDivs[2]?.querySelector('a')?.href || '';
+
+        result.push({
+            image,
+            label,
+            link
+        });
+    });
+
+    return result;
+}
+
 
 export function buildHeight(mobileHeight, desktopHeight) {
 
@@ -276,4 +297,17 @@ export function loadScript(url) {
     script.onerror = reject;
     document.head.appendChild(script);
   });
+}
+
+
+/**
+ * Carica le Google Maps API
+ * @param {string} apiKey Chiave API di Google Maps
+ * @returns {Promise} Promise che si risolve quando le API sono caricate
+ */
+export async function loadGoogleMaps(apiKey) {
+    if (!window.google || !window.google.maps) {
+        await loadScript(`https://maps.googleapis.com/maps/api/js?key=${apiKey}`);
+    }
+    return Promise.resolve();
 }

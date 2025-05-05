@@ -1,4 +1,4 @@
-import {loadScript, processDivsToObjectMapPins} from '../../scripts/utils.js';
+import {loadGoogleMaps, processDivsToObjectMapPins} from '../../scripts/utils.js';
 import {mapStyles} from "./mapStyle.js";
 
 export default async function decorate(block) {
@@ -157,13 +157,5 @@ export default async function decorate(block) {
         });
 
     }
-}
-
-
-async function loadGoogleMaps(apiKey) {
-    if (!window.google || !window.google.maps) {
-        await loadScript(`https://maps.googleapis.com/maps/api/js?key=${apiKey}`);
-    }
-    return Promise.resolve();
 }
 
