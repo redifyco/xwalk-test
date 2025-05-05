@@ -45,6 +45,6 @@ export default function decorate(block) {
         block.querySelector('div:nth-child(2)').classList.add('hidden');
         block.querySelector('div:nth-child(3)').classList.add('hidden');
         block.querySelector('div:nth-child(4)').classList.add('hidden');
-        resultItems.forEach(item => item.classList.add('hidden'));
+        contactInfoItems.forEach(item => item.classList.add('hidden'));
     }
 }
