@@ -95,7 +95,7 @@ export default async function decorate(block) {
           </div>
           </div>
           <!--CUSTOM BUTTON-->
-          <custom-button color="primary" href="${buttonLink}">${buttonText}</custom-button>
+          <custom-link color="primary" href="${buttonLink}">${buttonText}</custom-link>
           </div>
         </form>
       </div>

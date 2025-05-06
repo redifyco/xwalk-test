@@ -1,4 +1,4 @@
-import { buildHeight, processDivsToObjectStatisticsData } from "../../scripts/utils.js";
+import {buildHeight, processDivsToObjectStatisticsData} from "../../scripts/utils.js";
 
 export default function decorate(block) {
     const backgroundImage = block.querySelector(":scope > div:nth-child(1) img")?.src;
@@ -39,7 +39,7 @@ export default function decorate(block) {
       `).join("") : ""}
       
       <div class="col-span-2">
-        <custom-button href="${buttonLink}" color="white">${buttonText}</custom-button>
+        <custom-link href="${buttonLink}" color="white">${buttonText}</custom-link>
       </div>
     </div>
   `;

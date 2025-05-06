@@ -59,7 +59,7 @@
 }
 
 p {
-    @apply font-light
+    /*@apply font-light*/
 }
 
 @theme {

@@ -162,12 +162,12 @@
         "label": "Card Style",
         "options": [
           {
-            "name": "Card Style 1",
-            "value": "card-style-1"
+            "name": "Primary",
+            "value": "primary"
           },
           {
-            "name": "Card Style 2",
-            "value": "card-style-2"
+            "name": "Secondary",
+            "value": "secondary"
           }
         ]
       }

@@ -11,7 +11,7 @@ export default function decorate(block) {
 
     const buildFlexReverseClass = styleString => styleString === 'titleOnBottom'
 
-    const containerSection  = document.createElement('section')
+    const containerSection = document.createElement('section')
     containerSection.className = 'small-layout-padding bg-white bg-cover bg-center bg-no-repeat text-center lg:text-start'
 
     containerSection.innerHTML = `
@@ -28,17 +28,17 @@ export default function decorate(block) {
             ${sectionSubTitle}
           </p>
           <!--CUSTOM BUTTON-->
-          <custom-button href="${sectionButtonLink}">${sectionButtonText}</custom-button>
+          <custom-link href="${sectionButtonLink}">${sectionButtonText}</custom-link>
         </div>
         <!--CARDS CONTAINER-->
         <div
           class="mt-3 w-fit gap-4 grid grid-cols-2 justify-items-center xl:flex xl:flex-nowrap xl:justify-center xl:gap-6"
         >
-        ${JSONCards.length > 0 && JSONCards.map((card, index)=> {
-            const isFlexReverse = buildFlexReverseClass(card.style)
-            const translationY = index % 2 === 0 ? 'xl:translate-y-28 hover:xl:translate-y-20' : 'xl:translate-y-0 hover:xl:-translate-y-10'
-        
-            return`
+        ${JSONCards.length > 0 && JSONCards.map((card, index) => {
+        const isFlexReverse = buildFlexReverseClass(card.style)
+        const translationY = index % 2 === 0 ? 'xl:translate-y-28 hover:xl:translate-y-20' : 'xl:translate-y-0 hover:xl:-translate-y-10'
+
+        return `
               <div
             class="vertical-card-container transition-all duration-1000 ease-in-out group relative ${translationY}"
             style="background-image: url('${card.image}')"
@@ -55,7 +55,7 @@ export default function decorate(block) {
                   alt=""
                 />
               </div>
-              <h6 class="text-lg font-semibold lg:text-xl 2xl:text-3xl transition-transform duration-700 ${isFlexReverse ? '': 'group-hover:-translate-y-20'}">
+              <h6 class="text-lg font-semibold lg:text-xl 2xl:text-3xl transition-transform duration-700 ${isFlexReverse ? '' : 'group-hover:-translate-y-20'}">
                 ${card.title}
               </h6>
               <div class="hidden xl:block absolute mx-2 p-2 bg-white/10 backdrop-blur-sm text-xs border border-white opacity-0 transition-all duration-1000 group-hover:opacity-100 ${isFlexReverse ? 'top-40' : 'bottom-10'}">${card.description}</div>

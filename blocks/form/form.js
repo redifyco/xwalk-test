@@ -53,7 +53,7 @@ export default async function decorate(block) {
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <!--CUSTOM BUTTON-->
-          <custom-button className="mt-10" color="white" href="${buttonLink}">${buttonText}</custom-button>
+          <custom-link className="mt-10" color="white" href="${buttonLink}">${buttonText}</custom-link>
         </form>
       </div>
       <div class="w-full 2xl:w-1/2">

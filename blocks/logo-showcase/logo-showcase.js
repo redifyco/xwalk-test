@@ -1,4 +1,4 @@
-import { processDivsToObject } from "../../scripts/utils.js";
+import {processDivsToObject} from "../../scripts/utils.js";
 import "../../scripts/customTag.js";
 
 export default async function decorate(block) {
@@ -6,8 +6,8 @@ export default async function decorate(block) {
     const textSection = block.querySelector(":scope > div:nth-child(2) div") || "No description";
     const partners = Array.from(block.querySelectorAll(":scope > div:nth-child(n+3):not(:last-child)"));
     const buttonData = block.querySelectorAll(":scope > div:last-child");
-    const buttonTitle =  buttonData[0].querySelector("p")?.textContent.trim() || "No button title";
-    const buttonLink =  buttonData[0].querySelector("div a")?.textContent.trim() || "#";
+    const buttonTitle = buttonData[0].querySelector("p")?.textContent.trim() || "No button title";
+    const buttonLink = buttonData[0].querySelector("div a")?.textContent.trim() || "#";
     const partnersData = processDivsToObject(partners);
     const containerSection = document.createElement('section')
 
@@ -49,9 +49,9 @@ export default async function decorate(block) {
         .join("")}
         </div>
       </div>
-      <custom-button href="${buttonLink}">
+      <custom-link href="${buttonLink}">
         ${buttonTitle}
-      </custom-button>
+      </custom-link>
     </div>
   `;
 
