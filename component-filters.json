@@ -40,7 +40,7 @@
   {
     "id": "box-cards-filter",
     "components": [
-      "carousel-item"
+      "card-item"
     ]
   },
   {
