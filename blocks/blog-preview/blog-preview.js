@@ -58,7 +58,10 @@ export default function decorate(block) {
           `).join('')}
         </div>
         <!--CUSTOM BUTTON-->
-        ${isLoadMoreButton ? `<custom-button>Load More</custom-button>` : `<custom-link href="${buttonLink}">${buttonText}</custom-link>`}
+        ${isLoadMoreButton ?
+        `<custom-button>Load More</custom-button>`
+        : `<custom-link href="${buttonLink}">${buttonText}</custom-link>`
+    }
       </section>
     `
 
