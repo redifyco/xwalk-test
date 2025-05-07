@@ -355,7 +355,6 @@ function decorateTemplateAndTheme() {
  * @param {Element} block the block element
  */
 function wrapTextNodes(block) {
-    console.log('block', block)
     const validWrappers = [
         'P',
         'PRE',
@@ -369,7 +368,6 @@ function wrapTextNodes(block) {
         'H4',
         'H5',
         'H6',
-        'CUSTOM'
     ];
 
     const wrap = (el) => {
