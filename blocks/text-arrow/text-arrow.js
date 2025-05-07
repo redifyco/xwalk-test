@@ -1,9 +1,11 @@
 export default function decorate(block) {
     const text = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || ''
     console.log('text', text)
+    console.log('block', block)
 
     const sectionContainer = document.createElement('section');
     sectionContainer.className = 'h-full gap-8 w-full flex flex-col justify-center items-center container-layout-padding'
+
 
     sectionContainer.innerHTML = `
         <div class="font-medium text-8xl">
@@ -14,8 +16,7 @@ export default function decorate(block) {
         </svg>
     `
 
-    block.textContent = ''
-    block.append(sectionContainer)
+    // block.append(sectionContainer)
 
 
 }
