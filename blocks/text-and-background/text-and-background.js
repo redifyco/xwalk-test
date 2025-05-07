@@ -10,7 +10,8 @@ export default async function decorate(block) {
     const mobileHeight = block.querySelector(":scope > div:nth-child(5) div p")?.textContent || "";
     const desktopHeight = block.querySelector(":scope > div:nth-child(6) div p")?.textContent || "";
     const invertedTitlePosition = block.querySelector(':scope > div:nth-child(7) div p')?.textContent === 'true'
-
+    const isPrimaryColor = block.querySelector(':scope > div:nth-child(8) div p')?.textContent === 'true'
+    
     const containerSection = document.createElement("section");
     containerSection.className = `
     flex items-center justify-center bg-center bg-cover bg-no-repeat text-white 
@@ -21,10 +22,10 @@ export default async function decorate(block) {
 
     containerSection.innerHTML = `
     <div class="flex flex-col md:justify-between gap-10 w-full ${invertedTitlePosition ? 'md:flex-row-reverse' : 'md:flex-row'}">
-      <div class="text-6xl md:text-8xl">${title}</div>
+      <div class="text-6xl md:text-8xl ${isPrimaryColor ? 'text-primary' : 'text-white'}">${title}</div>
       <div class="flex flex-col gap-4 md:translate-y-40 md:w-1/2">
-        <p class="text-sm md:text-2xl">${subTitle}</p>
-        <custom-link className="mt-4" color="white" href="${buttonLink}">${buttonText}</custom-link>
+        <p class="text-sm md:text-2xl ${isPrimaryColor ? 'text-black' : 'text-white'}">${subTitle}</p>
+        <custom-link className="mt-4" color="${isPrimaryColor ? 'primary' : 'white'}" href="${buttonLink}">${buttonText}</custom-link>
       </div>
     </div>
   `;

@@ -1077,8 +1077,14 @@
       color: color-mix(in oklab, var(--color-black) 40%, transparent);
     }
   }
+  .text-current {
+    color: currentcolor;
+  }
   .text-gray-700 {
     color: var(--color-gray-700);
+  }
+  .text-inherit {
+    color: inherit;
   }
   .text-primary {
     color: var(--color-primary);
