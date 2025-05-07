@@ -38,9 +38,16 @@
     ]
   },
   {
-    "id": "box-cards",
+    "id": "box-cards-filter",
     "components": [
-      "box-item"
+      "carousel-item"
+    ]
+  },
+  {
+    "id": "card-item-filter",
+    "components": [
+      "text",
+      "image"
     ]
   },
   {
