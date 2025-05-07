@@ -8,10 +8,6 @@ export default function decorate(block) {
     const itemsToShow = Number(block.querySelector(':scope > div:nth-child(5) div p')?.textContent) || 3
     const cardStyle = block.querySelector(':scope > div:nth-child(6) div p')?.textContent || 'primary'
 
-
-    console.log('isLoadMoreButton', isLoadMoreButton)
-    console.log('block', block);
-
     const mockCardsData = [
         {
             title: '2024 Highlights: Advancing Science and Building Pathways for Progress',
