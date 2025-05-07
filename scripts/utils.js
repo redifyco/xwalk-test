@@ -98,11 +98,11 @@ export function processDivsToObjectCardsWithImages(divs) {
         const iconDiv = divs[i + 3]
         const styleDiv = divs[i + 4]
 
-         const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
-         const title = titleDiv.querySelector('div p')?.textContent || 'Untitled';
-         const description = descriptionDiv.querySelector('div p')?.textContent || 'No description';
+        const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
+        const title = titleDiv.querySelector('div p')?.textContent || 'Untitled';
+        const description = descriptionDiv.querySelector('div p')?.textContent || 'No description';
         const icon = iconDiv?.querySelector('img')?.getAttribute('src') || '';
-         const style = styleDiv.querySelector('div p')?.textContent || null;
+        const style = styleDiv.querySelector('div p')?.textContent || null;
 
         result.push({
             image,
@@ -284,19 +284,20 @@ export function buildHeight(mobileHeight, desktopHeight) {
         ['lg:h-[2400px]']: desktopHeight === '2400',
     });
 }
+
 /**
  * Carica uno script esterno dinamicamente
  * @param {string} url URL dello script da caricare
  * @returns {Promise} Promise che si risolve quando lo script è caricato
  */
 export function loadScript(url) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = url;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = url;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
 }
 
 
