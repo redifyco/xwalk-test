@@ -8,6 +8,7 @@ export default async function decorate(block) {
     const buttonLink = block.querySelector(":scope > div:nth-child(4) div p a")?.href || "";
     const mobileHeight = block.querySelector(":scope > div:nth-child(5) div p")?.textContent || "";
     const desktopHeight = block.querySelector(":scope > div:nth-child(6) div p")?.textContent || "";
+    const invertedTitlePosition = block.querySelector(':scope > div:nth-child(7) div p')?.textContent === 'true'
 
     const containerSection = document.createElement("section");
     containerSection.className = `

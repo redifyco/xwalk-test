@@ -1692,6 +1692,13 @@
             "value": "24000"
           }
         ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "inverted-title-position",
+        "label": "Inverted Title Position",
+        "value": false
       }
     ]
   },
