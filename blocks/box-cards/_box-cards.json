@@ -37,6 +37,20 @@
     {
       "id": "box-cards-model",
       "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "label": "Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "subtitle",
+          "label": "Subtitle",
+          "value": ""
+        }
       ]
     },
     {
@@ -45,8 +59,8 @@
         {
           "component": "reference",
           "valueType": "string",
-          "name": "item-image",
-          "label": "Item Image",
+          "name": "background-image",
+          "label": "Background Image",
           "multi": false
         },
         {
@@ -59,8 +73,8 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "description",
-          "label": "Description",
+          "name": "subtitle",
+          "label": "Subtitle",
           "value": ""
         },
         {
@@ -88,8 +102,6 @@
     {
       "id": "card-item-filter",
       "components": [
-        "text",
-        "image"
       ]
     }
   ]

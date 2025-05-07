@@ -45,10 +45,7 @@
   },
   {
     "id": "card-item-filter",
-    "components": [
-      "text",
-      "image"
-    ]
+    "components": []
   },
   {
     "id": "cards",
