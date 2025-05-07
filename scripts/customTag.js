@@ -50,6 +50,7 @@ export class CustomLink extends HTMLElement {
         const href = this.getAttribute('href') || '#';
         const color = this.getAttribute('color') || 'primary'
         const className = this.getAttribute('className') || ''
+        if (!label) return
 
         const buildLineColorClass = (color) => {
             if (color === 'white') return 'button-line-absolute-white'

@@ -1,4 +1,5 @@
 import {buildHeight} from "../../scripts/utils.js";
+import '../../scripts/customTag.js'
 
 export default async function decorate(block) {
     const backgroundImage = block.querySelector(":scope > div:nth-child(1) div img")?.src || "";
@@ -19,11 +20,11 @@ export default async function decorate(block) {
     containerSection.style.backgroundImage = `url(${backgroundImage})`;
 
     containerSection.innerHTML = `
-    <div class="flex flex-col md:flex-row md:justify-between gap-10 w-3/4 md:w-full">
-      <span class="text-6xl md:text-8xl">${title}</span>
+    <div class="flex flex-col md:justify-between gap-10 w-3/4 md:w-full ${invertedTitlePosition ? 'md:flex-row-reverse' : 'md:flex-row'}">
+      <div class="text-6xl md:text-8xl">${title}</div>
       <div class="flex flex-col gap-4 md:translate-y-40 md:w-1/2">
         <p class="text-sm md:text-2xl">${subTitle}</p>
-        <custom-link color="white" href="${buttonLink}">${buttonText}</custom-link>
+        <custom-link className="mt-4" color="white" href="${buttonLink}">${buttonText}</custom-link>
       </div>
     </div>
   `;
