@@ -1703,6 +1703,17 @@
     ]
   },
   {
+    "id": "text-arrow-model",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      }
+    ]
+  },
+  {
     "id": "text-hero-subtitle-model",
     "fields": [
       {
