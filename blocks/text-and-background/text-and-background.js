@@ -13,14 +13,14 @@ export default async function decorate(block) {
 
     const containerSection = document.createElement("section");
     containerSection.className = `
-    flex items-center justify-end bg-center bg-cover bg-no-repeat text-white 
-    text-end px-4 md:text-start md:px-10 lg:px-20 xl:px-26 2xl:px-40 
+    flex items-center justify-center bg-center bg-cover bg-no-repeat text-white 
+   text-center px-4 md:text-start md:px-10 lg:px-20 xl:px-26 2xl:px-40 
     ${buildHeight(mobileHeight, desktopHeight)}
   `.trim();
     containerSection.style.backgroundImage = `url(${backgroundImage})`;
 
     containerSection.innerHTML = `
-    <div class="flex flex-col md:justify-between gap-10 w-3/4 md:w-full ${invertedTitlePosition ? 'md:flex-row-reverse' : 'md:flex-row'}">
+    <div class="flex flex-col md:justify-between gap-10 w-full ${invertedTitlePosition ? 'md:flex-row-reverse' : 'md:flex-row'}">
       <div class="text-6xl md:text-8xl">${title}</div>
       <div class="flex flex-col gap-4 md:translate-y-40 md:w-1/2">
         <p class="text-sm md:text-2xl">${subTitle}</p>

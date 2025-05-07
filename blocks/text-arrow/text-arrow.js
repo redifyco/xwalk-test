@@ -1,14 +1,16 @@
+import {buildHeight} from "../../scripts/utils.js";
+
 export default function decorate(block) {
     const text = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || ''
-    console.log('text', text)
-    console.log('block', block)
+    const mobileHeight = block.querySelector(":scope > div:nth-child(2) div p")?.textContent || "";
+    const desktopHeight = block.querySelector(":scope > div:nth-child(3) div p")?.textContent || "";
 
     const sectionContainer = document.createElement('section');
-    sectionContainer.className = 'h-full gap-8 w-full flex flex-col justify-center items-center container-layout-padding'
+    sectionContainer.className = `gap-16 lg:gap-32 w-full flex flex-col justify-center items-center container-layout-padding ${buildHeight(mobileHeight, desktopHeight)}`
 
 
     sectionContainer.innerHTML = `
-        <div class="font-medium text-8xl">
+        <div class="font-medium text-white text-5xl lg:text-8xl">
             ${text}
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="76" height="105" viewBox="0 0 76 105" fill="none">
@@ -16,7 +18,9 @@ export default function decorate(block) {
         </svg>
     `
 
-    // block.append(sectionContainer)
+
+    block.textContent = ''
+    block.append(sectionContainer)
 
 
 }
