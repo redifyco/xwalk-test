@@ -42,24 +42,63 @@
           "valueType": "string"
         },
         {
+          "component": "boolean",
+          "valueType": "string",
+          "name": "social-box",
+          "label": "Social Box",
+          "value": false
+        },
+        {
           "component": "aem-content",
           "name": "facebookLink",
-          "label": "Facebook Link"
+          "label": "Facebook Link",
+          "condition": {
+            "===": [
+              {
+                "var": "social-box"
+              },
+              false
+            ]
+          }
         },
         {
           "component": "aem-content",
           "name": "linkedinLink",
-          "label": "LinkedIn Link"
+          "label": "LinkedIn Link",
+          "condition": {
+            "===": [
+              {
+                "var": "social-box"
+              },
+              false
+            ]
+          }
         },
         {
           "component": "aem-content",
           "name": "instagramLink",
-          "label": "Instagram Link"
+          "label": "Instagram Link",
+          "condition": {
+            "===": [
+              {
+                "var": "social-box"
+              },
+              false
+            ]
+          }
         },
         {
           "component": "aem-content",
           "name": "youtubeLink",
-          "label": "YouTube Link"
+          "label": "YouTube Link",
+          "condition": {
+            "===": [
+              {
+                "var": "social-box"
+              },
+              false
+            ]
+          }
         },
         {
           "component": "select",
