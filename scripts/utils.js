@@ -9,6 +9,12 @@ export const isEditorMode = () => {
     return false;
 };
 
+/*Boolean conversion*/
+export const returnBoolean = (block, childNode) => {
+    console.log('block', block)
+    return block.querySelector(`:scope > div:nth-child(${childNode}) div p`)?.textContent === 'true'
+}
+
 
 export function classNames(classes) {
     return Object.entries(classes)
