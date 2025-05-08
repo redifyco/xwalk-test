@@ -49,6 +49,13 @@
           "value": false
         },
         {
+          "component": "boolean",
+          "valueType": "string",
+          "name": "centered-title",
+          "label": "Centered Title",
+          "value": false
+        },
+        {
           "component": "aem-content",
           "name": "facebookLink",
           "label": "Facebook Link",
