@@ -14,12 +14,14 @@ export default async function decorate(block) {
     const desktopHeight = block.querySelector(":scope > div:nth-child(9) p")?.textContent;
     const calculatedSectionHeight = buildHeight(mobileHeight, desktopHeight)
 
-    const containerSection  = document.createElement('section')
+
+    console.log('block', block)
+    const containerSection = document.createElement('section')
     containerSection.className = 'flex flex-col bg-cover bg-center bg-no-repeat text-white'
     containerSection.style.backgroundImage = `url('${backgroundImage}')`
 
     containerSection.innerHTML =
-      `<div
+        `<div
         class="relative z-10 flex w-full flex-col justify-end gap-3 px-4 pb-14 lg:justify-center xl:px-16 xl:py-11 ${calculatedSectionHeight}"
       >
         <h1
