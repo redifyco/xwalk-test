@@ -3,10 +3,10 @@
 @plugin 'tailwind-scrollbar';
 @plugin "@tailwindcss/typography";
 
-@font-face {
+/*@font-face {
     font-family: 'Joyful';
     src: url('/assets/fonts/Joyful.otf');
-}
+}*/
 
 @theme {
     --container-max-width: 120px;

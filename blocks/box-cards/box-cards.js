@@ -21,15 +21,26 @@ export default function decorate(block) {
       </div>
       <div class="w-full flex flex-wrap flex-col gap-4 md:flex-row md:gap-8 justify-center">
       ${cardsResult.length > 0 && cardsResult.map((item) => `
-      <div class="bg-cover shadow-lg text-white rounded-xl w-full md:max-w-[47%] xl:max-w-[500px] items-start p-6 flex flex-col gap-6 relative overflow-hidden bg-center bg-no-repeat" style='background-image: url("${item.backgroundImage}")'>
-      <div class="flex flex-col gap-2 items-start">
-      <h6 class="font-semibold z-10 text-2xl lg:text-4xl">${item.title}</h6>
-        <p class="z-10 line-clamp-1">${item.subtitle}</p>
-</div>
-        <arrow-button color="white" class="z-10" href="${item.buttonLink}">${item.buttonText}</arrow-button>
-        <img class="absolute size-40 -right-10 -bottom-10" src="${item.icon}" alt="">
-      <div class="absolute inset-0 h-full w-full z-0 bg-black/20"></div>
-</div>
+        <div 
+          class="bg-cover md:max-w-[40%] lg:max-w-[30%] w-full bg-no-repeat bg-center text-start relative flex flex-col gap-2 overflow-hidden rounded-2xl p-6 text-white shadow-2xl 2xl:p-12" 
+          style="background-image: url('${item.backgroundImage}')"
+        >
+          <div class="bg-black/30 absolute inset-0 w-full h-full"></div>
+          <img 
+            class="absolute size-40 -right-10 -bottom-10" 
+            src="${item.icon}" 
+            alt="" 
+          />
+          <h5 class="text-2xl z-10 2xl:text-4xl">${item.title}</h5>
+          <p class="text-sm z-10 2xl:text-xl">${item.subtitle}</p>
+          <arrow-button 
+            color="white" 
+            class="z-10" 
+            href="${item.buttonLink}"
+          >
+            ${item.buttonText}
+          </arrow-button>
+        </div>
       `).join('')}
 </div>
      

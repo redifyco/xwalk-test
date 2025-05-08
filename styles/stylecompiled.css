@@ -289,9 +289,6 @@
   .left-2 {
     left: calc(var(--spacing) * 2);
   }
-  .z-0 {
-    z-index: 0;
-  }
   .z-10 {
     z-index: 10;
   }
@@ -380,12 +377,6 @@
     @media (width >= 80rem) {
       justify-content: space-between;
     }
-  }
-  .line-clamp-1 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
   }
   .line-clamp-2 {
     overflow: hidden;
@@ -720,9 +711,6 @@
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
-  .rounded-xl {
-    border-radius: var(--radius-xl);
-  }
   .rounded-t-md {
     border-top-left-radius: var(--radius-md);
     border-top-right-radius: var(--radius-md);
@@ -813,6 +801,12 @@
     background-color: color-mix(in srgb, #000 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-black) 20%, transparent);
+    }
+  }
+  .bg-black\/30 {
+    background-color: color-mix(in srgb, #000 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 30%, transparent);
     }
   }
   .bg-gray-100 {
@@ -1286,9 +1280,9 @@
       width: fit-content;
     }
   }
-  .md\:max-w-\[47\%\] {
+  .md\:max-w-\[40\%\] {
     @media (width >= 48rem) {
-      max-width: 47%;
+      max-width: 40%;
     }
   }
   .md\:translate-y-40 {
@@ -1471,6 +1465,11 @@
   .lg\:w-\[400px\] {
     @media (width >= 64rem) {
       width: 400px;
+    }
+  }
+  .lg\:max-w-\[30\%\] {
+    @media (width >= 64rem) {
+      max-width: 30%;
     }
   }
   .lg\:max-w-\[350px\] {
@@ -1759,11 +1758,6 @@
   .xl\:max-w-\[432px\] {
     @media (width >= 80rem) {
       max-width: 432px;
-    }
-  }
-  .xl\:max-w-\[500px\] {
-    @media (width >= 80rem) {
-      max-width: 500px;
     }
   }
   .xl\:translate-y-0 {
@@ -2097,10 +2091,6 @@
       line-height: var(--tw-leading, var(--text-6xl--line-height));
     }
   }
-}
-@font-face {
-  font-family: 'Joyful';
-  src: url('/assets/fonts/Joyful.otf');
 }
 .button-line-absolute-theme {
   position: absolute;
