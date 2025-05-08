@@ -57,7 +57,7 @@
               {
                 "var": "social-box"
               },
-              false
+              true
             ]
           }
         },
@@ -70,7 +70,7 @@
               {
                 "var": "social-box"
               },
-              false
+              true
             ]
           }
         },
@@ -83,7 +83,7 @@
               {
                 "var": "social-box"
               },
-              false
+              true
             ]
           }
         },
@@ -96,7 +96,7 @@
               {
                 "var": "social-box"
               },
-              false
+              true
             ]
           }
         },
