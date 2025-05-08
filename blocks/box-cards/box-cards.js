@@ -42,10 +42,11 @@ export default function decorate(block) {
         block.append(containerSection);
     } else {
         cards.forEach(item => item.classList.add('hidden'));
-        const titleSection = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || "";
-        const subtitleSection = block.querySelector(':scope > div:nth-child(2) div')?.innerHTML || "";
+        const titleSection = block.querySelector(':scope > div:nth-child(1) div')
+        const subtitleSection = block.querySelector(':scope > div:nth-child(2) div')
         titleSection.classList.add('hidden');
         subtitleSection.classList.add('hidden');
+        block.append(containerSection);
     }
 
 }
