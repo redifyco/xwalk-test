@@ -13,7 +13,7 @@ export default function decorate(block) {
 
     containerSection.innerHTML = `
     <div class="flex flex-col items-center justify-center gap-8 text-center lg:gap-16">
-      <div class="text-primary text-start prose-em:font-joyful-sm prose-em:text-6xl text-3xl lg:text-7xl">
+      <div class="text-primary text-start lg:prose-em:text-9xl prose-em:font-joyful-sm prose-em:text-7xl text-3xl lg:text-7xl">
         ${titleSection}
       </div>
       <div class="text-sm lg:text-xl font-light">
@@ -43,7 +43,6 @@ export default function decorate(block) {
         </div>
       `).join('')}
 </div>
-     
     </div>
     `
 
