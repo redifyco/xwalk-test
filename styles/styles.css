@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'Joyful';
-    src: url('/assets/fonts/Joyful.otf');
+    src: url('../../assets/fonts/Joyful.otf');
 }
 
 @theme {
