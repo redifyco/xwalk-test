@@ -177,7 +177,7 @@
     "id": "box-cards-model",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "title",
         "label": "Title",
