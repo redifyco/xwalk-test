@@ -33,6 +33,7 @@
 }
 
 @utility font-joyful {
+    line-height: 20px;
     @apply font-['Joyful'] text-[70px] md:text-[150px]
 }
 
