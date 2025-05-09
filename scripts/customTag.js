@@ -113,25 +113,29 @@ customElements.define('arrow-button', ArrowButton);
 
 export class SocialIcons extends HTMLElement {
     connectedCallback() {
-        const facebookLink = this.getAttribute('facebook') || '#';
-        const instagramLink = this.getAttribute('instagram') || '#';
-        const linkedinLink = this.getAttribute('linkedin') || '#';
-        const youtubeLink = this.getAttribute('youtube') || '#';
+        const facebookLink = this.getAttribute('facebook') === 'undefined' ? false : this.getAttribute('facebook');
+        const instagramLink = this.getAttribute('instagram') === 'undefined' ? false : this.getAttribute('instagram');
+        const linkedinLink = this.getAttribute('linkedin') === 'undefined' ? false : this.getAttribute('linkedin');
+        const youtubeLink = this.getAttribute('youtube') === 'undefined' ? false : this.getAttribute('youtube');
 
         this.innerHTML = `
       <div class="text-white gap-2 flex items-center">
+        ${facebookLink ? `
         <a href="${facebookLink}">
           <ion-icon size="large" name="logo-facebook"></ion-icon>
-        </a>
+        </a>` : ''}
+        ${instagramLink ? `
         <a href="${instagramLink}">
           <ion-icon size="large" name="logo-instagram"></ion-icon>
-        </a>
+        </a>` : ''}
+        ${linkedinLink ? `
         <a href="${linkedinLink}">
           <ion-icon size="large" name="logo-linkedin"></ion-icon>
-        </a>
+        </a>` : ''}
+        ${youtubeLink ? `
         <a href="${youtubeLink}">
           <ion-icon size="large" name="logo-youtube"></ion-icon>
-        </a>
+        </a>` : ''}
       </div>
     `;
     }

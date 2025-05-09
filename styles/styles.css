@@ -32,6 +32,10 @@
     transform-origin: 50% 50%;
 }
 
+@utility font-joyful {
+    @apply font-['Joyful']
+}
+
 @utility font-joyful-xs {
     @apply font-['Joyful'] text-[70px] leading-[30px] tracking-wide;
 }
