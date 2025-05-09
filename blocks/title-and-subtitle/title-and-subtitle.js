@@ -19,7 +19,7 @@ export default function decorate(block) {
     </div>
     `
 
-    // block.textContent = "";
+    block.textContent = "";
     block.append(containerSection);
 
 }
