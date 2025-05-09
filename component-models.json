@@ -1702,7 +1702,7 @@
         "label": "Title"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "subtitle",
         "label": "Subtitle"
       },
@@ -1715,6 +1715,20 @@
         "component": "text",
         "name": "linkText",
         "label": "Button Text"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "inverted-title-position",
+        "label": "Inverted Title Position",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "primary-text-color",
+        "label": "Primary Text color",
+        "value": false
       },
       {
         "component": "select",
@@ -1809,20 +1823,6 @@
             "value": "24000"
           }
         ]
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "inverted-title-position",
-        "label": "Inverted Title Position",
-        "value": false
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "primary-text-color",
-        "label": "Primary Text color",
-        "value": false
       }
     ]
   },
