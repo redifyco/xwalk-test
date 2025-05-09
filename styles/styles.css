@@ -33,7 +33,7 @@
 }
 
 @utility font-joyful {
-    @apply font-['Joyful']
+    @apply font-['Joyful'] text-[70px] md:text-[150px]
 }
 
 @utility font-joyful-xs {
