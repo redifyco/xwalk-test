@@ -13,13 +13,12 @@ export default async function decorate(block) {
 
 
     const containerSection = document.createElement('section')
-    containerSection.className = `${buildHeight(mobileHeight, desktopHeight)}`
+    containerSection.className = `flex flex-col items-center justify-center gap-8 px-4 py-14 text-center lg:gap-16 lg:px-16 lg:py-24 ${buildHeight(mobileHeight, desktopHeight)}`
 
     console.log('block', block)
     console.log('items', processDivsToObject(items))
 
     containerSection.innerHTML = `
-    <div class="flex flex-col items-center justify-center gap-8 px-4 py-14 text-center lg:gap-16 lg:px-16 lg:py-24">
       <div class="text-primary prose-em:font-joyful text-3xl uppercase lg:text-7xl">
         ${title}
       </div>
@@ -60,7 +59,6 @@ export default async function decorate(block) {
         ${buttonText}
       </custom-link>
       ` : ''}
-    </div>
   `;
 
 
