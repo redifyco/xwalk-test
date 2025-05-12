@@ -1151,6 +1151,13 @@
     "id": "logo-item-model",
     "fields": [
       {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo-image",
+        "label": "Logo Image",
+        "multi": false
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "partner-name",
