@@ -93,6 +93,12 @@
     "components": []
   },
   {
+    "id": "logo-showcase-filter",
+    "components": [
+      "logo-item"
+    ]
+  },
+  {
     "id": "map-filter",
     "components": [
       "item-map-pin"

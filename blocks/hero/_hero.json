@@ -56,6 +56,13 @@
           "value": false
         },
         {
+          "component": "boolean",
+          "valueType": "string",
+          "name": "arrow-down",
+          "label": "Arrow Down",
+          "value": false
+        },
+        {
           "component": "aem-content",
           "name": "facebookLink",
           "label": "Facebook Link",

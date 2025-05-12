@@ -8,12 +8,13 @@ export default async function decorate(block) {
     const subTitle = block.querySelector(':scope > div:nth-child(3)')?.innerHTML || ''
     const isSocialBox = returnBoolean(block, 4)
     const isCenteredTitle = returnBoolean(block, 5)
-    const facebookLink = block.querySelector(":scope > div:nth-child(6) a")?.href;
-    const linkedinLink = block.querySelector(":scope > div:nth-child(7) a")?.href;
-    const instagramLink = block.querySelector(":scope > div:nth-child(8) a")?.href;
-    const youtubeLink = block.querySelector(":scope > div:nth-child(9) a")?.href;
-    const mobileHeight = block.querySelector(":scope > div:nth-child(10) p")?.textContent;
-    const desktopHeight = block.querySelector(":scope > div:nth-child(11) p")?.textContent;
+    const isArrowDown = returnBoolean(block, 6)
+    const facebookLink = block.querySelector(":scope > div:nth-child(7) a")?.href;
+    const linkedinLink = block.querySelector(":scope > div:nth-child(8) a")?.href;
+    const instagramLink = block.querySelector(":scope > div:nth-child(9) a")?.href;
+    const youtubeLink = block.querySelector(":scope > div:nth-child(10) a")?.href;
+    const mobileHeight = block.querySelector(":scope > div:nth-child(11) p")?.textContent;
+    const desktopHeight = block.querySelector(":scope > div:nth-child(12) p")?.textContent;
     const calculatedSectionHeight = buildHeight(mobileHeight, desktopHeight)
 
 
@@ -49,6 +50,9 @@ export default async function decorate(block) {
                     </social-icons>
                 </div>
             ` : ''}
+        ${isArrowDown ? ` <svg class="flex mt-10 justify-center w-full h-20 md:h-40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 105" fill="none">
+            <path d="M38.5 101.855L74.416 65.9395L75.4766 67L38 104.477L37.7383 104.215L37.4766 104.477L0 67L1.06055 65.9395L37 101.879V0H38.5V101.855Z" fill="white"/>
+        </svg>` : ''}
         </div>
     `
     block.textContent = ''

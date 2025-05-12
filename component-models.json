@@ -870,6 +870,13 @@
         "value": false
       },
       {
+        "component": "boolean",
+        "valueType": "string",
+        "name": "arrow-down",
+        "label": "Arrow Down",
+        "value": false
+      },
+      {
         "component": "aem-content",
         "name": "facebookLink",
         "label": "Facebook Link",
@@ -1018,7 +1025,7 @@
     ]
   },
   {
-    "id": "logo-showcase",
+    "id": "logo-showcase-model",
     "fields": [
       {
         "component": "richtext",
@@ -1035,139 +1042,6 @@
         "value": ""
       },
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "logo1",
-        "label": "Partner 1 - Logo",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "partnerName1",
-        "label": "Partner 1 - Name",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "name": "websiteLink1",
-        "label": "Partner 1 - Website Link (Optional)"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "logo2",
-        "label": "Partner 2 - Logo",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "partnerName2",
-        "label": "Partner 2 - Name",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "name": "websiteLink2",
-        "label": "Partner 2 - Website Link (Optional)"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "logo3",
-        "label": "Partner 3 - Logo",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "partnerName3",
-        "label": "Partner 3 - Name",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "name": "websiteLink3",
-        "label": "Partner 3 - Website Link (Optional)"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "logo4",
-        "label": "Partner 4 - Logo",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "partnerName4",
-        "label": "Partner 4 - Name",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "name": "websiteLink4",
-        "label": "Partner 4 - Website Link (Optional)"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "logo5",
-        "label": "Partner 5 - Logo",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "partnerName5",
-        "label": "Partner 5 - Name",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "name": "websiteLink5",
-        "label": "Partner 5 - Website Link (Optional)"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "logo6",
-        "label": "Partner 6 - Logo",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "partnerName6",
-        "label": "Partner 6 - Name",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "name": "websiteLink6",
-        "label": "Partner 6 - Website Link (Optional)"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "logo7",
-        "label": "Partner 7 - Logo",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "partnerName7",
-        "label": "Partner 7 - Name",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "name": "websiteLink7",
-        "label": "Partner 7 - Website Link (Optional)"
-      },
-      {
         "component": "text",
         "valueType": "string",
         "name": "button_text",
@@ -1178,6 +1052,23 @@
         "component": "aem-content",
         "name": "button_link",
         "label": "Button Link"
+      }
+    ]
+  },
+  {
+    "id": "logo-item-model",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "partner-name",
+        "label": "Partner Name",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "website-link",
+        "label": "Website Link"
       }
     ]
   },
@@ -1695,7 +1586,7 @@
         "label": "Title"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "subtitle",
         "label": "Subtitle"
       },
@@ -1708,6 +1599,20 @@
         "component": "text",
         "name": "linkText",
         "label": "Button Text"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "inverted-title-position",
+        "label": "Inverted Title Position",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "primary-text-color",
+        "label": "Primary Text color",
+        "value": false
       },
       {
         "component": "select",
@@ -1802,20 +1707,6 @@
             "value": "24000"
           }
         ]
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "inverted-title-position",
-        "label": "Inverted Title Position",
-        "value": false
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "primary-text-color",
-        "label": "Primary Text color",
-        "value": false
       }
     ]
   },

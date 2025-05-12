@@ -11,7 +11,6 @@ export const isEditorMode = () => {
 
 /*Boolean conversion*/
 export const returnBoolean = (block, childNode) => {
-    console.log('block', block)
     return block.querySelector(`:scope > div:nth-child(${childNode}) div p`)?.textContent === 'true'
 }
 
