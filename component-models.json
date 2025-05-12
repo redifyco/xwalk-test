@@ -1042,16 +1042,14 @@
         "value": ""
       },
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "button_text",
-        "label": "Button text",
-        "value": ""
+        "component": "aem-content",
+        "name": "link",
+        "label": "Button Link"
       },
       {
-        "component": "aem-content",
-        "name": "button_link",
-        "label": "Button Link"
+        "component": "text",
+        "name": "linkText",
+        "label": "Button Text"
       },
       {
         "component": "select",
