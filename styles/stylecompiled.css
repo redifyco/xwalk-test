@@ -6,7 +6,6 @@
   :root, :host {
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-yellow-200: oklch(0.945 0.129 101.54);
     --color-gray-100: oklch(0.967 0.003 264.542);
     --color-gray-200: oklch(0.928 0.006 264.531);
     --color-gray-500: oklch(0.551 0.027 264.364);
@@ -2125,6 +2124,7 @@
   }
   .prose-em\:font-joyful {
     & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      line-height: 20px;
       font-family: 'Joyful';
       font-size: 70px;
       @media (width >= 48rem) {
