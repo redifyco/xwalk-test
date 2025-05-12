@@ -93,7 +93,7 @@
     "components": []
   },
   {
-    "id": "logo-showcase",
+    "id": "logo-showcase-filter",
     "components": [
       "logo-item"
     ]
