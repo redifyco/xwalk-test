@@ -1,42 +1,48 @@
-import {processDivsToObject} from "../../scripts/utils.js";
+import {buildHeight} from "../../scripts/utils.js";
 import "../../scripts/customTag.js";
 
 export default async function decorate(block) {
-    const titleSection = block.querySelector(":scope > div:nth-child(1) div") || "No title";
-    const textSection = block.querySelector(":scope > div:nth-child(2) div") || "No description";
-    const partners = Array.from(block.querySelectorAll(":scope > div:nth-child(n+3):not(:last-child)"));
-    const buttonData = block.querySelectorAll(":scope > div:last-child");
-    const buttonTitle = buttonData[0].querySelector("p")?.textContent.trim() || "No button title";
-    const buttonLink = buttonData[0].querySelector("div a")?.textContent.trim() || "#";
-    const partnersData = processDivsToObject(partners);
-    const containerSection = document.createElement('section')
+    const title = block.querySelector(":scope > div:nth-child(1) div")?.innerHTML;
+    const subtitle = block.querySelector(":scope > div:nth-child(2) div")?.innerHTML;
+    const buttonText = block.querySelector(":scope > div:nth-child(3) div a")?.textContent;
+    const buttonLink = block.querySelector(":scope > div:nth-child(3) div a")?.href;
+    const mobileHeight = block.querySelector(":scope > div:nth-child(4) div")?.textContent || '800';
+    const desktopHeight = block.querySelector(":scope > div:nth-child(5) div")?.textContent || '1000';
+    const items = block.querySelectorAll(":scope > div:nth-child(n+6) div");
+    const resultItems = processDivsToObject(items);
 
-    // block.textContent = "";
+
+    const containerSection = document.createElement('section')
+    containerSection.className = `${buildHeight(mobileHeight, desktopHeight)}`
+
+    console.log('block', block)
+    console.log('items', processDivsToObject(items))
 
     containerSection.innerHTML = `
     <div class="flex flex-col items-center justify-center gap-8 px-4 py-14 text-center lg:gap-16 lg:px-16 lg:py-24">
-      <h2 class="text-primary text-3xl uppercase lg:text-7xl">
-        ${titleSection.textContent}
-      </h2>
-      <p class="text-sm lg:text-xl">
-        ${textSection.textContent}
-      </p>
+      <div class="text-primary prose-em:font-joyful text-3xl uppercase lg:text-7xl">
+        ${title}
+      </div>
+      <div class="text-sm lg:text-xl">
+        ${subtitle}
+      </div>
+      <!--CAROSELLI-->
       <div class="relative w-full overflow-hidden">
-        <!-- Mobile carousel -->
-        <div class="flex xl:hidden items-center gap-10 w-max animate-[slide_10s_linear_infinite]">
-          ${[...partnersData, ...partnersData]
+    <!-- Mobile carousel -->
+    <div class="flex md:hidden items-center gap-12 sm:gap-20 w-max animate-[slide_10s_linear_infinite]">
+        ${[...resultItems, ...resultItems]
         .map((item) => {
             if (!item.image || !item.title || !item.link) return "";
             return `
-                <a class="size-20 md:size-28 lg:size-36 flex items-center" href="${item.link}">
-                  <img class="object-contain h-16 md:h-28 lg:h-32 w-auto bg-contain" src="${item.image}" alt="${item.title}" />
+                <a class=" flex items-center" href="${item.link}">
+                  <img class="object-contain h-20 sm:h-32 w-auto bg-contain" src="${item.image}" alt="${item.title}" />
                 </a>`;
         })
         .join("")}
-        </div>
-        <!-- Desktop carousel -->
-        <div class="hidden xl:flex gap-10 py-20 justify-center">
-          ${partnersData
+    </div>
+    <!-- Desktop carousel -->
+    <div class="hidden md:flex gap-10 py-20 justify-center">
+        ${resultItems
         .map((item, index) => {
             if (!item.image || !item.title || !item.link) return "";
             const translation =
@@ -47,13 +53,86 @@ export default async function decorate(block) {
                 </a>`;
         })
         .join("")}
-        </div>
-      </div>
+    </div>
+</div>
+      ${buttonText && buttonLink ? `
       <custom-link href="${buttonLink}">
-        ${buttonTitle}
+        ${buttonText}
       </custom-link>
+      ` : ''}
     </div>
   `;
 
+
+    const aemEnv = block.getAttribute('data-aue-resource');
+    if (!aemEnv) {
+        block.textContent = '';
+        block.append(containerSection);
+    } else {
+        block.append(containerSection);
+        block.querySelector(":scope > div:nth-child(1) div").classList.add('hidden');
+        block.querySelector(":scope > div:nth-child(2) div").classList.add('hidden');
+        block.querySelector(":scope > div:nth-child(3) div").classList.add('hidden');
+        block.querySelector(":scope > div:nth-child(4) div").classList.add('hidden');
+        block.querySelector(":scope > div:nth-child(4) div").classList.add('hidden');
+        items.forEach(item => item.classList.add('hidden'));
+    }
+
+    // block.textContent = "";
     block.append(containerSection)
 }
+
+/*Logo Showcase*/
+function processDivsToObject(divs) {
+    const result = [];
+
+    // Process the divs in groups of 3
+    for (let i = 0; i < divs.length; i += 3) {
+        const imageDiv = divs[i];
+        const titleDiv = divs[i + 1];
+        const linkDiv = divs[i + 2];
+
+        const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
+        const title = titleDiv?.textContent.trim() || 'Untitled';
+        const link = linkDiv?.textContent.trim() || null;
+
+        result.push({
+            image,
+            title,
+            link,
+        });
+    }
+
+    return result;
+}
+
+
+/*
+<div className="relative w-full overflow-hidden">
+    <!-- Mobile carousel -->
+    <div className="flex xl:hidden items-center gap-10 w-max animate-[slide_10s_linear_infinite]">
+        ${[...partnersData, ...partnersData]
+        .map((item) => {
+            if (!item.image || !item.title || !item.link) return "";
+            return `
+                <a class="size-20 md:size-28 lg:size-36 flex items-center" href="${item.link}">
+                  <img class="object-contain h-16 md:h-28 lg:h-32 w-auto bg-contain" src="${item.image}" alt="${item.title}" />
+                </a>`;
+        })
+        .join("")}
+    </div>
+    <!-- Desktop carousel -->
+    <div className="hidden xl:flex gap-10 py-20 justify-center">
+        ${partnersData
+        .map((item, index) => {
+            if (!item.image || !item.title || !item.link) return "";
+            const translation =
+                index % 2 === 0 ? "translate-y-0" : "-translate-y-20";
+            return `
+                <a class="size-48 flex ${translation}" href="${item.link}">
+                  <img class="object-contain h-48 w-auto bg-contain" src="${item.image}" alt="${item.title}" />
+                </a>`;
+        })
+        .join("")}
+    </div>
+</div>*/
