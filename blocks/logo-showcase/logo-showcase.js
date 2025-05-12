@@ -11,7 +11,7 @@ export default async function decorate(block) {
     const partnersData = processDivsToObject(partners);
     const containerSection = document.createElement('section')
 
-    block.textContent = "";
+    // block.textContent = "";
 
     containerSection.innerHTML = `
     <div class="flex flex-col items-center justify-center gap-8 px-4 py-14 text-center lg:gap-16 lg:px-16 lg:py-24">
