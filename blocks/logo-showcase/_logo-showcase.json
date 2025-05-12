@@ -88,5 +88,12 @@
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "logo-showcase",
+      "components": [
+        "logo-item"
+      ]
+    }
+  ]
 }
