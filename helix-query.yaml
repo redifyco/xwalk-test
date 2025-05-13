@@ -30,6 +30,5 @@ indices:
         value: attribute(el, "content")
       thumbImg:
         selectFirst: main picture img
-        value: |
-          attribute(el, "src") or closest(el, "picture") => querySelector("source") => attribute("srcset")
+        value: attribute(el, "src")
 
