@@ -25,4 +25,4 @@ indices:
     properties:
       title:
         select: main .thumbnail-car > div:first-child > div
-        value: innerHTML(el)
+        value: textContent(el)
