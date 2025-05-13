@@ -1,4 +1,4 @@
-version: 1
+version: 2
 
 indices:
   pages:
@@ -18,56 +18,11 @@ indices:
   programmes:
     include:
       - "/programmes/**"
+    exclude:
+      - '/**.json'
+      - '/programmes'
     target: /programmes-index.json
     properties:
       title:
         select: main .thumbnail-car > div:first-child > div
         value: textContent(el)
-      navTitle:
-        select: head > meta[property="og:title"]
-        value: attribute(el, "content")
-      img:
-        select: main .thumbnail-car > div:nth-child(2) > div > picture > img
-        value: attribute(el, "src")
-      offerImg:
-        select: main .car-details div:nth-child(4) picture img
-        value: attribute(el, "src")
-      carDescription:
-        select: main .hero.offerpage > div div h3 + p
-        value: textContent(el)
-      modelName:
-        select: head > meta[name="brand"]
-        value: match(attribute(el, "content"), "./brands/(.)$")
-      makeCode:
-        select: head > meta[name="brand"]
-        value: match(attribute(el, "content"), "./brands/(.)$")
-      modelCode:
-        select: head > meta[name="brand"]
-        value: match(attribute(el, "content"), "./brands/(.)$")
-      price:
-        select: head > meta[name="pricing"]
-        value: match(attribute(el, "content"), ".\/(.)$")
-      weeklyPriceInfo:
-        select: main .hero.offerpage h2
-        value: textContent(el)
-      potentialTaxSaving:
-        select: main .car-details > div div:last-child p
-        value: textContent(el)
-      type:
-        select: head > meta[name="fuel-type"]
-        value: match(attribute(el, "content"), ".\/(.)$")
-      isEV:
-        select: head > meta[name="fuel-type"]
-        value: match(attribute(el, "content"), ".\/(.)$")
-      isOlyDeal:
-        select: head > meta[name="deal"]
-        value: match(attribute(el, "content"), ".\/(.)$")
-      year:
-        select: head > meta[name="year"]
-        value: match(attribute(el, "content"), ".\/(.)$")
-      priceRange:
-        select: head > meta[name="price-range"]
-        value: match(attribute(el, "content"), ".\/(.)$")
-      bodyType:
-        select: head > meta[name="body-type"]
-        value: match(attribute(el, "content"), ".\/(.)$")
