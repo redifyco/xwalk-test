@@ -23,5 +23,5 @@ indices:
     target: /programmes-index.json
     properties:
       title:
-        select: main .thumbnail-car > div:first-child > div
-        value: textContent(el)
+        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
+        value: innerHTML(el)
