@@ -28,3 +28,6 @@ indices:
       pageType:
         select: head > meta[name="cq-tags"]
         value: attribute(el, "content")
+      thumbImg:
+        select: main picture:nth-of-type(1) source[type="image/webp"]
+        value: getAttribute(el, "srcset")
