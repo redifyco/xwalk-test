@@ -29,5 +29,5 @@ indices:
         select: head > meta[name="cq-tags"]
         value: attribute(el, "content")
       thumbImg:
-        select: main > div > div.tab-section > div:nth-child(1) > div:nth-child(1) > picture > source[type="image/webp"]
-        value: getAttribute(el, "srcset")
+        select: main picture img
+        value: attribute(el, "src")
