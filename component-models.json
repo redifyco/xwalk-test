@@ -768,7 +768,7 @@
     ]
   },
   {
-    "id": "header",
+    "id": "header-model",
     "fields": [
       {
         "component": "reference",
@@ -784,13 +784,6 @@
         "name": "logo-image-light",
         "label": "Light Logo Image",
         "multi": false,
-        "required": true
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "menu",
-        "label": "Menu",
         "required": true
       },
       {
