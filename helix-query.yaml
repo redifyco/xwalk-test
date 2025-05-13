@@ -29,5 +29,7 @@ indices:
         select: head > meta[name="cq-tags"]
         value: attribute(el, "content")
       thumbImg:
-        select: main picture img
-        value: attribute(el, "src")
+        selectFirst: main picture img
+        value: |
+          attribute(el, "src") or closest(el, "picture") => querySelector("source") => attribute("srcset")
+
