@@ -19,8 +19,7 @@ indices:
     include:
       - "/programmes/**"
     exclude:
-      - '/**.json'
-      - '/programmes'
+      - "/programmes"
     target: /programmes-index.json
     properties:
       title:
