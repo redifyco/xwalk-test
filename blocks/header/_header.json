@@ -109,13 +109,14 @@
           "component": "boolean",
           "valueType": "string",
           "name": "submenu-toggle",
-          "label": "SubMenu items",
+          "label": "Sub Menu items",
           "value": false
         },
         {
           "component": "text",
           "name": "submenu-text-1",
-          "label": "SubMenu Text 1",
+          "label": "Sub Menu Text 1",
+          "multi": true,
           "condition": {
             "===": [
               {
@@ -128,7 +129,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-1",
-          "label": "SubMenu Link 1",
+          "label": "Sub Menu Link 1",
           "condition": {
             "===": [
               {
@@ -141,7 +142,7 @@
         {
           "component": "text",
           "name": "submenu-text-2",
-          "label": "SubMenu Text 2",
+          "label": "Sub Menu Text 2",
           "condition": {
             "===": [
               {
@@ -154,7 +155,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-2",
-          "label": "SubMenu Link 2",
+          "label": "Sub Menu Link 2",
           "condition": {
             "===": [
               {
@@ -167,7 +168,7 @@
         {
           "component": "text",
           "name": "submenu-text-3",
-          "label": "SubMenu Text 3",
+          "label": "Sub Menu Text 3",
           "condition": {
             "===": [
               {
@@ -180,7 +181,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-3",
-          "label": "SubMenu Link 3",
+          "label": "Sub Menu Link 3",
           "condition": {
             "===": [
               {
@@ -193,7 +194,7 @@
         {
           "component": "text",
           "name": "submenu-text-4",
-          "label": "SubMenu Text 4",
+          "label": "Sub Menu Text 4",
           "condition": {
             "===": [
               {
@@ -206,7 +207,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-4",
-          "label": "SubMenu Link 4",
+          "label": "Sub Menu Link 4",
           "condition": {
             "===": [
               {
@@ -219,7 +220,7 @@
         {
           "component": "text",
           "name": "submenu-text-5",
-          "label": "SubMenu Text 5",
+          "label": "Sub Menu Text 5",
           "condition": {
             "===": [
               {
@@ -232,7 +233,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-5",
-          "label": "SubMenu Link 5",
+          "label": "Sub Menu Link 5",
           "condition": {
             "===": [
               {
@@ -245,7 +246,7 @@
         {
           "component": "text",
           "name": "submenu-text-6",
-          "label": "SubMenu Text 6",
+          "label": "Sub Menu Text 6",
           "condition": {
             "===": [
               {
@@ -258,7 +259,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-6",
-          "label": "SubMenu Link 6",
+          "label": "Sub Menu Link 6",
           "condition": {
             "===": [
               {
@@ -271,7 +272,7 @@
         {
           "component": "text",
           "name": "submenu-text-7",
-          "label": "SubMenu Text 7",
+          "label": "Sub Menu Text 7",
           "condition": {
             "===": [
               {
@@ -284,7 +285,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-7",
-          "label": "SubMenu Link 7",
+          "label": "Sub Menu Link 7",
           "condition": {
             "===": [
               {
@@ -297,7 +298,7 @@
         {
           "component": "text",
           "name": "submenu-text-8",
-          "label": "SubMenu Text 8",
+          "label": "Sub Menu Text 8",
           "condition": {
             "===": [
               {
@@ -310,7 +311,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-8",
-          "label": "SubMenu Link 8",
+          "label": "Sub Menu Link 8",
           "condition": {
             "===": [
               {
@@ -323,7 +324,7 @@
         {
           "component": "text",
           "name": "submenu-text-9",
-          "label": "SubMenu Text 9",
+          "label": "Sub Menu Text 9",
           "condition": {
             "===": [
               {
@@ -336,7 +337,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-9",
-          "label": "SubMenu Link 9",
+          "label": "Sub Menu Link 9",
           "condition": {
             "===": [
               {
@@ -349,7 +350,7 @@
         {
           "component": "text",
           "name": "submenu-text-10",
-          "label": "SubMenu Text 10",
+          "label": "Sub Menu Text 10",
           "condition": {
             "===": [
               {
@@ -362,7 +363,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-10",
-          "label": "SubMenu Link 10",
+          "label": "Sub Menu Link 10",
           "condition": {
             "===": [
               {
@@ -375,7 +376,7 @@
         {
           "component": "text",
           "name": "submenu-text-11",
-          "label": "SubMenu Text 11",
+          "label": "Sub Menu Text 11",
           "condition": {
             "===": [
               {
@@ -388,7 +389,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-11",
-          "label": "SubMenu Link 11",
+          "label": "Sub Menu Link 11",
           "condition": {
             "===": [
               {
@@ -401,7 +402,7 @@
         {
           "component": "text",
           "name": "submenu-text-12",
-          "label": "SubMenu Text 12",
+          "label": "Sub Menu Text 12",
           "condition": {
             "===": [
               {
@@ -414,7 +415,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-12",
-          "label": "SubMenu Link 12",
+          "label": "Sub Menu Link 12",
           "condition": {
             "===": [
               {
