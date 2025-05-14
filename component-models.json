@@ -836,14 +836,16 @@
         "valueType": "string",
         "fields": [
           {
-            "component": "text",
-            "name": "submenu-text-1",
-            "label": "Sub Menu Text 1"
+            "component": "text-input",
+            "label": "Simple Text 1",
+            "name": "text",
+            "valueType": "string"
           },
           {
-            "component": "aem-content",
-            "name": "submenu-link-1",
-            "label": "Sub Menu Link 1"
+            "component": "text-input",
+            "label": "Simple Text 2",
+            "name": "text2",
+            "valueType": "string"
           }
         ]
       },
