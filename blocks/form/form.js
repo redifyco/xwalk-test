@@ -1,9 +1,9 @@
+import {createLead} from "../../scripts/utils";
 export default async function decorate(block) {
     const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
     const title = block.querySelector(':scope > div:nth-child(2) p')?.textContent
     const subTitle = block.querySelector(':scope > div:nth-child(3) div')?.innerHTML
     const buttonText = block.querySelector(':scope > div:nth-child(4) p ')?.textContent
-    const buttonLink = block.querySelector(':scope > div:nth-child(5) a ')?.href
 
     const sectionContainer = document.createElement('section')
     sectionContainer.className = 'bg-secondary flex flex-col lg:flex-row'
@@ -26,34 +26,45 @@ export default async function decorate(block) {
         >
           <label for="field1"></label>
           <input
-            id="field1"
+            id="first_name"
             type="text"
             placeholder="*Name..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <label for="field2"></label>
           <input
-            id="field2"
+            id="last_name"
             type="text"
             placeholder="*Surname..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <label for="field3"></label>
           <input
-            id="field3"
+            id="email"
             type="text"
             placeholder="*Email..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <label for="field4"></label>
           <input
-            id="field4"
+            id="00NVj000001XF69"
             type="text"
             placeholder="*Language..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <!--CUSTOM BUTTON-->
-          <custom-link className="mt-10" color="white" href="${buttonLink}">${buttonText}</custom-link>
+          <custom-link
+            color="primary"
+            href="#"
+            onclick="event.preventDefault(); createLead(
+              document.getElementById('first_name').value,
+              document.getElementById('last_name').value,
+              document.getElementById('email').value,
+              document.getElementById('00NVj000001XF69').value
+            );"
+          >
+            ${buttonText}
+          </custom-link>
         </form>
       </div>
       <div class="w-full 2xl:w-1/2">
@@ -64,8 +75,6 @@ export default async function decorate(block) {
         />
       </div>
     `
-
     block.textContent = ''
     block.append(sectionContainer)
-
 }
