@@ -787,23 +787,6 @@
         "required": true
       },
       {
-        "component": "group",
-        "name": "text-pair",
-        "label": "Text Pair",
-        "fields": [
-          {
-            "component": "text",
-            "name": "primary-text",
-            "label": "Primary Text"
-          },
-          {
-            "component": "text",
-            "name": "secondary-text",
-            "label": "Secondary Text"
-          }
-        ]
-      },
-      {
         "component": "aem-content",
         "name": "link-button",
         "label": "Button Link",
@@ -844,6 +827,24 @@
   {
     "id": "menu-item-model",
     "fields": [
+      {
+        "component": "group",
+        "name": "text-pair",
+        "label": "Text Pair",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "text-prova",
+            "label": "First Level Text Item"
+          },
+          {
+            "component": "text",
+            "name": "secondary-text",
+            "label": "Secondary Text"
+          }
+        ]
+      },
       {
         "component": "reference",
         "valueType": "string",
