@@ -43,20 +43,6 @@
           }
         },
         {
-          "title": "Submenu",
-          "id": "submenu",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/text",
-                "template": {
-                  "model": "submenu"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Button",
           "id": "button",
           "plugins": {

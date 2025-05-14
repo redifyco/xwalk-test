@@ -16,22 +16,6 @@
     ]
   },
   {
-    "id": "submenu",
-    "fields": [
-      {
-        "component": "reference",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "imageAlt",
-        "label": "Alt Text"
-      }
-    ]
-  },
-  {
     "id": "title",
     "fields": [
       {
@@ -801,6 +785,23 @@
         "label": "Light Logo Image",
         "multi": false,
         "required": true
+      },
+      {
+        "component": "group",
+        "name": "text-pair",
+        "label": "Text Pair",
+        "fields": [
+          {
+            "component": "text",
+            "name": "primary-text",
+            "label": "Primary Text"
+          },
+          {
+            "component": "text",
+            "name": "secondary-text",
+            "label": "Secondary Text"
+          }
+        ]
       },
       {
         "component": "aem-content",
