@@ -91,8 +91,7 @@
   {
     "id": "header-filter",
     "components": [
-      "menu-item",
-      "submenu-item"
+      "menu-item"
     ]
   },
   {

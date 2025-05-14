@@ -30,21 +30,6 @@
           }
         }
       }
-    },
-    {
-      "title": "Submenu Item",
-      "id": "submenu-item",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item/submenu",
-            "template": {
-              "name": "Submenu Item",
-              "model": "menu-item-model"
-            }
-          }
-        }
-      }
     }
   ],
   "models": [
@@ -127,8 +112,7 @@
     {
       "id": "header-filter",
       "components": [
-        "menu-item",
-        "submenu-item"
+        "menu-item"
       ]
     }
   ]
