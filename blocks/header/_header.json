@@ -89,6 +89,23 @@
           "required": true
         }
       ]
+    },
+    {
+      "id": "menu-item-model",
+      "fields": [
+        {
+          "component": "text",
+          "name": "first-level-text-item",
+          "label": "First Level Text Item",
+          "required": true
+        },
+        {
+          "component": "aem-content",
+          "name": "first-level-link-item",
+          "label": "First Level Link Item",
+          "required": true
+        }
+      ]
     }
   ],
   "filters": [
