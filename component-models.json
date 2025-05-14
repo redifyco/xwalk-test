@@ -872,12 +872,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-1",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-1",
             "label": "Sub Menu Link"
           }
         ]
@@ -900,12 +900,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-2",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-2",
             "label": "Sub Menu Link"
           }
         ]
@@ -928,12 +928,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-3",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-3",
             "label": "Sub Menu Link"
           }
         ]
@@ -956,12 +956,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-4",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-4",
             "label": "Sub Menu Link"
           }
         ]
@@ -984,12 +984,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-5",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-5",
             "label": "Sub Menu Link"
           }
         ]
@@ -1012,12 +1012,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-6",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-6",
             "label": "Sub Menu Link"
           }
         ]
@@ -1040,12 +1040,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-7",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-7",
             "label": "Sub Menu Link"
           }
         ]
@@ -1068,40 +1068,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-8",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
-            "label": "Sub Menu Link"
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "condition": {
-          "===": [
-            {
-              "var": "submenu-toggle"
-            },
-            true
-          ]
-        },
-        "label": "Sub Menu 8",
-        "collapsible": true,
-        "name": "container-8",
-        "valueType": "string",
-        "fields": [
-          {
-            "component": "text",
-            "label": "Sub Menu Text",
-            "name": "submenu-text",
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-8",
             "label": "Sub Menu Link"
           }
         ]
@@ -1124,12 +1096,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-9",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-9",
             "label": "Sub Menu Link"
           }
         ]
@@ -1152,12 +1124,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-10",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-10",
             "label": "Sub Menu Link"
           }
         ]
@@ -1180,12 +1152,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-11",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-11",
             "label": "Sub Menu Link"
           }
         ]
@@ -1208,12 +1180,12 @@
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-12",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-12",
             "label": "Sub Menu Link"
           }
         ]
@@ -1230,18 +1202,18 @@
         },
         "label": "Sub Menu 13",
         "collapsible": true,
-        "name": "container-13",
+        "name": "container-12",
         "valueType": "string",
         "fields": [
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-13",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-13",
             "label": "Sub Menu Link"
           }
         ]
@@ -1258,18 +1230,18 @@
         },
         "label": "Sub Menu 14",
         "collapsible": true,
-        "name": "container-14",
+        "name": "container-13",
         "valueType": "string",
         "fields": [
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-14",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-14",
             "label": "Sub Menu Link"
           }
         ]
@@ -1286,18 +1258,18 @@
         },
         "label": "Sub Menu 15",
         "collapsible": true,
-        "name": "container-15",
+        "name": "container-14",
         "valueType": "string",
         "fields": [
           {
             "component": "text",
             "label": "Sub Menu Text",
-            "name": "submenu-text",
+            "name": "submenu-text-15",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "name": "submenu-link",
+            "name": "submenu-link-15",
             "label": "Sub Menu Link"
           }
         ]
