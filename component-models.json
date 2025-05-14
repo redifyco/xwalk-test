@@ -828,22 +828,24 @@
     "id": "menu-item-model",
     "fields": [
       {
-        "component": "text",
-        "name": "first-level-text-item",
-        "label": "First Level Text Item",
-        "required": true
-      },
-      {
-        "component": "text",
-        "name": "first-level-text-item",
-        "label": "First Level Text Item",
-        "required": true
-      },
-      {
-        "component": "aem-content",
-        "name": "first-level-link-item",
-        "label": "First Level Link Item",
-        "required": true
+        "component": "container",
+        "label": "First Level Menu",
+        "collapsible": false,
+        "name": "first-level-items",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "label": "First Level Menu Text",
+            "name": "first-level-menu-text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "name": "first-level-menu-text",
+            "label": "First Level Menu Text"
+          }
+        ]
       },
       {
         "component": "boolean",
