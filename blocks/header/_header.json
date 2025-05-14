@@ -94,6 +94,42 @@
       "id": "menu-item-model",
       "fields": [
         {
+          "groups": [
+            {
+              "title": "General Components",
+              "id": "general",
+              "components": [
+                {
+                  "title": "Text",
+                  "id": "text",
+                  "model": "text",
+                  "filter": "texts",
+                  "plugins": {
+                    "aem": {
+                      "page": {
+                        "resourceType": "wknd/components/text",
+                        "template": {
+                          "text": "Default Text",
+                          "name": "Text"
+                        }
+                      }
+                    },
+                    "aem65": {
+                      "page": {
+                        "resourceType": "wknd/components/text",
+                        "template": {
+                          "text": "Default Text",
+                          "name": "Text"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
           "component": "text",
           "name": "first-level-text-item",
           "label": "First Level Text Item",
@@ -109,13 +145,13 @@
           "component": "boolean",
           "valueType": "string",
           "name": "submenu-toggle",
-          "label": "SubMenu items",
+          "label": "Sub Menu items",
           "value": false
         },
         {
           "component": "text",
           "name": "submenu-text-1",
-          "label": "SubMenu Text 1",
+          "label": "Sub Menu Text 1",
           "condition": {
             "===": [
               {
@@ -128,293 +164,7 @@
         {
           "component": "aem-content",
           "name": "submenu-link-1",
-          "label": "SubMenu Link 1",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-2",
-          "label": "SubMenu Text 2",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-2",
-          "label": "SubMenu Link 2",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-3",
-          "label": "SubMenu Text 3",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-3",
-          "label": "SubMenu Link 3",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-4",
-          "label": "SubMenu Text 4",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-4",
-          "label": "SubMenu Link 4",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-5",
-          "label": "SubMenu Text 5",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-5",
-          "label": "SubMenu Link 5",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-6",
-          "label": "SubMenu Text 6",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-6",
-          "label": "SubMenu Link 6",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-7",
-          "label": "SubMenu Text 7",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-7",
-          "label": "SubMenu Link 7",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-8",
-          "label": "SubMenu Text 8",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-8",
-          "label": "SubMenu Link 8",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-9",
-          "label": "SubMenu Text 9",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-9",
-          "label": "SubMenu Link 9",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-10",
-          "label": "SubMenu Text 10",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-10",
-          "label": "SubMenu Link 10",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-11",
-          "label": "SubMenu Text 11",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-11",
-          "label": "SubMenu Link 11",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "text",
-          "name": "submenu-text-12",
-          "label": "SubMenu Text 12",
-          "condition": {
-            "===": [
-              {
-                "var": "submenu-toggle"
-              },
-              true
-            ]
-          }
-        },
-        {
-          "component": "aem-content",
-          "name": "submenu-link-12",
-          "label": "SubMenu Link 12",
+          "label": "Sub Menu Link 1",
           "condition": {
             "===": [
               {
