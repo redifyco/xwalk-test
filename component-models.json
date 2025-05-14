@@ -828,20 +828,38 @@
     "id": "menu-item-model",
     "fields": [
       {
-        "component": "group",
-        "name": "text-pair",
-        "label": "Text Pair",
-        "multi": true,
-        "fields": [
+        "groups": [
           {
-            "component": "text",
-            "name": "text-prova",
-            "label": "First Level Text Item"
-          },
-          {
-            "component": "text",
-            "name": "secondary-text",
-            "label": "Secondary Text"
+            "title": "General Components",
+            "id": "general",
+            "components": [
+              {
+                "title": "Text",
+                "id": "text",
+                "model": "text",
+                "filter": "texts",
+                "plugins": {
+                  "aem": {
+                    "page": {
+                      "resourceType": "wknd/components/text",
+                      "template": {
+                        "text": "Default Text",
+                        "name": "Text"
+                      }
+                    }
+                  },
+                  "aem65": {
+                    "page": {
+                      "resourceType": "wknd/components/text",
+                      "template": {
+                        "text": "Default Text",
+                        "name": "Text"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         ]
       },
