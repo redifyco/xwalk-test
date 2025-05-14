@@ -295,24 +295,24 @@ export async function loadGoogleMaps(apiKey) {
 }
 
 export function createLead(first_name, surname, email, language) {
-  fetch('/createlead', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ first_name, last_name, email, language })
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Errore nella richiesta');
-      }
-      return response.json();
+    fetch('/createlead', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({first_name, last_name, email, language})
     })
-    .then(data => {
-      console.log('Lead creato con successo:', data);
-      // qui puoi aggiungere un redirect o una notifica
-    })
-    .catch(error => {
-      console.error('Errore durante la creazione del lead:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Errore nella richiesta');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Lead creato con successo:', data);
+            // qui puoi aggiungere un redirect o una notifica
+        })
+        .catch(error => {
+            console.error('Errore durante la creazione del lead:', error);
+        });
 }
