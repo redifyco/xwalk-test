@@ -22,26 +22,25 @@
       "plugins": {
         "xwalk": {
           "page": {
-            "resourceType": "core/franklin/components/block/v1/block",
+            "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Menu Item",
-              "model": "menu-item-model",
-              "filter": "menu-item-filter"
+              "model": "menu-item-model"
             }
           }
         }
       }
     },
     {
-      "title": "SubMenu Item",
+      "title": "Submenu Item",
       "id": "submenu-item",
       "plugins": {
         "xwalk": {
           "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
+            "resourceType": "core/franklin/components/block/v1/block/item/submenu",
             "template": {
-              "name": "SubMenu Item",
-              "model": "submenu-item-model"
+              "name": "Submenu Item",
+              "model": "menu-item-model"
             }
           }
         }
@@ -122,75 +121,13 @@
           "required": true
         }
       ]
-    },
-    {
-      "id": "submenu-item-model",
-      "fields": [
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "logo-image-dark",
-          "label": "Dark Logo Image",
-          "multi": false,
-          "required": true
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "logo-image-light",
-          "label": "Light Logo Image",
-          "multi": false,
-          "required": true
-        },
-        {
-          "component": "aem-content",
-          "name": "link-button",
-          "label": "Button Link",
-          "required": true
-        },
-        {
-          "component": "text",
-          "name": "link-text",
-          "label": "Button Text",
-          "required": true
-        },
-        {
-          "component": "aem-content",
-          "name": "facebook-social",
-          "label": "Facebook Link",
-          "required": true
-        },
-        {
-          "component": "aem-content",
-          "name": "instagram-social",
-          "label": "Instagram Link",
-          "required": true
-        },
-        {
-          "component": "aem-content",
-          "name": "linkedin-social",
-          "label": "Linkedin Link",
-          "required": true
-        },
-        {
-          "component": "aem-content",
-          "name": "youtube-social",
-          "label": "Youtube Link",
-          "required": true
-        }
-      ]
     }
   ],
   "filters": [
     {
       "id": "header-filter",
       "components": [
-        "menu-item"
-      ]
-    },
-    {
-      "id": "menu-item-filter",
-      "components": [
+        "menu-item",
         "submenu-item"
       ]
     }

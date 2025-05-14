@@ -91,12 +91,7 @@
   {
     "id": "header-filter",
     "components": [
-      "menu-item"
-    ]
-  },
-  {
-    "id": "menu-item-filter",
-    "components": [
+      "menu-item",
       "submenu-item"
     ]
   },

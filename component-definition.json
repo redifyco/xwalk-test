@@ -349,26 +349,25 @@
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
+                "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Menu Item",
-                  "model": "menu-item-model",
-                  "filter": "menu-item-filter"
+                  "model": "menu-item-model"
                 }
               }
             }
           }
         },
         {
-          "title": "SubMenu Item",
+          "title": "Submenu Item",
           "id": "submenu-item",
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
+                "resourceType": "core/franklin/components/block/v1/block/item/submenu",
                 "template": {
-                  "name": "SubMenu Item",
-                  "model": "submenu-item-model"
+                  "name": "Submenu Item",
+                  "model": "menu-item-model"
                 }
               }
             }
