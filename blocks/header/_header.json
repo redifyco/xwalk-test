@@ -89,6 +89,47 @@
           "required": true
         }
       ]
+    },
+    {
+      "id": "menu-item-model",
+      "fields": [
+        {
+          "component": "aem-content",
+          "name": "link-button",
+          "label": "Button Link",
+          "required": true
+        },
+        {
+          "component": "text",
+          "name": "link-text",
+          "label": "Button Text",
+          "required": true
+        },
+        {
+          "component": "aem-content",
+          "name": "facebook-social",
+          "label": "Facebook Link",
+          "required": true
+        },
+        {
+          "component": "aem-content",
+          "name": "instagram-social",
+          "label": "Instagram Link",
+          "required": true
+        },
+        {
+          "component": "aem-content",
+          "name": "linkedin-social",
+          "label": "Linkedin Link",
+          "required": true
+        },
+        {
+          "component": "aem-content",
+          "name": "youtube-social",
+          "label": "Youtube Link",
+          "required": true
+        }
+      ]
     }
   ],
   "filters": [
