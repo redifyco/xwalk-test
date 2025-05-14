@@ -97,7 +97,6 @@
           "component": "container",
           "label": "Container",
           "collapsible": false,
-          "multi": true,
           "name": "container",
           "valueType": "string",
           "fields": [
