@@ -352,7 +352,8 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Menu Item",
-                  "model": "menu-item-model"
+                  "model": "menu-item-model",
+                  "filter": "menu-item-filter"
                 }
               }
             }

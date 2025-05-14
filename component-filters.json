@@ -95,7 +95,7 @@
     ]
   },
   {
-    "id": "menu-item",
+    "id": "menu-item-filter",
     "components": [
       "submenu-item"
     ]
