@@ -828,40 +828,27 @@
     "id": "menu-item-model",
     "fields": [
       {
-        "groups": [
+        "component": "group",
+        "name": "text-pair",
+        "label": "Text Pair",
+        "fields": [
           {
-            "title": "General Components",
-            "id": "general",
-            "components": [
-              {
-                "title": "Text",
-                "id": "text",
-                "model": "text",
-                "filter": "texts",
-                "plugins": {
-                  "aem": {
-                    "page": {
-                      "resourceType": "wknd/components/text",
-                      "template": {
-                        "text": "Default Text",
-                        "name": "Text"
-                      }
-                    }
-                  },
-                  "aem65": {
-                    "page": {
-                      "resourceType": "wknd/components/text",
-                      "template": {
-                        "text": "Default Text",
-                        "name": "Text"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
+            "component": "text",
+            "name": "primary-text",
+            "label": "Primary Text"
+          },
+          {
+            "component": "text",
+            "name": "secondary-text",
+            "label": "Secondary Text"
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "first-level-text-item",
+        "label": "First Level Text Item",
+        "required": true
       },
       {
         "component": "text",
