@@ -14,6 +14,9 @@
           "...": "./_image.json#/definitions"
         },
         {
+          "...": "./_submenu.json#/definitions"
+        },
+        {
           "...": "./_button.json#/definitions"
         }
       ]

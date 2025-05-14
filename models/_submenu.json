@@ -1,0 +1,36 @@
+{
+  "definitions": [
+    {
+      "title": "Submenu",
+      "id": "submenu",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/text",
+            "template": {
+              "model": "submenu"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "submenu",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "imageAlt",
+          "label": "Alt Text"
+        }
+      ]
+    }
+  ]
+}

@@ -94,6 +94,13 @@
       "id": "menu-item-model",
       "fields": [
         {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
           "component": "text",
           "name": "first-level-text-item",
           "label": "First Level Text Item",
