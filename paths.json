@@ -2,7 +2,8 @@
   "mappings": [
     "/content/publictest/:/",
     "/content/publictest/configuration:/.helix/config.json",
-    "/content/publictest/metadata:/metadata.json"
+    "/content/publictest/metadata:/metadata.json",
+    "/content/publictest/focus-area:/focus-area.json"
   ],
   "includes": [
     "/content/publictest/"
