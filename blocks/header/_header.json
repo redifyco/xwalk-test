@@ -41,16 +41,14 @@
           "valueType": "string",
           "name": "logo-image-dark",
           "label": "Dark Logo Image",
-          "multi": false,
-          "required": true
+          "multi": false
         },
         {
           "component": "reference",
           "valueType": "string",
           "name": "logo-image-light",
           "label": "Light Logo Image",
-          "multi": false,
-          "required": true
+          "multi": false
         },
         {
           "component": "aem-content",
