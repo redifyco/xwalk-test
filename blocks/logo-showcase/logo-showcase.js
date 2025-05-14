@@ -15,9 +15,6 @@ export default async function decorate(block) {
     const containerSection = document.createElement('section')
     containerSection.className = `flex flex-col items-center justify-center gap-8 px-4 py-14 text-center lg:gap-16 lg:px-16 lg:py-24 ${buildHeight(mobileHeight, desktopHeight)}`
 
-    console.log('block', block)
-    console.log('items', processDivsToObject(items))
-
     containerSection.innerHTML = `
       <div class="text-primary prose-em:font-joyful text-3xl uppercase lg:text-7xl">
         ${title}
@@ -76,7 +73,6 @@ export default async function decorate(block) {
         items.forEach(item => item.classList.add('hidden'));
     }
 
-    // block.textContent = "";
     block.append(containerSection)
 }
 
@@ -103,34 +99,3 @@ function processDivsToObject(divs) {
 
     return result;
 }
-
-
-/*
-<div className="relative w-full overflow-hidden">
-    <!-- Mobile carousel -->
-    <div className="flex xl:hidden items-center gap-10 w-max animate-[slide_10s_linear_infinite]">
-        ${[...partnersData, ...partnersData]
-        .map((item) => {
-            if (!item.image || !item.title || !item.link) return "";
-            return `
-                <a class="size-20 md:size-28 lg:size-36 flex items-center" href="${item.link}">
-                  <img class="object-contain h-16 md:h-28 lg:h-32 w-auto bg-contain" src="${item.image}" alt="${item.title}" />
-                </a>`;
-        })
-        .join("")}
-    </div>
-    <!-- Desktop carousel -->
-    <div className="hidden xl:flex gap-10 py-20 justify-center">
-        ${partnersData
-        .map((item, index) => {
-            if (!item.image || !item.title || !item.link) return "";
-            const translation =
-                index % 2 === 0 ? "translate-y-0" : "-translate-y-20";
-            return `
-                <a class="size-48 flex ${translation}" href="${item.link}">
-                  <img class="object-contain h-48 w-auto bg-contain" src="${item.image}" alt="${item.title}" />
-                </a>`;
-        })
-        .join("")}
-    </div>
-</div>*/
