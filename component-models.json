@@ -828,21 +828,11 @@
     "id": "menu-item-model",
     "fields": [
       {
-        "component": "group",
-        "name": "text-pair",
-        "label": "Text Pair",
-        "fields": [
-          {
-            "component": "text",
-            "name": "primary-text",
-            "label": "Primary Text"
-          },
-          {
-            "component": "text",
-            "name": "secondary-text",
-            "label": "Secondary Text"
-          }
-        ]
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
       },
       {
         "component": "text",

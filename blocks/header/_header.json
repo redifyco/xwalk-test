@@ -30,42 +30,6 @@
           }
         }
       }
-    },
-    {
-      "groups": [
-        {
-          "title": "General Components",
-          "id": "general",
-          "components": [
-            {
-              "title": "Text",
-              "id": "text",
-              "model": "text",
-              "filter": "texts",
-              "plugins": {
-                "aem": {
-                  "page": {
-                    "resourceType": "wknd/components/text",
-                    "template": {
-                      "text": "Default Text",
-                      "name": "Text"
-                    }
-                  }
-                },
-                "aem65": {
-                  "page": {
-                    "resourceType": "wknd/components/text",
-                    "template": {
-                      "text": "Default Text",
-                      "name": "Text"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      ]
     }
   ],
   "models": [
@@ -130,21 +94,11 @@
       "id": "menu-item-model",
       "fields": [
         {
-          "component": "group",
-          "name": "text-pair",
-          "label": "Text Pair",
-          "fields": [
-            {
-              "component": "text",
-              "name": "primary-text",
-              "label": "Primary Text"
-            },
-            {
-              "component": "text",
-              "name": "secondary-text",
-              "label": "Secondary Text"
-            }
-          ]
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
         },
         {
           "component": "text",
