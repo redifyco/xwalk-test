@@ -130,7 +130,7 @@
           },
           "label": "Sub Menu 1",
           "collapsible": true,
-          "name": "container",
+          "name": "container-1",
           "valueType": "string",
           "fields": [
             {
@@ -158,7 +158,7 @@
           },
           "label": "Sub Menu 2",
           "collapsible": true,
-          "name": "container",
+          "name": "container-2",
           "valueType": "string",
           "fields": [
             {
