@@ -96,8 +96,8 @@
         {
           "component": "reference",
           "valueType": "string",
-          "name": "image",
-          "label": "Image",
+          "name": "submenu",
+          "label": "Submenu",
           "multi": false
         },
         {
