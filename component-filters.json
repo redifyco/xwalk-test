@@ -89,12 +89,6 @@
     ]
   },
   {
-    "id": "header-filter",
-    "components": [
-      "menu-item"
-    ]
-  },
-  {
     "id": "logo-showcase-filter",
     "components": [
       "logo-item"
