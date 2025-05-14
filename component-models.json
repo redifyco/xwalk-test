@@ -812,7 +812,8 @@
         "component": "aem-content",
         "name": "linkedin-social",
         "label": "Linkedin Link",
-        "required": true
+        "required": true,
+        "value": "https://www.linkedin.com/company/yourcompany"
       },
       {
         "component": "aem-content",
