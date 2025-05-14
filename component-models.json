@@ -841,10 +841,9 @@
             "valueType": "string"
           },
           {
-            "component": "text",
-            "label": "Simple Text 2",
-            "name": "text2",
-            "valueType": "string"
+            "component": "aem-content",
+            "name": "submenu-link-1",
+            "label": "Sub Menu Link 1"
           }
         ]
       },
