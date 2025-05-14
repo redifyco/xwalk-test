@@ -1,5 +1,6 @@
 import {createLead} from "../../scripts/utils";
-export default async function decorate(block) {
+
+export default function decorate(block) {
     const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
     const title = block.querySelector(':scope > div:nth-child(2) p')?.textContent
     const subTitle = block.querySelector(':scope > div:nth-child(3) div')?.innerHTML
