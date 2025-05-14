@@ -4,7 +4,6 @@
     "components": [
       "section",
       "header",
-      "header-block",
       "footer",
       "logo-showcase"
     ]
