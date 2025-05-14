@@ -96,18 +96,18 @@
         {
           "component": "container",
           "label": "Container",
-          "collapsible": false,
+          "collapsible": true,
           "name": "container",
           "valueType": "string",
           "fields": [
             {
-              "component": "text-input",
+              "component": "text",
               "label": "Simple Text 1",
               "name": "text",
               "valueType": "string"
             },
             {
-              "component": "text-input",
+              "component": "text",
               "label": "Simple Text 2",
               "name": "text2",
               "valueType": "string"
