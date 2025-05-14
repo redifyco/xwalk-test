@@ -545,7 +545,8 @@
     {
       "id": "header-filter",
       "components": [
-        "menu-item"
+        "menu-item",
+        "logo-showcase"
       ]
     }
   ]
