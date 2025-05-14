@@ -108,8 +108,8 @@
             },
             {
               "component": "aem-content",
-              "name": "first-level-menu-text",
-              "label": "First Level Menu Text"
+              "name": "first-level-menu-link",
+              "label": "First Level Menu Link"
             }
           ]
         },
