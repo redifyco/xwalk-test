@@ -810,7 +810,7 @@
         "name": "instagram-social",
         "label": "Instagram Link",
         "required": true,
-        "value": " "
+        "value": "Empty"
       },
       {
         "component": "aem-content",
