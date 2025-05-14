@@ -828,41 +828,6 @@
     "id": "menu-item-model",
     "fields": [
       {
-        "component": "container",
-        "condition": {
-          "===": [
-            {
-              "var": "submenu-toggle"
-            },
-            true
-          ]
-        },
-        "label": "Container",
-        "collapsible": true,
-        "name": "container",
-        "valueType": "string",
-        "fields": [
-          {
-            "component": "text",
-            "label": "Simple Text 1",
-            "name": "text",
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "name": "submenu-link-1",
-            "label": "Sub Menu Link 1"
-          }
-        ]
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
         "component": "text",
         "name": "first-level-text-item",
         "label": "First Level Text Item",
@@ -888,9 +853,7 @@
         "value": false
       },
       {
-        "component": "text",
-        "name": "submenu-text-1",
-        "label": "Sub Menu Text 1",
+        "component": "container",
         "condition": {
           "===": [
             {
@@ -898,12 +861,27 @@
             },
             true
           ]
-        }
+        },
+        "label": "Sub Menu 1",
+        "collapsible": true,
+        "name": "container",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Sub Menu Text",
+            "name": "submenu-text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "name": "submenu-link",
+            "label": "Sub Menu Link"
+          }
+        ]
       },
       {
-        "component": "aem-content",
-        "name": "submenu-link-1",
-        "label": "Sub Menu Link 1",
+        "component": "container",
         "condition": {
           "===": [
             {
@@ -911,7 +889,164 @@
             },
             true
           ]
-        }
+        },
+        "label": "Sub Menu 2",
+        "collapsible": true,
+        "name": "container",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Sub Menu Text",
+            "name": "submenu-text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "name": "submenu-link",
+            "label": "Sub Menu Link"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "condition": {
+          "===": [
+            {
+              "var": "submenu-toggle"
+            },
+            true
+          ]
+        },
+        "label": "Sub Menu 3",
+        "collapsible": true,
+        "name": "container",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Sub Menu Text",
+            "name": "submenu-text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "name": "submenu-link",
+            "label": "Sub Menu Link"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "condition": {
+          "===": [
+            {
+              "var": "submenu-toggle"
+            },
+            true
+          ]
+        },
+        "label": "Sub Menu 4",
+        "collapsible": true,
+        "name": "container",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Sub Menu Text",
+            "name": "submenu-text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "name": "submenu-link",
+            "label": "Sub Menu Link"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "condition": {
+          "===": [
+            {
+              "var": "submenu-toggle"
+            },
+            true
+          ]
+        },
+        "label": "Sub Menu 5",
+        "collapsible": true,
+        "name": "container",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Sub Menu Text",
+            "name": "submenu-text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "name": "submenu-link",
+            "label": "Sub Menu Link"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "condition": {
+          "===": [
+            {
+              "var": "submenu-toggle"
+            },
+            true
+          ]
+        },
+        "label": "Sub Menu 6",
+        "collapsible": true,
+        "name": "container",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Sub Menu Text",
+            "name": "submenu-text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "name": "submenu-link",
+            "label": "Sub Menu Link"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "condition": {
+          "===": [
+            {
+              "var": "submenu-toggle"
+            },
+            true
+          ]
+        },
+        "label": "Sub Menu 7",
+        "collapsible": true,
+        "name": "container",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Sub Menu Text",
+            "name": "submenu-text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "name": "submenu-link",
+            "label": "Sub Menu Link"
+          }
+        ]
       }
     ]
   },
