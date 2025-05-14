@@ -359,6 +359,21 @@
           }
         },
         {
+          "title": "SubMenu Item",
+          "id": "submenu-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "SubMenu Item",
+                  "model": "submenu-item-model"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "plugins": {

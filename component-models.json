@@ -828,39 +828,15 @@
     "id": "menu-item-model",
     "fields": [
       {
-        "component": "aem-content",
-        "name": "link-button",
-        "label": "Button Link",
-        "required": true
-      },
-      {
         "component": "text",
-        "name": "link-text",
-        "label": "Button Text",
+        "name": "first-level-text-item",
+        "label": "First Level Text Item",
         "required": true
       },
       {
         "component": "aem-content",
-        "name": "facebook-social",
-        "label": "Facebook Link",
-        "required": true
-      },
-      {
-        "component": "aem-content",
-        "name": "instagram-social",
-        "label": "Instagram Link",
-        "required": true
-      },
-      {
-        "component": "aem-content",
-        "name": "linkedin-social",
-        "label": "Linkedin Link",
-        "required": true
-      },
-      {
-        "component": "aem-content",
-        "name": "youtube-social",
-        "label": "Youtube Link",
+        "name": "first-level-link-item",
+        "label": "First Level Link Item",
         "required": true
       }
     ]

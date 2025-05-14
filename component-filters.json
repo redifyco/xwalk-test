@@ -95,6 +95,12 @@
     ]
   },
   {
+    "id": "menu-item",
+    "components": [
+      "submenu-item"
+    ]
+  },
+  {
     "id": "logo-showcase-filter",
     "components": [
       "logo-item"
