@@ -328,6 +328,37 @@
           }
         },
         {
+          "title": "Header Block",
+          "id": "header-block",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Header Block",
+                  "filter": "header-block-filter",
+                  "model": "header-block-model"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Menu Item",
+          "id": "menu-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Menu Item",
+                  "model": "menu-item-model"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "plugins": {

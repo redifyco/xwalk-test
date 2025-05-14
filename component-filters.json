@@ -4,6 +4,7 @@
     "components": [
       "section",
       "header",
+      "header-block",
       "footer",
       "logo-showcase"
     ]
@@ -86,6 +87,12 @@
     "id": "contact-info-filter",
     "components": [
       "contact-item"
+    ]
+  },
+  {
+    "id": "header-block-filter",
+    "components": [
+      "menu-item"
     ]
   },
   {
