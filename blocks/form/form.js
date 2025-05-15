@@ -1,4 +1,4 @@
-import {createLead} from "../../scripts/utils";
+import {createLead} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
     const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
