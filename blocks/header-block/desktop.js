@@ -116,7 +116,7 @@ function generateMenuItem(item) {
 function generateSubMenu(item) {
     if (!item.isSubMenu) return '';
     return `
-        <ul class="absolute shadow-md transition-all duration-300 top-16 left-0 bg-white px-6 py-4 min-w-72 opacity-0 pointer-events-none">
+        <ul class="absolute shadow-md transition-all max-h-[80vh] overflow-scroll duration-300 top-16 left-0 bg-white px-6 py-4 min-w-72 opacity-0 pointer-events-none">
             ${item.subMenuItems.map(submenuItem => `
                 <li class="flex py-2 items-center gap-1">
                     ${submenuItem.subMenuLink
