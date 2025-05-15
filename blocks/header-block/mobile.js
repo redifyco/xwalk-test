@@ -5,7 +5,7 @@ export default function getMobileHeaderBlock(block, menuItems, logo, button, soc
     const mobileMenu = document.createElement('nav');
     mobileMenu.className = 'w-full fixed z-20';
     mobileMenu.innerHTML = `
-        <div id="menu" class="flex items-center justify-between bg-white h-full !py-8 container-layout-padding">
+        <div id="menu" class="flex shadow-md items-center justify-between bg-white h-full !py-8 container-layout-padding">
             <button id="hamburger-menu-closed">
                 <ion-icon size="large" class="text-primary" name="menu-outline"></ion-icon>
             </button>
