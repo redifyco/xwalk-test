@@ -111,7 +111,7 @@
     "id": "blog-preview-model",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "title",
         "label": "Title"
@@ -151,10 +151,33 @@
         }
       },
       {
-        "component": "number",
+        "component": "container",
+        "label": "API Configuration",
+        "collapsible": false,
+        "name": "api-configuration",
         "valueType": "string",
-        "name": "items-to-show",
-        "label": "Items to Show"
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "API-URL",
+            "label": "API URL"
+          },
+          {
+            "component": "number",
+            "valueType": "string",
+            "name": "items-to-show",
+            "label": "Items to Show",
+            "condition": {
+              "===": [
+                {
+                  "var": "load-more-button"
+                },
+                true
+              ]
+            }
+          }
+        ]
       },
       {
         "component": "select",
