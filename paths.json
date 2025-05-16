@@ -3,7 +3,8 @@
     "/content/publictest/:/",
     "/content/publictest/configuration:/.helix/config.json",
     "/content/publictest/metadata:/metadata.json",
-    "/content/cq:tags/msc-foundation/focus-area:/focus-area.json"
+    "/content/publictest/focus-area:/focus-area.json",
+    "/content/publictest/news-categories:/news-categories.json"
   ],
   "includes": [
     "/content/publictest/"
