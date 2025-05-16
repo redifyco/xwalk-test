@@ -160,9 +160,7 @@ export class ArticleCard extends HTMLElement {
         const icons = this.getAttribute('icons') ? this.getAttribute('icons').split(',') : [];
         const date = this.getAttribute('date') || [];
         const href = this.getAttribute('href') || [];
-
-        console.log('topLabel', returnStatusLabel(topLabel))
-
+        
         const formatDate = (dateString) => {
             if (!dateString) return '';
             const date = new Date(dateString);
