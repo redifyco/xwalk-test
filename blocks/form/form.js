@@ -1,4 +1,6 @@
+import '../../scripts/customTag.js'
 import {createLead} from "../../scripts/utils.js";
+
 
 export default async function decorate(block) {
     const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
@@ -54,18 +56,13 @@ export default async function decorate(block) {
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <!--CUSTOM BUTTON-->
-          <custom-link
+          <custom-button
             color="primary"
             href="#"
-            onclick="event.preventDefault(); createLead(
-              document.getElementById('first_name').value,
-              document.getElementById('last_name').value,
-              document.getElementById('email').value,
-              document.getElementById('00NVj000001XF69').value
-            );"
+            id="custom-button-form"
           >
             ${buttonText}
-          </custom-link>
+          </custom-button>
         </form>
       </div>
       <div class="w-full 2xl:w-1/2">
@@ -76,6 +73,17 @@ export default async function decorate(block) {
         />
       </div>
     `
+
+    sectionContainer.querySelector('#custom-button-form').addEventListener('click', async (e) => {
+        e.preventDefault()
+        createLead(
+            document.getElementById('first_name').value,
+            document.getElementById('last_name').value,
+            document.getElementById('email').value,
+            document.getElementById('00NVj000001XF69').value
+        )
+    })
+
     block.textContent = ''
     block.append(sectionContainer)
 }

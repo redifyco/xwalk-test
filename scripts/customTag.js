@@ -3,6 +3,7 @@ export class CustomButton extends HTMLElement {
         const label = this.textContent.trim() || '';
         const color = this.getAttribute('color') || 'primary'
         const id = this.getAttribute('id') || ''
+
         const className = this.getAttribute('className') || ''
         const callback = this.getAttribute('callback') || ''
 
@@ -117,9 +118,10 @@ export class SocialIcons extends HTMLElement {
         const instagramLink = this.getAttribute('instagram') === 'undefined' ? false : this.getAttribute('instagram');
         const linkedinLink = this.getAttribute('linkedin') === 'undefined' ? false : this.getAttribute('linkedin');
         const youtubeLink = this.getAttribute('youtube') === 'undefined' ? false : this.getAttribute('youtube');
+        const className = this.getAttribute('className')
 
         this.innerHTML = `
-      <div class="text-white gap-2 flex items-center">
+      <div class="text-white gap-2 flex items-center ${className}">
         ${facebookLink ? `
         <a href="${facebookLink}">
           <ion-icon size="large" name="logo-facebook"></ion-icon>

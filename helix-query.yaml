@@ -32,3 +32,20 @@ indices:
         selectFirst: main picture img
         value: attribute(el, "src")
 
+  news:
+    include:
+      - '/news/**'
+    exclude:
+      - '/news'
+    target: /news-index.json
+    properties:
+      title:
+        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
+        value: innerHTML(el)
+      pageType:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
+      thumbImg:
+        selectFirst: main picture img
+        value: attribute(el, "src")
+
