@@ -61,9 +61,24 @@
           }
         },
         {
+          "component": "select",
+          "name": "card-style",
+          "label": "Card Style",
+          "options": [
+            {
+              "name": "Primary",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary",
+              "value": "secondary"
+            }
+          ]
+        },
+        {
           "component": "container",
           "label": "API Configuration",
-          "collapsible": false,
+          "collapsible": true,
           "name": "api-configuration",
           "valueType": "string",
           "fields": [
@@ -86,21 +101,6 @@
                   true
                 ]
               }
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "name": "card-style",
-          "label": "Card Style",
-          "options": [
-            {
-              "name": "Primary",
-              "value": "primary"
-            },
-            {
-              "name": "Secondary",
-              "value": "secondary"
             }
           ]
         }
