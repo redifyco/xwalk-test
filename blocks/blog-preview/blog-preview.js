@@ -11,27 +11,7 @@ export default async function decorate(block) {
     const cardStyle = block.querySelector(':scope > div:nth-child(6) div p')?.textContent || 'primary'
 
     console.log('resultData', data)
-
-    const mockCardsData = [
-        {
-            title: '2024 Highlights: Advancing Science and Building Pathways for Progress',
-            subTitle: 'MSC FOUNDATION & MAREVIVO',
-            backgroundImage: '/assets/images/marevivo-2.jpeg',
-            topLabel: 'Ongoing',
-            icons: ['/assets/icons/environmental.svg', '/assets/icons/education.svg'],
-            date: new Date('2023-10-01'),
-            href: 'https://google.com'
-        },
-        {
-            title: 'Formentera Seagrass Restoration Programme',
-            subTitle: 'MSC FOUNDATION & MISSION BLUE',
-            backgroundImage: '/assets/images/education.jpeg',
-            topLabel: 'Complete',
-            icons: ['/assets/icons/environmental.svg', '/assets/icons/education.svg', '/assets/icons/emergency.svg'],
-            date: new Date('2025-10-10'),
-            href: 'https://www.stripe.com'
-        }
-    ]
+    
 
     const sectionContainer = document.createElement('section');
     sectionContainer.className = ''
