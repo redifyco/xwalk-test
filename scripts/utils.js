@@ -294,7 +294,7 @@ export async function loadGoogleMaps(apiKey) {
     return Promise.resolve();
 }
 
-export function createLead(first_name, surname, email, language) {
+export function createLead(first_name, last_name, email, language) {
     fetch('/createlead', {
         method: 'POST',
         headers: {
