@@ -316,3 +316,16 @@ export function createLead(first_name, last_name, email, language) {
             console.error('Errore durante la creazione del lead:', error);
         });
 }
+
+/*Fetch Programmes single pages from programs-index.json */
+export async function getProgrammesPages(limit = 5) {
+    const queryParams = new URLSearchParams({
+        limit: limit.toString(),
+    });
+
+    return await fetch(`/programs-index.json?${queryParams.toString()}`, {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .catch(error => console.error('Error fetching programmes:', error));
+}

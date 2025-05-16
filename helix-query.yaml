@@ -21,6 +21,9 @@ indices:
     exclude:
       - '/programmes'
     target: /programs-index.json
+    query:
+      limit: 5
+      offset: 0
     properties:
       title:
         select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
@@ -38,6 +41,10 @@ indices:
     exclude:
       - '/news'
     target: /news-index.json
+    query:
+      limit: 10
+      offset: 0
+      filter: "properties.pageType eq 'article'"
     properties:
       title:
         select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
