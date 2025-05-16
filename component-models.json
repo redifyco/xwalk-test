@@ -193,26 +193,6 @@
             }
           }
         ]
-      },
-      {
-        "component": "container",
-        "label": "Sub Menu 2",
-        "collapsible": true,
-        "name": "container-212",
-        "valueType": "string",
-        "fields": [
-          {
-            "component": "text",
-            "label": "Sub Menu Text",
-            "name": "submenu-text-211",
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "name": "submenu-link-22223",
-            "label": "Sub Menu Link"
-          }
-        ]
       }
     ]
   },
