@@ -100,22 +100,22 @@ export default function decorate(block) {
             button.addEventListener("click", () => setState({currentTab: tabIndex}));
         });
 
-        // block.appendChild(backgroundImageHTML);
-        // block.appendChild(containerSection);
+        block.appendChild(backgroundImageHTML);
+        block.appendChild(containerSection);
     }
 
-    /* const aemEnv = block.getAttribute('data-aue-resource');
-     if (!aemEnv) {
-         block.textContent = '';
-     } else {
-         const image = block.querySelector(":scope > div:nth-child(1) img");
-         const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+2):nth-child(-n+11)");
-         const CTABox = block.querySelectorAll(":scope > div:nth-child(n+12):nth-child(-n+15)");
-         firstInfoBoxes.forEach(item => item.classList.add('hidden'));
-         CTABox.forEach(item => item.classList.add('hidden'));
-         image.classList.add('hidden');
-         tabsItems.forEach(item => item.classList.add('hidden'));
-     }*/
+    const aemEnv = block.getAttribute('data-aue-resource');
+    if (!aemEnv) {
+        block.textContent = '';
+    } else {
+        const image = block.querySelector(":scope > div:nth-child(1) img");
+        const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+2):nth-child(-n+11)");
+        const CTABox = block.querySelectorAll(":scope > div:nth-child(n+12):nth-child(-n+15)");
+        firstInfoBoxes.forEach(item => item.classList.add('hidden'));
+        CTABox.forEach(item => item.classList.add('hidden'));
+        image.classList.add('hidden');
+        tabsItems.forEach(item => item.classList.add('hidden'));
+    }
 
     render();
 }
