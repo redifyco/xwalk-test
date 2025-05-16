@@ -32,7 +32,7 @@ indices:
         select: head > meta[name="cq-tags"]
         value: attribute(el, "content")
       thumbImg:
-        selectFirst: main picture img
+        selectFirst: main > div > div:nth-child(1) > div:nth-child(1) > img
         value: attribute(el, "src")
 
   news:

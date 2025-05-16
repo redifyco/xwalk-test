@@ -4,6 +4,7 @@ import {
 } from "../../scripts/utils.js";
 
 export default function decorate(block) {
+    console.log('block', block)
     const tabsItems = block.querySelectorAll(":scope > div:nth-child(n+16)");
     const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+2):nth-child(-n+11)");
     const CTABox = block.querySelectorAll(":scope > div:nth-child(n+12):nth-child(-n+15)");
@@ -17,14 +18,14 @@ export default function decorate(block) {
     const result = processDivsToObjectTabSection(tabsItems) || [];
     const resultInfoBox = processDivsToObjectTabSectionInfo(firstInfoBoxes) || [];
 
-    let state = { currentTab: 0 };
+    let state = {currentTab: 0};
     let containerSection = null;
 
     const backgroundImageHTML = document.createElement('div');
     backgroundImageHTML.innerHTML = `<img class="object-cover w-full h-[500px]" src="${backgroundImage}" alt="">`;
 
     function setState(newState) {
-        state = { ...state, ...newState };
+        state = {...state, ...newState};
         render();
     }
 
@@ -96,25 +97,25 @@ export default function decorate(block) {
         const buttons = containerSection.querySelectorAll("button[data-tab-index]");
         buttons.forEach((button) => {
             const tabIndex = parseInt(button.dataset.tabIndex);
-            button.addEventListener("click", () => setState({ currentTab: tabIndex }));
+            button.addEventListener("click", () => setState({currentTab: tabIndex}));
         });
 
-        block.appendChild(backgroundImageHTML);
-        block.appendChild(containerSection);
+        // block.appendChild(backgroundImageHTML);
+        // block.appendChild(containerSection);
     }
 
-    const aemEnv = block.getAttribute('data-aue-resource');
-    if (!aemEnv) {
-        block.textContent = '';
-    } else {
-        const image = block.querySelector(":scope > div:nth-child(1) img");
-        const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+2):nth-child(-n+11)");
-        const CTABox = block.querySelectorAll(":scope > div:nth-child(n+12):nth-child(-n+15)");
-        firstInfoBoxes.forEach(item => item.classList.add('hidden'));
-        CTABox.forEach(item => item.classList.add('hidden'));
-        image.classList.add('hidden');
-        tabsItems.forEach(item => item.classList.add('hidden'));
-    }
+    /* const aemEnv = block.getAttribute('data-aue-resource');
+     if (!aemEnv) {
+         block.textContent = '';
+     } else {
+         const image = block.querySelector(":scope > div:nth-child(1) img");
+         const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+2):nth-child(-n+11)");
+         const CTABox = block.querySelectorAll(":scope > div:nth-child(n+12):nth-child(-n+15)");
+         firstInfoBoxes.forEach(item => item.classList.add('hidden'));
+         CTABox.forEach(item => item.classList.add('hidden'));
+         image.classList.add('hidden');
+         tabsItems.forEach(item => item.classList.add('hidden'));
+     }*/
 
     render();
 }

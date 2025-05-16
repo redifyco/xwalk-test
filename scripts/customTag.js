@@ -1,3 +1,5 @@
+import {returnFocusAreaIcon, returnStatusLabel} from "./utils.js";
+
 export class CustomButton extends HTMLElement {
     connectedCallback() {
         const label = this.textContent.trim() || '';
@@ -153,11 +155,13 @@ export class ArticleCard extends HTMLElement {
         const cardVariant = this.getAttribute('variant').toLowerCase() || 'primary';
         const title = this.getAttribute('title') || '';
         const subTitle = this.getAttribute('subTitle') || '';
-        const topLabel = this.getAttribute('topLabel') || '';
+        const topLabel = this.getAttribute('topLabel') ? this.getAttribute('topLabel').split(',') : [];
         const backgroundImage = this.getAttribute('backgroundImage') || '';
-        const icons = this.getAttribute('icons')?.split(',') || [];
+        const icons = this.getAttribute('icons') ? this.getAttribute('icons').split(',') : [];
         const date = this.getAttribute('date') || [];
         const href = this.getAttribute('href') || [];
+
+        console.log('topLabel', returnStatusLabel(topLabel))
 
         const formatDate = (dateString) => {
             if (!dateString) return '';
@@ -186,21 +190,22 @@ export class ArticleCard extends HTMLElement {
                 >
                     <div class="relative">
                         <img class="w-full h-60 lg:h-72 object-cover" src="${backgroundImage}" alt="" />
-                        ${topLabel ? `
-                            <div class="absolute left-2 top-0 flex gap-1 ${buildTopLabelBox(topLabel)}">
-                                ${topLabel}
+                        ${topLabel.length > 0 ? topLabel.map(item => {
+            const convertedLabel = returnStatusLabel(item)
+            return `
+                            <div class="absolute left-2 top-0 flex gap-1 ${buildTopLabelBox(convertedLabel)}">
+                                ${convertedLabel}
                             </div>
-                        ` : ''}
+                        `
+        }).join('') : ''}
                         <div class="absolute right-2 bottom-2 flex gap-1">
-                            ${icons.length > 0 && icons.map(icon => `
+                            ${icons.length > 0 && icons.map(icon => {
+            return `
                                 <div class="flex size-10 p-2 rounded-full items-center justify-center bg-white">
-                                    <img
-                                        src="${icon}"
-                                        class=""
-                                        alt=""
-                                    />
+                                    ${returnFocusAreaIcon(icon)}
                                 </div>
-                            `).join('')}
+                            `
+        }).join('')}
                         </div>
                     </div>
                     <div class="flex flex-col items-start gap-4 pt-6 ${

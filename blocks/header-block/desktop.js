@@ -93,7 +93,9 @@ export default function getDesktopHeaderBlock(block, menuItems, logo, button,) {
     if (window.scrollY > SCROLL_THRESHOLD) {
         desktopMenu.classList.add('bg-white');
         desktopMenu.classList.add('shadow-md');
-        document.querySelector('#logo-image').src = logo.light;
+        if (document.querySelector('#logo-image')) {
+            document.querySelector('#logo-image').src = logo.light;
+        }
     }
 
     block.append(desktopMenu);
