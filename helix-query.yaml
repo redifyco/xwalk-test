@@ -23,6 +23,7 @@ indices:
     target: /programs-index.json
     query:
       offset: 0
+      perPage: 1
     properties:
       title:
         select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
