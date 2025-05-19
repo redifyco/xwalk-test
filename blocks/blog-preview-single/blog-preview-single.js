@@ -46,9 +46,9 @@ export default async function decorate(block) {
             </article-card>
           `
     }).join('')}
-        </div>
         <!--CUSTOM BUTTON-->
-        <custom-link href="${buttonLink}">${buttonText}</custom-link>
+        </div>
+        <custom-link class="-mt-10" href="${buttonLink}">${buttonText}</custom-link>
       </section>
     `
 
