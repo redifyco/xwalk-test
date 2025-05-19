@@ -22,7 +22,7 @@ export default async function decorate(block) {
     sectionContainer.className = ''
 
     sectionContainer.innerHTML = `
-      <section class="flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-32 lg:px-20 lg:py-14">
+      <section class="flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-20 lg:px-20 lg:py-14">
         <div class="text-primary prose-em prose-em:lg:text-8xl prose-em:font-joyful text-center text-3xl uppercase lg:text-7xl">
           ${title}
         </div>
@@ -48,7 +48,7 @@ export default async function decorate(block) {
     }).join('')}
         <!--CUSTOM BUTTON-->
         </div>
-        <custom-link class="-mt-10" href="${buttonLink}">${buttonText}</custom-link>
+        <custom-link href="${buttonLink}">${buttonText}</custom-link>
       </section>
     `
 

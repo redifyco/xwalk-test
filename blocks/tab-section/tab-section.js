@@ -4,7 +4,6 @@ import {
 } from "../../scripts/utils.js";
 
 export default function decorate(block) {
-    console.log('block', block)
     const tabsItems = block.querySelectorAll(":scope > div:nth-child(n+16)");
     const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+2):nth-child(-n+11)");
     const CTABox = block.querySelectorAll(":scope > div:nth-child(n+12):nth-child(-n+15)");
