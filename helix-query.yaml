@@ -36,7 +36,7 @@ indices:
         value: attribute(el, "src")
       description:
         select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(3)
-        value: attribute(el, "content")
+        value: textContent(el)
 
   news:
     include:
