@@ -12,6 +12,8 @@ export default async function decorate(block) {
 
     const {data} = await getBlogPreviewData(apiString, itemsToShow)
 
+    console.log('data', data)
+
 
     const extractTagsByType = (pageType, type) => {
         return pageType.split(',')
@@ -33,9 +35,7 @@ export default async function decorate(block) {
             focusAreas: extractTagsByType(item.pageType, 'msc-foundation:focus-area'),
             status: extractTagsByType(item.pageType, 'msc-foundation:status')
         };
-
-        console.log('data', data)
-
+        
         return `
             <article-card 
               variant="${cardStyle}"

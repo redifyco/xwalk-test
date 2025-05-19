@@ -37,9 +37,6 @@ indices:
       description:
         select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(3)
         value: textContent(el)
-      title2:
-        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
-        value: innerHTML(el)
 
   news:
     include:
