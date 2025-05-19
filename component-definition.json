@@ -83,15 +83,15 @@
       "id": "blocks",
       "components": [
         {
-          "title": "Blog Preview Main",
-          "id": "blog-preview-main",
+          "title": "Blog Preview filter",
+          "id": "blog-preview-filter",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Blog Preview Main",
-                  "model": "blog-preview-main-model"
+                  "name": "Blog Preview filter",
+                  "model": "blog-preview-filter-model"
                 }
               }
             }

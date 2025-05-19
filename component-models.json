@@ -108,24 +108,13 @@
     ]
   },
   {
-    "id": "blog-preview-main-model",
+    "id": "blog-preview-filter-model",
     "fields": [
       {
         "component": "richtext",
         "valueType": "string",
         "name": "title",
         "label": "Title"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "buttonText",
-        "label": "Button Text"
-      },
-      {
-        "component": "aem-content",
-        "name": "buttonLink",
-        "label": "Button Link"
       },
       {
         "component": "select",
@@ -160,6 +149,56 @@
             "valueType": "string",
             "name": "items-to-show",
             "label": "Items to Show"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "string",
+        "name": "filter-focus-area",
+        "label": "Focus Area Filter",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "string",
+        "name": "filter-date",
+        "label": "Focus By Date",
+        "value": false
+      },
+      {
+        "component": "container",
+        "label": "Filter Date Configuration",
+        "collapsible": true,
+        "name": "filter-date-configuration",
+        "condition": {
+          "===": [
+            {
+              "var": "filter-date"
+            },
+            true
+          ]
+        },
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "select",
+            "name": "desktop-height",
+            "label": "Desktop Height",
+            "options": [
+              {
+                "name": "Today",
+                "value": "today"
+              },
+              {
+                "name": "This Week",
+                "value": "week"
+              },
+              {
+                "name": "This Month",
+                "value": "month"
+              }
+            ]
           }
         ]
       }

@@ -1,0 +1,119 @@
+{
+  "definitions": [
+    {
+      "title": "Blog Preview filter",
+      "id": "blog-preview-filter",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Blog Preview filter",
+              "model": "blog-preview-filter-model"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "blog-preview-filter-model",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "title",
+          "label": "Title"
+        },
+        {
+          "component": "select",
+          "name": "card-style",
+          "label": "Card Style",
+          "options": [
+            {
+              "name": "Primary",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary",
+              "value": "secondary"
+            }
+          ]
+        },
+        {
+          "component": "container",
+          "label": "API Configuration",
+          "collapsible": true,
+          "name": "api-configuration",
+          "valueType": "string",
+          "fields": [
+            {
+              "component": "text",
+              "valueType": "string",
+              "name": "API-URL",
+              "label": "API URL"
+            },
+            {
+              "component": "number",
+              "valueType": "string",
+              "name": "items-to-show",
+              "label": "Items to Show"
+            }
+          ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "string",
+          "name": "filter-focus-area",
+          "label": "Focus Area Filter",
+          "value": false
+        },
+        {
+          "component": "boolean",
+          "valueType": "string",
+          "name": "filter-date",
+          "label": "Focus By Date",
+          "value": false
+        },
+        {
+          "component": "container",
+          "label": "Filter Date Configuration",
+          "collapsible": true,
+          "name": "filter-date-configuration",
+          "condition": {
+            "===": [
+              {
+                "var": "filter-date"
+              },
+              true
+            ]
+          },
+          "valueType": "string",
+          "fields": [
+            {
+              "component": "select",
+              "name": "desktop-height",
+              "label": "Desktop Height",
+              "options": [
+                {
+                  "name": "Today",
+                  "value": "today"
+                },
+                {
+                  "name": "This Week",
+                  "value": "week"
+                },
+                {
+                  "name": "This Month",
+                  "value": "month"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
