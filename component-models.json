@@ -111,7 +111,7 @@
     "id": "blog-preview-filter-model",
     "fields": [
       {
-        "component": "richtext",
+        "component": "text",
         "valueType": "string",
         "name": "title",
         "label": "Title"
