@@ -9,7 +9,8 @@ export default async function decorate(block) {
     const apiString = block.querySelector(':scope > div:nth-child(5) div p')?.textContent || ''
     const itemsToShow = Number(block.querySelector(':scope > div:nth-child(6) div p')?.textContent) || 3
 
-    const {data} = await getBlogPreviewData(apiString, itemsToShow)
+    const resultData = await getBlogPreviewData(apiString, itemsToShow)
+    if (!resultData) return
 
     const extractTagsByType = (pageType, type) => {
         return pageType.split(',')
@@ -26,7 +27,7 @@ export default async function decorate(block) {
           ${title}
         </div>
         <div class="scrollbar scrollbar-thumb-primary scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-300 flex max-w-full justify-start gap-6 overflow-x-scroll pb-5 lg:flex-wrap lg:justify-center">
-          ${data?.length > 0 && data.map((item, index) => {
+          ${resultData.data?.length > 0 && resultData.data.map((item, index) => {
         const pageTypesObject = {
             focusAreas: extractTagsByType(item.pageType, 'msc-foundation:focus-area'),
             status: extractTagsByType(item.pageType, 'msc-foundation:status')
@@ -40,7 +41,6 @@ export default async function decorate(block) {
               topLabel="${pageTypesObject.status}"
               icons="${pageTypesObject.focusAreas}"
               backgroundImage="${item.thumbImg}"
-              date="${item.date || ''}"
               href="${item.path || ''}"
               >
             </article-card>
