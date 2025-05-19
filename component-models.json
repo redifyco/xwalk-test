@@ -134,7 +134,7 @@
       {
         "component": "container",
         "label": "API Configuration",
-        "collapsible": true,
+        "collapsible": false,
         "name": "api-configuration",
         "valueType": "string",
         "fields": [
@@ -147,8 +147,8 @@
           {
             "component": "number",
             "valueType": "string",
-            "name": "items-to-show",
-            "label": "Items to Show"
+            "name": "items-to-show-per-page",
+            "label": "Items to Show Per Page"
           }
         ]
       },
@@ -156,51 +156,22 @@
         "component": "boolean",
         "valueType": "string",
         "name": "filter-focus-area",
-        "label": "Focus Area Filter",
+        "label": "Filter By Focus Area",
         "value": false
       },
       {
         "component": "boolean",
         "valueType": "string",
         "name": "filter-date",
-        "label": "Focus By Date",
+        "label": "Filter By Date",
         "value": false
       },
       {
-        "component": "container",
-        "label": "Filter Date Configuration",
-        "collapsible": true,
-        "name": "filter-date-configuration",
-        "condition": {
-          "===": [
-            {
-              "var": "filter-date"
-            },
-            true
-          ]
-        },
+        "component": "boolean",
         "valueType": "string",
-        "fields": [
-          {
-            "component": "select",
-            "name": "desktop-height",
-            "label": "Desktop Height",
-            "options": [
-              {
-                "name": "Today",
-                "value": "today"
-              },
-              {
-                "name": "This Week",
-                "value": "week"
-              },
-              {
-                "name": "This Month",
-                "value": "month"
-              }
-            ]
-          }
-        ]
+        "name": "filter-category",
+        "label": "Filter By Category",
+        "value": false
       }
     ]
   },
@@ -242,7 +213,7 @@
       {
         "component": "container",
         "label": "API Configuration",
-        "collapsible": true,
+        "collapsible": false,
         "name": "api-configuration",
         "valueType": "string",
         "fields": [

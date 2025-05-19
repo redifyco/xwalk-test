@@ -55,7 +55,7 @@
         {
           "component": "container",
           "label": "API Configuration",
-          "collapsible": true,
+          "collapsible": false,
           "name": "api-configuration",
           "valueType": "string",
           "fields": [

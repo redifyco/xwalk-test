@@ -83,7 +83,7 @@
       "id": "blocks",
       "components": [
         {
-          "title": "Blog Preview filter",
+          "title": "Blog Preview Filter",
           "id": "blog-preview-filter",
           "plugins": {
             "xwalk": {
