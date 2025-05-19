@@ -34,7 +34,7 @@ export default async function decorate(block) {
             status: extractTagsByType(item.pageType, 'msc-foundation:status')
         };
 
-        console.log('item.thumbImg', data)
+        console.log('data', data)
 
         return `
             <article-card 

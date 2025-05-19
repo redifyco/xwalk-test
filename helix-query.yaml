@@ -34,6 +34,9 @@ indices:
       thumbImg:
         select: main > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > picture > img
         value: attribute(el, "src")
+      description:
+        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(3)
+        value: innerHTML(el)
 
   news:
     include:
