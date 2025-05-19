@@ -607,6 +607,9 @@
   .max-w-6xl {
     max-width: var(--container-6xl);
   }
+  .max-w-72 {
+    max-width: calc(var(--spacing) * 72);
+  }
   .max-w-80 {
     max-width: calc(var(--spacing) * 80);
   }
@@ -621,6 +624,12 @@
   }
   .min-w-4 {
     min-width: calc(var(--spacing) * 4);
+  }
+  .min-w-40 {
+    min-width: calc(var(--spacing) * 40);
+  }
+  .min-w-70 {
+    min-width: calc(var(--spacing) * 70);
   }
   .min-w-72 {
     min-width: calc(var(--spacing) * 72);
@@ -1515,6 +1524,16 @@
       max-width: 30%;
     }
   }
+  .lg\:max-w-\[200px\] {
+    @media (width >= 64rem) {
+      max-width: 200px;
+    }
+  }
+  .lg\:max-w-\[300px\] {
+    @media (width >= 64rem) {
+      max-width: 300px;
+    }
+  }
   .lg\:max-w-\[350px\] {
     @media (width >= 64rem) {
       max-width: 350px;
@@ -1796,6 +1815,16 @@
   .xl\:w-\[500px\] {
     @media (width >= 80rem) {
       width: 500px;
+    }
+  }
+  .xl\:max-w-\[232px\] {
+    @media (width >= 80rem) {
+      max-width: 232px;
+    }
+  }
+  .xl\:max-w-\[400px\] {
+    @media (width >= 80rem) {
+      max-width: 400px;
     }
   }
   .xl\:max-w-\[432px\] {

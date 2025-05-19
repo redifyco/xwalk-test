@@ -182,7 +182,7 @@ export class ArticleCard extends HTMLElement {
 
 
         this.innerHTML = `
-            <div class="min-w-80 max-w-80 lg:max-w-[350px] xl:max-w-[432px]">
+            <div class="min-w-80 max-w-80 lg:max-w-[350px] xl:max-w-[400px]">
                 <a
                     href="${href}"
                 >
