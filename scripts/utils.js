@@ -318,6 +318,16 @@ export function createLead(first_name, last_name, email, language) {
 }
 
 /*Fetch Blog Preview Data */
+export async function getAllArticles(api) {
+
+    return await fetch(`${api.toString()}`, {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .catch(error => console.error('Error fetching articles:', error));
+}
+
+/*Fetch Blog Preview Data */
 export async function getBlogPreviewData(api, itemToShow = 3) {
     const queryParams = new URLSearchParams({
         limit: itemToShow.toString(),
@@ -335,7 +345,7 @@ export async function getBlogPreviewData(api, itemToShow = 3) {
         credentials: 'include'
     })
         .then(response => response.json())
-        .catch(error => console.error('Error fetching programmes:', error));
+        .catch(error => console.error('Error fetching articles:', error));
 }
 
 

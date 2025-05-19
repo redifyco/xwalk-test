@@ -24,6 +24,13 @@ indices:
     query:
       limit: 5
       offset: 0
+      "paging": {
+        "page": 1,
+        "totalPages": 100,
+        "pageLimit": 300,
+        "totalCount": 100000,
+        "links": [ self, prev, next, first, last urls ]
+      }
     properties:
       title:
         select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
