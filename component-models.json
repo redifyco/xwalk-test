@@ -108,7 +108,7 @@
     ]
   },
   {
-    "id": "blog-preview-model",
+    "id": "blog-preview-single-model",
     "fields": [
       {
         "component": "richtext",
