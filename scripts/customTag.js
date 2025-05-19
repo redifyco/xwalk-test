@@ -197,13 +197,13 @@ export class ArticleCard extends HTMLElement {
                         `
         }).join('') : ''}
                         <div class="absolute right-2 bottom-2 flex gap-1">
-                            ${icons.length > 0 && icons.map(icon => {
+                            ${icons.length > 0 ? icons.map(icon => {
             return `
                                 <div class="flex size-10 p-2 rounded-full items-center justify-center bg-white">
                                     ${returnFocusAreaIcon(icon)}
                                 </div>
                             `
-        }).join('')}
+        }).join('') : ''}
                         </div>
                     </div>
                     <div class="flex flex-col items-start gap-4 pt-6 ${

@@ -1,5 +1,5 @@
 import '../../scripts/customTag.js'
-import {getBlogPreviewData, returnBoolean, returnFocusAreaIcon} from "../../scripts/utils.js";
+import {getBlogPreviewData} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || ''
@@ -10,9 +10,6 @@ export default async function decorate(block) {
     const itemsToShow = Number(block.querySelector(':scope > div:nth-child(6) div p')?.textContent) || 3
 
     const {data} = await getBlogPreviewData(apiString, itemsToShow)
-
-    console.log('data', data)
-
 
     const extractTagsByType = (pageType, type) => {
         return pageType.split(',')
@@ -51,10 +48,7 @@ export default async function decorate(block) {
     }).join('')}
         </div>
         <!--CUSTOM BUTTON-->
-        ${isLoadMoreButton ?
-        `<custom-button>Load More</custom-button>`
-        : `<custom-link href="${buttonLink}">${buttonText}</custom-link>`
-    }
+        <custom-link href="${buttonLink}">${buttonText}</custom-link>
       </section>
     `
 
