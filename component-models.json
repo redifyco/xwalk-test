@@ -117,38 +117,15 @@
         "label": "Title"
       },
       {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "load-more-button",
-        "label": "Load More Button",
-        "value": false
-      },
-      {
         "component": "text",
         "valueType": "string",
         "name": "buttonText",
-        "label": "Button Text",
-        "condition": {
-          "===": [
-            {
-              "var": "load-more-button"
-            },
-            false
-          ]
-        }
+        "label": "Button Text"
       },
       {
         "component": "aem-content",
         "name": "buttonLink",
-        "label": "Button Link",
-        "condition": {
-          "===": [
-            {
-              "var": "load-more-button"
-            },
-            false
-          ]
-        }
+        "label": "Button Link"
       },
       {
         "component": "select",
@@ -182,15 +159,7 @@
             "component": "number",
             "valueType": "string",
             "name": "items-to-show",
-            "label": "Items to Show",
-            "condition": {
-              "===": [
-                {
-                  "var": "load-more-button"
-                },
-                true
-              ]
-            }
+            "label": "Items to Show"
           }
         ]
       }

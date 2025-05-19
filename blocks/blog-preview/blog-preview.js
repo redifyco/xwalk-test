@@ -3,12 +3,11 @@ import {getBlogPreviewData, returnBoolean, returnFocusAreaIcon} from "../../scri
 
 export default async function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || ''
-    const isLoadMoreButton = returnBoolean(block, 2)
-    const buttonText = block.querySelector(':scope > div:nth-child(3) div p')?.textContent || ''
-    const buttonLink = block.querySelector(':scope > div:nth-child(4) div a')?.href || ''
-    const cardStyle = block.querySelector(':scope > div:nth-child(5) div p')?.textContent || 'primary'
-    const apiString = block.querySelector(':scope > div:nth-child(6) div p')?.textContent || ''
-    const itemsToShow = Number(block.querySelector(':scope > div:nth-child(7) div p')?.textContent) || 3
+    const buttonText = block.querySelector(':scope > div:nth-child(2) div p')?.textContent || ''
+    const buttonLink = block.querySelector(':scope > div:nth-child(3) div a')?.href || ''
+    const cardStyle = block.querySelector(':scope > div:nth-child(4) div p')?.textContent || 'primary'
+    const apiString = block.querySelector(':scope > div:nth-child(5) div p')?.textContent || ''
+    const itemsToShow = Number(block.querySelector(':scope > div:nth-child(6) div p')?.textContent) || 3
 
     const {data} = await getBlogPreviewData(apiString, itemsToShow)
 
@@ -35,11 +34,11 @@ export default async function decorate(block) {
             focusAreas: extractTagsByType(item.pageType, 'msc-foundation:focus-area'),
             status: extractTagsByType(item.pageType, 'msc-foundation:status')
         };
-        
+
         return `
             <article-card 
               variant="${cardStyle}"
-              subTitle="${item.subTitle || ''}" 
+              subTitle="${item.description || ''}" 
               title="${item.title || ''}" 
               topLabel="${pageTypesObject.status}"
               icons="${pageTypesObject.focusAreas}"

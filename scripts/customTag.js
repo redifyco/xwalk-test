@@ -24,7 +24,7 @@ export class CustomButton extends HTMLElement {
       <button
       onclick="${callback}"
       id="${id}"
-        class="group relative inline-block border p-2 lg:border-0 ${buildColorText(color)} ${className}"
+        class="group cursor-pointer relative inline-block border p-2 lg:border-0 ${buildColorText(color)} ${className}"
       >
         <span
           class="-top-1 -right-1 h-0.5 w-3/5 group-hover:w-9/12 ${buildLineColorClass(color)}"
@@ -160,7 +160,7 @@ export class ArticleCard extends HTMLElement {
         const icons = this.getAttribute('icons') ? this.getAttribute('icons').split(',') : [];
         const date = this.getAttribute('date') || [];
         const href = this.getAttribute('href') || [];
-        
+
         const formatDate = (dateString) => {
             if (!dateString) return '';
             const date = new Date(dateString);
@@ -219,7 +219,7 @@ export class ArticleCard extends HTMLElement {
             }[cardVariant] || ''
         }
                         
-                        ${cardVariant === 'primary' ? `<p class="text-base w-full border-t border-t-black/30 pt-2">${subTitle}</p>` : ''}
+                        ${cardVariant === 'primary' ? `<p class="text-base w-full border-t border-t-black/30 line-clamp-1 pt-2">${subTitle}</p>` : ''}
                         ${cardVariant === 'secondary' ? `<div class="w-full">
 <arrow-button href="${href}" class="w-full" className="pb-2">lorem ipsum</arrow-button>
 <p class="text-xl w-full border-t text-black/30 border-solid  text-end border-t-black/30 pt-2 font-medium">${formatDate(date)}</p>
