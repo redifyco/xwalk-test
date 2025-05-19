@@ -1,5 +1,5 @@
 import '../../scripts/customTag.js'
-import {getBlogPreviewData, returnBoolean} from "../../scripts/utils.js";
+import {getAllArticles, getBlogPreviewData, returnBoolean} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || ''
@@ -10,6 +10,9 @@ export default async function decorate(block) {
     const filterDate = returnBoolean(block, 6)
     const filterCategory = returnBoolean(block, 7)
 
+
+    const resultData = await getAllArticles('/programs-index.json')
+    console.log('result', resultData)
 
     const sectionContainer = document.createElement('section');
     sectionContainer.className = 'container-layout-padding'
