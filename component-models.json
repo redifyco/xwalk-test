@@ -108,6 +108,64 @@
     ]
   },
   {
+    "id": "blog-preview-main-model",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "buttonText",
+        "label": "Button Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "buttonLink",
+        "label": "Button Link"
+      },
+      {
+        "component": "select",
+        "name": "card-style",
+        "label": "Card Style",
+        "options": [
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "API Configuration",
+        "collapsible": true,
+        "name": "api-configuration",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "API-URL",
+            "label": "API URL"
+          },
+          {
+            "component": "number",
+            "valueType": "string",
+            "name": "items-to-show",
+            "label": "Items to Show"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "blog-preview-single-model",
     "fields": [
       {
