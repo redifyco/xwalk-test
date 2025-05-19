@@ -326,6 +326,13 @@ export async function getBlogPreviewData(api, itemToShow = 3) {
 
     return await fetch(`${api.toString()}?${queryParams.toString()}`, {
         method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET'
+        },
+        mode: 'cors',
+        credentials: 'include'
     })
         .then(response => response.json())
         .catch(error => console.error('Error fetching programmes:', error));
