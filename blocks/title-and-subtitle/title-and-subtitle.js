@@ -9,13 +9,13 @@ export default function decorate(block) {
 
 
     const containerSection = document.createElement("section");
-    containerSection.className = `${buildHeight(mobileHeight, desktopHeight)} flex items-center container-layout-padding bg-no-repeat bg-cover bg-center`
+    containerSection.className = `${buildHeight(mobileHeight, desktopHeight)} flex items-center justify-center container-layout-padding bg-no-repeat bg-cover bg-center`
     containerSection.style.backgroundImage = `url('${backgroundImage}')`;
 
     containerSection.innerHTML = `
     <div class="flex gap-4 flex-col ${title ? 'md:flex-row md:items-start text-center md:text-start' : 'items-center'} ">
     ${title && `<div class="md:w-1/2 text-primary text-3xl prose-em:font-joyful md:text-7xl">${title}</div>`}
-    ${subTitle && `<div class="font-light prose-p:py-2 ${title ? 'md:w-1/2 md:text-start' : 'w-full text-center text-2xl italic max-w-6xl'} ${backgroundImage ? 'text-white' : 'text-current'}">${subTitle}</div>`}
+    ${subTitle && `<div class="font-light prose-p:py-2 ${title ? 'md:w-1/2 md:text-start' : 'w-full text-center text-lg italic max-w-6xl'} ${backgroundImage ? 'text-white' : 'text-current'}">${subTitle}</div>`}
     </div>
     `
 
