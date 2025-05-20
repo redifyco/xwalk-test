@@ -1,5 +1,5 @@
 import '../../scripts/customTag.js'
-import {getBlogPreviewData} from "../../scripts/utils.js";
+import {extractTagsByType, getBlogPreviewData} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || ''
@@ -12,12 +12,6 @@ export default async function decorate(block) {
     const resultData = await getBlogPreviewData(apiString, itemsToShow)
     if (!resultData) return
 
-    const extractTagsByType = (pageType, type) => {
-        return pageType.split(',')
-            .map(item => item.trim())
-            .filter(item => item.toLowerCase().includes(type))
-    };
-
     const sectionContainer = document.createElement('section');
     sectionContainer.className = ''
 
@@ -27,7 +21,7 @@ export default async function decorate(block) {
           ${title}
         </div>
         <div class="scrollbar scrollbar-thumb-primary scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-300 flex max-w-full justify-start gap-6 overflow-x-scroll pb-5 lg:flex-wrap lg:justify-center">
-          ${resultData.data?.length > 0 && resultData.data.map((item, index) => {
+          ${resultData.data?.length > 0 ? resultData.data.map((item, index) => {
         const pageTypesObject = {
             focusAreas: extractTagsByType(item.pageType, 'msc-foundation:focus-area'),
             status: extractTagsByType(item.pageType, 'msc-foundation:status')
@@ -45,7 +39,7 @@ export default async function decorate(block) {
               >
             </article-card>
           `
-    }).join('')}
+    }).join('') : ''}
         <!--CUSTOM BUTTON-->
         </div>
         <custom-link href="${buttonLink}">${buttonText}</custom-link>

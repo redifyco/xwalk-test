@@ -363,7 +363,7 @@ export const returnFocusAreaIcon = (focusArea) => {
 </svg>
 `,
         "msc-foundation:focus-area/community-support": `
-            <svg width="53" height="47" viewBox="0 0 53 47" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg width="31" height="37" viewBox="0 0 53 47" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <rect x="0.168945" width="52" height="47" fill="url(#pattern0_405_10733)"/>
             <defs>
             <pattern id="pattern0_405_10733" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -374,12 +374,12 @@ export const returnFocusAreaIcon = (focusArea) => {
 </svg>
             `,
         "msc-foundation:focus-area/education": `
-<svg width="53" height="47" viewBox="0 0 53 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="31" height="37" viewBox="0 0 53 47" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M51.445 5.40283C51.445 5.40283 51.335 5.40283 51.313 5.40283L44.6267 6.98643V1.59779C44.6267 1.42183 44.5607 1.24588 44.4508 1.11391C44.3408 0.981946 44.1648 0.915963 44.0109 0.915963H43.9889C43.9889 0.915963 43.7689 0.937957 43.681 0.981946L26.0634 10.5275H26.0194L8.42387 0.981946C8.2919 0.915963 8.15994 0.893968 8.00598 0.915963C7.69805 0.981946 7.45611 1.24588 7.47811 1.5538V6.96443H7.39013L0.769805 5.40283C0.747811 5.40283 0.703822 5.40283 0.659833 5.40283C0.637839 5.40283 0.59385 5.40283 0.571855 5.40283C0.241939 5.46881 0 5.73275 0 6.06266V40.396C0 40.7039 0.19795 40.9458 0.505872 41.0118L25.9094 46.9943C25.9094 46.9943 26.1074 47.0163 26.1954 46.9943L51.5989 41.0118C51.9069 40.9458 52.1048 40.6819 52.1048 40.374V6.06266C52.1048 5.71075 51.8189 5.40283 51.467 5.38083M8.77578 2.65352L8.88575 2.71951L23.864 10.8355L8.77578 7.29435V2.65352ZM25.4036 45.5207H25.3156L1.29767 39.8681V6.85446H1.38565L25.4036 12.529V45.4987V45.5207ZM43.329 2.65352V7.29435H43.2631L28.2189 10.8355L43.307 2.65352H43.329ZM50.8072 39.8681H50.7412L26.7012 45.5207V12.529H26.7672L50.8072 6.85446V39.8461V39.8681Z" fill="#009BAC"/>
 </svg>
 `,
         "msc-foundation:focus-area/emergency-relief": `
-<svg width="53" height="46" viewBox="0 0 53 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="31" height="37" viewBox="0 0 53 46" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0_405_10734" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="53" height="46">
 <path d="M52.0869 0H0V45.8364H52.0869V0Z" fill="white"/>
 </mask>
@@ -413,4 +413,16 @@ export const returnStatusLabel = (status) => {
 
     return statusObj[status]
 }
+
+/*Util Function to extract Tags by type*/
+export const extractTagsByType = (pageType, type) => {
+    return pageType.split(',')
+        .map(item => item.trim())
+        .filter(item => {
+            if (Array.isArray(type)) {
+                return type.some(t => item.toLowerCase().includes(t));
+            }
+            return item.toLowerCase().includes(type);
+        })
+};
 
