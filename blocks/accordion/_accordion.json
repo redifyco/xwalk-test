@@ -40,15 +40,13 @@
           "component": "richtext",
           "valueType": "string",
           "name": "sectionTitle",
-          "label": "Section Title",
-          "value": "Our Partners"
+          "label": "Section Title"
         },
         {
           "component": "richtext",
           "valueType": "string",
           "name": "subTitle",
-          "label": "Sub Title",
-          "value": ""
+          "label": "Sub Title"
         },
         {
           "component": "aem-content",
