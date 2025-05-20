@@ -231,7 +231,6 @@ const FilterByDate = () => {
                 <option value="this_month">This month</option>
                 <option value="last_three">Last three</option>
                 <option value="last_siz">Last six</option>
-                <option value="today">Today</option>
             </select>
         </div>
     </div>
@@ -284,11 +283,6 @@ const DATE_FILTERS = {
         const sixMonthsAgo = new Date(currentDate.setMonth(currentDate.getMonth() - 6));
         return new Date(date) >= sixMonthsAgo;
     },
-    today: (date) => {
-        const today = new Date();
-        const itemDate = new Date(date);
-        return itemDate.toDateString() === today.toDateString();
-    }
 };
 
 const getFilteredData = (data, isFocusArea, categoryType, dateFilter) => {
