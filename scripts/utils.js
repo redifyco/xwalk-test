@@ -253,6 +253,8 @@ export function buildHeight(mobileHeight, desktopHeight) {
         ['h-[1600px]']: mobileHeight === '1600',
         ['h-[1800px]']: mobileHeight === '1800',
         ['h-[2000px]']: mobileHeight === '2000',
+        ['lg:h-[200px]']: desktopHeight === '200',
+        ['lg:h-[400px]']: desktopHeight === '400',
         ['lg:h-[600px]']: desktopHeight === '600',
         ['lg:h-[800px]']: desktopHeight === '800',
         ['lg:h-[1000px]']: desktopHeight === '1000',

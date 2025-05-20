@@ -94,6 +94,14 @@
           "label": "Desktop Height",
           "options": [
             {
+              "name": "200px",
+              "value": "200"
+            },
+            {
+              "name": "400px",
+              "value": "400"
+            },
+            {
               "name": "600px",
               "value": "600"
             },

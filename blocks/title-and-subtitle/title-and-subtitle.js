@@ -9,7 +9,7 @@ export default function decorate(block) {
 
 
     const containerSection = document.createElement("section");
-    containerSection.className = `${buildHeight(mobileHeight, desktopHeight)} flex items-center justify-center container-layout-padding bg-no-repeat bg-cover bg-center`
+    containerSection.className = `${buildHeight(mobileHeight, desktopHeight)} flex items-center justify-center container-layout-padding bg-orange-100 bg-no-repeat bg-cover bg-center`
     containerSection.style.backgroundImage = `url('${backgroundImage}')`;
 
     containerSection.innerHTML = `

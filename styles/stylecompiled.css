@@ -6,8 +6,10 @@
   :root, :host {
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-orange-100: oklch(0.954 0.038 75.164);
     --color-orange-200: oklch(0.901 0.076 70.697);
     --color-orange-400: oklch(0.75 0.183 55.934);
+    --color-orange-500: oklch(0.705 0.213 47.604);
     --color-gray-100: oklch(0.967 0.003 264.542);
     --color-gray-200: oklch(0.928 0.006 264.531);
     --color-gray-400: oklch(0.707 0.022 261.325);
@@ -501,6 +503,9 @@
     width: calc(var(--spacing) * 48);
     height: calc(var(--spacing) * 48);
   }
+  .\!h-\[200px\] {
+    height: 200px !important;
+  }
   .h-0 {
     height: calc(var(--spacing) * 0);
   }
@@ -914,8 +919,14 @@
   .bg-gray-200 {
     background-color: var(--color-gray-200);
   }
+  .bg-orange-100 {
+    background-color: var(--color-orange-100);
+  }
   .bg-orange-400 {
     background-color: var(--color-orange-400);
+  }
+  .bg-orange-500 {
+    background-color: var(--color-orange-500);
   }
   .bg-primary {
     background-color: var(--color-primary);
@@ -990,6 +1001,9 @@
   }
   .p-14 {
     padding: calc(var(--spacing) * 14);
+  }
+  .\!px-0 {
+    padding-inline: calc(var(--spacing) * 0) !important;
   }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
@@ -1518,6 +1532,12 @@
       line-height: var(--tw-leading, var(--text-8xl--line-height));
     }
   }
+  .md\:text-xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-xl);
+      line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
   .lg\:-right-10 {
     @media (width >= 64rem) {
       right: calc(var(--spacing) * -10);
@@ -1558,6 +1578,16 @@
   .lg\:h-72 {
     @media (width >= 64rem) {
       height: calc(var(--spacing) * 72);
+    }
+  }
+  .lg\:h-\[200px\] {
+    @media (width >= 64rem) {
+      height: 200px;
+    }
+  }
+  .lg\:h-\[400px\] {
+    @media (width >= 64rem) {
+      height: 400px;
     }
   }
   .lg\:h-\[600px\] {
@@ -2246,6 +2276,11 @@
     @media (width >= 96rem) {
       --tw-leading: calc(var(--spacing) * 24);
       line-height: calc(var(--spacing) * 24);
+    }
+  }
+  .prose-p\:py-0 {
+    & :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      padding-block: calc(var(--spacing) * 0);
     }
   }
   .prose-p\:py-2 {
