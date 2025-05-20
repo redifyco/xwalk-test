@@ -83,6 +83,37 @@
       "id": "blocks",
       "components": [
         {
+          "title": "Accordion",
+          "id": "accordion",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Accordion",
+                  "model": "accordion-model",
+                  "filter": "accordion-filter"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Accordion Item",
+          "id": "accordion-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Accordion Item",
+                  "model": "accordion-item-model"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Blog Preview Filter",
           "id": "blog-preview-filter",
           "plugins": {
@@ -433,13 +464,6 @@
               }
             }
           }
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "logo1",
-          "label": "Partner 1 - Logo",
-          "multi": false
         },
         {
           "title": "Map",

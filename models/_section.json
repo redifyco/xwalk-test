@@ -59,7 +59,8 @@
         "box-cards",
         "title-subtitle",
         "header-block",
-        "blog-preview-filter"
+        "blog-preview-filter",
+        "accordion"
       ]
     }
   ]
