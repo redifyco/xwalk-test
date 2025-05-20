@@ -7,7 +7,7 @@ import {
 } from "../../scripts/utils.js";
 
 let currentPage = 1;
-const fallBackData = [{
+const fallBackData = {
     "columns": [
         "path",
         "title",
@@ -40,7 +40,7 @@ const fallBackData = [{
     "limit": 2,
     "total": 2,
     ":type": "sheet"
-}]
+}
 
 export default async function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) div p')?.textContent || ''
