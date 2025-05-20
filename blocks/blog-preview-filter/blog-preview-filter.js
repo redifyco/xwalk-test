@@ -132,6 +132,7 @@ const RenderCards = (data, cardStyle, perPage) => {
                         variant="${cardStyle}"
                         subTitle="${item.description || ''}" 
                         title="${item.title || ''}" 
+                        date="${item.published_time}"
                         topLabel="${pageTypesObject.status}"
                         icons="${pageTypesObject.focusAreas}"
                         backgroundImage="${item.thumbImg}"

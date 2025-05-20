@@ -158,12 +158,11 @@ export class ArticleCard extends HTMLElement {
         const topLabel = this.getAttribute('topLabel') ? this.getAttribute('topLabel').split(',') : [];
         const backgroundImage = this.getAttribute('backgroundImage') || '';
         const icons = this.getAttribute('icons') ? this.getAttribute('icons').split(',') : [];
-        const date = this.getAttribute('date') || [];
+        const date = this.getAttribute('date') ? new Date(this.getAttribute('date')) : null;
         const href = this.getAttribute('href') || [];
 
         const formatDate = (dateString) => {
-            if (!dateString) return '';
-            const date = new Date(dateString);
+            if (!dateString) return 'No date';
             const day = date.getDate().toString().padStart(2, '0');
             const month = date.toLocaleString('en', {month: 'short'}).toUpperCase();
             const year = date.getFullYear();
@@ -221,7 +220,7 @@ export class ArticleCard extends HTMLElement {
                         
                         ${cardVariant === 'primary' ? `<p class="text-base w-full border-t border-t-black/30 line-clamp-1 pt-2">${subTitle}</p>` : ''}
                         ${cardVariant === 'secondary' ? `<div class="w-full">
-<arrow-button href="${href}" class="w-full" className="pb-2">lorem ipsum</arrow-button>
+<arrow-button href="${href}" class="w-full" className="pb-2">Go to the page</arrow-button>
 <p class="text-xl w-full border-t text-black/30 border-solid  text-end border-t-black/30 pt-2 font-medium">${formatDate(date)}</p>
 </div>` : ''}
                     </div>
