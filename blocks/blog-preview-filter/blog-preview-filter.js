@@ -7,6 +7,40 @@ import {
 } from "../../scripts/utils.js";
 
 let currentPage = 1;
+const fallBackData = [{
+    "columns": [
+        "path",
+        "title",
+        "pageType",
+        "thumbImg",
+        "description",
+        "title2",
+        "published_time"
+    ],
+    "data": [
+        {
+            "path": "/programmes/news",
+            "title": "News 1",
+            "pageType": "",
+            "thumbImg": "./media_1425b85fe43758eb0a332553dc82e4c0e771b4807.jpg?width=750&format=jpg&optimize=medium",
+            "description": "",
+            "title2": "",
+            "published_time": ""
+        },
+        {
+            "path": "/programmes/together-for-the-sea",
+            "title": "Together for the Sea",
+            "pageType": "",
+            "thumbImg": "./media_1a49929ed153c7e4c9267107cfa318e2a0e5f7d74.png?width=750&format=png&optimize=medium",
+            "description": "Aenean eu magna orci. Praesent a condimentum velit. Sed hendrerit ex et porta sollicitudin. Nulla dui est, lacinia sed fermentum ut, suscipit sit amet tortor. Maecenas non odio imperdiet, pretium magna ut, auctor nisl. Nam rutrum euismod sodales. Sed aliquam libero vel mi auctor iaculis sed vel turpis. Ut sed leo in leo mollis ultrices at in lectus. Aliquam at rutrum dolor. Quisque gravida, nulla sit amet euismod feugiat, ex ante semper felis, viverra pellentesque est nunc vel augue. Curabitur turpis urna, maximus ac augue sit amet, viverra lacinia libero. Nulla iaculis semper sapien, id finibus ante posuere laoreet. Proin tempor neque nulla, eget tempus urna scelerisque et. Suspendisse potenti. Integer fringilla ex id purus ultricies accumsan. Nullam et imperdiet augue, lobortis rutrum tortor.",
+            "published_time": "2025-05-20T13:41:06.809Z"
+        }
+    ],
+    "offset": 0,
+    "limit": 2,
+    "total": 2,
+    ":type": "sheet"
+}]
 
 export default async function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) div p')?.textContent || ''
@@ -16,7 +50,8 @@ export default async function decorate(block) {
     const isFilterFocusArea = returnBoolean(block, 5)
     const isFilterDate = returnBoolean(block, 6)
     const isFilterCategory = returnBoolean(block, 7)
-    const data = await getAllArticles(apiString)
+    const aemEnv = block.getAttribute('data-aue-resource');
+    const data = aemEnv ? fallBackData : await getAllArticles(apiString)
 
     const resultData = getFilteredData(data.data, isFilterFocusArea, '', '')
     const sectionContainer = document.createElement('section');
