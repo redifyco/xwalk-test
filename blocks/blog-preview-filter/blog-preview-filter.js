@@ -23,7 +23,7 @@ const fallBackData = {
             "title": "Placeholder Title 1",
             "pageType": "msc-foundation:focus-area/environmental-conservation",
             "thumbImg": "",
-            "description": "",
+            "description": "Aenean eu magna orci. Praesent a condimentum velit. Sed hendrerit ex et porta sollicitudin. Nulla dui est, lacinia sed fermentum ut, suscipit sit amet tortor. Maecenas non odio imperdiet, pretium magna ut, auctor nisl. Nam rutrum euismod sodales. Sed aliquam libero vel mi auctor iaculis sed vel turpis. Ut sed leo in leo mollis ultrices at in lectus. Aliquam at rutrum dolor. Quisque gravida, nulla sit amet euismod feugiat, ex ante semper felis, viverra pellentesque est nunc vel augue. Curabitur turpis urna, maximus ac augue sit amet, viverra lacinia libero. Nulla iaculis semper sapien, id finibus ante posuere laoreet. Proin tempor neque nulla, eget tempus urna ",
             "title2": "",
             "published_time": ""
         },
