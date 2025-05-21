@@ -56,6 +56,14 @@
           "required": true
         },
         {
+          "component": "reference",
+          "valueType": "string",
+          "name": "icon",
+          "label": "Icon",
+          "multi": false,
+          "required": true
+        },
+        {
           "component": "text",
           "valueType": "string",
           "name": "item-title",
