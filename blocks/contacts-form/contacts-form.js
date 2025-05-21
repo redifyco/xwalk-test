@@ -29,21 +29,21 @@ export default async function decorate(block) {
         >
           <label for="field1"></label>
           <input
-            id="field1"
+            id="00N7R000009Jcc5"
             type="text"
             placeholder="*Name..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200  focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <label for="field2"></label>
           <input
-            id="field2"
+            id="00N7R000009JccA"
             type="text"
             placeholder="*Surname..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <label for="field3"></label>
           <input
-            id="field3"
+            id="email"
             type="text"
             placeholder="*Email..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 focus-visible:translate-x-1 focus-visible:outline-0"
@@ -57,14 +57,14 @@ export default async function decorate(block) {
           />
            <label for="field5"></label>
           <input
-            id="field5"
+            id="type"
             type="text"
             placeholder="*Type of request..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <label for="field5"></label>
           <textarea
-            id="field5"
+            id="description"
             rows="3"
             placeholder="*Description of your Request..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 focus-visible:translate-x-1 focus-visible:outline-0 resize-none"
@@ -74,12 +74,12 @@ export default async function decorate(block) {
           <div class="flex items-center gap-2">
             <input
               type="checkbox"
-              id="field5"
+              id="00N7R000009JccK"
               required
               class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
             />
             <label for="field5" class="text-sm font-light cursor-pointer">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem id impedit magni non obcaecati similique.
+              Marketing consent
             </label>
           </div>
           <div class="flex items-center gap-2">
@@ -100,6 +100,19 @@ export default async function decorate(block) {
         </form>
       </div>
     `
+
+    sectionContainer.querySelector('#custom-button-form').addEventListener('click', async (e) => {
+            e.preventDefault()
+            createCase(
+                document.getElementById('00N7R000009Jcc5').value,
+                document.getElementById('00N7R000009JccA').value,
+                document.getElementById('email').value,
+                document.getElementById('phone').value,
+                document.getElementById('type').value,
+                document.getElementById('description').value,
+                document.getElementById('00N7R000009JccK').value
+            )
+        })
 
     block.textContent = ''
     block.append(sectionContainer)
