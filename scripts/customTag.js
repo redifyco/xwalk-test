@@ -186,7 +186,7 @@ export class ArticleCard extends HTMLElement {
                     href="${href}"
                 >
                     <div class="relative">
-                    ${backgroundImage !== "" ? `<img class="w-full h-60 lg:h-72 object-cover" src="${backgroundImage}" alt="" />` : '<div class="w-full bg-gray-300 h-60 lg:h-72"></div>'}
+                    ${backgroundImage !== "" ? `<img class="w-full h-60 lg:h-72 object-cover" src="${backgroundImage}" alt="" />` : '<div class="w-full bg-gray-500 h-60 lg:h-72"></div>'}
                         ${topLabel.length > 0 ? topLabel.map(item => {
             const convertedLabel = returnStatusLabel(item)
             return `
