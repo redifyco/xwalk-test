@@ -297,27 +297,30 @@ export async function loadGoogleMaps(apiKey) {
 }
 
 export function createLead(first_name, last_name, email, language) {
-    fetch('/createlead', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({first_name, last_name, email, language})
+  fetch('/createlead', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ first_name, last_name, email, language })
+  })
+    .then(response => {
+      return response.text().then(html => {
+        if (response.status === 200) {
+          console.log('Lead successfully created. HTML response:');
+          console.log(html); // stampa lo snippet HTML
+          // TODO: gestisci eventualmente il rendering dello snippet o notifica l’utente
+        } else {
+          throw new Error(`Request failed with status ${response.status}: ${html}`);
+        }
+      });
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Errore nella richiesta');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Lead creato con successo:', data);
-            // qui puoi aggiungere un redirect o una notifica
-        })
-        .catch(error => {
-            console.error('Errore durante la creazione del lead:', error);
-        });
+    .catch(error => {
+      console.error('Error creating lead:', error);
+      // TODO: mostra messaggio d'errore all'utente se necessario
+    });
 }
+
 
 /*Fetch Blog Preview Data */
 export async function getAllArticles(api) {
