@@ -19,7 +19,7 @@ const fallBackData = {
     ],
     "data": [
         {
-            "path": "/programmes/news",
+            "path": "",
             "title": "Placeholder Title 1",
             "pageType": "msc-foundation:focus-area/environmental-conservation",
             "thumbImg": "",
@@ -28,7 +28,7 @@ const fallBackData = {
             "published_time": ""
         },
         {
-            "path": "/programmes/together-for-the-sea",
+            "path": "",
             "title": "Placeholder Title 2",
             "pageType": "msc-foundation:focus-area/environmental-conservation",
             "thumbImg": "",
