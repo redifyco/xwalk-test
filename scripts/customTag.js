@@ -156,7 +156,7 @@ export class ArticleCard extends HTMLElement {
         const title = this.getAttribute('title') || '';
         const subTitle = this.getAttribute('subTitle') || '';
         const topLabel = this.getAttribute('topLabel') ? this.getAttribute('topLabel').split(',') : [];
-        const backgroundImage = this.getAttribute('backgroundImage') || '';
+        const backgroundImage = this.getAttribute('backgroundImage');
         const icons = this.getAttribute('icons') ? this.getAttribute('icons').split(',') : [];
         const date = this.getAttribute('date') ? new Date(this.getAttribute('date')) : null;
         const href = this.getAttribute('href') || [];
@@ -186,7 +186,7 @@ export class ArticleCard extends HTMLElement {
                     href="${href}"
                 >
                     <div class="relative">
-                        <img class="w-full h-60 lg:h-72 object-cover" src="${backgroundImage}" alt="" />
+                    ${backgroundImage ? `<img class="w-full h-60 lg:h-72 object-cover" src="${backgroundImage}" alt="" />` : '<div class="w-full h-60 lg:h-72"></div>'}
                         ${topLabel.length > 0 ? topLabel.map(item => {
             const convertedLabel = returnStatusLabel(item)
             return `
