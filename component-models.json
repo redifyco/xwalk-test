@@ -113,118 +113,8 @@
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "sectionTitle",
-        "label": "Section Title"
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "subTitle",
-        "label": "Sub Title"
-      },
-      {
-        "component": "aem-content",
-        "name": "link",
-        "label": "Button Link"
-      },
-      {
-        "component": "text",
-        "name": "linkText",
-        "label": "Button Text"
-      },
-      {
-        "component": "select",
-        "name": "mobile-height",
-        "label": "Mobile Height",
-        "options": [
-          {
-            "name": "200px",
-            "value": "200"
-          },
-          {
-            "name": "400px",
-            "value": "400"
-          },
-          {
-            "name": "600px",
-            "value": "600"
-          },
-          {
-            "name": "800px",
-            "value": "800"
-          },
-          {
-            "name": "1000px",
-            "value": "1000"
-          },
-          {
-            "name": "1200px",
-            "value": "1200"
-          },
-          {
-            "name": "1400px",
-            "value": "1400"
-          },
-          {
-            "name": "1600px",
-            "value": "1600"
-          },
-          {
-            "name": "1800px",
-            "value": "1800"
-          },
-          {
-            "name": "2000px",
-            "value": "2000"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "desktop-height",
-        "label": "Desktop Height",
-        "options": [
-          {
-            "name": "600px",
-            "value": "600"
-          },
-          {
-            "name": "800px",
-            "value": "800"
-          },
-          {
-            "name": "1000px",
-            "value": "1000"
-          },
-          {
-            "name": "1200px",
-            "value": "1200"
-          },
-          {
-            "name": "1400px",
-            "value": "1400"
-          },
-          {
-            "name": "1600px",
-            "value": "1600"
-          },
-          {
-            "name": "1800px",
-            "value": "1800"
-          },
-          {
-            "name": "2000px",
-            "value": "2000"
-          },
-          {
-            "name": "2200px",
-            "value": "2200"
-          },
-          {
-            "name": "24000px",
-            "value": "24000"
-          }
-        ]
+        "name": "title",
+        "label": "Title"
       }
     ]
   },
@@ -234,23 +124,25 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "logo-image",
-        "label": "Logo Image",
+        "name": "item-image",
+        "label": "Item Image",
         "multi": false,
         "required": true
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "partner-name",
-        "label": "Partner Name",
+        "name": "item-title",
+        "label": "Item Title",
         "value": "",
         "required": true
       },
       {
-        "component": "aem-content",
-        "name": "website-link",
-        "label": "Website Link",
+        "component": "richtext",
+        "valueType": "string",
+        "name": "item-description",
+        "label": "Item Description",
+        "value": "",
         "required": true
       }
     ]
