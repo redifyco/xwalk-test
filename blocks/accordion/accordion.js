@@ -133,7 +133,7 @@ export default function decorate(block) {
     }
 
 
-    // block.textContent = '';
+    block.textContent = '';
     block.append(sectionContainer);
 }
 
