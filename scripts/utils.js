@@ -348,7 +348,7 @@ export function createCase(first_name, last_name, email, language) {
 
 
 /*Fetch Blog Preview Data */
-export function getAllArticles(api) {
+export async function getAllArticles(api) {
 
     return fetch(`${api.toString()}`, {
         method: 'GET',
