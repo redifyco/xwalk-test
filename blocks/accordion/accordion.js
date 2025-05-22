@@ -1,4 +1,5 @@
 export default function decorate(block) {
+    console.log('block', block)
     const title = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || '';
     const accordionItems = block.querySelectorAll(':scope > div:nth-child(n+2) div');
     const resultData = processDivsToObject(accordionItems);
