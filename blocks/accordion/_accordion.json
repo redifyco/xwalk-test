@@ -41,6 +41,47 @@
           "valueType": "string",
           "name": "title",
           "label": "Title"
+        },
+        {
+          "component": "container",
+          "label": "Focus Area 1",
+          "collapsible": true,
+          "name": "focus-area-1",
+          "valueType": "string",
+          "fields": [
+            {
+              "component": "reference",
+              "valueType": "string",
+              "name": "focus-area-1-image",
+              "label": "Focus Area 1 Image",
+              "multi": false,
+              "required": true
+            },
+            {
+              "component": "reference",
+              "valueType": "string",
+              "name": "focus-area-1-icon",
+              "label": "Focus Area 1 Icon",
+              "multi": false,
+              "required": true
+            },
+            {
+              "component": "text",
+              "valueType": "string",
+              "name": "focus-area-1-title",
+              "label": "Focus Area 1 Title",
+              "value": "",
+              "required": true
+            },
+            {
+              "component": "richtext",
+              "valueType": "string",
+              "name": "focus-area-1-description",
+              "label": "Focus Area 1 Description",
+              "value": "",
+              "required": true
+            }
+          ]
         }
       ]
     },
