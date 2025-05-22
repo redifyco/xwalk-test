@@ -322,7 +322,7 @@ export function createLead(first_name, last_name, email, language) {
 }
 
 export function createCase(first_name, last_name, email, language) {
-    fetch('/createCase', {
+    fetch('/createcase', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
