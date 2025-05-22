@@ -151,8 +151,8 @@ function processDivsToObject(divs) {
 
         const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
         const icon = iconDiv?.querySelector('img')?.getAttribute('src') || '';
-        const title = titleDiv?.textContent.trim();
-        const description = descriptionDiv?.textContent.trim() || null;
+        const title = titleDiv?.textContent.trim() || '';
+        const description = descriptionDiv?.textContent.trim() || '';
 
         result.push({
             image,
