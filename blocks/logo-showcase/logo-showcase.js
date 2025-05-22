@@ -56,6 +56,7 @@ export default async function decorate(block) {
         ${buttonText}
       </custom-link>
       ` : ''}
+    <div id="card-container"></div>
   `;
 
 

@@ -6,7 +6,6 @@
   :root, :host {
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-orange-500: oklch(0.705 0.213 47.604);
     --color-gray-100: oklch(0.967 0.003 264.542);
     --color-gray-200: oklch(0.928 0.006 264.531);
     --color-gray-300: oklch(0.872 0.01 258.338);
@@ -1675,12 +1674,6 @@
   .lg\:max-w-none {
     @media (width >= 64rem) {
       max-width: none;
-    }
-  }
-  .lg\:-translate-x-60 {
-    @media (width >= 64rem) {
-      --tw-translate-x: calc(var(--spacing) * -60);
-      translate: var(--tw-translate-x) var(--tw-translate-y);
     }
   }
   .lg\:-translate-x-\[180px\] {
