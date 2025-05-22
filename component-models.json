@@ -2771,5 +2771,43 @@
         ]
       }
     ]
+  },
+  {
+    "id": "two-images-text-model",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "inverted-images-position",
+        "label": "Inverted Images Position",
+        "value": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image-1",
+        "label": "Image 1",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image-2",
+        "label": "Image 2",
+        "multi": false
+      }
+    ]
   }
 ]
