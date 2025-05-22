@@ -1,4 +1,5 @@
 import '../../scripts/customTag.js'
+import {createCase} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
     const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
@@ -17,7 +18,7 @@ export default async function decorate(block) {
         class="flex w-full justify-center flex-col px-4 py-14 lg:gap-8 2xl:w-1/2 2xl:px-16"
       >
         <div class="flex 2xl:mt-5 text-center lg:text-start flex-col items-center gap-6 2xl:items-start">
-          <h2 class="text-3xl text-primary lg:-translate-x-60 uppercase lg:text-7xl">
+          <h2 class="text-3xl text-primary uppercase lg:text-7xl">
           ${title}
           </h2>
           <span class="text-base lg:text-xl">
@@ -27,42 +28,42 @@ export default async function decorate(block) {
         <form
           class="flex w-full flex-col items-center gap-4 2xl:items-start"
         >
-          <label for="field1"></label>
+          <label for="name"></label>
           <input
-            id="00N7R000009Jcc5"
+            id="name"
             type="text"
             placeholder="*Name..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200  focus-visible:translate-x-1 focus-visible:outline-0"
           />
-          <label for="field2"></label>
+          <label for="surname"></label>
           <input
-            id="00N7R000009JccA"
+            id="surname"
             type="text"
             placeholder="*Surname..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 focus-visible:translate-x-1 focus-visible:outline-0"
           />
-          <label for="field3"></label>
+          <label for="email"></label>
           <input
             id="email"
             type="text"
             placeholder="*Email..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 focus-visible:translate-x-1 focus-visible:outline-0"
           />
-          <label for="fiel4"></label>
+          <label for="phone"></label>
           <input
-            id="field4"
+            id="phone"
             type="text"
             placeholder="*Phone..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 focus-visible:translate-x-1 focus-visible:outline-0"
           />
-           <label for="field5"></label>
+           <label for="request"></label>
           <input
-            id="type"
+            id="request"
             type="text"
             placeholder="*Type of request..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 focus-visible:translate-x-1 focus-visible:outline-0"
           />
-          <label for="field5"></label>
+          <label for="description"></label>
           <textarea
             id="description"
             rows="3"
@@ -74,45 +75,51 @@ export default async function decorate(block) {
           <div class="flex items-center gap-2">
             <input
               type="checkbox"
-              id="00N7R000009JccK"
+              id="marketing-consent"
               required
               class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
             />
-            <label for="field5" class="text-sm font-light cursor-pointer">
+            <label for="marketing-consent" class="text-sm font-light cursor-pointer">
               Marketing consent
             </label>
           </div>
           <div class="flex items-center gap-2">
             <input
               type="checkbox"
-              id="field6"
+              id="policy-consent"
               required
               class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
             />
-            <label for="field6" class="text-sm font-light cursor-pointer">
+            <label for="policy-consent" class="text-sm font-light cursor-pointer">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque consequatur culpa error fuga illo nam nostrum rerum sit voluptate.
             </label>
           </div>
           </div>
           <!--CUSTOM BUTTON-->
-          <custom-link color="primary" href="${buttonLink}">${buttonText}</custom-link>
+          ${buttonLink ? `<custom-link color="primary" href="${buttonLink}">${buttonText}</custom-link>` : `<custom-button id="custom-button-form">${buttonText}</custom-button>`}
           </div>
         </form>
       </div>
     `
 
-    sectionContainer.querySelector('#custom-button-form').addEventListener('click', async (e) => {
+    const buttonSubmit = sectionContainer.querySelector('#custom-button-form')
+    if (buttonSubmit) {
+        buttonSubmit.addEventListener('click', async (e) => {
+            const data = {
+                first_name: sectionContainer.querySelector('#name').value || '',
+                last_name: sectionContainer.querySelector('#surname').value || '',
+                email: sectionContainer.querySelector('#email').value || '',
+                phone: sectionContainer.querySelector('#phone').value || '',
+                type: sectionContainer.querySelector('#request').value || '',
+                description: sectionContainer.querySelector('#description').value || '',
+                marketingConsent: sectionContainer.querySelector('#marketing-consent').checked,
+                language: ''
+            }
+
             e.preventDefault()
-            createCase(
-                document.getElementById('00N7R000009Jcc5').value,
-                document.getElementById('00N7R000009JccA').value,
-                document.getElementById('email').value,
-                document.getElementById('phone').value,
-                document.getElementById('type').value,
-                document.getElementById('description').value,
-                document.getElementById('00N7R000009JccK').value
-            )
+            createCase(data)
         })
+    }
 
     block.textContent = ''
     block.append(sectionContainer)
