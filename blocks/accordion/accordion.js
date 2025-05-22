@@ -139,7 +139,7 @@ export default function decorate(block) {
 function processDivsToObject(divs) {
     const result = [];
 
-    for (let i = 0; i < divs.length; i += 4) {
+    for (let i = 0; i < divs.length; i += 5) {
         const imageDiv = divs[i];
         const iconDiv = divs[i + 1];
         const titleDiv = divs[i + 2];
