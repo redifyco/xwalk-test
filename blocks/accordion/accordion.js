@@ -1,8 +1,8 @@
-export default async function decorate(block) {
+export default function decorate(block) {
     console.log('block', block)
     const title = block.querySelector(':scope > div:nth-child(1) div')?.innerHTML || '';
     const accordionItems = block.querySelectorAll(':scope > div:nth-child(n+2) div');
-    const resultData = await processDivsToObject(accordionItems);
+    const resultData = processDivsToObject(accordionItems);
 
 
     console.log('resultData', resultData);
@@ -136,11 +136,14 @@ export default async function decorate(block) {
     // block.append(sectionContainer);
 }
 
-async function processDivsToObject(divs) {
+function processDivsToObject(divs) {
     const result = [];
 
     for (let i = 0; i < divs.length; i += 4) {
-        console.log('divs', divs)
+        console.log('divs[i]', divs[i])
+        console.log('divs[i +1]', divs[i + 1])
+        console.log('divs[i +2]', divs[i + 2])
+        console.log('divs[i +3]', divs[i + 3])
         const imageDiv = divs[i];
         const iconDiv = divs[i + 1];
         const titleDiv = divs[i + 2];
