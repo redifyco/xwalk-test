@@ -4,9 +4,7 @@ export default function decorate(block) {
     const accordionItems = block.querySelectorAll(':scope > div:nth-child(n+2) div');
     const aemEnv = block.getAttribute('data-aue-resource');
     const resultData = processDivsToObject(accordionItems, aemEnv);
-
-
-    console.log('resultData', resultData);
+    
     let degree = 0;
     const sectionContainer = document.createElement('section');
     sectionContainer.className = 'container-layout-padding';

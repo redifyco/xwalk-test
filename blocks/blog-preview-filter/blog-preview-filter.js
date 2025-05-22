@@ -51,7 +51,7 @@ export default async function decorate(block) {
     const isFilterDate = returnBoolean(block, 6)
     const isFilterCategory = returnBoolean(block, 7)
     const aemEnv = block.getAttribute('data-aue-resource');
-    const data = getAllArticles(apiString)
+    const data = await getAllArticles(apiString)
 
     console.log('data', data)
 
