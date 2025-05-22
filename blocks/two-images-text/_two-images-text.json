@@ -42,15 +42,22 @@
         {
           "component": "reference",
           "valueType": "string",
-          "name": "image-1",
-          "label": "Image 1",
+          "name": "mask-image-1",
+          "label": "Mask Image 1",
           "multi": false
         },
         {
           "component": "reference",
           "valueType": "string",
-          "name": "image-2",
-          "label": "Image 2",
+          "name": "mask-image-2",
+          "label": "Mask Image 2",
+          "multi": false
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "full-width-image",
+          "label": "Full Width Image",
           "multi": false
         }
       ]
