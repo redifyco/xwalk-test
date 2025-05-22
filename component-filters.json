@@ -42,12 +42,6 @@
     ]
   },
   {
-    "id": "accordion-filter",
-    "components": [
-      "accordion-item"
-    ]
-  },
-  {
     "id": "box-cards-filter",
     "components": [
       "card-item"

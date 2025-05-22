@@ -283,43 +283,6 @@
     ]
   },
   {
-    "id": "accordion-item-model",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "item-image",
-        "label": "Item Image",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "item-title",
-        "label": "Item Title",
-        "value": "",
-        "required": true
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "item-description",
-        "label": "Item Description",
-        "value": "",
-        "required": true
-      }
-    ]
-  },
-  {
     "id": "blog-preview-filter-model",
     "fields": [
       {
