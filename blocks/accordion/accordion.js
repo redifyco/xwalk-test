@@ -4,6 +4,7 @@ export default function decorate(block) {
     const resultData = processDivsToObject(accordionItems);
 
 
+    console.log('resultData', resultData);
     let degree = 0;
     const sectionContainer = document.createElement('section');
     sectionContainer.className = 'container-layout-padding';
@@ -51,7 +52,6 @@ export default function decorate(block) {
             }
         })();
 
-        console.log('item.image', item.image ? 'dioporco' : 'non dioporco');
         return `
                         <div id="item-container" class="absolute shadow flex items-center justify-center transition-all duration-1000 ${buildTransform} w-[180px] h-[200px] lg:w-[200px] lg:h-[300px] ${item.image ? '' : 'bg-gray-300'}">
                             ${item.image ? `<img alt="image" class="w-full h-full object-cover object-center" src="${item.image}" />` : ``}
