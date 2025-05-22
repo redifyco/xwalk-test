@@ -3,7 +3,6 @@ export default function decorate(block) {
     const accordionItems = block.querySelectorAll(':scope > div:nth-child(n+2) div');
     const resultData = processDivsToObject(accordionItems);
 
-    console.log('resultData', resultData)
 
     let degree = 0;
     const sectionContainer = document.createElement('section');
@@ -21,19 +20,19 @@ export default function decorate(block) {
         return `
         <div class="w-full">
             <button id="accordion-button" class="cursor-pointer w-full py-1 lg:py-3 text-left font-medium flex justify-between items-center" data-index="${index}">
-                <span class="text-xl lg:text-4xl text-primary">${item.title}</span>
+                <span class="text-xl lg:text-4xl text-primary">${item.title ? item.title : 'No Title'}</span>
                 <svg class="w-6 text-primary h-8 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
             </button>
             <div class="accordion-content overflow-hidden max-h-0 transition-all duration-200 ease-out">
-                <p class="font-light py-1 lg:py-3">${item.description}</p>
+                <p class="font-light py-1 lg:py-3">${item.description ? item.description : 'No Description'}</p>
             </div>
         </div>`
     }).join('') : ''}
             </div>
-            
-                <div class="relative w-full h-[300px] lg:h-[500px] flex items-center justify-center lg:-translate-y-96 perspective-[1000px]">
+            <!--3D CAROUSEL-->
+                <div id="3d-carousel" class="relative w-full h-[300px] lg:h-[500px] flex items-center justify-center lg:-translate-y-96 perspective-[1000px]">
                     <div id="container-rotate" class="absolute transition-all duration-1000 transform-3d w-[180px] lg:translate-y-96 h-[200px] lg:w-[200px] lg:h-[300px]">
                         ${resultData.length > 0 ? resultData.map((item, index) => {
 
@@ -52,10 +51,11 @@ export default function decorate(block) {
             }
         })();
 
+        console.log('item.image', item.image ? 'dioporco' : 'non dioporco');
         return `
-                        <div id="item-container" class="absolute shadow flex items-center justify-center transition-all duration-1000 ${buildTransform} w-[180px] h-[200px] lg:w-[200px] lg:h-[300px]">
-                            <img alt="image" class="w-full h-full object-cover object-center" src="${item.image}" />
-                            <img alt="icon" class="absolute object-contain h-20 justify-center w-20" src="${item.icon}" />
+                        <div id="item-container" class="absolute shadow flex items-center justify-center transition-all duration-1000 ${buildTransform} w-[180px] h-[200px] lg:w-[200px] lg:h-[300px] ${item.image ? '' : 'bg-gray-300'}">
+                            ${item.image ? `<img alt="image" class="w-full h-full object-cover object-center" src="${item.image}" />` : ``}
+                            ${item.icon ? `<img alt="icon" class="absolute object-contain h-20 justify-center w-20" src="${item.icon}" />` : ''}
                             <div id="overlay-image" class="h-full w-full absolute inset-0 bg-white/40 transition-opacity duration-300"></div>
                         </div>
                     `
@@ -123,22 +123,23 @@ export default function decorate(block) {
         });
     });
 
-    const aemEnv = block.getAttribute('data-aue-resource');
-    if (!aemEnv) {
-        block.textContent = '';
-        block.append(sectionContainer);
-    } else {
-        block.append(sectionContainer);
-        block.querySelectorAll(":scope > div:nth-child(n+1) div").forEach(item => item.classList.add('hidden'));
-    }
 
-    // Initialize first image without overlay
     const firstOverlay = sectionContainer.querySelector('#overlay-image');
     if (firstOverlay) {
         firstOverlay.classList.remove('opacity-100');
         firstOverlay.classList.add('opacity-0');
     }
 
+
+    const aemEnv = block.getAttribute('data-aue-resource');
+    if (!aemEnv) {
+        block.textContent = '';
+        block.append(sectionContainer);
+    } else {
+        block.append(sectionContainer);
+        sectionContainer.querySelector('#3d-carousel').classList.add('hidden');
+        block.querySelectorAll(":scope > div:nth-child(n+1) div").forEach(item => item.classList.add('hidden'));
+    }
 }
 
 function processDivsToObject(divs) {
@@ -152,7 +153,7 @@ function processDivsToObject(divs) {
 
         const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
         const icon = iconDiv?.querySelector('img')?.getAttribute('src') || '';
-        const title = titleDiv?.textContent.trim() || 'Untitled';
+        const title = titleDiv?.textContent.trim();
         const description = descriptionDiv?.textContent.trim() || null;
 
         result.push({
