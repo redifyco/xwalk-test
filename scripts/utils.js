@@ -350,7 +350,7 @@ export function createCase(first_name, last_name, email, language) {
 /*Fetch Blog Preview Data */
 export async function getAllArticles(api) {
 
-    return await fetch(`${api.toString()}`, {
+    return fetch(`${api.toString()}`, {
         method: 'GET',
     })
         .then(response => response.json())
