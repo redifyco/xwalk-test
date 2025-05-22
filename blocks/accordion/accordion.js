@@ -140,10 +140,6 @@ function processDivsToObject(divs) {
     const result = [];
 
     for (let i = 0; i < divs.length; i += 4) {
-        console.log('divs[i]', divs[i])
-        console.log('divs[i +1]', divs[i + 1])
-        console.log('divs[i +2]', divs[i + 2])
-        console.log('divs[i +3]', divs[i + 3])
         const imageDiv = divs[i];
         const iconDiv = divs[i + 1];
         const titleDiv = divs[i + 2];
@@ -151,8 +147,16 @@ function processDivsToObject(divs) {
 
         const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
         const icon = iconDiv?.querySelector('img')?.getAttribute('src') || '';
-        const title = titleDiv?.textContent.trim() || '';
-        const description = descriptionDiv?.textContent.trim() || '';
+        const title = titleDiv?.textContent || '';
+        const description = descriptionDiv?.textContent || '';
+
+        console.log('divs[i]', divs[i])
+        console.log('divs[i +1]', divs[i + 1])
+        console.log('divs[i +2]', divs[i + 2])
+        console.log('divs[i +3]', divs[i + 3])
+        console.log('image', image)
+        console.log('icon', icon)
+        console.log('description', description)
 
         result.push({
             image,
