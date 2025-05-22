@@ -140,6 +140,7 @@ async function processDivsToObject(divs) {
     const result = [];
 
     for (let i = 0; i < divs.length; i += 4) {
+        console.log('divs', divs)
         const imageDiv = divs[i];
         const iconDiv = divs[i + 1];
         const titleDiv = divs[i + 2];
