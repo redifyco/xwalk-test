@@ -24,8 +24,8 @@ export default function decorate(block) {
                 <div class="font-light">${description}</div>
             </div>
             <div class="hidden lg:flex w-full gap-10">
-                <img class="max-w-72 object-cover object-center translate-y-20" src="${maskImage1}" alt="">
-                <img class="max-w-72 object-cover object-center -translate-y-20" src="${maskImage2}" alt="">
+                <img class="max-w-72 object-cover object-center ${isInvertedPosition ? '-translate-y-20' : 'translate-y-20'}" src="${maskImage1}" alt="">
+                <img class="max-w-72 object-cover object-center  ${isInvertedPosition ? 'translate-y-20' : '-translate-y-20'}" src="${maskImage2}" alt="">
             </div>
         </div>
     `
