@@ -131,15 +131,8 @@ export default function decorate(block) {
     }
 
 
-    const aemEnv = block.getAttribute('data-aue-resource');
-    if (!aemEnv) {
-        block.textContent = '';
-        block.append(sectionContainer);
-    } else {
-        block.append(sectionContainer);
-        sectionContainer.querySelector('#3d-carousel').classList.add('hidden');
-        block.querySelectorAll(":scope > div:nth-child(n+1) div").forEach(item => item.classList.add('hidden'));
-    }
+    block.textContent = '';
+    block.append(sectionContainer);
 }
 
 function processDivsToObject(divs) {
