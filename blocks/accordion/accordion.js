@@ -151,15 +151,6 @@ function processDivsToObject(divs, aemEnv) {
         const title = titleDiv?.textContent || '';
         const description = descriptionDiv?.textContent || '';
 
-        console.log('divs[i]', divs[i])
-        console.log('divs[i +1]', divs[i + 1])
-        console.log('divs[i +2]', divs[i + 2])
-        console.log('divs[i +3]', divs[i + 3])
-        console.log('image', image)
-        console.log('title', title)
-        console.log('icon', icon)
-        console.log('description', description)
-
         result.push({
             image,
             icon,
