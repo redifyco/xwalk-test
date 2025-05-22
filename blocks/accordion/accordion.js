@@ -132,8 +132,8 @@ export default function decorate(block) {
     }
 
 
-    // block.textContent = '';
-    // block.append(sectionContainer);
+    block.textContent = '';
+    block.append(sectionContainer);
 }
 
 function processDivsToObject(divs) {
