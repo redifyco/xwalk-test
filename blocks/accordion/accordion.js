@@ -132,8 +132,8 @@ export default async function decorate(block) {
     }
 
 
-    block.textContent = '';
-    block.append(sectionContainer);
+    // block.textContent = '';
+    // block.append(sectionContainer);
 }
 
 async function processDivsToObject(divs) {
