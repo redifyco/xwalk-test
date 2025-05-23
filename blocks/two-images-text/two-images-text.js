@@ -23,7 +23,7 @@ export default function decorate(block) {
                 </div>
                 <div class="font-light">${description}</div>
             </div>
-            <div class="hidden justify-end lg:flex w-full gap-10">
+            <div class="hidden lg:flex w-full gap-10 ${isInvertedPosition ? 'justify-start' : 'justify-end'}">
                 <img class="max-w-72 object-cover object-center ${isInvertedPosition ? '-translate-y-20' : 'translate-y-20'}" src="${maskImage1}" alt="">
                 <img class="max-w-72 object-cover object-center  ${isInvertedPosition ? 'translate-y-20' : '-translate-y-20'}" src="${maskImage2}" alt="">
             </div>
