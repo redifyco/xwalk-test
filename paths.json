@@ -1,13 +1,13 @@
 {
   "mappings": [
-    "/content/publictest/:/",
-    "/content/publictest/configuration:/.helix/config.json",
-    "/content/publictest/metadata:/metadata.json",
-    "/content/publictest/focus-area:/focus-area.json",
-    "/content/publictest/news-categories:/news-categories.json",
-    "/content/publictest/headers,:/.helix/headers.json"
+    "/content/mscfoundation/:/",
+    "/content/mscfoundation/configuration:/.helix/config.json",
+    "/content/mscfoundation/metadata:/metadata.json",
+    "/content/mscfoundation/focus-area:/focus-area.json",
+    "/content/mscfoundation/news-categories:/news-categories.json",
+    "/content/mscfoundation/headers,:/.helix/headers.json"
   ],
   "includes": [
-    "/content/publictest/"
+    "/content/mscfoundation/"
   ]
 }

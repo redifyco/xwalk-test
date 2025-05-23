@@ -297,60 +297,56 @@ export async function loadGoogleMaps(apiKey) {
 }
 
 export function createLead(first_name, last_name, email, language) {
-    fetch('/createlead', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({first_name, last_name, email, language})
+  fetch('/createlead', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ first_name, last_name, email, language })
+  })
+    .then(response => {
+      return response.text().then(html => {
+        if (response.status === 200) {
+          console.log('Lead successfully created. HTML response:');
+          console.log(html);
+        } else {
+          throw new Error(`Request failed with status ${response.status}: ${html}`);
+        }
+      });
     })
-        .then(response => {
-            return response.text().then(html => {
-                if (response.status === 200) {
-                    console.log('Lead successfully created. HTML response:');
-                    console.log(html); // stampa lo snippet HTML
-                    // TODO: gestisci eventualmente il rendering dello snippet o notifica l’utente
-                } else {
-                    throw new Error(`Request failed with status ${response.status}: ${html}`);
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Error creating lead:', error);
-            // TODO: mostra messaggio d'errore all'utente se necessario
-        });
+    .catch(error => {
+      console.error('Error creating lead:', error);
+    });
 }
 
 export function createCase(first_name, last_name, email, language) {
-    fetch('/createcase', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({first_name, last_name, email, language})
+  fetch('/createCase', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ first_name, last_name, email, language })
+  })
+    .then(response => {
+      return response.text().then(html => {
+        if (response.status === 200) {
+          console.log('Lead successfully created. HTML response:');
+          console.log(html); // stampa lo snippet HTML
+        } else {
+          throw new Error(`Request failed with status ${response.status}: ${html}`);
+        }
+      });
     })
-        .then(response => {
-            return response.text().then(html => {
-                if (response.status === 200) {
-                    console.log('Lead successfully created. HTML response:');
-                    console.log(html); // stampa lo snippet HTML
-                    // TODO: gestisci eventualmente il rendering dello snippet o notifica l’utente
-                } else {
-                    throw new Error(`Request failed with status ${response.status}: ${html}`);
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Error creating lead:', error);
-            // TODO: mostra messaggio d'errore all'utente se necessario
-        });
+    .catch(error => {
+      console.error('Error creating lead:', error);
+    });
 }
 
 
 /*Fetch Blog Preview Data */
 export async function getAllArticles(api) {
 
-    return fetch(`${api.toString()}`, {
+    return await fetch(`${api.toString()}`, {
         method: 'GET',
     })
         .then(response => response.json())
