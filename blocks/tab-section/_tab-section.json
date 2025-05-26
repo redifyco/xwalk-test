@@ -45,8 +45,8 @@
         },
         {
           "component": "aem-tag",
-          "name": "curate-card-tags",
-          "label": "Tags for Cards",
+          "name": "focus-area-tags",
+          "label": "Focus Area tags",
           "valueType": "string",
           "rootPath": "/content/cq:tags/msc-foundation/focus-area"
         },
