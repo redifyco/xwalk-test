@@ -1011,6 +1011,12 @@
       {
         "component": "richtext",
         "valueType": "string",
+        "name": "title-raw",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
         "name": "title",
         "label": "Title"
       },
