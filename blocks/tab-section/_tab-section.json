@@ -44,6 +44,14 @@
           "multi": false
         },
         {
+          "component": "aem-tag",
+          "name": "curate-card-tags",
+          "label": "Tags for Cards",
+          "valueType": "string",
+          "rootPath": "/content/cq:tags/focus-area",
+          "description": "Tags for curated card"
+        },
+        {
           "component": "text",
           "name": "side-info-box-1-title",
           "label": "Side Info Box 1 Title",
