@@ -44,13 +44,6 @@
           "multi": false
         },
         {
-          "component": "aem-tag",
-          "name": "focus-area-tags",
-          "label": "Focus Area tags",
-          "valueType": "string",
-          "rootPath": "/content/cq:tags/msc-foundation/focus-area"
-        },
-        {
           "component": "text",
           "name": "side-info-box-1-title",
           "label": "Side Info Box 1 Title",
