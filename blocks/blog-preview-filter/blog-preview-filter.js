@@ -182,7 +182,7 @@ const RenderCards = (data, cardStyle, perPage) => {
                 <div class="flex justify-center items-center w-full text-4xl h-full font-semibold">Nothing to show..</div>
             `}
             ${totalPages > 1 ? `
-                <div class="flex justify-between sm:justify-center overflow-x-scroll md:justify-end gap-4 w-full mt-10">
+                <div class="flex justify-between sm:justify-center  md:justify-end gap-4 w-full mt-10">
                     <button class="border cursor-pointer flex items-center min-w-12 size-12 sm:min-w-16 sm:size-16 justify-center border-secondary disabled:opacity-50" 
                         ${currentPage === 1 ? 'disabled' : ''} 
                         onclick="handlePageChange('prev', ${totalPages})">
