@@ -14,11 +14,24 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
     },
     body: JSON.stringify(data)
 })
-    .then(res => res.json())
-    .then(async session => {
+    .then(async res => {
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const contentType = res.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await res.text();
+            throw new Error(`Invalid response format. Expected JSON, got: ${text.substring(0, 100)}...`);
+        }
+        return res.json();
+    })
+    .then(session => {
         console.log('session', session);
 
 
         // checkout.create('card').mount('#card-container');
     })
-    .catch(err => console.error('Adyen setup error:', err));
+    .catch(err => {
+        console.error('Adyen setup error:', err.message);
+        console.error('Error details:', err);
+    });
