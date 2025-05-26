@@ -9,6 +9,7 @@ export default async function decorate(block) {
     const buttonText = block.querySelector(':scope > div:nth-child(4) p ')?.textContent
 
     console.log('title', title)
+    console.log('title2', title)
 
     const sectionContainer = document.createElement('section')
     sectionContainer.className = 'bg-secondary flex flex-col lg:flex-row'
