@@ -44,11 +44,6 @@
           "valueType": "string",
           "name": "buttonText",
           "label": "Button Text"
-        },
-        {
-          "component": "aem-content",
-          "name": "buttonLink",
-          "label": "Button Link"
         }
       ]
     }
