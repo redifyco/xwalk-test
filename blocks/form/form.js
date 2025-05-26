@@ -8,9 +8,6 @@ export default async function decorate(block) {
     const subTitle = block.querySelector(':scope > div:nth-child(3) div')?.innerHTML
     const buttonText = block.querySelector(':scope > div:nth-child(4) p ')?.textContent
 
-    console.log('title', title)
-    console.log('title2', title)
-    console.log('title3', title)
 
     const sectionContainer = document.createElement('section')
     sectionContainer.className = 'bg-secondary flex flex-col lg:flex-row'
@@ -18,43 +15,39 @@ export default async function decorate(block) {
 
     sectionContainer.innerHTML = `
       <div
-        class="flex w-full justify-center flex-col px-4 py-14 lg:gap-16 2xl:w-1/2 2xl:px-16"
+        class="flex w-full justify-center flex-col  lg:gap-16 2xl:w-1/2 2xl:px-16 container-layout-padding"
       >
         <div class="flex flex-col items-center gap-6 2xl:items-start">
-          <h2 class="text-3xl text-white uppercase lg:text-7xl">
+          <div class="text-3xl prose-em:font-joyful prose-em:text-7xl lg:prose-em:text-9xl  text-white lg:text-7xl">
           ${title}
-          </h2>
-          <span class="text-base text-white lg:text-xl 2xl:w-1/2">
+          </div>
+          <span class="text-base text-white text-center lg:text-start lg:text-xl 2xl:w-1/2">
           ${subTitle}
           </span>
         </div>
         <form
-          class="flex w-full flex-col items-center gap-4 text-white 2xl:items-start 2xl:p-10"
+          class="flex w-full flex-col items-center gap-8 text-white mt-20 lg:mt-0 2xl:items-start 2xl:p-10"
         >
-          <label for="field1"></label>
           <input
             id="first_name"
             type="text"
             placeholder="*Name..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
-          <label for="field2"></label>
           <input
             id="last_name"
             type="text"
             placeholder="*Surname..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
-          <label for="field3"></label>
           <input
             id="email"
             type="text"
             placeholder="*Email..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
-          <label for="field4"></label>
           <select
-            id="00NVj000001XF69"
+            id="languages"
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
           >
             <option value="" disabled selected>*Language...</option>
@@ -65,12 +58,23 @@ export default async function decorate(block) {
             <option value="eng">Eng</option>
             <option value="others">Other</option>
           </select>
+          <div class="flex w-full items-center gap-2">
+            <input
+              type="checkbox"
+              id="marketing-consent"
+              required
+              checked
+              class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
+            />
+            <label for="marketing-consent" class="text-sm font-light cursor-pointer">
+              Marketing consent
+            </label>
+          </div>
           <!--CUSTOM BUTTON-->
           <custom-button
           class="w-full mt-10"
           btnClass="w-full md:w-fit"
             color="white"
-            href="#"
             id="custom-button-form"
           >
             ${buttonText}
@@ -86,14 +90,22 @@ export default async function decorate(block) {
       </div>
     `
 
-    sectionContainer.querySelector('#custom-button-form').addEventListener('click', async (e) => {
+    sectionContainer.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault()
-        createLead(
-            document.getElementById('first_name').value,
-            document.getElementById('last_name').value,
-            document.getElementById('email').value,
-            document.getElementById('00NVj000001XF69').value
-        )
+        const data = {
+            "first_name": sectionContainer.querySelector('#first_name').value,
+            "last_name": sectionContainer.querySelector('#last_name').value,
+            "email": sectionContainer.querySelector('#email').value,
+            "00NVj000001XF69": sectionContainer.querySelector('#languages').value,
+            "lead_source": 'Web',
+            "00NVj000003rpfN": sectionContainer.querySelector('#marketing-consent').checked
+        }
+        /*  createLead(
+              document.getElementById('first_name').value,
+              document.getElementById('last_name').value,
+              document.getElementById('email').value,
+              document.getElementById('00NVj000001XF69').value
+          )*/
     })
 
     block.textContent = ''
