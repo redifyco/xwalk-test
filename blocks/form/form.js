@@ -4,9 +4,11 @@ import {createLead} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
     const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
-    const title = block.querySelector(':scope > div:nth-child(2) p')?.textContent
+    const title = block.querySelector(':scope > div:nth-child(2)')?.innerHTML
     const subTitle = block.querySelector(':scope > div:nth-child(3) div')?.innerHTML
     const buttonText = block.querySelector(':scope > div:nth-child(4) p ')?.textContent
+
+    console.log('title', title)
 
     const sectionContainer = document.createElement('section')
     sectionContainer.className = 'bg-secondary flex flex-col lg:flex-row'
