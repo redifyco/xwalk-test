@@ -10,6 +10,7 @@ export default async function decorate(block) {
 
     console.log('title', title)
     console.log('title2', title)
+    console.log('title3', title)
 
     const sectionContainer = document.createElement('section')
     sectionContainer.className = 'bg-secondary flex flex-col lg:flex-row'
