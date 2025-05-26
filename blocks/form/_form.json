@@ -30,7 +30,7 @@
         {
           "component": "richtext",
           "valueType": "string",
-          "name": "title",
+          "name": "title-html",
           "label": "Title"
         },
         {
