@@ -5,6 +5,7 @@ export class CustomButton extends HTMLElement {
         const label = this.textContent.trim() || '';
         const color = this.getAttribute('color') || 'primary'
         const id = this.getAttribute('id') || ''
+        const btnClass = this.getAttribute('btnClass') || ''
 
         const className = this.getAttribute('className') || ''
         const callback = this.getAttribute('callback') || ''
@@ -24,7 +25,7 @@ export class CustomButton extends HTMLElement {
       <button
       onclick="${callback}"
       id="${id}"
-        class="group cursor-pointer relative inline-block border p-2 lg:border-0 ${buildColorText(color)} ${className}"
+        class="group cursor-pointer relative text-base md:text-xl inline-block border p-2 lg:border-0 ${buildColorText(color)} ${className} ${btnClass}"
       >
         <span
           class="-top-1 -right-1 h-0.5 w-3/5 group-hover:w-9/12 ${buildLineColorClass(color)}"

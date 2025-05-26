@@ -57,7 +57,9 @@ export default async function decorate(block) {
           />
           <!--CUSTOM BUTTON-->
           <custom-button
-            color="primary"
+          class="w-full mt-10"
+          btnClass="w-full md:w-fit"
+            color="white"
             href="#"
             id="custom-button-form"
           >
