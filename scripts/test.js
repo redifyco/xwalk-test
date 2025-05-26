@@ -1,56 +1,28 @@
-const globalConfiguration = {
-    session: {
-        id: 'CSD9CAC3...',
-        sessionData: 'Ab02b4c...'
-    },
-    environment: 'test',
+const data = {
+    country: "US",
     amount: {
-        value: 1000,
-        currency: 'EUR'
+        value: 100,
+        currency: "EUR"
     },
-    locale: 'nl-NL',
-    countryCode: 'NL',
-    clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
-    onPaymentCompleted: (result, component) => {
-        console.info(result, component);
-    },
-    onPaymentFailed: (result, component) => {
-        console.info(result, component);
-    },
-    onError: (error, component) => {
-        console.error(error.name, error.message, error.stack, component);
-    }
+    orderReference: "Test Reference"
 };
 
-const cardConfiguration = {
-    billingAddressRequired: true,
-};
-
-const {AdyenCheckout, Card} = window.AdyenWeb;
-console.log('AdyenCheckout', AdyenCheckout)
-
-const checkout = await AdyenCheckout(globalConfiguration);
-
-console.log('checkout', checkout)
-
-
-fetch('http://localhost:8080/api/session', {
-    method: 'POST'
+fetch('https://publish-p153267-e1585828.adobeaemcloud.com/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
 })
     .then(res => res.json())
     .then(async session => {
-        const checkout = await AdyenCheckout({
-            environment: 'test',
-            clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
-            session: {
-                id: session.id,
-                sessionData: session.sessionData
-            }
+        console.log('session', session);
+
+        // Se stai usando Adyen Web SDK, usa qui la sessione per inizializzare il checkout
+        /* const checkout = await AdyenCheckout({
+            ...session // o session.data, a seconda di come risponde il tuo backend
         });
 
-        console.log('checkout', checkout)
-
-        checkout.create('card').mount('#card-container');
+        checkout.create('card').mount('#card-container'); */
     })
     .catch(err => console.error('Adyen setup error:', err));
-
