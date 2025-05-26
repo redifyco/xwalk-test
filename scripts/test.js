@@ -7,7 +7,7 @@ const data = {
     orderReference: "Test Reference"
 };
 
-fetch('https://publish-p153267-e1585828.adobeaemcloud.com/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
+fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -18,11 +18,7 @@ fetch('https://publish-p153267-e1585828.adobeaemcloud.com/bin/msc-foundation/ser
     .then(async session => {
         console.log('session', session);
 
-        // Se stai usando Adyen Web SDK, usa qui la sessione per inizializzare il checkout
-        /* const checkout = await AdyenCheckout({
-            ...session // o session.data, a seconda di come risponde il tuo backend
-        });
 
-        checkout.create('card').mount('#card-container'); */
+        // checkout.create('card').mount('#card-container');
     })
     .catch(err => console.error('Adyen setup error:', err));
