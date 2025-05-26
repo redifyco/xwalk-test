@@ -53,12 +53,18 @@ export default async function decorate(block) {
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <label for="field4"></label>
-          <input
+          <select
             id="00NVj000001XF69"
-            type="text"
-            placeholder="*Language..."
-            class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
-          />
+            class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
+          >
+            <option value="" disabled selected>*Language...</option>
+            <option value="esp">Esp</option>
+            <option value="fra">Fra</option>
+            <option value="ger">Ger</option>
+            <option value="ita">Ita</option>
+            <option value="eng">Eng</option>
+            <option value="others">Other</option>
+          </select>
           <!--CUSTOM BUTTON-->
           <custom-button
           class="w-full mt-10"
