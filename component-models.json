@@ -2274,8 +2274,7 @@
         "name": "curate-card-tags",
         "label": "Tags for Cards",
         "valueType": "string",
-        "rootPath": "/content/cq:tags/focus-area",
-        "description": "Tags for curated card"
+        "rootPath": "/content/cq:tags/msc-foundation/focus-area"
       },
       {
         "component": "text",
