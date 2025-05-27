@@ -33,8 +33,8 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
         console.log('session', session);
         const globalConfiguration = {
             session: {
-                id: session.id, // Unique identifier for the payment session.
-                sessionData: session.session // The payment session data.
+                id: parsedSession.id, // Unique identifier for the payment session.
+                sessionData: parsedSession.session // The payment session data.
             },
             environment: 'test', // Change to 'live' for the live environment.
             amount: {
