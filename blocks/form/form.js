@@ -71,13 +71,9 @@ export default async function decorate(block) {
             </label>
           </div>
           <!--CUSTOM BUTTON-->
-          <custom-button
-          class="w-full mt-10"
-          btnClass="w-full md:w-fit"
-            color="white"
-          >
-            ${buttonText}
-          </custom-button>
+          <button type="submit">
+          Submit
+</button>
         </form>
       </div>
       <div class="w-full 2xl:w-1/2">
@@ -88,6 +84,13 @@ export default async function decorate(block) {
         />
       </div>
     `
+    /*<custom-button
+    class="w-full mt-10"
+    btnClass="w-full md:w-fit"
+      color="white"
+    >
+      ${buttonText}
+    </custom-button>*/
 
     sectionContainer.querySelector('form').addEventListener('submit', async (e) => {
         console.log('clicked')
