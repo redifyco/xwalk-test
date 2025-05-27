@@ -65,6 +65,13 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
         console.log('checkout.paymentMethodsResponse', checkout.paymentMethodsResponse); // => { paymentMethods: [...], storedPaymentMethods: [...] }
 
 // 2. Create an instance of the Component and mount it to the container you created.
+        const cardConfiguration = {
+            // Optional configuration.
+            billingAddressRequired: true, // Show the billing address input fields and mark them as required.
+            brandsConfiguration: {
+                visa: {icon: 'https://...'} // Custom icon for Visa.
+            }
+        };
         const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
         console.log('cardComponent', cardComponent);
 
