@@ -38,10 +38,6 @@ Promise.all([
                 sessionData: parsedSession.session
             },
             environment: 'test',
-            /*amount: {
-                value: 1000,
-                currency: 'EUR'
-            },*/
             locale: 'it-IT',
             countryCode: 'IT',
             clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
@@ -58,8 +54,8 @@ Promise.all([
 
         const checkout = await AdyenCheckout(globalConfiguration);
         const cardConfiguration = {
-            hasHolderName: false,
-            billingAddressRequired: false, // Show the billing address input fields and mark them as required.
+            hasHolderName: true,
+            billingAddressRequired: true, // Show the billing address input fields and mark them as required.
             paymentMethods: paymentMethods.data
         };
 
