@@ -902,6 +902,30 @@
     ]
   },
   {
+    "id": "donation-form-model",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "background-image",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "subTitle",
+        "label": "Sub Title"
+      }
+    ]
+  },
+  {
     "id": "dynamic-news-grid",
     "fields": [
       {
