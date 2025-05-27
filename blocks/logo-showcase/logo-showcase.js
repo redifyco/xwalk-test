@@ -79,7 +79,6 @@ export default async function decorate(block) {
     }
 
     block.append(containerSection)
-    block.append(container)
 }
 
 /*Logo Showcase*/
