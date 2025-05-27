@@ -1,5 +1,7 @@
+const {AdyenCheckout, Card} = window.AdyenWeb;
+
 const data = {
-    country: "US",
+    country: "IT",
     amount: {
         value: 100,
         currency: "EUR"
@@ -8,9 +10,9 @@ const data = {
 };
 
 
-const containerDiv = document.querySelector('#card-container');
-console.log('container', containerDiv);
-
+window.addEventListener("DOMContentLoaded", function () {
+    console.log("Document is fully loaded and ready");
+});
 fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
     method: 'POST',
     headers: {
@@ -18,36 +20,23 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
     },
     body: JSON.stringify(data)
 })
-    .then(async res => {
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const contentType = res.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-            const text = await res.text();
-            throw new Error(`Invalid response format. Expected JSON, got: ${text.substring(0, 100)}...`);
-        }
-        return res.json();
-    })
+    .then(async res => res.json())
     .then(async session => {
         const parsedSession = JSON.parse(session.data);
 
-        console.log('parsedSession', parsedSession)
-
-        console.log('session', session);
         const globalConfiguration = {
             session: {
-                id: parsedSession.id, // Unique identifier for the payment session.
-                sessionData: parsedSession.session // The payment session data.
+                id: parsedSession.id,
+                sessionData: parsedSession.session
             },
-            environment: 'test', // Change to 'live' for the live environment.
+            environment: 'test',
             amount: {
                 value: 1000,
                 currency: 'EUR'
             },
-            locale: 'nl-NL',
-            countryCode: 'NL',
-            clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6', // Public key used for client-side authentication: https://docs.adyen.com/development-resources/client-side-authentication
+            locale: 'it-IT',
+            countryCode: 'IT',
+            clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
             onPaymentCompleted: (result, component) => {
                 console.info(result, component);
             },
@@ -59,30 +48,14 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
             }
         };
 
-        console.log('globalConfiguration', globalConfiguration);
-        const {AdyenCheckout, Card} = window.AdyenWeb;
-
         const checkout = await AdyenCheckout(globalConfiguration);
-        console.log('checkout', checkout);
+        const cardConfiguration = {};
 
-        // 1. Check the available payment methods from the AdyenCheckout instance.
-        console.log('checkout.paymentMethodsResponse', checkout.paymentMethodsResponse); // => { paymentMethods: [...], storedPaymentMethods: [...] }
-
-// 2. Create an instance of the Component and mount it to the container you created.
-        const cardConfiguration = {
-            // Optional configuration.
-            billingAddressRequired: true, // Show the billing address input fields and mark them as required.
-            brandsConfiguration: {
-                visa: {icon: 'https://...'} // Custom icon for Visa.
-            }
-        };
+        const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
+        console.log('Adyen setup complete', cardComponent);
         const container = document.querySelector('#card-container');
         console.log('container', container);
-        const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
-        console.log('cardComponent', cardComponent);
+
 
     })
-    .catch(err => {
-        console.error('Adyen setup error:', err.message);
-        console.error('Error details:', err);
-    });
+    .catch(err => console.log('error', err));
