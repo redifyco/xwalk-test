@@ -75,7 +75,6 @@ export default async function decorate(block) {
           class="w-full mt-10"
           btnClass="w-full md:w-fit"
             color="white"
-            id="custom-button-form"
           >
             ${buttonText}
           </custom-button>
@@ -91,6 +90,7 @@ export default async function decorate(block) {
     `
 
     sectionContainer.querySelector('form').addEventListener('submit', async (e) => {
+        console.log('clicked')
         e.preventDefault()
         const data = {
             "first_name": sectionContainer.querySelector('#first_name').value,
