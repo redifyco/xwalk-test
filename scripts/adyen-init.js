@@ -57,11 +57,9 @@ Promise.all([
 
         const checkout = await AdyenCheckout(globalConfiguration);
         const cardConfiguration = {
-            // Optional configuration.
+            hasHolderName: true,
             billingAddressRequired: true, // Show the billing address input fields and mark them as required.
-            brandsConfiguration: {
-                visa: {icon: 'https://...'} // Custom icon for Visa.
-            }
+            paymentMethods: paymentMethods.data
         };
 
         console.log(checkout.paymentMethodsResponse);
