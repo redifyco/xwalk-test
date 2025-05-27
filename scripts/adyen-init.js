@@ -9,15 +9,25 @@ const data = {
     orderReference: "Test Reference",
 };
 
-fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-})
-    .then(async res => res.json())
-    .then(async session => {
+Promise.all([
+    fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => res.json()),
+    fetch('/bin/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+])
+    .then(async ([session, paymentMethods]) => {
+
+        console.log('paymentMethods', paymentMethods)
         const parsedSession = JSON.parse(session.data);
 
         const globalConfiguration = {
