@@ -57,14 +57,13 @@ Promise.all([
 
         const checkout = await AdyenCheckout(globalConfiguration);
         const cardConfiguration = {
-            hasHolderName: true,
-            billingAddressRequired: true, // Show the billing address input fields and mark them as required.
+            hasHolderName: false,
+            billingAddressRequired: false, // Show the billing address input fields and mark them as required.
             paymentMethods: paymentMethods.data
         };
 
         console.log(checkout.paymentMethodsResponse);
-        const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
-        const container = document.querySelector('#card-container');
+        new Card(checkout, cardConfiguration).mount('#card-container')
 
 
     })
