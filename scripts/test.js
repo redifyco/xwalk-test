@@ -25,11 +25,45 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
         }
         return res.json();
     })
-    .then(session => {
+    .then(async session => {
         console.log('session', session);
+        const globalConfiguration = {
+            session: {
+                id: session.id, // Unique identifier for the payment session.
+                sessionData: session.session // The payment session data.
+            },
+            environment: 'test', // Change to 'live' for the live environment.
+            amount: {
+                value: 1000,
+                currency: 'EUR'
+            },
+            locale: 'nl-NL',
+            countryCode: 'NL',
+            clientKey: 'test_870be2...', // Public key used for client-side authentication: https://docs.adyen.com/development-resources/client-side-authentication
+            onPaymentCompleted: (result, component) => {
+                console.info(result, component);
+            },
+            onPaymentFailed: (result, component) => {
+                console.info(result, component);
+            },
+            onError: (error, component) => {
+                console.error(error.name, error.message, error.stack, component);
+            }
+        };
 
+        console.log('globalConfiguration', globalConfiguration);
+        const {AdyenCheckout, Card} = window.AdyenWeb;
 
-        // checkout.create('card').mount('#card-container');
+        const checkout = await AdyenCheckout(globalConfiguration);
+        console.log('checkout', checkout);
+
+        // 1. Check the available payment methods from the AdyenCheckout instance.
+        console.log('checkout.paymentMethodsResponse', checkout.paymentMethodsResponse); // => { paymentMethods: [...], storedPaymentMethods: [...] }
+
+// 2. Create an instance of the Component and mount it to the container you created.
+        const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
+        console.log('cardComponent', cardComponent);
+
     })
     .catch(err => {
         console.error('Adyen setup error:', err.message);
