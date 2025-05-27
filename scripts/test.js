@@ -26,6 +26,10 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
         return res.json();
     })
     .then(async session => {
+        const parsedSession = JSON.parse(session.data);
+
+        console.log('parsedSession', parsedSession)
+
         console.log('session', session);
         const globalConfiguration = {
             session: {
