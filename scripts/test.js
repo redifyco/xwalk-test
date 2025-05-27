@@ -43,7 +43,7 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
             },
             locale: 'nl-NL',
             countryCode: 'NL',
-            clientKey: 'test_870be2...', // Public key used for client-side authentication: https://docs.adyen.com/development-resources/client-side-authentication
+            clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6', // Public key used for client-side authentication: https://docs.adyen.com/development-resources/client-side-authentication
             onPaymentCompleted: (result, component) => {
                 console.info(result, component);
             },
