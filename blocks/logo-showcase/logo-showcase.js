@@ -81,7 +81,7 @@ export default async function decorate(block) {
     block.append(container)
 
     const data = {
-        country: "US",
+        country: "IT",
         amount: {
             value: 100,
             currency: "EUR"
@@ -113,10 +113,7 @@ export default async function decorate(block) {
         })
         .then(async session => {
             const parsedSession = JSON.parse(session.data);
-
-            console.log('parsedSession', parsedSession)
-
-            console.log('session', session);
+            
             const globalConfiguration = {
                 session: {
                     id: parsedSession.id, // Unique identifier for the payment session.
@@ -127,8 +124,8 @@ export default async function decorate(block) {
                     value: 1000,
                     currency: 'EUR'
                 },
-                locale: 'nl-NL',
-                countryCode: 'NL',
+                locale: 'it-IT',
+                countryCode: 'IT',
                 clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6', // Public key used for client-side authentication: https://docs.adyen.com/development-resources/client-side-authentication
                 onPaymentCompleted: (result, component) => {
                     console.info(result, component);
