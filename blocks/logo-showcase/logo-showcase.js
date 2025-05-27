@@ -21,6 +21,8 @@ export default async function decorate(block) {
 
     containerSection.innerHTML = `
 <div class="p-20 mt-10" id="card-container"></div>
+ <div id="applepay-container"></div>
+
       <div class="text-primary prose-em:font-joyful text-3xl uppercase lg:text-7xl">
         ${title}
       </div>
