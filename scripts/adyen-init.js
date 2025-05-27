@@ -1,4 +1,4 @@
-const {AdyenCheckout, Card, ApplePay} = window.AdyenWeb;
+const {AdyenCheckout, Card} = window.AdyenWeb;
 
 const data = {
     country: "IT",
@@ -7,7 +7,6 @@ const data = {
         currency: "EUR"
     },
     orderReference: "Test Reference",
-    allowedPaymentMethods: ["ideal", "applepay"]
 };
 
 fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
@@ -51,16 +50,6 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
         const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
         const container = document.querySelector('#card-container');
 
-
-        const applepayComponent = new ApplePay(checkout, {
-            buttonColor: 'white-outline'
-        });
-
-        applepay.isAvailable().then(() => {
-            applepay.mount('#applepay-container');
-        }).catch(() => {
-            // Apple Pay is not available
-        });
 
     })
     .catch(err => console.log('error', err));
