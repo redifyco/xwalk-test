@@ -1,67 +1,60 @@
 const {AdyenCheckout, Card} = window.AdyenWeb;
 
-const data = {
-    country: "IT",
-    amount: {
-        value: 2000,
-        currency: "EUR"
-    },
-    orderReference: "Test Reference",
-};
 
-Promise.all([
-    fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }).then(res => res.json()),
-    fetch('/bin/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }).then(res => res.json())
-])
-    .then(async ([session, paymentMethods]) => {
-
-        const parsePaymentMethods = JSON.parse(paymentMethods.data);
-        console.log('paymentMethods', parsePaymentMethods)
-        const parsedSession = JSON.parse(session.data);
-        console.log('parsedSession', parsedSession)
-
-        const globalConfiguration = {
-            session: {
-                id: parsedSession.id,
-                sessionData: parsedSession.session
+export const initDonationForm = (data) => {
+    console.log('click init donation form', data);
+    Promise.all([
+        fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            environment: 'test',
-            locale: 'it-IT',
-            countryCode: 'IT',
-            clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
-            onPaymentCompleted: (result, component) => {
-                console.info(result, component);
+            body: JSON.stringify(data)
+        }).then(res => res.json()),
+        fetch('/bin/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            onPaymentFailed: (result, component) => {
-                console.info(result, component);
-            },
-            onError: (error, component) => {
-                console.error(error.name, error.message, error.stack, component);
-            }
-        };
+            body: JSON.stringify(data)
+        }).then(res => res.json())
+    ])
+        .then(async ([session, paymentMethods]) => {
+            const parsePaymentMethods = JSON.parse(paymentMethods.data);
+            const parsedSession = JSON.parse(session.data);
 
-        const checkout = await AdyenCheckout(globalConfiguration);
-        const cardConfiguration = {
-            hasHolderName: true,
-            billingAddressRequired: true, // Show the billing address input fields and mark them as required.
-            paymentMethods: paymentMethods.data
-        };
+            const globalConfiguration = {
+                session: {
+                    id: parsedSession.id,
+                    sessionData: parsedSession.session
+                },
+                environment: 'test',
+                locale: 'it-IT',
+                countryCode: 'IT',
+                clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
+                onPaymentCompleted: (result, component) => {
+                    console.info(result, component);
+                },
+                onPaymentFailed: (result, component) => {
+                    console.info(result, component);
+                },
+                onError: (error, component) => {
+                    console.error(error.name, error.message, error.stack, component);
+                }
+            };
 
-        console.log(checkout.paymentMethodsResponse);
-        new Card(checkout, cardConfiguration).mount('#card-container')
+            const checkout = await AdyenCheckout(globalConfiguration);
+            const cardConfiguration = {
+                hasHolderName: false,
+                billingAddressRequired: false,
+                paymentMethods: parsePaymentMethods.data
+            };
+
+            console.log(checkout.paymentMethodsResponse);
+            new Card(checkout, cardConfiguration).mount('#card-container')
 
 
-    })
-    .catch(err => console.log('error', err));
+        })
+        .catch(err => console.log('error', err));
+}
+
