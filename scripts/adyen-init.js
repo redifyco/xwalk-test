@@ -56,10 +56,9 @@ Promise.all([
         };
 
         const checkout = await AdyenCheckout(globalConfiguration);
-        const cardConfiguration = {
-            paymentMethods: ['mc', 'visa', 'amex']
-        };
+        const cardConfiguration = {};
 
+        console.log(checkout.paymentMethodsResponse);
         const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
         const container = document.querySelector('#card-container');
 
