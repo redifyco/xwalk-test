@@ -102,6 +102,7 @@ export default async function decorate(block) {
         }
 
         console.log('data', data)
+        console.log('test update data');
         createLead(data)
     })
 
