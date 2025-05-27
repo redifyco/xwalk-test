@@ -1,4 +1,5 @@
-const {AdyenCheckout} = window.AdyenWeb;
+const {AdyenCheckout, Dropin, Card, GooglePay, PayPal} = window.AdyenWeb;
+
 
 const data = {
     country: "IT",
@@ -7,7 +8,7 @@ const data = {
         currency: "EUR"
     },
     orderReference: "Test Reference",
-    allowedPaymentMethods: ["ideal", "applepay", "scheme", "paypal", "googlepay", "klarna", "sepa"]
+    allowedPaymentMethods: ["ideal", "applepay"]
 };
 
 fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
@@ -45,10 +46,23 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
             }
         };
 
-        const checkout = await AdyenCheckout(globalConfiguration);
+        const dropinConfiguration = {
+            // Required if you import individual payment methods.
+            paymentMethodComponents: [Card, PayPal, GooglePay, ApplePay, Ideal],
+            // Optional configuration.
+            onReady: () => {
+            },
+            instantPaymentTypes: ['applepay', 'googlepay']
+        };
 
-        // Use the Drop-in component to display all payment methods
-        checkout.create('dropin').mount('#card-container');
-        console.log('Adyen setup complete');
+        const checkout = await AdyenCheckout(globalConfiguration);
+        const cardConfiguration = {};
+
+        const dropin = new Dropin(checkout, dropinConfiguration).mount('#card-container');
+
+        // const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
+        const container = document.querySelector('#card-container');
+
+
     })
     .catch(err => console.log('error', err));
