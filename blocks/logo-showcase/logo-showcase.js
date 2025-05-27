@@ -1,6 +1,6 @@
 import {buildHeight} from "../../scripts/utils.js";
 import "../../scripts/customTag.js";
-import "../../scripts/test.js"
+import "../../scripts/adyen-init.js"
 
 export default async function decorate(block) {
     const title = block.querySelector(":scope > div:nth-child(1) div")?.innerHTML;
@@ -13,8 +13,8 @@ export default async function decorate(block) {
     const resultItems = processDivsToObject(items);
 
 
-    const container = document.createElement('div')
-    container.id = 'card-container'
+    /*const container = document.createElement('div')
+    container.id = 'card-container'*/
 
     const containerSection = document.createElement('section')
     containerSection.className = `flex flex-col items-center justify-center gap-8 px-4 py-14 text-center lg:gap-16 lg:px-16 lg:py-24 ${buildHeight(mobileHeight, desktopHeight)}`
@@ -54,6 +54,7 @@ export default async function decorate(block) {
         })
         .join("")}
     </div>
+    <div id="card-container"></div>
 </div>
       ${buttonText && buttonLink ? `
       <custom-link href="${buttonLink}">
