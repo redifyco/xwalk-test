@@ -2,10 +2,10 @@ const {AdyenCheckout, Card} = window.AdyenWeb;
 
 const data = {
     country: "IT",
-    /* amount: {
-         value: 100,
-         currency: "EUR"
-     },*/
+    amount: {
+        value: 200,
+        currency: "EUR"
+    },
     orderReference: "Test Reference",
 };
 
