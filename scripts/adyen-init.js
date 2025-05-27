@@ -2,10 +2,10 @@ const {AdyenCheckout, Card} = window.AdyenWeb;
 
 const data = {
     country: "IT",
-    amount: {
-        value: 100,
-        currency: "EUR"
-    },
+    /* amount: {
+         value: 100,
+         currency: "EUR"
+     },*/
     orderReference: "Test Reference",
 };
 
@@ -30,6 +30,7 @@ Promise.all([
         const parsePaymentMethods = JSON.parse(paymentMethods.data);
         console.log('paymentMethods', parsePaymentMethods)
         const parsedSession = JSON.parse(session.data);
+        console.log('parsedSession', parsedSession)
 
         const globalConfiguration = {
             session: {
@@ -37,10 +38,10 @@ Promise.all([
                 sessionData: parsedSession.session
             },
             environment: 'test',
-            amount: {
+            /*amount: {
                 value: 1000,
                 currency: 'EUR'
-            },
+            },*/
             locale: 'it-IT',
             countryCode: 'IT',
             clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
