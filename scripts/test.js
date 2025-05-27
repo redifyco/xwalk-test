@@ -7,6 +7,10 @@ const data = {
     orderReference: "Test Reference"
 };
 
+
+const containerDiv = document.querySelector('#card-container');
+console.log('container', containerDiv);
+
 fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
     method: 'POST',
     headers: {
@@ -72,6 +76,8 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
                 visa: {icon: 'https://...'} // Custom icon for Visa.
             }
         };
+        const container = document.querySelector('#card-container');
+        console.log('container', container);
         const cardComponent = new Card(checkout, cardConfiguration).mount('#card-container')
         console.log('cardComponent', cardComponent);
 
