@@ -51,12 +51,12 @@ export default async function decorate(block) {
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
           >
             <option value="" disabled selected>*Language...</option>
-            <option value="esp">Esp</option>
-            <option value="fra">Fra</option>
-            <option value="ger">Ger</option>
-            <option value="ita">Ita</option>
-            <option value="eng">Eng</option>
-            <option value="others">Other</option>
+            <option value="Esp">Esp</option>
+            <option value="Fra">Fra</option>
+            <option value="Ger">Ger</option>
+            <option value="Ita">Ita</option>
+            <option value="Eng">Eng</option>
+            <option value="Other">Other</option>
           </select>
           <div class="flex w-full items-center gap-2">
             <input
@@ -100,12 +100,9 @@ export default async function decorate(block) {
             "lead_source": 'Web',
             "00NVj000003rpfN": sectionContainer.querySelector('#marketing-consent').checked
         }
-        /*  createLead(
-              document.getElementById('first_name').value,
-              document.getElementById('last_name').value,
-              document.getElementById('email').value,
-              document.getElementById('00NVj000001XF69').value
-          )*/
+
+        console.log('data', data)
+        createLead(data)
     })
 
     block.textContent = ''
