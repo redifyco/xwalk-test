@@ -6,7 +6,8 @@ const data = {
         value: 100,
         currency: "EUR"
     },
-    orderReference: "Test Reference"
+    orderReference: "Test Reference",
+    allowedPaymentMethods: ["ideal", "applepay"]
 };
 
 
