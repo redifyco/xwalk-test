@@ -48,7 +48,7 @@ fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
 
         const dropinConfiguration = {
             // Required if you import individual payment methods.
-            paymentMethodComponents: [Card, PayPal, GooglePay, ApplePay, Ideal],
+            paymentMethodComponents: [Card, PayPal, GooglePay],
             // Optional configuration.
             onReady: () => {
             },
