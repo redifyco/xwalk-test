@@ -27,7 +27,8 @@ Promise.all([
 ])
     .then(async ([session, paymentMethods]) => {
 
-        console.log('paymentMethods', paymentMethods)
+        const parsePaymentMethods = JSON.parse(paymentMethods.data);
+        console.log('paymentMethods', parsePaymentMethods)
         const parsedSession = JSON.parse(session.data);
 
         const globalConfiguration = {
