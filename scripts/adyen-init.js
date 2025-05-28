@@ -12,10 +12,10 @@ export const initDonationForm = (data) => {
     }).then(res => res.json())
         .then(async (paymentMethods) => {
             const parsePaymentMethods = JSON.parse(paymentMethods.data);
-            console.log('{...parsePaymentMethods}', {...parsePaymentMethods})
+            console.log('parsePaymentMethods.paymentMethods', parsePaymentMethods.paymentMethods)
 
             const configuration = {
-                paymentMethodsResponse: {...parsePaymentMethods},
+                paymentMethodsResponse: parsePaymentMethods.paymentMethods,
                 clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
                 locale: 'it-IT',
                 countryCode: 'IT',
