@@ -28,13 +28,13 @@ export const initDonationForm = (data) => {
             locale: 'it-IT',
             countryCode: 'IT',
             session: {
-                id: session.id,
-                sessionData: session.session
+                id: JSON.parse(session.data).id,
+                sessionData: JSON.parse(session.data).session
             },
             environment: 'test',
             amount: {
-                value: data.value,
-                currency: data.currency
+                value: data.amount.value,
+                currency: data.amount.currency
             },
             onSubmit: async (result, component) => {
                 console.log('submit', result, component);
