@@ -1,4 +1,4 @@
-const {AdyenCheckout, Dropin} = window.AdyenWeb;
+const {AdyenCheckout, Dropin, Klarna} = window.AdyenWeb;
 
 
 export const initDonationForm = (data) => {
@@ -50,21 +50,15 @@ export const initDonationForm = (data) => {
         };
 
         const dropinConfiguration = {
-            paymentMethodsConfiguration: {
-                card: {
-                    visibility: false
-                },
-                klarna: {
-                    visibility: false
-                }
-            },
+            // Required if you import individual payment methods.
             paymentMethodComponents: [],
+            // Optional configuration.
             onReady: () => {
             }
         };
 
         const checkout = await AdyenCheckout(globalConfiguration);
-        const dropin = new Dropin(checkout, dropinConfiguration).mount('#dropin-container');
+        const dropin = new Dropin(checkout).mount('#dropin-container');
 
         /*const card = new Card(checkout).mount('#card-container');
         const dropin = new Dropin(checkout).mount('#dropin-container');*/
