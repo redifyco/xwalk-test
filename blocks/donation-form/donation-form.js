@@ -18,7 +18,7 @@ export default function decorate(block) {
         ${subtitle}
       </div>
 </div>
-${CurrencyForm(containerSection)}
+<div class="p-20 mt-10" id="dropin-container"></div>
 </div>
 <div class="bg-white">
 
