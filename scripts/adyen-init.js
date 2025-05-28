@@ -1,4 +1,4 @@
-const {AdyenCheckout, Card} = window.AdyenWeb;
+const {AdyenCheckout, Card, Dropin} = window.AdyenWeb;
 
 
 export const initDonationForm = (data) => {
@@ -23,6 +23,7 @@ export const initDonationForm = (data) => {
         console.log('session', session);
         console.log('paymentMethods', paymentMethods);
         const parsedSession = JSON.parse(session.data);
+
         const configuration = {
             paymentMethodsResponse: JSON.parse(paymentMethods.data),
             clientKey: "test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ",
@@ -58,9 +59,12 @@ export const initDonationForm = (data) => {
         }
 
         const checkout = await AdyenCheckout(configuration);
-        const card = new Card(checkout).mount('#card-container');
+        // const card = new Card(checkout).mount('#card-container');
+        const dropin = new Dropin(checkout).mount('#card-container');
+
         console.log('configuration', configuration);
         console.log('checkout', checkout);
+        console.log('dropin', dropin);
 
 
     })
