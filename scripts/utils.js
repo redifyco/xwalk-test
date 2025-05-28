@@ -296,50 +296,50 @@ export async function loadGoogleMaps(apiKey) {
     return Promise.resolve();
 }
 
-export function createLead(first_name, last_name, email, language) {
-  fetch('/createlead', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ first_name, last_name, email, language })
-  })
-    .then(response => {
-      return response.text().then(html => {
-        if (response.status === 200) {
-          console.log('Lead successfully created. HTML response:');
-          console.log(html);
-        } else {
-          throw new Error(`Request failed with status ${response.status}: ${html}`);
-        }
-      });
+export function createLead(data) {
+    fetch('/createlead', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({...data})
     })
-    .catch(error => {
-      console.error('Error creating lead:', error);
-    });
+        .then(response => {
+            return response.text().then(html => {
+                if (response.status === 200) {
+                    console.log('Lead successfully created. HTML response:');
+                    console.log(html);
+                } else {
+                    throw new Error(`Request failed with status ${response.status}: ${html}`);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error creating lead:', error);
+        });
 }
 
 export function createCase(first_name, last_name, email, language) {
-  fetch('/createCase', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ first_name, last_name, email, language })
-  })
-    .then(response => {
-      return response.text().then(html => {
-        if (response.status === 200) {
-          console.log('Lead successfully created. HTML response:');
-          console.log(html); // stampa lo snippet HTML
-        } else {
-          throw new Error(`Request failed with status ${response.status}: ${html}`);
-        }
-      });
+    fetch('/createCase', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({first_name, last_name, email, language})
     })
-    .catch(error => {
-      console.error('Error creating lead:', error);
-    });
+        .then(response => {
+            return response.text().then(html => {
+                if (response.status === 200) {
+                    console.log('Lead successfully created. HTML response:');
+                    console.log(html); // stampa lo snippet HTML
+                } else {
+                    throw new Error(`Request failed with status ${response.status}: ${html}`);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error creating lead:', error);
+        });
 }
 
 
