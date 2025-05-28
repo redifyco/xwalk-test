@@ -85,7 +85,6 @@ export const initDonationForm = (data) => {
             // Optional configuration.
             onReady: () => {
             }
-            // instantPaymentTypes: ['applepay', 'googlepay']
         };
 
         const checkout = await AdyenCheckout(globalConfiguration);
