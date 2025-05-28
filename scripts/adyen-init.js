@@ -23,7 +23,7 @@ export const initDonationForm = (data) => {
         console.log('session', session);
         console.log('paymentMethods', paymentMethods);
         const configuration = {
-            paymentMethods: [
+            paymentMethodsResponse: [
                 {
                     "name": "BLIK with code",
                     "type": "blik"
