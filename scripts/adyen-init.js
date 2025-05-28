@@ -23,7 +23,20 @@ export const initDonationForm = (data) => {
         console.log('session', session);
         console.log('paymentMethods', paymentMethods);
         const configuration = {
-            paymentMethodsResponse: JSON.parse(paymentMethods.data),
+            paymentMethods: [
+                {
+                    "name": "BLIK with code",
+                    "type": "blik"
+                },
+                {
+                    "name": "Clearpay",
+                    "type": "clearpay"
+                },
+                {
+                    "name": "SEPA Direct Debit",
+                    "type": "sepadirectdebit"
+                },
+            ],
             clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
             locale: 'it-IT',
             countryCode: 'IT',
@@ -44,12 +57,12 @@ export const initDonationForm = (data) => {
             onPaymentFailed: (result, component) => {
                 console.info(result, component);
             },
-            onError: (error, component) => {
+            /*onError: (error, component) => {
                 console.error(error.name, error.message, error.stack, component);
-            },
-            onChange: (state, component) => {
-                console.log('change', state, component);
-            },
+            },*/
+            /*  onChange: (state, component) => {
+                  console.log('change', state, component);
+              },*/
         }
 
         const checkout = await AdyenCheckout(configuration);
