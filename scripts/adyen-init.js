@@ -1,4 +1,4 @@
-const {AdyenCheckout, Card, Dropin, PayPal, Klarna} = window.AdyenWeb;
+const {AdyenCheckout, Klarna} = window.AdyenWeb;
 
 
 export const initDonationForm = (data) => {
@@ -65,8 +65,8 @@ export const initDonationForm = (data) => {
                 value: 1000,
                 currency: 'EUR'
             },
-            locale: 'nl-NL',
-            countryCode: 'NL',
+            locale: 'it-IT',
+            countryCode: 'IT',
             clientKey: 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ', // Public key used for client-side authentication: https://docs.adyen.com/development-resources/client-side-authentication
             onPaymentCompleted: (result, component) => {
                 console.info(result, component);
