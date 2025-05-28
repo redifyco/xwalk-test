@@ -1,4 +1,4 @@
-const {AdyenCheckout, Card, Dropin} = window.AdyenWeb;
+const {AdyenCheckout, Card, Dropin, PayPal} = window.AdyenWeb;
 
 
 export const initDonationForm = (data) => {
@@ -80,7 +80,7 @@ export const initDonationForm = (data) => {
 
         const dropinConfiguration = {
             // Required if you import individual payment methods.
-            paymentMethodComponents: JSON.parse(paymentMethods.data).paymentMethods,
+            paymentMethodComponents: [Card, PayPal],
             // Optional configuration.
             onReady: () => {
             },
