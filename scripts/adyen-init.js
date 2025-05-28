@@ -48,12 +48,6 @@ export const initDonationForm = (data) => {
         })
         .catch(err => console.log('error', err));
 }
-/* const checkout = await AdyenCheckout(globalConfiguration);
- const cardConfiguration = {
-     hasHolderName: false,
-     billingAddressRequired: false,
-     paymentMethods: parsePaymentMethods.data
- };*/
 
 /*const globalConfiguration = {
     session: {
