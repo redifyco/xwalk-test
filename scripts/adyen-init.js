@@ -1,4 +1,4 @@
-const {AdyenCheckout, Card, Dropin, PayPal} = window.AdyenWeb;
+const {AdyenCheckout, Card, Dropin, PayPal, Klarna} = window.AdyenWeb;
 
 
 export const initDonationForm = (data) => {
@@ -60,6 +60,7 @@ export const initDonationForm = (data) => {
                 sessionData: parsedSession.session // The payment session data.
             },
             environment: 'test', // Change to 'live' for the live environment.
+            paymentMethodsResponse: JSON.parse(paymentMethods.data),
             amount: {
                 value: 1000,
                 currency: 'EUR'
@@ -80,15 +81,15 @@ export const initDonationForm = (data) => {
 
         const dropinConfiguration = {
             // Required if you import individual payment methods.
-            paymentMethodComponents: [Card, PayPal],
+            paymentMethodComponents: [Card, PayPal, Klarna],
             // Optional configuration.
             onReady: () => {
-            },
-            instantPaymentTypes: ['applepay', 'googlepay']
+            }
+            // instantPaymentTypes: ['applepay', 'googlepay']
         };
 
         const checkout = await AdyenCheckout(globalConfiguration);
-        const dropin = new Dropin(checkout, configuration).mount('#dropin-container');
+        const dropin = new Dropin(checkout, dropinConfiguration).mount('#dropin-container');
 
         /*const card = new Card(checkout).mount('#card-container');
         const dropin = new Dropin(checkout).mount('#dropin-container');*/
