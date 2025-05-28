@@ -1,4 +1,4 @@
-const {AdyenCheckout, Dropin, Klarna} = window.AdyenWeb;
+const {AdyenCheckout, Dropin} = window.AdyenWeb;
 
 
 export const initDonationForm = (data) => {
@@ -23,36 +23,6 @@ export const initDonationForm = (data) => {
         console.log('session', session);
         console.log('paymentMethods', paymentMethods);
         const parsedSession = JSON.parse(session.data);
-
-        const configuration = {
-            paymentMethodsResponse: JSON.parse(paymentMethods.data),
-            clientKey: "test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ",
-            locale: 'it-IT',
-            countryCode: 'IT',
-            environment: 'test',
-            amount: {
-                value: data.amount.value,
-                currency: data.amount.currency
-            },
-            onSubmit: async (result, component) => {
-                console.log('submit', result, component);
-            },
-            onAdditionalDetails: async (state, component, actions) => {
-                console.log('additional details', state, component, actions);
-            },
-            onPaymentCompleted: (result, component) => {
-                console.info(result, component);
-            },
-            onPaymentFailed: (result, component) => {
-                console.info(result, component);
-            },
-            /*onError: (error, component) => {
-                console.error(error.name, error.message, error.stack, component);
-            },*/
-            /*  onChange: (state, component) => {
-                  console.log('change', state, component);
-              },*/
-        }
 
         const globalConfiguration = {
             session: {
@@ -80,9 +50,15 @@ export const initDonationForm = (data) => {
         };
 
         const dropinConfiguration = {
-            // Required if you import individual payment methods.
+            paymentMethodsConfiguration: {
+                card: {
+                    visibility: false
+                },
+                klarna: {
+                    visibility: false
+                }
+            },
             paymentMethodComponents: [],
-            // Optional configuration.
             onReady: () => {
             }
         };
@@ -121,3 +97,35 @@ export const initDonationForm = (data) => {
         console.error(error.name, error.message, error.stack, component);
     }
 };*/
+
+
+/*
+const configuration = {
+    paymentMethodsResponse: JSON.parse(paymentMethods.data),
+    clientKey: "test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ",
+    locale: 'it-IT',
+    countryCode: 'IT',
+    environment: 'test',
+    amount: {
+        value: data.amount.value,
+        currency: data.amount.currency
+    },
+    onSubmit: async (result, component) => {
+        console.log('submit', result, component);
+    },
+    onAdditionalDetails: async (state, component, actions) => {
+        console.log('additional details', state, component, actions);
+    },
+    onPaymentCompleted: (result, component) => {
+        console.info(result, component);
+    },
+    onPaymentFailed: (result, component) => {
+        console.info(result, component);
+    },
+    /!*onError: (error, component) => {
+        console.error(error.name, error.message, error.stack, component);
+    },*!/
+    /!*  onChange: (state, component) => {
+          console.log('change', state, component);
+      },*!/
+}*/
