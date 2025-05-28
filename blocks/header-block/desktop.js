@@ -7,7 +7,7 @@ export default function getDesktopHeaderBlock(block, menuItems, logo, button,) {
     desktopMenu.innerHTML = `
         <div class="flex justify-between items-center">
             <a href="/">
-                <img src="${logo.light}" id="logo-image" alt="MSC Foundation logo">
+                <img class="max-w-32" src="${logo.light}" id="logo-image" alt="MSC Foundation logo">
             </a>
             <div>
                 <ul class="flex gap-4">

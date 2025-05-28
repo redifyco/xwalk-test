@@ -27,6 +27,10 @@ export const initDonationForm = (data) => {
             clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
             locale: 'it-IT',
             countryCode: 'IT',
+            session: {
+                id: session.id,
+                sessionData: session.session
+            },
             environment: 'test',
             amount: {
                 value: data.value,
