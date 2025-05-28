@@ -88,7 +88,7 @@ export const initDonationForm = (data) => {
         };
 
         const checkout = await AdyenCheckout(globalConfiguration);
-        const dropin = new Dropin(checkout, dropinConfiguration).mount('#dropin-container');
+        const dropin = new Dropin(checkout, configuration).mount('#dropin-container');
 
         /*const card = new Card(checkout).mount('#card-container');
         const dropin = new Dropin(checkout).mount('#dropin-container');*/
