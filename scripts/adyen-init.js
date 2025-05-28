@@ -3,28 +3,18 @@ const {AdyenCheckout, Card} = window.AdyenWeb;
 
 export const initDonationForm = (data) => {
     console.log('click init donation form', data);
-    Promise.all([
-        fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(res => res.json()),
-        fetch('/bin/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(res => res.json())
-    ])
-        .then(async ([session, paymentMethods]) => {
+    fetch('/bin/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+        .then(async (paymentMethods) => {
             const parsePaymentMethods = JSON.parse(paymentMethods.data);
-            const parsedSession = JSON.parse(session.data);
 
             const configuration = {
-                paymentMethodsResponse: parsePaymentMethods,
+                paymentMethodsResponse: {...parsePaymentMethods},
                 clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
                 locale: 'it-IT',
                 countryCode: 'IT',
