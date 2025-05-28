@@ -23,20 +23,7 @@ export const initDonationForm = (data) => {
         console.log('session', session);
         console.log('paymentMethods', paymentMethods);
         const configuration = {
-            paymentMethodsResponse: [
-                {
-                    "name": "BLIK with code",
-                    "type": "blik"
-                },
-                {
-                    "name": "Clearpay",
-                    "type": "clearpay"
-                },
-                {
-                    "name": "SEPA Direct Debit",
-                    "type": "sepadirectdebit"
-                },
-            ],
+            paymentMethodsResponse: JSON.parse(paymentMethods.data),
             clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
             locale: 'it-IT',
             countryCode: 'IT',
