@@ -25,7 +25,7 @@ export const initDonationForm = (data) => {
         const parsedSession = JSON.parse(session.data);
         const configuration = {
             paymentMethodsResponse: JSON.parse(paymentMethods.data),
-            clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
+            // clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
             locale: 'it-IT',
             countryCode: 'IT',
             /*  session: {
