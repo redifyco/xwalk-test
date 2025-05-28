@@ -81,7 +81,7 @@ export const initDonationForm = (data) => {
 
         const dropinConfiguration = {
             // Required if you import individual payment methods.
-            paymentMethodComponents: [Klarna],
+            paymentMethodComponents: [],
             // Optional configuration.
             onReady: () => {
             }
