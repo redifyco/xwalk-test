@@ -81,7 +81,7 @@ export const initDonationForm = (data) => {
 
         const dropinConfiguration = {
             // Required if you import individual payment methods.
-            paymentMethodComponents: [Card, PayPal, Klarna],
+            paymentMethodComponents: [Klarna],
             // Optional configuration.
             onReady: () => {
             }
