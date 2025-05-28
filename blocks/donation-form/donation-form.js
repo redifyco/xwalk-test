@@ -22,6 +22,7 @@ ${CurrencyForm(containerSection)}
 </div>
 <div class="bg-white">
 
+        <div class="p-20 mt-10" id="dropin-container"></div>
         <div class="p-20 mt-10" id="card-container"></div>
         <button class="bg-orange-300" id="create-form">Create form</button>
 </div>
