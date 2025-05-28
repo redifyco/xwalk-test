@@ -30,12 +30,8 @@ ${CurrencyForm(containerSection)}
     containerSection.querySelector('#create-form').addEventListener('click', () => {
         console.log('click create form');
         const data = {
-            country: "IT",
-            amount: {
-                value: 3000,
-                currency: "EUR"
-            },
-            orderReference: "Test Reference",
+            value: 3000,
+            currency: "EUR"
         };
         initDonationForm(data);
     })

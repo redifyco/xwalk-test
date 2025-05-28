@@ -19,6 +19,10 @@ export const initDonationForm = (data) => {
                 locale: 'it-IT',
                 countryCode: 'IT',
                 environment: 'test',
+                amount: {
+                    value: data.value,
+                    currency: data.currency
+                },
                 onSubmit: async (result, component) => {
                     console.log('submit', result, component);
                 },
