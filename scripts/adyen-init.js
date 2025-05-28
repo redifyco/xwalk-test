@@ -1,4 +1,4 @@
-const {AdyenCheckout, Klarna} = window.AdyenWeb;
+const {AdyenCheckout, Dropin, Klarna} = window.AdyenWeb;
 
 
 export const initDonationForm = (data) => {
