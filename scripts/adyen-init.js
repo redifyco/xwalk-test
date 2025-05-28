@@ -1,4 +1,4 @@
-const {AdyenCheckout, Dropin, Klarna} = window.AdyenWeb;
+const {AdyenCheckout, Card, Dropin, Klarna} = window.AdyenWeb;
 
 
 export const initDonationForm = (data) => {
@@ -59,6 +59,7 @@ export const initDonationForm = (data) => {
 
         const checkout = await AdyenCheckout(globalConfiguration);
         const dropin = new Dropin(checkout).mount('#dropin-container');
+        const card = new Card(checkout).mount('#card-container');
 
         /*const card = new Card(checkout).mount('#card-container');
         const dropin = new Dropin(checkout).mount('#dropin-container');*/
