@@ -30,7 +30,7 @@ export const initDonationForm = (data) => {
                 sessionData: parsedSession.session // The payment session data.
             },
             environment: 'test', // Change to 'live' for the live environment.
-            
+            paymentMethodsResponse: JSON.parse(paymentMethods.data),
             amount: {
                 value: 1000,
                 currency: 'EUR'
