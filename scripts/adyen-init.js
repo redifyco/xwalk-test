@@ -30,7 +30,7 @@ export const initDonationForm = (data) => {
                 sessionData: parsedSession.session // The payment session data.
             },
             environment: 'test', // Change to 'live' for the live environment.
-            paymentMethodsResponse: JSON.parse(paymentMethods.data),
+            
             amount: {
                 value: 1000,
                 currency: 'EUR'
@@ -63,7 +63,7 @@ export const initDonationForm = (data) => {
         /*const card = new Card(checkout).mount('#card-container');
         const dropin = new Dropin(checkout).mount('#dropin-container');*/
 
-        console.log('configuration', configuration);
+        // console.log('configuration', configuration);
         console.log('checkout', checkout);
         console.log('dropin', dropin);
 
