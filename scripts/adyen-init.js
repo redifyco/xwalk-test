@@ -22,14 +22,15 @@ export const initDonationForm = (data) => {
 
         console.log('session', session);
         console.log('paymentMethods', paymentMethods);
+        const parsedSession = JSON.parse(session.data);
         const configuration = {
             paymentMethodsResponse: JSON.parse(paymentMethods.data),
             clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
             locale: 'it-IT',
             countryCode: 'IT',
             session: {
-                id: JSON.parse(session.data).id,
-                sessionData: JSON.parse(session.data).session
+                id: parsedSession.id,
+                sessionData: parsedSession.session
             },
             environment: 'test',
             amount: {
