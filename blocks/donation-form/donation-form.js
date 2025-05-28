@@ -56,8 +56,8 @@ ${CurrencyForm()}
         const data = {
             country: "IT",
             amount: {
-                value: formValue.value,
-                currency: formValue.currency.toUpperCase()
+                value: 1000,
+                currency: 'EUR'
             },
             orderReference: "Test Reference",
         };
