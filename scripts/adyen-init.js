@@ -29,10 +29,6 @@ export const initDonationForm = (data) => {
             clientKey: "test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ",
             locale: 'it-IT',
             countryCode: 'IT',
-            /*  session: {
-                  id: parsedSession.id,
-                  sessionData: parsedSession.session
-              },*/
             environment: 'test',
             amount: {
                 value: data.amount.value,
@@ -58,9 +54,44 @@ export const initDonationForm = (data) => {
               },*/
         }
 
-        const checkout = await AdyenCheckout(configuration);
-        const card = new Card(checkout).mount('#card-container');
-        const dropin = new Dropin(checkout).mount('#dropin-container');
+        const globalConfiguration = {
+            session: {
+                id: parsedSession.id, // Unique identifier for the payment session.
+                sessionData: parsedSession.session // The payment session data.
+            },
+            environment: 'test', // Change to 'live' for the live environment.
+            amount: {
+                value: 1000,
+                currency: 'EUR'
+            },
+            locale: 'nl-NL',
+            countryCode: 'NL',
+            clientKey: 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ', // Public key used for client-side authentication: https://docs.adyen.com/development-resources/client-side-authentication
+            onPaymentCompleted: (result, component) => {
+                console.info(result, component);
+            },
+            onPaymentFailed: (result, component) => {
+                console.info(result, component);
+            },
+            onError: (error, component) => {
+                console.error(error.name, error.message, error.stack, component);
+            }
+        };
+
+        const dropinConfiguration = {
+            // Required if you import individual payment methods.
+            paymentMethodComponents: JSON.parse(paymentMethods.data).paymentMethods,
+            // Optional configuration.
+            onReady: () => {
+            },
+            instantPaymentTypes: ['applepay', 'googlepay']
+        };
+
+        const checkout = await AdyenCheckout(globalConfiguration);
+        const dropin = new Dropin(checkout, dropinConfiguration).mount('#dropin-container');
+
+        /*const card = new Card(checkout).mount('#card-container');
+        const dropin = new Dropin(checkout).mount('#dropin-container');*/
 
         console.log('configuration', configuration);
         console.log('checkout', checkout);
