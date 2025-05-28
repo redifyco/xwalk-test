@@ -23,15 +23,18 @@ export const initDonationForm = (data) => {
             const parsePaymentMethods = JSON.parse(paymentMethods.data);
             const parsedSession = JSON.parse(session.data);
 
-            const globalConfiguration = {
-                session: {
-                    id: parsedSession.id,
-                    sessionData: parsedSession.session
-                },
-                environment: 'test',
+            const configuration = {
+                paymentMethodsResponse: parsePaymentMethods,
+                clientKey: "test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6",
                 locale: 'it-IT',
                 countryCode: 'IT',
-                clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
+                environment: 'test',
+                onSubmit: async (result, component) => {
+                    console.log('submit', result, component);
+                },
+                onAdditionalDetails: async (state, component, actions) => {
+                    console.log('additional details', state, component, actions);
+                },
                 onPaymentCompleted: (result, component) => {
                     console.info(result, component);
                 },
@@ -40,21 +43,44 @@ export const initDonationForm = (data) => {
                 },
                 onError: (error, component) => {
                     console.error(error.name, error.message, error.stack, component);
-                }
-            };
+                },
+                onChange: (state, component) => {
+                    console.log('change', state, component);
+                },
+            }
 
-            const checkout = await AdyenCheckout(globalConfiguration);
-            const cardConfiguration = {
-                hasHolderName: false,
-                billingAddressRequired: false,
-                paymentMethods: parsePaymentMethods.data
-            };
-
-            console.log(checkout.paymentMethodsResponse);
-            new Card(checkout, cardConfiguration).mount('#card-container')
+            const checkout = await AdyenCheckout(configuration);
+            const card = new Card(checkout).mount('#card-container');
+            console.log('configuration', configuration);
+            console.log('checkout', checkout);
 
 
         })
         .catch(err => console.log('error', err));
 }
+/* const checkout = await AdyenCheckout(globalConfiguration);
+ const cardConfiguration = {
+     hasHolderName: false,
+     billingAddressRequired: false,
+     paymentMethods: parsePaymentMethods.data
+ };*/
 
+/*const globalConfiguration = {
+    session: {
+        id: parsedSession.id,
+        sessionData: parsedSession.session
+    },
+    environment: 'test',
+    locale: 'it-IT',
+    countryCode: 'IT',
+    clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
+    onPaymentCompleted: (result, component) => {
+        console.info(result, component);
+    },
+    onPaymentFailed: (result, component) => {
+        console.info(result, component);
+    },
+    onError: (error, component) => {
+        console.error(error.name, error.message, error.stack, component);
+    }
+};*/

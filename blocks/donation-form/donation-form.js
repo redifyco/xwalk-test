@@ -19,8 +19,11 @@ export default function decorate(block) {
       </div>
 </div>
 ${CurrencyForm(containerSection)}
+</div>
+<div class="bg-white">
+
         <div class="p-20 mt-10" id="card-container"></div>
-        <button id="create-form">Create form</button>
+        <button class="bg-orange-300" id="create-form">Create form</button>
 </div>
     `
 
