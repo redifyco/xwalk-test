@@ -4,14 +4,14 @@ const {AdyenCheckout, Card, Dropin, PayPal, Klarna} = window.AdyenWeb;
 export const initDonationForm = (data) => {
     console.log('click init donation form', data);
     Promise.all([
-        fetch('/bin/msc-foundation/services/adyen?type=CREATE_SESSION', {
+        fetch('/api/msc-foundation/services/adyen?type=CREATE_SESSION', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         }).then(res => res.json()),
-        fetch('/bin/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
+        fetch('/api/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
