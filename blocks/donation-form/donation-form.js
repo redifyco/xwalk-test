@@ -4,6 +4,10 @@ export default function decorate(block) {
     const backgroundImage = block.querySelector(":scope > div:nth-child(1) img")?.src;
     const title = block.querySelector(":scope > div:nth-child(2) div")?.innerHTML;
     const subtitle = block.querySelector(":scope > div:nth-child(3) div")?.innerHTML;
+    const formValue = {
+        currency: 'dollar',
+        value: 1000
+    }
 
     const containerSection = document.createElement('section');
     containerSection.className = 'bg-no-repeat bg-cover bg-center min-h-96';
@@ -18,28 +22,48 @@ export default function decorate(block) {
         ${subtitle}
       </div>
 </div>
-<div class="" id="dropin-container"></div>
-</div>
-<div class="bg-white">
-
-        <div class="p-20 mt-10" id="dropin-container"></div>
-        <div class="p-20 mt-10" id="card-container"></div>
-        <div class="p-20 mt-10" id="card-klarna"></div>
-        <button class="bg-orange-300" id="create-form">Create form</button>
+${CurrencyForm()}
+<div class="hidden" id="dropin-container"></div>
 </div>
     `
 
-    containerSection.querySelector('#create-form').addEventListener('click', () => {
-        console.log('click create form');
+    /*CURRENCY SELECT*/
+    const allButtons = containerSection.querySelectorAll('[data-currency]');
+    const handleCurrencyClick = (button) => {
+        allButtons.forEach(btn => {
+            btn.classList.remove('bg-gray-200', 'text-primary');
+            btn.classList.add('text-white');
+        });
+
+        button.classList.remove('text-white');
+        button.classList.add('bg-gray-200', 'text-primary');
+        formValue.currency = button.dataset.currency;
+    };
+
+    allButtons.forEach(button => {
+        button.addEventListener('click', (event) => handleCurrencyClick(event.currentTarget));
+    });
+
+    const dollarButton = containerSection.querySelector('[data-currency="dollar"]');
+    if (dollarButton) {
+        handleCurrencyClick(dollarButton);
+    }
+
+
+    const submitButton = containerSection.querySelector('#submit-button');
+    submitButton.addEventListener('click', () => {
+        console.log('formValue', formValue);
         const data = {
             country: "IT",
             amount: {
-                value: 3000,
-                currency: "EUR"
+                value: formValue.value,
+                currency: formValue.currency.toUpperCase()
             },
             orderReference: "Test Reference",
         };
         initDonationForm(data);
+        containerSection.querySelector('#dropin-container').classList.remove('hidden');
+        containerSection.querySelector('#form-1').classList.add('hidden');
     })
 
 
@@ -51,7 +75,7 @@ export default function decorate(block) {
 const CurrencyForm = () => {
 
     return `
-        <div class="bg-white h-full max-w-[600px] w-full p-8 flex flex-col gap-4">
+        <div id="form-1" class="bg-white h-full max-w-[600px] w-full p-8 flex flex-col gap-4">
             <div class="flex flex-col gap-2 justify-center items-center text-center">  
                 <h3 class="text-4xl font-medium">Lorem ipsum dolor sit amet</h3>
                 <p class="font-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque beatae deserunt inventore laboriosam nihil placeat quod, sed temporibus vitae.</p>
@@ -60,15 +84,15 @@ const CurrencyForm = () => {
                 <div class="flex flex-col gap-2">
                     <span class="border-b w-full border-b-black">Choose Currency</span>
                     <div class="bg-primary shadow rounded flex w-full p-2">
-                        <button id="button-dolla" class="bg-gray-200 rounded px-4 py-2 text-primary w-full">$</button>
-                        <button id="button-chf" class="w-full text-white">CHF</button>
-                        <button id="button-eur" class="w-full text-white">€</button>
+                        <button data-currency="dollar" id="button-dollar" class="text-white cursor-pointer rounded px-4 py-2 w-full">$</button>
+                        <button data-currency="chf" id="button-chf" class="text-white cursor-pointer rounded px-4 py-2 w-full">CHF</button>
+                        <button data-currency="eur" id="button-eur" class="text-white cursor-pointer rounded px-4 py-2 w-full">€</button>
                     </div>
                 </div> 
                 <div>
                     Chose Amount:
                 </div>
-                <div>Button</div>
+                <button id="submit-button">Button</button>
             </div>
         </div>
     `;
