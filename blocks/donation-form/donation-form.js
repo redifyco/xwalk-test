@@ -33,7 +33,6 @@ export default function decorate(block) {
             <div id="currency-amount-form" class="block">${CurrencyAmountForm()}</div>
             <div id="owner-information-form" class="hidden">${OwnerInformationForm()}</div>
             <div id="adyen-form" class="hidden">${AdyenForm()}</div>
-            <div class="hidden" id="dropin-container"></div>
         </div>
     </div>
 `
@@ -319,6 +318,7 @@ const AdyenForm = () => {
                             <span>Back</span>
                         </button>
                         <span class="border-b w-full border-b-black">Information</span>
+                        <div class="hidden" id="dropin-container"></div>
                     </div>
         </div>
     `;
