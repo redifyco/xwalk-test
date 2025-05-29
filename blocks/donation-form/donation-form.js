@@ -35,21 +35,22 @@ export default function decorate(block) {
 
     console.log('sessionStorage', sessionStorage.length)
     if (sessionStorage.length > 0) {
-
         const steps = JSON.parse(sessionStorage.getItem("formValue")).steps;
-        console.log('steps', steps);
-        if (steps === 1) {
-            containerSection.querySelector('#currency-amount-form').classList.remove('hidden');
-            containerSection.querySelector('#owner-information-form').classList.add('hidden');
-            containerSection.querySelector('#adyen-form').classList.add('hidden');
-        } else if (steps === 2) {
-            containerSection.querySelector('#currency-amount-form').classList.add('hidden');
-            containerSection.querySelector('#owner-information-form').classList.remove('hidden');
-            containerSection.querySelector('#adyen-form').classList.add('hidden');
-        } else if (steps === 3) {
-            containerSection.querySelector('#currency-amount-form').classList.add('hidden');
-            containerSection.querySelector('#owner-information-form').classList.add('hidden');
-            containerSection.querySelector('#adyen-form').classList.remove('hidden');
+        if (steps) {
+            console.log('steps', steps);
+            if (steps === 1) {
+                containerSection.querySelector('#currency-amount-form').classList.remove('hidden');
+                containerSection.querySelector('#owner-information-form').classList.add('hidden');
+                containerSection.querySelector('#adyen-form').classList.add('hidden');
+            } else if (steps === 2) {
+                containerSection.querySelector('#currency-amount-form').classList.add('hidden');
+                containerSection.querySelector('#owner-information-form').classList.remove('hidden');
+                containerSection.querySelector('#adyen-form').classList.add('hidden');
+            } else if (steps === 3) {
+                containerSection.querySelector('#currency-amount-form').classList.add('hidden');
+                containerSection.querySelector('#owner-information-form').classList.add('hidden');
+                containerSection.querySelector('#adyen-form').classList.remove('hidden');
+            }
         }
     }
 
