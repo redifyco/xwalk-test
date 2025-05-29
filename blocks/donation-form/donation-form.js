@@ -35,7 +35,7 @@ export default function decorate(block) {
 
     console.log('sessionStorage', sessionStorage.length)
     if (sessionStorage.length > 0) {
-        const steps = JSON.parse(sessionStorage.getItem("formValue")).steps;
+        const steps = JSON.parse(sessionStorage.getItem("formValue"))?.steps;
         if (steps) {
             console.log('steps', steps);
             if (steps === 1) {
