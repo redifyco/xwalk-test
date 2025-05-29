@@ -3,7 +3,8 @@
   font-family: 'Joyful';
   font-style: normal;
   font-weight: 700;
-  src: url('../fonts/Joyful.otf') format('woff2');
+  font-display: swap;
+  src: url('../fonts/Joyful-font.otf') format('opentype');
 }
 
 @font-face {
