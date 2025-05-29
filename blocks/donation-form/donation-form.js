@@ -1,39 +1,44 @@
 import {initDonationForm} from "../../scripts/adyen-init.js";
 
+const formValue = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    currency: 'USD',
+    amount: 25,
+    steps: 1
+}
+
 export default function decorate(block) {
     const backgroundImage = block.querySelector(":scope > div:nth-child(1) img")?.src;
     const title = block.querySelector(":scope > div:nth-child(2) div")?.innerHTML;
     const subtitle = block.querySelector(":scope > div:nth-child(3) div")?.innerHTML;
     const sessionStorage = window.sessionStorage;
-    const formValue = {
-        currency: 'USD',
-        amount: 25,
-        steps: 1
-    }
 
     const containerSection = document.createElement('section');
-    containerSection.className = 'bg-no-repeat bg-cover bg-center min-h-96';
-    containerSection.style.backgroundImage = `url('${backgroundImage}')`;
+    containerSection.className = 'bg-no-repeat relative bg-cover bg-center min-h-96 pb-14 lg:container-layout-padding';
     containerSection.innerHTML = `
-        <div class="container-layout-padding flex gap-24 justify-between">
-            <div>
-                <div class="text-7xl text-white prose-em:font-joyful prose-em:text-9xl">
-                    ${title}
-                </div>
-                <div class="text-sm text-white lg:text-xl font-light">
-                    ${subtitle}
-                </div>
+    <div class="flex flex-col items-end lg:flex-row gap-8 lg:gap-24 justify-between">
+    <img src="${backgroundImage}" class="object-cover max-h-72 lg:hidden object-center inset-0 h-full w-full z-0" alt="">
+        <img src="${backgroundImage}" class="absolute lg:block hidden object-cover object-center inset-0 h-full w-full z-0" alt="">
+        <div class="lg:block z-10 hidden">
+            <div class="text-7xl text-white prose-em:font-joyful prose-em:text-9xl">
+                ${title}
             </div>
+            <div class="text-sm text-white lg:text-xl font-light">
+                ${subtitle}
+            </div>
+        </div>
+        <div class="z-10 lg:max-w-xl w-full">      
             <div id="currency-amount-form" class="block">${CurrencyAmountForm()}</div>
             <div id="owner-information-form" class="hidden">${OwnerInformationForm()}</div>
             <div id="adyen-form" class="hidden">${AdyenForm()}</div>
             <div class="hidden" id="dropin-container"></div>
-            <button id="open-adyen">Open Adyen</button>
         </div>
-    `
+    </div>
+`
 
 
-    console.log('sessionStorage', sessionStorage.length)
     if (sessionStorage.length > 0) {
         const steps = JSON.parse(sessionStorage.getItem("formValue"))?.steps;
         if (steps) {
@@ -78,9 +83,12 @@ export default function decorate(block) {
         button.addEventListener('click', (event) => handleCurrencyClick(event.currentTarget));
     });
 
-    const firstCurrencyButton = containerSection.querySelector('[data-currency="USD"]');
-    if (firstCurrencyButton) {
-        handleCurrencyClick(firstCurrencyButton);
+    const storedCurrency = JSON.parse(sessionStorage.getItem("formValue"))?.currency;
+    const currencyButton = containerSection.querySelector(`[data-currency="${storedCurrency}"]`) ||
+        containerSection.querySelector('[data-currency="USD"]');
+
+    if (currencyButton) {
+        handleCurrencyClick(currencyButton);
     }
 
 
@@ -101,9 +109,12 @@ export default function decorate(block) {
         button.addEventListener('click', (event) => handleAmountClick(event.currentTarget));
     });
 
-    const firstAmountButton = containerSection.querySelector('[data-amount="25"]');
-    if (firstAmountButton) {
-        handleAmountClick(firstAmountButton);
+    const storedAmount = JSON.parse(sessionStorage.getItem("formValue"))?.amount;
+    const amountButton = containerSection.querySelector(`[data-amount="${storedAmount}"]`) ||
+        containerSection.querySelector('[data-amount="25"]');
+
+    if (amountButton) {
+        handleAmountClick(amountButton);
     }
 
     /*CUSTOM INPUT SELECTED*/
@@ -141,24 +152,35 @@ export default function decorate(block) {
     /*SUBMIT OWNER INFORMATION FORM*/
     const submitOwnerInformationForm = containerSection.querySelector('#submit-owner-information-form');
     if (submitOwnerInformationForm) {
+        const storedFormData = JSON.parse(sessionStorage.getItem("formValue"));
+        if (storedFormData) {
+            containerSection.querySelector('#first_name').value = storedFormData.firstName || '';
+            containerSection.querySelector('#last_name').value = storedFormData.lastName || '';
+            containerSection.querySelector('#email').value = storedFormData.email || '';
+        }
+
         submitOwnerInformationForm.addEventListener('click', (e) => {
             e.preventDefault();
             formValue.steps = 3;
             containerSection.querySelector('#owner-information-form').classList.toggle('hidden');
             containerSection.querySelector('#adyen-form').classList.toggle('hidden');
+
+            formValue.firstName = containerSection.querySelector('#first_name')?.value
+            formValue.lastName = containerSection.querySelector('#last_name')?.value
+            formValue.email = containerSection.querySelector('#email')?.value
             sessionStorage.setItem("formValue", JSON.stringify(formValue));
-            const storedFormValue = JSON.parse(sessionStorage.getItem("formValue"));
 
-            console.log('storedFormValue OWNER INFO', storedFormValue);
-
-
-            const ownerData = {
-                firstName: containerSection.querySelector('#first_name').value,
-                lastName: containerSection.querySelector('#last_name').value,
-                email: containerSection.querySelector('#email').value,
-                currency: storedFormValue.currency,
-                amount: storedFormValue.amount
+            const data = {
+                country: "IT",
+                amount: {
+                    value: 1000,
+                    currency: 'EUR'
+                },
+                orderReference: "Test Reference",
             };
+            initDonationForm(data);
+            containerSection.querySelector('#dropin-container').classList.remove('hidden');
+
         })
     }
 
@@ -188,22 +210,6 @@ export default function decorate(block) {
     }
 
 
-    const submitButton = containerSection.querySelector('#open-adyen');
-    submitButton.addEventListener('click', () => {
-        console.log('formValue', formValue);
-        const data = {
-            country: "IT",
-            amount: {
-                value: 1000,
-                currency: 'EUR'
-            },
-            orderReference: "Test Reference",
-        };
-        initDonationForm(data);
-        containerSection.querySelector('#dropin-container').classList.remove('hidden');
-    })
-
-
     block.textContent = '';
     block.append(containerSection);
 }
@@ -211,14 +217,14 @@ export default function decorate(block) {
 
 const CurrencyAmountForm = () => {
     return `
-        <div class="bg-white h-full max-w-[600px] min-w-[600px] w-full p-8 flex flex-col gap-4">
+        <div class="bg-white h-full w-full px-4 lg:p-8 flex flex-col gap-4">
             <div class="flex flex-col gap-2 justify-center items-center text-center">  
-                <h3 class="text-4xl font-medium">Lorem ipsum dolor sit amet</h3>
+                <h3 class="text-2xl lg:text-4xl font-medium">Lorem ipsum dolor sit amet</h3>
                 <p class="font-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque beatae deserunt inventore laboriosam nihil placeat quod, sed temporibus vitae.</p>
             </div>
             <div class="mt-3 flex flex-col gap-4">
                 <div class="flex flex-col gap-4">
-                    <span class="border-b w-full border-b-black">Choose Currency:</span>
+                    <span class="border-b w-full text-xl border-b-black">Choose Currency</span>
                     <div class="bg-primary shadow rounded flex w-full p-2">
                         <button data-currency="USD" id="button-dollar" class="text-white cursor-pointer rounded px-4 py-2 w-full">$</button>
                         <button data-currency="CHF" id="button-chf" class="text-white cursor-pointer rounded px-4 py-2 w-full">CHF</button>
@@ -226,7 +232,7 @@ const CurrencyAmountForm = () => {
                     </div>
                 </div> 
                 <div class="flex flex-col gap-2">
-                    <span class="border-b w-full border-b-black">Choose Amount:</span>
+                    <span class="border-b w-full text-xl border-b-black">Choose Amount</span>
                     <div class="flex gap-2 py-2">
                         <button data-amount="25" id="button-dollar" class="cursor-pointer rounded px-4 py-2 w-full">25<span id="button-amount-span"></span></button>
                         <button data-amount="50" id="button-chf" class="cursor-pointer rounded px-4 py-2 w-full">50<span id="button-amount-span"></span></button>
@@ -245,7 +251,7 @@ const CurrencyAmountForm = () => {
 
 const OwnerInformationForm = () => {
     return `
-        <div class="bg-white flex h-full max-w-[600px] min-w-[600px] w-full p-8 flex-col gap-4">
+        <div class="bg-white flex h-full w-full px-4 lg:p-8 flex-col gap-4">
             <div class="mt-3 flex flex-col gap-4">
                 <div class="flex flex-col gap-8">
                     <div class="flex flex-col">
@@ -253,7 +259,7 @@ const OwnerInformationForm = () => {
                             <ion-icon size="small" name="chevron-back-outline"></ion-icon>
                             <span>Back</span>
                         </button>
-                        <span class="border-b w-full border-b-black">Information</span>
+                        <span class="border-b w-full text-xl border-b-black">Information</span>
                     </div>
                     <div class="mt-3 flex flex-col gap-8">
                         <div class="flex gap-8">
@@ -306,8 +312,7 @@ const OwnerInformationForm = () => {
 
 const AdyenForm = () => {
     return `
-        <div class="bg-white flex h-full max-w-[600px] min-w-[600px] w-full p-8 flex-col gap-4">
-            Adyen form placeholder
+        <div class="bg-white flex h-full w-full px-4 lg:p-8 flex-col gap-4">
             <div class="flex flex-col">
                         <button type="button" id="back-adyen-form" class="flex justify-end gap-1 items-center cursor-pointer text-primary">
                             <ion-icon size="small" name="chevron-back-outline"></ion-icon>
@@ -318,5 +323,21 @@ const AdyenForm = () => {
         </div>
     `;
 }
+
+
+/* const submitButton = containerSection.querySelector('#open-adyen');
+    submitButton.addEventListener('click', () => {
+        console.log('formValue', formValue);
+        const data = {
+            country: "IT",
+            amount: {
+                value: 1000,
+                currency: 'EUR'
+            },
+            orderReference: "Test Reference",
+        };
+        initDonationForm(data);
+        containerSection.querySelector('#dropin-container').classList.remove('hidden');
+    })*/
 
 

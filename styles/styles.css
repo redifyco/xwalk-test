@@ -25,11 +25,14 @@
 .button-line-absolute-theme {@apply bg-primary absolute hidden transition-all duration-500 lg:block}
 .button-line-absolute-white {@apply bg-white absolute hidden transition-all duration-500 lg:block}
 .small-layout-padding {@apply px-4 gap-8 py-14 lg:py-24 xl:gap-16 xl:px-16 xl:py-30 flex flex-col}
-.container-layout-padding {@apply px-4 py-14 lg:py-24 xl:px-16 xl:py-30}
 .progress-ring__circle {
     transition: stroke-dashoffset 0.35s;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
+}
+
+@utility container-layout-padding {
+    @apply px-4 py-14 lg:py-24 xl:px-16 xl:py-30
 }
 
 @utility font-joyful {
