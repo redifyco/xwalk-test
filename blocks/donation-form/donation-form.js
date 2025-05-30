@@ -183,6 +183,10 @@ export default function decorate(block) {
                 console.log('Payment completed')
                 sessionStorage.clear()
                 window.location.reload()
+            }, () => {
+                console.log('Payment failed')
+                sessionStorage.clear()
+                window.location.reload()
             });
             containerSection.querySelector('#dropin-container').classList.remove('hidden');
 

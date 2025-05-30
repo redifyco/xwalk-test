@@ -1,7 +1,7 @@
 const {AdyenCheckout, Dropin} = window.AdyenWeb;
 
 
-export const initDonationForm = (data, onPaymentCompleted) => {
+export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
     console.log('click init donation form', data);
     Promise.all([
         fetch('/api/msc-foundation/services/adyen?type=CREATE_SESSION', {
@@ -39,9 +39,7 @@ export const initDonationForm = (data, onPaymentCompleted) => {
             countryCode: 'IT',
             clientKey: 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ',
             onPaymentCompleted,
-            onPaymentFailed: (result, component) => {
-                console.info(result, component);
-            },
+            onPaymentFailed,
             onError: (error, component) => {
                 console.error(error.name, error.message, error.stack, component);
             }
@@ -50,17 +48,11 @@ export const initDonationForm = (data, onPaymentCompleted) => {
         const dropinConfiguration = {
             paymentMethodsConfiguration: {
                 card: {
-                    // Optional configuration.
                     hasHolderName: true, // Show the cardholder name field.
                     holderNameRequired: true, // Mark the cardholder name field as required.
+                    billingAddressRequired: true
                 }
             },
-            shopperInformation: {
-                showEmailAddress: true,
-                showFullName: true,
-                showBillingAddress: true,
-                // Optional: showPhoneNumber: true
-            }
         };
 
         const checkout = await AdyenCheckout(globalConfiguration);
