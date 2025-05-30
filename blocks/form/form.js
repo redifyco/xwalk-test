@@ -86,7 +86,7 @@ export default async function decorate(block) {
             ${buttonText}
           </custom-button>
         </form>
-        <popup-box isSuccess="true" class="hidden"></popup-box>
+        <popup-box id="popup-box" isSuccess="true" class="hidden"></popup-box>
       </div>
       <div class="w-full 2xl:w-1/2">
         <img
@@ -96,6 +96,7 @@ export default async function decorate(block) {
         />
       </div>
     `
+
 
     const validateEmail = (email) => {
         return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
@@ -134,10 +135,7 @@ export default async function decorate(block) {
             const popupBox = sectionContainer.querySelector('#popup-box');
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
-            console.log('popupBox', popupBox)
-            console.log('popupBox classList', popupBox.classList)
-            // popupBox.classList.remove('hidden');
-            // popupBox.classList.add('block');
+            popupBox.classList.toggle('block');
             popupBox.setAttribute('isSuccess', 'true');
             popupBox.setAttribute('title', 'Thank you for your interest');
             popupBox.setAttribute('subtitle', 'We will contact you soon');
