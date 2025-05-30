@@ -135,7 +135,8 @@ export default async function decorate(block) {
             const popupBox = sectionContainer.querySelector('#popup-box');
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
-            popupBox.classList.toggle('hidden');
+            popupBox.classList.remove('hidden');
+            popupBox.classList.add('block')
             popupBox.setAttribute('isSuccess', 'true');
             popupBox.setAttribute('title', 'Thank you for your interest');
             popupBox.setAttribute('subtitle', 'We will contact you soon');
