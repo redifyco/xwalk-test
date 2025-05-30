@@ -54,6 +54,12 @@ export const initDonationForm = (data, onPaymentCompleted) => {
                     hasHolderName: true, // Show the cardholder name field.
                     holderNameRequired: true, // Mark the cardholder name field as required.
                 }
+            },
+            shopperInformation: {
+                showEmailAddress: true,
+                showFullName: true,
+                showBillingAddress: true,
+                // Optional: showPhoneNumber: true
             }
         };
 
