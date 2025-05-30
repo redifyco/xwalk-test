@@ -169,13 +169,13 @@ export default function decorate(block) {
             formValue.email = containerSection.querySelector('#email')?.value
             sessionStorage.setItem("formValue", JSON.stringify(formValue));
 
-            const sessionData = sessionStorage.getItem("formValue");
+            const sessionData = JSON.parse(sessionStorage.getItem("formValue"));
 
             const data = {
                 country: "IT",
                 amount: {
                     value: sessionData.amount * 100, // Convert to minor units
-                    currency: 'EUR',
+                    currency: sessionData.currency
                 },
                 orderReference: "Test Reference",
             };
