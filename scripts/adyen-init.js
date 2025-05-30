@@ -29,6 +29,10 @@ export const initDonationForm = (data, onPaymentCompleted) => {
                 id: parsedSession.id,
                 sessionData: parsedSession.session
             },
+            amount: {
+                value: data.amount,
+                currency: data.currency
+            },
             environment: 'test', // Change to 'live' for the live environment.
             paymentMethodsResponse: JSON.parse(paymentMethods.data),
             locale: 'it-IT',
