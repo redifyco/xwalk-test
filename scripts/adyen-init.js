@@ -48,7 +48,13 @@ export const initDonationForm = (data, onPaymentCompleted) => {
         };
 
         const dropinConfiguration = {
-            billingAddressRequired: true,
+            paymentMethodsConfiguration: {
+                card: {
+                    // Optional configuration.
+                    hasHolderName: true, // Show the cardholder name field.
+                    holderNameRequired: true, // Mark the cardholder name field as required.
+                }
+            }
         };
 
         const checkout = await AdyenCheckout(globalConfiguration);
