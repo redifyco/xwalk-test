@@ -48,18 +48,11 @@ export const initDonationForm = (data, onPaymentCompleted) => {
         };
 
         const dropinConfiguration = {
-            paymentMethodComponents: [],
-            onReady: () => {
-            }
+            billingAddressRequired: true,
         };
 
         const checkout = await AdyenCheckout(globalConfiguration);
-        const dropin = new Dropin(checkout).mount('#dropin-container');
-        // const card = new Card(checkout).mount('#card-container');
-        // const klarna = new Klarna(checkout).mount('#card-klarna');
-
-        /*const card = new Card(checkout).mount('#card-container');
-        const dropin = new Dropin(checkout).mount('#dropin-container');*/
+        const dropin = new Dropin(checkout, dropinConfiguration).mount('#dropin-container');
 
         console.log('checkout', checkout);
         console.log('dropin', dropin);
