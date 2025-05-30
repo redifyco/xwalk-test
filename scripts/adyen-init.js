@@ -1,6 +1,7 @@
 const {AdyenCheckout, Dropin} = window.AdyenWeb;
 
-const ADYEN_CLIENT_KEY = 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ'; // Test client key, replace with customer key.
+const ADYEN_CLIENT_KEY_TEST = 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ';
+const ADYEN_CLIENT_KEY_PROD = 'test_RECMBL5SWRCZBBE2OLQ57DZNNAK74JHQ';
 
 
 export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
@@ -39,7 +40,7 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             paymentMethodsResponse: JSON.parse(paymentMethods.data),
             locale: 'it-IT',
             countryCode: 'IT',
-            clientKey: ADYEN_CLIENT_KEY,
+            clientKey: ADYEN_CLIENT_KEY_PROD,
             onPaymentCompleted,
             onPaymentFailed,
             onError: (error, component) => {
