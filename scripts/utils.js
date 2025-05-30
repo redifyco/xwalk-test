@@ -305,15 +305,10 @@ export function createLead(data, onSuccess) {
         body: JSON.stringify({...data})
     })
         .then(response => {
-            return response.text().then(html => {
-                if (response.status === 200) {
-                    console.log('Lead successfully created. HTML response:');
-                    onSuccess
-                    console.log(html);
-                } else {
-                    throw new Error(`Request failed with status ${response.status}: ${html}`);
-                }
-            });
+            console.log('response', response);
+            if (response.status === 200) {
+                onSuccess()
+            }
         })
         .catch(error => {
             console.error('Error creating lead:', error);
