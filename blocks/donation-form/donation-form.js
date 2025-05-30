@@ -327,7 +327,6 @@ const AdyenForm = () => {
                             <ion-icon size="small" name="chevron-back-outline"></ion-icon>
                             <span>Back</span>
                         </button>
-                        <span class="border-b w-full border-b-black">Information</span>
                         <div class="hidden mt-3" id="dropin-container"></div>
                     </div>
         </div>
