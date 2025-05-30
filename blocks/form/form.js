@@ -32,18 +32,21 @@ export default async function decorate(block) {
           <input
             id="first_name"
             type="text"
+            required
             placeholder="*Name..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <input
             id="last_name"
             type="text"
+            required
             placeholder="*Surname..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
           <input
             id="email"
             type="text"
+            required
             placeholder="*Email..."
             class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0"
           />
@@ -133,7 +136,7 @@ export default async function decorate(block) {
             const popupBox = sectionContainer.querySelector('#popup-box');
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
-            popupBox.classList.toggle('hidden');
+            popupBox.classList.toggle('block');
             popupBox.setAttribute('isSuccess', 'true');
             popupBox.setAttribute('title', 'Thank you for your interest');
             popupBox.setAttribute('subtitle', 'We will contact you soon');
