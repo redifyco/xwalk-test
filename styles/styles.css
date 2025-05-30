@@ -80,3 +80,9 @@ p {
     --color-primary: #009BAC;
     --color-secondary: #000033;
 }
+
+
+/*ADYEN Style*/
+.adyen-checkout__payment-method--selected {
+    background: none;
+}
