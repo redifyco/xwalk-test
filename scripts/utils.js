@@ -305,7 +305,6 @@ export function createLead(data, onSuccess, onFailure) {
         body: JSON.stringify({...data})
     })
         .then(response => {
-            console.log('response', response);
             if (response.ok) {
                 onSuccess('Lead successfully created');
             } else {
@@ -313,7 +312,7 @@ export function createLead(data, onSuccess, onFailure) {
             }
         })
         .catch(error => {
-            onFailure(error);
+            onFailure(error.message);
         });
 }
 

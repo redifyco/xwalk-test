@@ -132,15 +132,17 @@ export default async function decorate(block) {
         }
 
         createLead(data, (msg) => {
-            console.log('OnSuccess', msg)
             const containerPopup = sectionContainer.querySelector('#container-popup');
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
             containerPopup.classList.remove('hidden')
             containerPopup.innerHTML = `<popup-box class="block" isSuccess="true" subtitle="We will contact you soon" title="Thank you for your interest"></popup-box>`
         }, error => {
-            console.error('OnError', error)
-
+            const containerPopup = sectionContainer.querySelector('#container-popup');
+            const form = sectionContainer.querySelector('#form');
+            form.classList.toggle('hidden');
+            containerPopup.classList.remove('hidden')
+            containerPopup.innerHTML = `<popup-box class="block" isSuccess="false" title="${error}"></popup-box>`
         })
     })
 
