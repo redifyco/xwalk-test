@@ -175,7 +175,7 @@ export default function decorate(block) {
                 country: "IT",
                 amount: {
                     value: sessionData.amount * 100, // Convert to minor units
-                    currency: sessionData.currency,
+                    currency: 'EUR',
                 },
                 orderReference: "Test Reference",
             };
