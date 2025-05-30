@@ -86,7 +86,7 @@ export default async function decorate(block) {
             ${buttonText}
           </custom-button>
         </form>
-        <popup-box id="popup-box" isSuccess="true" class="hidden"></popup-box>
+        <div id="container-popup" class="hidden"></div>
       </div>
       <div class="w-full 2xl:w-1/2">
         <img
@@ -132,14 +132,12 @@ export default async function decorate(block) {
 
         createLead(data, (msg) => {
             console.log('OnSuccess', msg)
-            const popupBox = sectionContainer.querySelector('#popup-box');
+            const containerPopup = sectionContainer.querySelector('#container-popup');
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
-            popupBox.classList.remove('hidden');
-            popupBox.classList.add('block')
-            popupBox.setAttribute('isSuccess', 'true');
-            popupBox.setAttribute('title', 'Thank you for your interest');
-            popupBox.setAttribute('subtitle', 'We will contact you soon');
+            containerPopup.classList.remove('hidden');
+            containerPopup.classList.add('block')
+            containerPopup.innerHTML = `<popup-box id="popup-box" isSuccess="true" subtitle="We will contact you soon" title="Thank you for your interest" class="hidden"></popup-box>`;
         }, error => {
             console.error('OnError', error)
         })
