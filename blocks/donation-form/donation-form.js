@@ -179,7 +179,10 @@ export default function decorate(block) {
                 },
                 orderReference: "Test Reference",
             };
-            initDonationForm(data, () => console.log('Payment completed'));
+            initDonationForm(data, () => {
+                console.log('Payment completed')
+                sessionStorage.clear()
+            });
             containerSection.querySelector('#dropin-container').classList.remove('hidden');
 
         })
