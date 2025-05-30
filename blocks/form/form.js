@@ -10,7 +10,7 @@ export default async function decorate(block) {
 
 
     const sectionContainer = document.createElement('section')
-    sectionContainer.className = 'bg-secondary flex flex-col lg:flex-row'
+    sectionContainer.className = 'bg-secondary relative flex flex-col lg:flex-row'
 
 
     sectionContainer.innerHTML = `
@@ -26,6 +26,7 @@ export default async function decorate(block) {
           </span>
         </div>
         <form
+        id="form"
           class="flex w-full flex-col items-center gap-8 text-white mt-20 lg:mt-0 2xl:items-start 2xl:p-10"
         >
           <input
@@ -70,6 +71,8 @@ export default async function decorate(block) {
               Marketing consent
             </label>
           </div>
+            <div id="box-error" class="border hidden border-b-red-400 rounded-lg p-2 text-red-400 items-center justify-center gap-2 w-full">
+          </div>
           <!--CUSTOM BUTTON-->
           <custom-button
           class="w-full mt-10"
@@ -80,6 +83,7 @@ export default async function decorate(block) {
             ${buttonText}
           </custom-button>
         </form>
+        <popup-box isSuccess="true" class=""></popup-box>
       </div>
       <div class="w-full 2xl:w-1/2">
         <img
@@ -90,12 +94,33 @@ export default async function decorate(block) {
       </div>
     `
 
+    const validateEmail = (email) => {
+        return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    };
+
     sectionContainer.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault()
+        const boxError = sectionContainer.querySelector('#box-error');
+
+        const emailInput = sectionContainer.querySelector('#email');
+
+        if (!validateEmail(emailInput.value)) {
+            boxError.classList.remove('hidden');
+            boxError.classList.add('flex');
+            boxError.innerHTML = `<ion-icon size="large" name="information-circle"></ion-icon> Please enter a valid email address`;
+            return;
+        } else {
+            boxError.classList.remove('flex');
+            boxError.classList.add('hidden');
+        }
+
+        emailInput.style.borderColor = '';
+        emailInput.removeAttribute('title');
+
         const data = {
             "first_name": sectionContainer.querySelector('#first_name').value,
             "last_name": sectionContainer.querySelector('#last_name').value,
-            "email": sectionContainer.querySelector('#email').value,
+            "email": emailInput.value,
             "00NVj000001XF69": sectionContainer.querySelector('#languages').value,
             "lead_source": 'Web',
             "00NVj000003rpfN": sectionContainer.querySelector('#marketing-consent').checked
@@ -103,7 +128,7 @@ export default async function decorate(block) {
 
         console.log('data', data)
         console.log('test update TTL change');
-        createLead(data)
+        createLead(data, () => console.log('CallBack ok'))
     })
 
     block.textContent = ''

@@ -232,3 +232,39 @@ export class ArticleCard extends HTMLElement {
 }
 
 customElements.define('article-card', ArticleCard);
+
+
+/*POP-UP Box*/
+export class PopUpBox extends HTMLElement {
+    connectedCallback() {
+        const title = this.getAttribute('title') || '';
+        const subtitle = this.getAttribute('subtitle') || '';
+        const isSuccess = Boolean(this.getAttribute('isSuccess') === 'true');
+
+        const successIcon = `
+            <svg class="mb-3" width="177" height="177" viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="88.5" cy="88.5" r="88.5" fill="#4CAF50" fill-opacity="0.2"/>
+                <circle cx="88.5" cy="88.5" r="57.5" fill="#4CAF50"/>
+                <path d="M60 87.0909L83.2222 110L117 68" stroke="white" stroke-width="7.5"/>
+            </svg>
+        `;
+
+        const failureIcon = `
+            <svg class="mb-3" width="176" height="176" viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="87.6525" cy="87.8847" rx="87.6525" ry="87.8856" fill="#F44336" fill-opacity="0.2"/>
+                <ellipse cx="87.6525" cy="87.8838" rx="56.9494" ry="57.1008" fill="#F44336"/>
+                <path d="M117.155 63.6091L93.1875 87.5759L117.73 112.119L112.141 117.12L87.8926 92.8708L63.1172 117.647L58.1162 112.058L82.5977 87.5759L58.1025 63.0808L63.6914 58.0808L87.8926 82.281L112.155 58.0193L117.155 63.6091Z" fill="white"/>
+            </svg>
+        `;
+
+        this.innerHTML = `
+            <div class="text-center p-4 flex flex-col gap-4 items-center justify-center w-full">
+                ${isSuccess ? successIcon : failureIcon}
+                <span class="text-4xl font-semibold">${title}</span>
+                <span class="font-light text-lg">${subtitle}</span>
+            </div>
+        `;
+    }
+}
+
+customElements.define('popup-box', PopUpBox);
