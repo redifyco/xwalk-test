@@ -86,3 +86,7 @@ p {
 .adyen-checkout__payment-method--selected {
     background: none !important;
 }
+
+:root {
+--adyen-sdk-color-background-primary: none
+}
