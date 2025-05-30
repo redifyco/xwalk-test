@@ -1,5 +1,7 @@
 const {AdyenCheckout, Dropin} = window.AdyenWeb;
 
+const ADYEN_CLIENT_KEY = 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ'; // Test client key, replace with customer key.
+
 
 export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
     console.log('click init donation form', data);
@@ -37,7 +39,7 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             paymentMethodsResponse: JSON.parse(paymentMethods.data),
             locale: 'it-IT',
             countryCode: 'IT',
-            clientKey: 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ',
+            clientKey: ADYEN_CLIENT_KEY,
             onPaymentCompleted,
             onPaymentFailed,
             onError: (error, component) => {
@@ -48,8 +50,8 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
         const dropinConfiguration = {
             paymentMethodsConfiguration: {
                 card: {
-                    hasHolderName: true, // Show the cardholder name field.
-                    holderNameRequired: true, // Mark the cardholder name field as required.
+                    hasHolderName: true,
+                    holderNameRequired: true,
                 }
             },
         };
@@ -64,55 +66,3 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
     })
         .catch(err => console.log('error', err));
 }
-
-/*const globalConfiguration = {
-    session: {
-        id: parsedSession.id,
-        sessionData: parsedSession.session
-    },
-    environment: 'test',
-    locale: 'it-IT',
-    countryCode: 'IT',
-    clientKey: 'test_6HJJXDTT5BHWJEIQQJPMNDVQW4VBAMI6',
-    onPaymentCompleted: (result, component) => {
-        console.info(result, component);
-    },
-    onPaymentFailed: (result, component) => {
-        console.info(result, component);
-    },
-    onError: (error, component) => {
-        console.error(error.name, error.message, error.stack, component);
-    }
-};*/
-
-
-/*
-const configuration = {
-    paymentMethodsResponse: JSON.parse(paymentMethods.data),
-    clientKey: "test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ",
-    locale: 'it-IT',
-    countryCode: 'IT',
-    environment: 'test',
-    amount: {
-        value: data.amount.value,
-        currency: data.amount.currency
-    },
-    onSubmit: async (result, component) => {
-        console.log('submit', result, component);
-    },
-    onAdditionalDetails: async (state, component, actions) => {
-        console.log('additional details', state, component, actions);
-    },
-    onPaymentCompleted: (result, component) => {
-        console.info(result, component);
-    },
-    onPaymentFailed: (result, component) => {
-        console.info(result, component);
-    },
-    /!*onError: (error, component) => {
-        console.error(error.name, error.message, error.stack, component);
-    },*!/
-    /!*  onChange: (state, component) => {
-          console.log('change', state, component);
-      },*!/
-}*/
