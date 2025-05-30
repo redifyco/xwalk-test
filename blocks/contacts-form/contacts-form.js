@@ -148,7 +148,7 @@ export default async function decorate(block) {
         }
 
 
-        // createCase(data)
+        createCase(data)
     })
 
     block.textContent = ''
