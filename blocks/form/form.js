@@ -83,7 +83,7 @@ export default async function decorate(block) {
             ${buttonText}
           </custom-button>
         </form>
-        <popup-box isSuccess="true" class=""></popup-box>
+        <popup-box isSuccess="true" class="hidden"></popup-box>
       </div>
       <div class="w-full 2xl:w-1/2">
         <img
@@ -132,7 +132,7 @@ export default async function decorate(block) {
             console.log('OnSuccess', msg)
             const popupBox = sectionContainer.querySelector('#popup-box');
             const form = sectionContainer.querySelector('#form');
-            form.classList.add('hidden');
+            form.classList.toggle('block');
             popupBox.setAttribute('isSuccess', 'true');
             popupBox.setAttribute('title', 'Thank you for your interest');
             popupBox.setAttribute('subtitle', 'We will contact you soon');
