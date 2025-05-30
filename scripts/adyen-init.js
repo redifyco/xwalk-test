@@ -1,7 +1,7 @@
 const {AdyenCheckout, Card, Dropin, Klarna} = window.AdyenWeb;
 
 
-export const initDonationForm = (data) => {
+export const initDonationForm = (data, onPaymentCompleted) => {
     console.log('click init donation form', data);
     Promise.all([
         fetch('/api/msc-foundation/services/adyen?type=CREATE_SESSION', {
@@ -38,9 +38,7 @@ export const initDonationForm = (data) => {
             locale: 'it-IT',
             countryCode: 'IT',
             clientKey: 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ',
-            onPaymentCompleted: (result, component) => {
-                console.info(result, component);
-            },
+            onPaymentCompleted,
             onPaymentFailed: (result, component) => {
                 console.info(result, component);
             },

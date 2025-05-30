@@ -177,7 +177,7 @@ export default function decorate(block) {
                 },
                 orderReference: "Test Reference",
             };
-            initDonationForm(data);
+            initDonationForm(data, () => console.log('Payment completed'));
             containerSection.querySelector('#dropin-container').classList.remove('hidden');
 
         })
