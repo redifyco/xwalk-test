@@ -128,7 +128,17 @@ export default async function decorate(block) {
 
         console.log('data', data)
         console.log('test update TTL change');
-        createLead(data, () => console.log('CallBack ok'))
+        createLead(data, (msg) => {
+            console.log('OnSuccess', msg)
+            const popupBox = sectionContainer.querySelector('#popup-box');
+            const form = sectionContainer.querySelector('#form');
+            form.classList.add('hidden');
+            popupBox.setAttribute('isSuccess', 'true');
+            popupBox.setAttribute('title', 'Thank you for your interest');
+            popupBox.setAttribute('subtitle', 'We will contact you soon');
+        }, error => {
+            console.error('OnError', error)
+        })
     })
 
     block.textContent = ''

@@ -296,7 +296,7 @@ export async function loadGoogleMaps(apiKey) {
     return Promise.resolve();
 }
 
-export function createLead(data, onSuccess) {
+export function createLead(data, onSuccess, onFailure) {
     fetch('/createlead', {
         method: 'POST',
         headers: {
@@ -307,11 +307,11 @@ export function createLead(data, onSuccess) {
         .then(response => {
             console.log('response', response);
             if (response.status === 200) {
-                onSuccess()
+                onSuccess('Lead successfully created');
             }
         })
         .catch(error => {
-            console.error('Error creating lead:', error);
+            onFailure(error.message);
         });
 }
 
