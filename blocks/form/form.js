@@ -129,15 +129,15 @@ export default async function decorate(block) {
             "00NVj000003rpfN": sectionContainer.querySelector('#marketing-consent').checked
         }
 
-        console.log('data', data)
-        console.log('test update TTL change');
         createLead(data, (msg) => {
             console.log('OnSuccess', msg)
             const popupBox = sectionContainer.querySelector('#popup-box');
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
-            popupBox.classList.remove('hidden');
-            popupBox.classList.add('block');
+            console.log('popupBox', popupBox)
+            console.log('popupBox classList', popupBox.classList)
+            // popupBox.classList.remove('hidden');
+            // popupBox.classList.add('block');
             popupBox.setAttribute('isSuccess', 'true');
             popupBox.setAttribute('title', 'Thank you for your interest');
             popupBox.setAttribute('subtitle', 'We will contact you soon');

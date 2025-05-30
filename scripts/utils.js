@@ -311,7 +311,7 @@ export function createLead(data, onSuccess, onFailure) {
             }
         })
         .catch(error => {
-            onFailure(error.message);
+            onFailure(error);
         });
 }
 
