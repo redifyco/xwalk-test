@@ -306,8 +306,10 @@ export function createLead(data, onSuccess, onFailure) {
     })
         .then(response => {
             console.log('response', response);
-            if (response.status === 200) {
+            if (response.ok) {
                 onSuccess('Lead successfully created');
+            } else {
+                onFailure('Failed to create lead');
             }
         })
         .catch(error => {

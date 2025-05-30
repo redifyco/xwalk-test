@@ -86,7 +86,8 @@ export default async function decorate(block) {
             ${buttonText}
           </custom-button>
         </form>
-        <div id="container-popup" class="hidden"><popup-box id="popup-box" isSuccess="true" subtitle="We will contact you soon" title="Thank you for your interest" class="hidden"></popup-box></div>
+        <div id="container-popup" class="hidden mt-5"></div>
+       
       </div>
       <div class="w-full 2xl:w-1/2">
         <img
@@ -135,11 +136,11 @@ export default async function decorate(block) {
             const containerPopup = sectionContainer.querySelector('#container-popup');
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
-            containerPopup.classList.toggle('hidden')
-
-            console.log('containerPopup', containerPopup)
+            containerPopup.classList.remove('hidden')
+            containerPopup.innerHTML = `<popup-box class="block" isSuccess="true" subtitle="We will contact you soon" title="Thank you for your interest"></popup-box>`
         }, error => {
             console.error('OnError', error)
+
         })
     })
 
