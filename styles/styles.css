@@ -84,5 +84,5 @@ p {
 
 /*ADYEN Style*/
 .adyen-checkout__payment-method--selected {
-    background: none;
+    background: none !important;
 }
