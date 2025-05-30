@@ -182,6 +182,7 @@ export default function decorate(block) {
             initDonationForm(data, () => {
                 console.log('Payment completed')
                 sessionStorage.clear()
+                window.location.reload()
             });
             containerSection.querySelector('#dropin-container').classList.remove('hidden');
 
