@@ -1,4 +1,4 @@
-const {AdyenCheckout, Card, Dropin, Klarna} = window.AdyenWeb;
+const {AdyenCheckout, Dropin} = window.AdyenWeb;
 
 
 export const initDonationForm = (data, onPaymentCompleted) => {
@@ -31,10 +31,6 @@ export const initDonationForm = (data, onPaymentCompleted) => {
             },
             environment: 'test', // Change to 'live' for the live environment.
             paymentMethodsResponse: JSON.parse(paymentMethods.data),
-            amount: {
-                value: 1000,
-                currency: 'EUR'
-            },
             locale: 'it-IT',
             countryCode: 'IT',
             clientKey: 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ',
