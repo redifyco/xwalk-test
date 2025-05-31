@@ -316,26 +316,23 @@ export function createLead(data, onSuccess, onFailure) {
         });
 }
 
-export function createCase(first_name, last_name, email, language) {
+export function createCase(data, onSuccess, onFailure) {
     fetch('/createCase', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({first_name, last_name, email, language})
+        body: JSON.stringify(data)
     })
         .then(response => {
-            return response.text().then(html => {
-                if (response.status === 200) {
-                    console.log('Lead successfully created. HTML response:');
-                    console.log(html); // stampa lo snippet HTML
-                } else {
-                    throw new Error(`Request failed with status ${response.status}: ${html}`);
-                }
-            });
+            if (response.ok) {
+                onSuccess('Lead successfully created');
+            } else {
+                onFailure('Failed to create lead');
+            }
         })
         .catch(error => {
-            console.error('Error creating lead:', error);
+            onFailure(error.message);
         });
 }
 

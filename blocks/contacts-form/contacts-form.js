@@ -22,6 +22,7 @@ export default async function decorate(block) {
           </span>
         </div>
         <form
+        id="form"
           class="flex w-full flex-col items-center gap-8 mt-10 2xl:items-start"
         >
         <div class="flex flex-col md:flex-row gap-8 justify-between w-full">   
@@ -122,6 +123,7 @@ export default async function decorate(block) {
           </custom-button>
           </div>
         </form>
+        <div id="container-popup-form" class="hidden mt-5"></div>
         </div>
         <div class="w-full 2xl:w-1/2">
         <img
@@ -148,7 +150,19 @@ export default async function decorate(block) {
         }
 
 
-        createCase(data)
+        createCase(data, msg => {
+            const containerPopup = sectionContainer.querySelector('#container-popup-form');
+            const form = sectionContainer.querySelector('#form');
+            form.classList.toggle('hidden');
+            containerPopup.classList.remove('hidden')
+            containerPopup.innerHTML = `<popup-box class="block" isSuccess="true" subtitle="Subtitle" title="Title"></popup-box>`
+        }, error => {
+            const containerPopup = sectionContainer.querySelector('#container-popup');
+            const form = sectionContainer.querySelector('#form');
+            form.classList.toggle('hidden');
+            containerPopup.classList.remove('hidden')
+            containerPopup.innerHTML = `<popup-box class="block" isSuccess="false" title="${error}"></popup-box>`
+        })
     })
 
     block.textContent = ''
