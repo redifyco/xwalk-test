@@ -179,8 +179,8 @@ export default function decorate(block) {
                 },
                 orderReference: "Test Reference",
             };
-            initDonationForm(data, () => {
-                console.log('Payment completed')
+            initDonationForm(data, (success) => {
+                console.log('Payment completed', success)
                 sessionStorage.clear()
                 // window.location.reload()
             }, () => {

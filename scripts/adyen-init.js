@@ -6,13 +6,22 @@ const ENVIRONMENT = 'test';
 
 
 export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
+    const sessionData = {
+        ...data,
+        additionalData: {
+            "customerReference": data.customerReference || "YOUR_CUSTOMER_ID",
+            "customerEmail": "test",
+            "shopperReference": "shopper reference",
+            "shopperEmail": data.email || "",
+        }
+    };
     Promise.all([
         fetch('/api/msc-foundation/services/adyen?type=CREATE_SESSION', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(sessionData)
         }).then(res => res.json()),
         fetch('/api/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
             method: 'POST',
@@ -23,16 +32,11 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
         }).then(res => res.json())
     ]).then(async ([session, paymentMethods]) => {
         const parsedSession = JSON.parse(session.data);
+        console.log('parsedSession', parsedSession)
         const parsedPaymentMethods = JSON.parse(paymentMethods.data);
 
         const globalConfiguration = {
-            "additionalData": {
-                "expiryDate": "03/2030",
-                "authCode": "033899",
-                "cardBin": "411111",
-                "cardSummary": "1111",
-                "checkoutSessionId": "CSF46729982237A879"
-            },
+
             session: {
                 id: parsedSession.id,
                 sessionData: parsedSession.session
