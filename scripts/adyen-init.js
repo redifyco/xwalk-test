@@ -6,12 +6,22 @@ const ENVIRONMENT = 'test';
 
 
 export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
+
     const sessionData = {
         ...data,
-        additionalData: {
-            "customerEmail": "test",
-            "shopperReference": "shopper reference",
-        }
+        "metadata": {
+            "campaign": "spring2025",
+            "donationSource": "landingPage",
+            "userFirstName": "Giacomo",
+            "userLastName": "Vecchi"
+        },
+        "billingAddress": {
+            "city": "Ankeborg",
+            "country": "SE",
+            "houseNumberOrName": "1",
+            "postalCode": "12345",
+            "street": "Stargatan"
+        },
     };
     Promise.all([
         fetch('/api/msc-foundation/services/adyen?type=CREATE_SESSION', {
