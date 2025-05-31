@@ -1,5 +1,5 @@
 import '../../scripts/customTag.js'
-import {createCase} from "../../scripts/utils.js";
+import {createCase, validateEmail} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
     const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
@@ -112,6 +112,7 @@ export default async function decorate(block) {
             </label>
           </div>
           </div>
+          <div id="box-error" class="border hidden border-b-red-400 rounded-lg p-2 text-red-400 items-center justify-center gap-2 w-full"></div>
           <!--CUSTOM BUTTON-->
            <custom-button
            type="submit"
@@ -136,6 +137,18 @@ export default async function decorate(block) {
 
     sectionContainer.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
+        const boxError = sectionContainer.querySelector('#box-error');
+        const emailInput = sectionContainer.querySelector('#email');
+
+        if (!validateEmail(emailInput.value)) {
+            boxError.classList.remove('hidden');
+            boxError.classList.add('flex');
+            boxError.innerHTML = `<ion-icon size="large" name="information-circle"></ion-icon> Please enter a valid email address`;
+            return;
+        } else {
+            boxError.classList.remove('flex');
+            boxError.classList.add('hidden');
+        }
         const data = {
             first_name: sectionContainer.querySelector('#name').value || '',
             last_name: sectionContainer.querySelector('#surname').value || '',

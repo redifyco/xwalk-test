@@ -446,3 +446,9 @@ export const extractTagsByType = (pageType, type) => {
         })
 };
 
+/*EMAIL VALIDATOR*/
+export const validateEmail = (email) => {
+    return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+};
+
+

@@ -1,5 +1,5 @@
 import '../../scripts/customTag.js'
-import {createLead} from "../../scripts/utils.js";
+import {createLead, validateEmail} from "../../scripts/utils.js";
 
 
 export default async function decorate(block) {
@@ -99,14 +99,9 @@ export default async function decorate(block) {
     `
 
 
-    const validateEmail = (email) => {
-        return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-    };
-
     sectionContainer.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault()
         const boxError = sectionContainer.querySelector('#box-error');
-
         const emailInput = sectionContainer.querySelector('#email');
 
         if (!validateEmail(emailInput.value)) {
@@ -118,9 +113,6 @@ export default async function decorate(block) {
             boxError.classList.remove('flex');
             boxError.classList.add('hidden');
         }
-
-        emailInput.style.borderColor = '';
-        emailInput.removeAttribute('title');
 
         const data = {
             "first_name": sectionContainer.querySelector('#first_name').value,
