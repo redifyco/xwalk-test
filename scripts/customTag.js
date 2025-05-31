@@ -259,7 +259,7 @@ export class PopUpBox extends HTMLElement {
         `;
 
         this.innerHTML = `
-            <div class="text-center text-white p-4 flex flex-col gap-4 items-center justify-center w-full ${extraClass}">
+            <div class="text-center p-4 flex flex-col gap-4 items-center justify-center w-full ${extraClass}">
                 ${isSuccess ? successIcon : failureIcon}
                 <span class="text-4xl font-semibold">${title}</span>
                 <span class="font-light text-lg">${subtitle}</span>

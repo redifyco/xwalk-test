@@ -128,13 +128,13 @@ export default async function decorate(block) {
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
             containerPopup.classList.remove('hidden')
-            containerPopup.innerHTML = `<popup-box class="block" isSuccess="true" subtitle="We will contact you soon" title="Thank you for your interest"></popup-box>`
+            containerPopup.innerHTML = `<popup-box extraClass="text-white" class="block" isSuccess="true" subtitle="We will contact you soon" title="Thank you for your interest"></popup-box>`
         }, error => {
             const containerPopup = sectionContainer.querySelector('#container-popup');
             const form = sectionContainer.querySelector('#form');
             form.classList.toggle('hidden');
             containerPopup.classList.remove('hidden')
-            containerPopup.innerHTML = `<popup-box class="block" isSuccess="false" title="${error}"></popup-box>`
+            containerPopup.innerHTML = `<popup-box extraClass="text-white" class="block" isSuccess="false" title="${error}"></popup-box>`
         })
     })
 
