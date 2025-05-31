@@ -35,12 +35,11 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
                 currency: data.currency
             },
             environment: ENVIRONMENT,
-            onActionHandled: (action) => {
-                console.log('Action', action);
+            shopperName: {
+                firstName: "Mario",
+                lastName: "Rossi"
             },
-            beforeSubmit: (data, component) => {
-                console.log('Before submit', data, component);
-            },
+            shopperEmail: "mario.rossi@email.it",
             paymentMethodsResponse: parsedPaymentMethods,
             locale: 'it-IT',
             countryCode: 'IT',
