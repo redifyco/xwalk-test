@@ -9,10 +9,8 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
     const sessionData = {
         ...data,
         additionalData: {
-            "customerReference": data.customerReference || "YOUR_CUSTOMER_ID",
             "customerEmail": "test",
             "shopperReference": "shopper reference",
-            "shopperEmail": data.email || "",
         }
     };
     Promise.all([
@@ -32,7 +30,7 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
         }).then(res => res.json())
     ]).then(async ([session, paymentMethods]) => {
         const parsedSession = JSON.parse(session.data);
-        console.log('parsedSession', parsedSession)
+        console.log('session', session)
         const parsedPaymentMethods = JSON.parse(paymentMethods.data);
 
         const globalConfiguration = {
