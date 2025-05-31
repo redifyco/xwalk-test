@@ -182,11 +182,11 @@ export default function decorate(block) {
             initDonationForm(data, () => {
                 console.log('Payment completed')
                 sessionStorage.clear()
-                window.location.reload()
+                // window.location.reload()
             }, () => {
                 console.log('Payment failed')
                 sessionStorage.clear()
-                window.location.reload()
+                // window.location.reload()
             });
             containerSection.querySelector('#dropin-container').classList.remove('hidden');
 
@@ -207,7 +207,6 @@ export default function decorate(block) {
 
     /*BACK FROM ADYEN FORM*/
     const backButtonAdyenForm = containerSection.querySelector('#back-adyen-form');
-    console.log('backButton', backButtonAdyenForm);
     if (backButtonAdyenForm) {
         backButtonAdyenForm.addEventListener('click', () => {
             formValue.steps = 2;

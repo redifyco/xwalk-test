@@ -26,6 +26,13 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
         const parsedPaymentMethods = JSON.parse(paymentMethods.data);
 
         const globalConfiguration = {
+            "additionalData": {
+                "expiryDate": "03/2030",
+                "authCode": "033899",
+                "cardBin": "411111",
+                "cardSummary": "1111",
+                "checkoutSessionId": "CSF46729982237A879"
+            },
             session: {
                 id: parsedSession.id,
                 sessionData: parsedSession.session
@@ -35,11 +42,6 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
                 currency: data.currency
             },
             environment: ENVIRONMENT,
-            shopperName: {
-                firstName: "Mario",
-                lastName: "Rossi"
-            },
-            shopperEmail: "mario.rossi@email.it",
             paymentMethodsResponse: parsedPaymentMethods,
             locale: 'it-IT',
             countryCode: 'IT',
