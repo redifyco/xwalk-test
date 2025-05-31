@@ -317,7 +317,7 @@ export function createLead(data, onSuccess, onFailure) {
 }
 
 export function createCase(data, onSuccess, onFailure) {
-    fetch('/createCase', {
+    fetch('/createcase', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
