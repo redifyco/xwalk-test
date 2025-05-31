@@ -240,6 +240,7 @@ export class PopUpBox extends HTMLElement {
         const title = this.getAttribute('title') || '';
         const subtitle = this.getAttribute('subtitle') || '';
         const isSuccess = Boolean(this.getAttribute('isSuccess') === 'true');
+        const extraClass = this.getAttribute('extraClass') || '';
 
         const successIcon = `
             <svg class="mb-3" width="177" height="177" viewBox="0 0 177 177" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -258,7 +259,7 @@ export class PopUpBox extends HTMLElement {
         `;
 
         this.innerHTML = `
-            <div class="text-center text-white p-4 flex flex-col gap-4 items-center justify-center w-full">
+            <div class="text-center text-white p-4 flex flex-col gap-4 items-center justify-center w-full ${extraClass}">
                 ${isSuccess ? successIcon : failureIcon}
                 <span class="text-4xl font-semibold">${title}</span>
                 <span class="font-light text-lg">${subtitle}</span>
