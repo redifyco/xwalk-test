@@ -476,6 +476,13 @@
     "id": "caf-donation-model",
     "fields": [
       {
+        "component": "reference",
+        "valueType": "string",
+        "name": "background-image",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
         "component": "richtext",
         "valueType": "string",
         "name": "title",
@@ -486,13 +493,6 @@
         "valueType": "string",
         "name": "subtitle",
         "label": "Subtitle"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "background-image",
-        "label": "Background Image",
-        "multi": false
       },
       {
         "component": "container",
