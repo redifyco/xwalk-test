@@ -478,9 +478,25 @@
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "sectionTitle",
-        "label": "Section Title",
-        "value": "Our Partners"
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "subtitle",
+        "label": "Subtitle"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "button-text",
+        "label": "Button Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "button-link",
+        "label": "Button Link"
       }
     ]
   },
@@ -490,10 +506,21 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "logo-image",
-        "label": "Logo Image",
+        "name": "country-icon",
+        "label": "Country Icon",
         "multi": false,
         "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "country-name",
+        "label": "Country Name"
+      },
+      {
+        "component": "aem-content",
+        "name": "country-caf-link",
+        "label": "Country CAF Link"
       }
     ]
   },

@@ -1,4 +1,5 @@
 export default function decorate(block) {
+    console.log('block', block);
 
     const containerSection = document.createElement('section');
     containerSection.className = ''
@@ -8,6 +9,6 @@ export default function decorate(block) {
     </div>
     `
 
-    block.append(containerSection);
+    // block.append(containerSection);
 
 }
