@@ -2369,6 +2369,13 @@
         "multi": false
       },
       {
+        "component": "aem-tag",
+        "name": "side-info-box-1-title",
+        "label": "Category",
+        "valueType": "string",
+        "rootPath": "/content/cq:tags/msc-foundation"
+      },
+      {
         "component": "text",
         "name": "side-info-box-1-title",
         "label": "Side Info Box 1 Title",
@@ -2381,10 +2388,11 @@
         "valueType": "string"
       },
       {
-        "component": "text",
+        "component": "aem-tag",
         "name": "side-info-box-2-title",
-        "label": "Side Info Box 2 Title",
-        "valueType": "string"
+        "label": "Focus Area",
+        "valueType": "string",
+        "rootPath": "/content/cq:tags/msc-foundation"
       },
       {
         "component": "richtext",

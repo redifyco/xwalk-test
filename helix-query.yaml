@@ -17,10 +17,10 @@ indices:
 
   programs:
     include:
-      - '/programmes/**'
+      - '/what-we-do/programmes/**'
     exclude:
-      - '/programmes'
-    target: /programs-index.json
+      - '/what-we-do/programmes'
+    target: 4
     query:
       offset: 0
       perPage: 1
@@ -43,9 +43,9 @@ indices:
 
   news:
     include:
-      - '/news/**'
+      - '/news-and-media/news/**'
     exclude:
-      - '/news'
+      - '/news-and-media/news'
     target: /news-index.json
     query:
       limit: 10
