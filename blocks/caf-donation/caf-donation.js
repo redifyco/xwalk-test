@@ -6,7 +6,7 @@ export default function decorate(block) {
     const boxTitle = block.querySelector(":scope > div:nth-child(4) div p")?.textContent;
     const boxDescription = block.querySelector(":scope > div:nth-child(5) div p")?.textContent;
     const boxButtonText = block.querySelector(":scope > div:nth-child(6) div p")?.textContent;
-    const countryItems = block.querySelectorAll(":scope > div:nth-child(n+8) div");
+    const countryItems = block.querySelectorAll(":scope > div:nth-child(n+7) div");
     const processCountryItems = processDivsToObject(countryItems)
     console.log('processCountryItems', processCountryItems);
 
