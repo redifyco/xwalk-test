@@ -23,7 +23,8 @@ export default function decorate(block) {
     </div>
 `
 
-    block.textContent = '';
+    // block.textContent = '';+
+    console.log('block', block)
     block.append(containerSection);
 
 }

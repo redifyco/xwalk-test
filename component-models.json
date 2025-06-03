@@ -502,13 +502,13 @@
         "valueType": "string",
         "fields": [
           {
-            "component": "richtext",
+            "component": "text",
             "valueType": "string",
             "name": "box-title",
             "label": "Box Title"
           },
           {
-            "component": "richtext",
+            "component": "text",
             "valueType": "string",
             "name": "box-description",
             "label": "Box Description"
