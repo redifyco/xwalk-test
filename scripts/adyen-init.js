@@ -1,7 +1,9 @@
 const {AdyenCheckout, Dropin} = window.AdyenWeb;
 
 const ADYEN_CLIENT_KEY_TEST = 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ';
-const ADYEN_CLIENT_KEY_PROD = 'test_RECMBL5SWRCZBBE2OLQ57DZNNAK74JHQ';
+const ADYEN_CLIENT_KEY_CUSTOMER_TEST = 'test_RECMBL5SWRCZBBE2OLQ57DZNNAK74JHQ';
+const CREATE_SESSION_API_URL = '/api/msc-foundation/services/adyen?type=CREATE_SESSION'
+const GET_PAYMENT_METHODS_API_URL = '/api/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS'
 const ENVIRONMENT = 'test';
 
 
@@ -24,14 +26,14 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
         },
     };
     Promise.all([
-        fetch('/api/msc-foundation/services/adyen?type=CREATE_SESSION', {
+        fetch(CREATE_SESSION_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(sessionData)
         }).then(res => res.json()),
-        fetch('/api/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS', {
+        fetch(GET_PAYMENT_METHODS_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +46,6 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
         const parsedPaymentMethods = JSON.parse(paymentMethods.data);
 
         const globalConfiguration = {
-
             session: {
                 id: parsedSession.id,
                 sessionData: parsedSession.session
@@ -57,25 +58,15 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             paymentMethodsResponse: parsedPaymentMethods,
             locale: 'it-IT',
             countryCode: 'IT',
-            clientKey: ADYEN_CLIENT_KEY_PROD,
+            clientKey: ADYEN_CLIENT_KEY_TEST,
             onPaymentCompleted,
             onPaymentFailed,
-            onError: (error, component) => {
-                console.error(error.name, error.message, error.stack, component);
-            }
         };
 
-        const dropinConfiguration = {
-            paymentMethodsConfiguration: {
-                card: {
-                    hasHolderName: true,
-                    holderNameRequired: true,
-                }
-            },
-        };
+        const dropinConfiguration = {};
 
         const checkout = await AdyenCheckout(globalConfiguration);
-        const dropin = new Dropin(checkout, dropinConfiguration).mount('#dropin-container');
+        new Dropin(checkout, dropinConfiguration).mount('#dropin-container');
     })
         .catch(err => console.log('error', err));
 }

@@ -332,20 +332,3 @@ const AdyenForm = () => {
     `;
 }
 
-
-/* const submitButton = containerSection.querySelector('#open-adyen');
-    submitButton.addEventListener('click', () => {
-        console.log('formValue', formValue);
-        const data = {
-            country: "IT",
-            amount: {
-                value: 1000,
-                currency: 'EUR'
-            },
-            orderReference: "Test Reference",
-        };
-        initDonationForm(data);
-        containerSection.querySelector('#dropin-container').classList.remove('hidden');
-    })*/
-
-

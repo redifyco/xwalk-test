@@ -473,6 +473,31 @@
     ]
   },
   {
+    "id": "caf-donation-model",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "sectionTitle",
+        "label": "Section Title",
+        "value": "Our Partners"
+      }
+    ]
+  },
+  {
+    "id": "country-item-model",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo-image",
+        "label": "Logo Image",
+        "multi": false,
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "cards-with-images",
     "fields": [
       {

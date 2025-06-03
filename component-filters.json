@@ -54,6 +54,12 @@
     "components": []
   },
   {
+    "id": "caf-donation-filter",
+    "components": [
+      "country-item"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
