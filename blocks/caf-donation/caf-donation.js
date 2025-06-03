@@ -34,8 +34,8 @@ export default function decorate(block) {
                     <input id="country-search" type="text" class="border-primary w-full border-r-2 border-b-2 focus:outline-0 p-1 ring-0" placeholder="Search your country"/>
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"><ion-icon size="large" name="search-outline"></ion-icon></span>
                 </div>
-                <div id="container-render">              
                     <div class="flex flex-wrap mt-2 gap-6 justify-center max-h-[250px] overflow-y-scroll">
+                    <span id='no-result' class="hidden">No countries found</span>
                         ${processCountryItems.length > 0 ? processCountryItems.map(item => `
                             <button data-country-link="${item.link}" id="country-button" class="flex cursor-pointer flex-col justify-center items-center gap-2">
                                 <img src="${item.image}" alt="icon-${item.name}" class="rounded-full size-16 object-cover object-center">
@@ -43,7 +43,6 @@ export default function decorate(block) {
                             </button>
                         `).join('') : ''}
                     </div>
-                </div>
                 <a target="_blank" id="continue-button" href="#" class="border text-center cursor-pointer mt-5 border-primary w-full py-2 text-primary" id="submit-currency-amount-form">${boxButtonText}</a>
             </div>
         </div>   
@@ -74,17 +73,26 @@ export default function decorate(block) {
     containerSection.querySelector('#country-search').addEventListener('input', (e) => {
         const value = e.target.value;
         const items = containerSection.querySelectorAll('#country-button');
+        const noResult = containerSection.querySelector('#no-result');
         if (value.length > 0) {
+            let hasVisibleItems = false;
             items.forEach(item => {
                 const name = item.querySelector('#country-name').textContent.toLowerCase();
                 if (name.includes(value.toLowerCase())) {
                     item.classList.remove('hidden');
+                    hasVisibleItems = true;
                 } else {
                     item.classList.add('hidden');
                 }
             })
+            if (!hasVisibleItems) {
+                noResult.classList.remove('hidden');
+            } else {
+                noResult.classList.add('hidden');
+            }
         } else {
             items.forEach(item => item.classList.remove('hidden'));
+            noResult.classList.add('hidden');
         }
     })
 }
