@@ -49,15 +49,36 @@
           "label": "Subtitle"
         },
         {
-          "component": "text",
+          "component": "container",
+          "label": "Box",
+          "collapsible": true,
+          "name": "box-container",
           "valueType": "string",
-          "name": "button-text",
-          "label": "Button Text"
-        },
-        {
-          "component": "aem-content",
-          "name": "button-link",
-          "label": "Button Link"
+          "fields": [
+            {
+              "component": "richtext",
+              "valueType": "string",
+              "name": "box-title",
+              "label": "Box Title"
+            },
+            {
+              "component": "richtext",
+              "valueType": "string",
+              "name": "box-description",
+              "label": "Box Description"
+            },
+            {
+              "component": "text",
+              "valueType": "string",
+              "name": "box-button-text",
+              "label": "Box Button Text"
+            },
+            {
+              "component": "aem-content",
+              "name": "box-button-link",
+              "label": "Box Button Link"
+            }
+          ]
         }
       ]
     },
