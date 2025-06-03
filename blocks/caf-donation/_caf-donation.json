@@ -49,6 +49,13 @@
           "label": "Subtitle"
         },
         {
+          "component": "reference",
+          "valueType": "string",
+          "name": "background-image",
+          "label": "Background Image",
+          "multi": false
+        },
+        {
           "component": "container",
           "label": "Box",
           "collapsible": true,
