@@ -518,11 +518,6 @@
             "valueType": "string",
             "name": "box-button-text",
             "label": "Box Button Text"
-          },
-          {
-            "component": "aem-content",
-            "name": "box-button-link",
-            "label": "Box Button Link"
           }
         ]
       }

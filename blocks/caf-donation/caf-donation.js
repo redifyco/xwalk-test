@@ -6,7 +6,6 @@ export default function decorate(block) {
     const boxTitle = block.querySelector(":scope > div:nth-child(4) div p")?.textContent;
     const boxDescription = block.querySelector(":scope > div:nth-child(5) div p")?.textContent;
     const boxButtonText = block.querySelector(":scope > div:nth-child(6) div p")?.textContent;
-    const boxButtonLink = block.querySelector(":scope > div:nth-child(7) div a")?.href;
     const countryItems = block.querySelectorAll(":scope > div:nth-child(n+8) div");
     const processCountryItems = processDivsToObject(countryItems)
     console.log('processCountryItems', processCountryItems);
@@ -36,15 +35,10 @@ export default function decorate(block) {
                         <input id="custom-amount" type="text" class="border-primary w-full border-r-2 border-b-2 focus:outline-0 p-1 ring-0" placeholder="Search your country"/>
                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"><ion-icon size="large" name="search-outline"></ion-icon></span>
                     </div>
-                    <div class="flex flex-wrap mt-2 gap-4 justify-center max-h-[250px] h-[250px] overflow-y-scroll">
-                        ${processCountryItems.length > 0 ? processCountryItems.map(item => CountryItem(item.image, item.name, item.link)).join('') : ''}
-                        ${processCountryItems.length > 0 ? processCountryItems.map(item => CountryItem(item.image, item.name, item.link)).join('') : ''}
-                        ${processCountryItems.length > 0 ? processCountryItems.map(item => CountryItem(item.image, item.name, item.link)).join('') : ''}
-                        ${processCountryItems.length > 0 ? processCountryItems.map(item => CountryItem(item.image, item.name, item.link)).join('') : ''}
-                        ${processCountryItems.length > 0 ? processCountryItems.map(item => CountryItem(item.image, item.name, item.link)).join('') : ''}
+                    <div class="flex flex-wrap mt-2 gap-6 justify-center max-h-[250px] overflow-y-scroll">
                         ${processCountryItems.length > 0 ? processCountryItems.map(item => CountryItem(item.image, item.name, item.link)).join('') : ''}
                     </div>
-                    ${boxButtonText ? `<a id="continue-button" href="" class="border text-center cursor-pointer mt-5 border-primary w-full py-2 text-primary" id="submit-currency-amount-form">${boxButtonText}</a>` : ''}
+                    ${boxButtonText ? `<a target="_blank" id="continue-button" href="#" class="border text-center cursor-pointer mt-5 border-primary w-full py-2 text-primary" id="submit-currency-amount-form">${boxButtonText}</a>` : ''}
                 </div>
             </div>   
         </div>
@@ -82,6 +76,8 @@ const CountryItem = (icon, name, link) => {
 
 /*Country Items*/
 function processDivsToObject(divs) {
+    if (!divs || divs.length === 0) return [];
+
     const result = [];
 
     // Process the divs in groups of 3
@@ -89,6 +85,8 @@ function processDivsToObject(divs) {
         const imageDiv = divs[i];
         const nameDiv = divs[i + 1];
         const linkDiv = divs[i + 2];
+
+        if (!imageDiv || !nameDiv) continue;
 
         const image = imageDiv?.querySelector('img')?.getAttribute('src') || '';
         const name = nameDiv?.textContent.trim() || 'Untitled';
