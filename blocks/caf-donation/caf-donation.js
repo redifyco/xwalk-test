@@ -58,7 +58,7 @@ export default function decorate(block) {
         block.append(containerSection);
     } else {
         block.append(containerSection);
-        block.querySelectorAll(":scope > div:nth-child(1) div").forEach(item => item.classList.add('hidden'));
+        block.querySelectorAll(":scope > div:nth-child(n+1) div").forEach(item => item.classList.add('hidden'));
     }
 
 
