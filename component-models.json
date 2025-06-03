@@ -2392,7 +2392,7 @@
         "name": "side-info-box-2-title",
         "label": "Focus Area",
         "valueType": "string",
-        "rootPath": "/content/cq:tags/msc-foundation"
+        "rootPath": "/content/cq:tags/mscfoundation"
       },
       {
         "component": "richtext",
