@@ -1,6 +1,6 @@
 const {AdyenCheckout, Dropin} = window.AdyenWeb;
 
-const ADYEN_CLIENT_KEY_TEST = 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ';
+const ADYEN_CLIENT_KEY_JATIN_TEST = 'test_4TAQ4FQCQFGWVOH5XB3SHGF4YQUKNJMQ';
 const ADYEN_CLIENT_KEY_CUSTOMER_TEST = 'test_RECMBL5SWRCZBBE2OLQ57DZNNAK74JHQ';
 const CREATE_SESSION_API_URL = '/api/msc-foundation/services/adyen?type=CREATE_SESSION'
 const GET_PAYMENT_METHODS_API_URL = '/api/msc-foundation/services/adyen?type=GET_PAYMENT_METHODS'
@@ -58,7 +58,7 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             paymentMethodsResponse: parsedPaymentMethods,
             locale: 'it-IT',
             countryCode: 'IT',
-            clientKey: ADYEN_CLIENT_KEY_TEST,
+            clientKey: ADYEN_CLIENT_KEY_JATIN_TEST,
             onPaymentCompleted,
             onPaymentFailed,
         };
