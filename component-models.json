@@ -496,7 +496,7 @@
       },
       {
         "component": "container",
-        "label": "Box",
+        "label": "Box Container",
         "collapsible": true,
         "name": "box-container",
         "valueType": "string",
