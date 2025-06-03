@@ -2369,36 +2369,30 @@
         "multi": false
       },
       {
-        "component": "aem-tag",
-        "name": "side-info-box-1-title",
-        "label": "Category",
-        "valueType": "string",
-        "rootPath": "/content/cq:tags/msc-foundation"
-      },
-      {
         "component": "text",
         "name": "side-info-box-1-title",
-        "label": "Side Info Box 1 Title",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "side-info-box-1-content",
-        "label": "Side Info Box 1 Content",
+        "label": "Filter tag 1 Title",
         "valueType": "string"
       },
       {
         "component": "aem-tag",
-        "name": "side-info-box-2-title",
-        "label": "Focus Area",
+        "name": "side-info-box-1-content",
+        "label": "Filter tag 1",
         "valueType": "string",
         "rootPath": "/content/cq:tags/mscfoundation"
       },
       {
-        "component": "richtext",
-        "name": "side-info-box-2-content",
-        "label": "Side Info Box 2 Content",
+        "component": "text",
+        "name": "side-info-box-2-title",
+        "label": "Filter tag 2 Title",
         "valueType": "string"
+      },
+      {
+        "component": "aem-tag",
+        "name": "side-info-box-2-content",
+        "label": "Filter tag 2",
+        "valueType": "string",
+        "rootPath": "/content/cq:tags/mscfoundation"
       },
       {
         "component": "text",
