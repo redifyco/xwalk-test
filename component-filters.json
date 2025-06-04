@@ -123,6 +123,12 @@
     "components": []
   },
   {
+    "id": "contact-info-filter",
+    "components": [
+      "contact-item"
+    ]
+  },
+  {
     "id": "statistics-data",
     "components": []
   },

@@ -2128,6 +2128,18 @@
     ]
   },
   {
+    "id": "pop-up-model",
+    "fields": [
+      {
+        "component": "aem-tag",
+        "name": "focus-area-tags",
+        "label": "Focus Area tags",
+        "valueType": "string",
+        "rootPath": "/content/cq:tags/mscfoundation"
+      }
+    ]
+  },
+  {
     "id": "statistics-data",
     "fields": [
       {
