@@ -11,19 +11,19 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
 
     const sessionData = {
         ...data,
-        "metadata": {
-            "campaign": "spring2025",
-            "donationSource": "landingPage",
-            "userFirstName": "Giacomo",
-            "userLastName": "Vecchi"
-        },
-        "billingAddress": {
-            "city": "Ankeborg",
-            "country": "SE",
-            "houseNumberOrName": "1",
-            "postalCode": "12345",
-            "street": "Stargatan"
-        },
+        /* "metadata": {
+             "campaign": "spring2025",
+             "donationSource": "landingPage",
+             "userFirstName": "Giacomo",
+             "userLastName": "Vecchi"
+         },
+         "billingAddress": {
+             "city": "Ankeborg",
+             "country": "SE",
+             "houseNumberOrName": "1",
+             "postalCode": "12345",
+             "street": "Stargatan"
+         },*/
     };
     Promise.all([
         fetch(CREATE_SESSION_API_URL, {
@@ -61,6 +61,23 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             clientKey: ADYEN_CLIENT_KEY_JATIN_TEST,
             onPaymentCompleted,
             onPaymentFailed,
+            beforeSubmit: (data, component, actions) => {
+                data.shopperName = {
+                    firstName: 'firstName',
+                    lastName: 'lastName'
+                };
+                data.billingAddress = {
+                    city: 'city',
+                    country: 'country',
+                };
+                data.metadata = {
+                    utm_source: "newsletter",
+                    userId: "12345",
+                    note: "Richiesta maglietta personalizzata"
+                };
+
+                actions.resolve(data);
+            }
         };
 
         const dropinConfiguration = {};
