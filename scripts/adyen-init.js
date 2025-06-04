@@ -46,6 +46,10 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             onPaymentCompleted,
             onPaymentFailed,
             beforeSubmit: (data, component, actions) => {
+                data.shopperName = {
+                    firstName: 'giacomo',
+                    lastName: 'vecchi'
+                };
                 data.billingAddress = {
                     "country": "IT",
                     "city": "Milan",
@@ -54,11 +58,10 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
                     "postalCode": "20100"
                 };
 
-                data.metadata = {
-                    test: 'test metadata'
-                }
-
                 actions.resolve(data);
+            },
+            metadata: {
+                test: 'test metadata'
             }
         };
 
