@@ -15,6 +15,9 @@ export default function decorate(block) {
     const backgroundImage = block.querySelector(":scope > div:nth-child(1) img")?.src;
     const title = block.querySelector(":scope > div:nth-child(2) div")?.innerHTML;
     const subtitle = block.querySelector(":scope > div:nth-child(3) div")?.innerHTML;
+    const maxAmount = Number(block.querySelector(":scope > div:nth-child(4) div")?.textContent);
+    const redirectMaxAmount = block.querySelector(":scope > div:nth-child(5) div a")?.href;
+    console.log('redirectMaxAmount', redirectMaxAmount)
     const sessionStorage = window.sessionStorage;
 
     const resetSessionStorage = () => {
@@ -57,7 +60,7 @@ export default function decorate(block) {
         </div>
         <div class="z-10 lg:max-w-xl w-full">      
             <div id="currency-amount-form" class="block">${CurrencyAmountForm()}</div>
-            <div id="owner-information-form" class="hidden">${OwnerInformationForm()}</div>
+            <div id="owner-information-form" class="hidden">${OwnerInformationForm(redirectMaxAmount, maxAmount)}</div>
             <div id="adyen-form" class="hidden">${AdyenForm()}</div>
         </div>
     </div>
@@ -265,6 +268,17 @@ export default function decorate(block) {
     }
 
 
+    /*MAX AMOUNT CHECKED*/
+    containerSection.querySelector('#max-amount-checkbox').addEventListener('change', (event) => {
+        const value = event.target.checked;
+        if (value) {
+            containerSection.querySelector('#submit-owner-information-form').classList.add('hidden');
+            containerSection.querySelector('#submit-owner-information-form-link').classList.remove('hidden');
+            containerSection.querySelector('#submit-owner-information-form-link').classList.add('block');
+        }
+    })
+
+
     block.textContent = '';
     block.append(containerSection);
 }
@@ -304,7 +318,7 @@ const CurrencyAmountForm = () => {
     `;
 }
 
-const OwnerInformationForm = () => {
+const OwnerInformationForm = (redirectLink, maxAmount) => {
     return `
         <div class="bg-white flex h-full w-full px-4 lg:p-8 flex-col gap-4">
             <div class="mt-3 flex flex-col gap-4">
@@ -395,17 +409,18 @@ const OwnerInformationForm = () => {
                         <div class="flex w-full items-center gap-2">
                             <input
                                 type="checkbox"
-                                id="over-xxx"
+                                id="max-amount-checkbox"
                                 required
                                 class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
                             />
-                            <label for="over-xxx" class="text-sm font-light cursor-pointer">
-                                Ricevuta se importo superiore a xxx
+                            <label for="max-amount-checkbox" class="text-sm font-light cursor-pointer">
+                                Ricevuta se importo superiore a ${maxAmount}
                             </label>
                         </div>
 </div>
                     </div>
                     <button type="button" class="border cursor-pointer mt-5 border-primary w-full py-2 text-primary" id="submit-owner-information-form">Continue</button>
+                    <a href="${redirectLink}" type="button" class="border text-center cursor-pointer mt-5 border-primary w-full py-2 text-primary hidden" id="submit-owner-information-form-link">Continue</a>
                 </div>
             </div>
         </div>
