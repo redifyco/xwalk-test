@@ -48,7 +48,8 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             beforeSubmit: (data, component, actions) => {
                 data.shopperName = {
                     firstName: 'giacomo',
-                    lastName: 'vecchi'
+                    lastName: 'vecchi',
+                    email: 'giacomo@vecchi.it'
                 };
                 data.billingAddress = {
                     "country": "IT",
@@ -57,9 +58,16 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
                     "houseNumberOrName": "123",
                     "postalCode": "20100"
                 };
+                data.metadata = 'test metadata';
+
+                console.log('data Before Submit', data);
 
                 actions.resolve(data);
             },
+            onSubmit: (data, component, actions) => {
+                console.log('data onSubmit', data);
+                actions.resolve(data);
+            }
         };
 
         const dropinConfiguration = {};

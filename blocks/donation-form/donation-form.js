@@ -177,9 +177,6 @@ export default function decorate(block) {
                     currency: sessionData.currency
                 },
                 orderReference: `Test Reference ${Math.random()}`,
-                metadata: {
-                    test: 'test metadata'
-                }
             };
             initDonationForm(data, (success) => {
                 console.log('Payment completed', success)
