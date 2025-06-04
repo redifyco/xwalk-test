@@ -7,7 +7,8 @@ const GET_PAYMENT_METHODS_API_URL = '/api/msc-foundation/services/adyen?type=GET
 const ENVIRONMENT = 'test';
 
 
-export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
+export const initDonationForm = (data, beforeSubmitData, onPaymentCompleted, onPaymentFailed) => {
+    console.log('beforeSubmitData', beforeSubmitData)
 
 
     Promise.all([
@@ -46,18 +47,7 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             onPaymentCompleted,
             onPaymentFailed,
             beforeSubmit: (data, component, actions) => {
-                data.shopperEmail = 'giacomo@vecchi.it'
-                data.shopperName = {
-                    firstName: 'giacomo',
-                    lastName: 'vecchi',
-                };
-                data.billingAddress = {
-                    "country": "IT",
-                    "city": "Milan",
-                    "street": "Via Example",
-                    "houseNumberOrName": "123",
-                    "postalCode": "20100"
-                };
+                data = {...beforeSubmitData}
 
                 actions.resolve(data);
             }

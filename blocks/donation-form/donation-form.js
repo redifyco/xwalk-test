@@ -166,9 +166,12 @@ export default function decorate(block) {
             formValue.firstName = containerSection.querySelector('#first_name')?.value
             formValue.lastName = containerSection.querySelector('#last_name')?.value
             formValue.email = containerSection.querySelector('#email')?.value
+            formValue.languages = containerSection.querySelector('#languages')?.value
             sessionStorage.setItem("formValue", JSON.stringify(formValue));
 
             const sessionData = JSON.parse(sessionStorage.getItem("formValue"));
+
+            console.log('sessionData', sessionData)
 
             const data = {
                 country: "IT",
@@ -178,7 +181,23 @@ export default function decorate(block) {
                 },
                 orderReference: `Test Reference ${Math.random()}`,
             };
-            initDonationForm(data, (success) => {
+
+            const beforeSubmitData = {
+                shopperEmail: sessionData.email,
+                shopperName: {
+                    firstName: sessionData.firstName,
+                    lastName: sessionData.lastName,
+                },
+                billingAddress: {
+                    country: "IT",
+                    city: "Milan",
+                    street: "Via Example",
+                    houseNumberOrName: "123",
+                    postalCode: "20100"
+                },
+            }
+
+            initDonationForm(data, beforeSubmitData, (success) => {
                 console.log('Payment completed', success)
                 sessionStorage.clear()
                 // window.location.reload()
