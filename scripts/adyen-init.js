@@ -58,11 +58,6 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
                     "houseNumberOrName": "123",
                     "postalCode": "20100"
                 };
-                data.metadata = {
-                    "focusArea": "something",
-                }
-
-                console.log('data Before Submit', data);
 
                 actions.resolve(data);
             }
