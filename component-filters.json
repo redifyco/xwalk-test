@@ -102,6 +102,12 @@
     ]
   },
   {
+    "id": "footer-block-filter",
+    "components": [
+      "menu-item"
+    ]
+  },
+  {
     "id": "header-block-filter",
     "components": [
       "menu-item"
