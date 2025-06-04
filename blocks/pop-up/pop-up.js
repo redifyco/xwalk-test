@@ -1,18 +1,16 @@
+import {extractTagsByType, returnFocusAreaIcon} from "../../scripts/utils.js";
+
 export default function decorate(block) {
 
     const mainTitle = block.querySelector(':scope > div:nth-child(1) div p')?.textContent;
     const secondTitle = block.querySelector(':scope > div:nth-child(2) div p')?.textContent;
     const description = block.querySelector(':scope > div:nth-child(3) div')?.innerHTML;
     const tags = block.querySelector(':scope > div:nth-child(4) div p')?.textContent;
+    const extractedTags = extractTagsByType(tags, 'mscfoundation:focus-area/');
 
 
     const containerSection = document.createElement('section');
-    const body = document.querySelector('body');
-    containerSection.className = 'absolute flex items-center justify-center inset-0 top-0 left-0 h-full w-full bg-black/20 z-30 py-32 w-full px-32';
-
-    body.classList.add('overflow-hidden');
-    window.scrollTo(0, 0);
-
+    containerSection.className = 'fixed flex items-center justify-center inset-0 top-0 left-0 h-full w-full bg-black/30 z-30 py-32 w-full px-32';
 
     containerSection.innerHTML = `
         <div class="bg-white shadow relative flex flex-col gap-8 p-10 rounded-lg">
@@ -22,13 +20,17 @@ export default function decorate(block) {
             <button class="text-primary cursor-pointer absolute right-8 top-4" id="close-button">
                 <ion-icon class="text-5xl" name="close-outline"></ion-icon>
             </button>
+            ${extractedTags.length > 0 ? `
+            <div class="flex justify-end gap-2">
+                ${extractedTags.map(tag => returnFocusAreaIcon(tag)).join('')}
+            </div>
+            ` : ''}
         </div>
     `;
     console.log('block', block);
 
 
     containerSection.querySelector('#close-button').addEventListener('click', () => {
-        body.classList.remove('overflow-hidden');
         containerSection.remove();
     })
 

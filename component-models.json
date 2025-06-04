@@ -2154,6 +2154,30 @@
         "label": "Focus Area tags",
         "valueType": "string",
         "rootPath": "/content/cq:tags/mscfoundation"
+      },
+      {
+        "component": "aem-content",
+        "name": "facebook-social",
+        "label": "Facebook Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "instagram-social",
+        "label": "Instagram Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "linkedin-social",
+        "label": "Linkedin Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "youtube-social",
+        "label": "Youtube Link",
+        "required": true
       }
     ]
   },
