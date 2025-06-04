@@ -53,7 +53,8 @@ export default function decorate(block) {
 
     const aemEnv = block.getAttribute('data-aue-resource');
     if (!aemEnv) {
-        block.textContent = '';
+        console.log('block', block);
+        // block.textContent = '';
         block.append(containerSection);
 
     } else {

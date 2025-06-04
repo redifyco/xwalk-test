@@ -1053,18 +1053,6 @@
       },
       {
         "component": "aem-content",
-        "name": "link-button",
-        "label": "Button Link",
-        "required": true
-      },
-      {
-        "component": "text",
-        "name": "link-text",
-        "label": "Button Text",
-        "required": true
-      },
-      {
-        "component": "aem-content",
         "name": "facebook-social",
         "label": "Facebook Link",
         "required": true
