@@ -169,39 +169,38 @@ export function processDivsToObjectTabSection(divs) {
 
 /*Tab Section INFO data*/
 export function processDivsToObjectTabSectionInfo(divs) {
-  const result = [];
+    const result = [];
 
-  for (let i = 0; i < divs.length; i += 2) {
-    const title = divs[i].querySelector('div p')?.textContent || '';
-    let description = divs[i + 1].querySelector('div p')?.textContent || '';
+    for (let i = 0; i < divs.length; i += 2) {
+        const title = divs[i].querySelector('div p')?.textContent || '';
+        let description = divs[i + 1].querySelector('div p')?.textContent || '';
 
-    // Aggiungi al risultato solo se entrambi i valori sono presenti
-    if (title && description) {
-      // Se la description inizia con "mscfoundation:"
-      if (description.startsWith('mscfoundation:')) {
-        // Prendi l'ultima parte dopo l'ultimo "/"
-        const lastPart = description.split('/').pop();
-        // Sostituisci i "-" con spazi
-        description = lastPart.replace(/-/g, ' ');
-      }
+        // Aggiungi al risultato solo se entrambi i valori sono presenti
+        if (title && description) {
+            // Se la description inizia con "mscfoundation:"
+            if (description.startsWith('mscfoundation:')) {
+                // Prendi l'ultima parte dopo l'ultimo "/"
+                const lastPart = description.split('/').pop();
+                // Sostituisci i "-" con spazi
+                description = lastPart.replace(/-/g, ' ');
+            }
 
-      // Trasforma la prima lettera della description in maiuscolo
-      if (description.length > 0) {
-        description = description.charAt(0).toUpperCase() + description.slice(1);
-      }
+            // Trasforma la prima lettera della description in maiuscolo
+            if (description.length > 0) {
+                description = description.charAt(0).toUpperCase() + description.slice(1);
+            }
 
-      // Esegui il push solo se entrambi title e description sono valorizzati
-      result.push({
-        title,
-        description
-      });
+            // Esegui il push solo se entrambi title e description sono valorizzati
+            result.push({
+                title,
+                description
+            });
+        }
+        // Se title o description sono vuoti, questa coppia viene saltata
     }
-    // Se title o description sono vuoti, questa coppia viene saltata
-  }
 
-  return result;
+    return result;
 }
-
 
 
 /*Map Section Pins data*/
@@ -455,6 +454,8 @@ export const returnStatusLabel = (status) => {
 
 /*Util Function to extract Tags by type*/
 export const extractTagsByType = (pageType, type) => {
+    console.log('pageType', pageType)
+    console.log('type', type)
     return pageType.split(',')
         .map(item => item.trim())
         .filter(item => {
