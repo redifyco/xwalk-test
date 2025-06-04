@@ -6,7 +6,9 @@ const formValue = {
     email: '',
     currency: 'USD',
     amount: 25,
-    steps: 1
+    steps: 1,
+    country: 'it-IT',
+    focusArea: ''
 }
 
 export default function decorate(block) {
@@ -14,6 +16,30 @@ export default function decorate(block) {
     const title = block.querySelector(":scope > div:nth-child(2) div")?.innerHTML;
     const subtitle = block.querySelector(":scope > div:nth-child(3) div")?.innerHTML;
     const sessionStorage = window.sessionStorage;
+
+    const resetSessionStorage = () => {
+        formValue.amount = 25
+        formValue.currency = 'USD';
+        formValue.firstName = '';
+        formValue.lastName = '';
+        formValue.email = '';
+        formValue.steps = 1;
+        formValue.country = 'it-IT';
+        formValue.focusArea = '';
+
+        sessionStorage.setItem('formValue', JSON.stringify({
+            firstName: '',
+            lastName: '',
+            email: '',
+            currency: 'USD',
+            amount: 25,
+            steps: 1,
+            country: 'it-IT',
+            focusArea: ''
+        }));
+    }
+
+    resetSessionStorage()
 
     const containerSection = document.createElement('section');
     containerSection.className = 'bg-no-repeat relative bg-cover bg-center min-h-96 pb-14 lg:container-layout-padding';
@@ -166,15 +192,16 @@ export default function decorate(block) {
             formValue.firstName = containerSection.querySelector('#first_name')?.value
             formValue.lastName = containerSection.querySelector('#last_name')?.value
             formValue.email = containerSection.querySelector('#email')?.value
-            formValue.languages = containerSection.querySelector('#languages')?.value
+            formValue.country = containerSection.querySelector('#country')?.value
+            formValue.focusArea = containerSection.querySelector('#focus-area')?.value
             sessionStorage.setItem("formValue", JSON.stringify(formValue));
 
             const sessionData = JSON.parse(sessionStorage.getItem("formValue"));
 
-            console.log('sessionData', sessionData)
+            const country = sessionData.country.split('-')[0].toUpperCase()
 
             const data = {
-                country: "IT",
+                country: country,
                 amount: {
                     value: sessionData.amount * 100, // Convert to minor units
                     currency: sessionData.currency
@@ -182,7 +209,7 @@ export default function decorate(block) {
                 orderReference: `Test Reference ${Math.random()}`,
             };
 
-            const beforeSubmitData = {
+            const additionalData = {
                 shopperEmail: sessionData.email,
                 shopperName: {
                     firstName: sessionData.firstName,
@@ -195,9 +222,11 @@ export default function decorate(block) {
                     houseNumberOrName: "123",
                     postalCode: "20100"
                 },
+                countryCode: country,
+                locale: sessionData.country
             }
 
-            initDonationForm(data, beforeSubmitData, (success) => {
+            initDonationForm(data, additionalData, (success) => {
                 console.log('Payment completed', success)
                 sessionStorage.clear()
                 // window.location.reload()
@@ -216,7 +245,7 @@ export default function decorate(block) {
     if (backButtonOwnerInformation) {
         backButtonOwnerInformation.addEventListener('click', () => {
             formValue.steps = 1;
-            sessionStorage.setItem("formValue", JSON.stringify(formValue));
+            // sessionStorage.setItem("formValue", JSON.stringify(formValue));
 
             containerSection.querySelector('#currency-amount-form').classList.toggle('hidden');
             containerSection.querySelector('#owner-information-form').classList.toggle('hidden');
@@ -228,7 +257,7 @@ export default function decorate(block) {
     if (backButtonAdyenForm) {
         backButtonAdyenForm.addEventListener('click', () => {
             formValue.steps = 2;
-            sessionStorage.setItem("formValue", JSON.stringify(formValue));
+            // sessionStorage.setItem("formValue", JSON.stringify(formValue));
 
             containerSection.querySelector('#owner-information-form').classList.toggle('hidden');
             containerSection.querySelector('#adyen-form').classList.toggle('hidden');
@@ -315,16 +344,28 @@ const OwnerInformationForm = () => {
                         </div>
                         <div>
                             <select
-                                id="languages"
+                                id="country"
                                 class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
                             >
-                                <option value="" disabled selected>*Language...</option>
-                                <option value="Esp">Esp</option>
-                                <option value="Fra">Fra</option>
-                                <option value="Ger">Ger</option>
-                                <option value="Ita">Ita</option>
-                                <option value="Eng">Eng</option>
-                                <option value="Other">Other</option>
+                                <option value="" disabled selected>*Country...</option>
+                                <option value="es-ES">Esp</option>
+                                <option value="fr-FR">Fra</option>
+                                <option value="de-DE">Ger</option>
+                                <option value="it-IT">Ita</option>
+                                <option value="en-EN">Eng</option>
+                                <option value="">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select
+                                id="focus-area"
+                                class="border-primary w-full border-r-2 border-b-2 p-1 ring-0 transition-all duration-200 placeholder:text-white/90 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
+                            >
+                                <option value="" disabled selected>*Focus Area...</option>
+                                <option value="environmental-conservation">Environmental Conservation</option>
+                                <option value="community-support">Community Support</option>
+                                <option value="education">Education</option>
+                                <option value="emergency-Relief">Emergency Relief</option>
                             </select>
                         </div>
                     </div>

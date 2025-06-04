@@ -7,7 +7,7 @@ const GET_PAYMENT_METHODS_API_URL = '/api/msc-foundation/services/adyen?type=GET
 const ENVIRONMENT = 'test';
 
 
-export const initDonationForm = (data, beforeSubmitData, onPaymentCompleted, onPaymentFailed) => {
+export const initDonationForm = (data, additionalData, onPaymentCompleted, onPaymentFailed) => {
 
 
     Promise.all([
@@ -40,18 +40,18 @@ export const initDonationForm = (data, beforeSubmitData, onPaymentCompleted, onP
             },
             environment: ENVIRONMENT,
             paymentMethodsResponse: parsedPaymentMethods,
-            locale: 'it-IT',
-            countryCode: 'IT',
+            locale: additionalData.locale || 'en-US',
+            countryCode: additionalData.countryCode,
             clientKey: ADYEN_CLIENT_KEY_JATIN_TEST,
             onPaymentCompleted,
             onPaymentFailed,
             beforeSubmit: (data, component, actions) => {
-                data.shopperEmail = beforeSubmitData.shopperEmail
+                data.shopperEmail = additionalData.shopperEmail
                 data.shopperName = {
-                    ...beforeSubmitData.shopperName
+                    ...additionalData.shopperName
                 };
                 data.billingAddress = {
-                    ...beforeSubmitData.billingAddress
+                    ...additionalData.billingAddress
                 };
 
                 actions.resolve(data);
