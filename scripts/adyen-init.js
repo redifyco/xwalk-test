@@ -9,29 +9,14 @@ const ENVIRONMENT = 'test';
 
 export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
 
-    const sessionData = {
-        ...data,
-        /* "metadata": {
-             "campaign": "spring2025",
-             "donationSource": "landingPage",
-             "userFirstName": "Giacomo",
-             "userLastName": "Vecchi"
-         },
-         "billingAddress": {
-             "city": "Ankeborg",
-             "country": "SE",
-             "houseNumberOrName": "1",
-             "postalCode": "12345",
-             "street": "Stargatan"
-         },*/
-    };
+
     Promise.all([
         fetch(CREATE_SESSION_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(sessionData)
+            body: JSON.stringify(data)
         }).then(res => res.json()),
         fetch(GET_PAYMENT_METHODS_API_URL, {
             method: 'POST',
