@@ -54,6 +54,10 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
                     "postalCode": "20100"
                 };
 
+                data.metadata = {
+                    test: 'test metadata'
+                }
+
                 actions.resolve(data);
             }
         };
