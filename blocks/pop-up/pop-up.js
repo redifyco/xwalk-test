@@ -12,7 +12,6 @@ export default function decorate(block) {
     const linkedinLink = block.querySelector(':scope > div:nth-child(7) div p')?.textContent;
     const youtubeLink = block.querySelector(':scope > div:nth-child(8) div p')?.textContent;
     const extractedTags = extractTagsByType(tags, 'mscfoundation:focus-area/');
-    console.log('facebookLink', facebookLink)
 
 
     const containerSection = document.createElement('section');
@@ -40,8 +39,6 @@ export default function decorate(block) {
             </div>
         </div>
     `;
-    console.log('block', block);
-
 
     containerSection.querySelector('#close-button').addEventListener('click', () => {
         containerSection.remove();
