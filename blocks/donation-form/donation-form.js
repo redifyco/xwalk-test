@@ -41,7 +41,6 @@ export default function decorate(block) {
     if (sessionStorage.length > 0) {
         const steps = JSON.parse(sessionStorage.getItem("formValue"))?.steps;
         if (steps) {
-            console.log('steps', steps);
             if (steps === 1) {
                 containerSection.querySelector('#currency-amount-form').classList.remove('hidden');
                 containerSection.querySelector('#owner-information-form').classList.add('hidden');

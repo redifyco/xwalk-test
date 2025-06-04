@@ -53,9 +53,6 @@ export default async function decorate(block) {
     const aemEnv = block.getAttribute('data-aue-resource');
     const data = await getAllArticles(apiString)
 
-    console.log('data', data)
-
-
     const resultData = getFilteredData(data.data, isFilterFocusArea, '', '')
     const sectionContainer = document.createElement('section');
     sectionContainer.className = 'container-layout-padding'

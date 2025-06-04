@@ -16,7 +16,6 @@ export default function decorate(block) {
 
     const result = processDivsToObjectTabSection(tabsItems) || [];
     const resultInfoBox = processDivsToObjectTabSectionInfo(firstInfoBoxes) || [];
-    console.log(resultInfoBox);
     let state = {currentTab: 0};
     let containerSection = null;
 
