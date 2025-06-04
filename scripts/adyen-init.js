@@ -60,9 +60,6 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
 
                 actions.resolve(data);
             },
-            metadata: {
-                test: 'test metadata'
-            }
         };
 
         const dropinConfiguration = {};
