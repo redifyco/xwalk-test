@@ -176,7 +176,7 @@ export default function decorate(block) {
                     value: sessionData.amount * 100, // Convert to minor units
                     currency: sessionData.currency
                 },
-                orderReference: "Test Reference",
+                orderReference: `Test Reference ${Math.random()}`,
             };
             initDonationForm(data, (success) => {
                 console.log('Payment completed', success)
