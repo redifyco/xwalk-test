@@ -47,19 +47,8 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             onPaymentCompleted,
             onPaymentFailed,
             beforeSubmit: (data, component, actions) => {
-                data.shopperName = {
-                    firstName: 'firstName',
-                    lastName: 'lastName'
-                };
-                data.billingAddress = {
-                    city: 'city',
-                    country: 'country',
-                };
-                data.metadata = {
-                    utm_source: "newsletter",
-                    userId: "12345",
-                    note: "Richiesta maglietta personalizzata"
-                };
+                console.log('data', data)
+                
 
                 actions.resolve(data);
             }
