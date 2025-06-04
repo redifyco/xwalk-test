@@ -15,12 +15,12 @@ export default function decorate(block) {
 
 
     const containerSection = document.createElement('section');
-    containerSection.className = 'fixed flex items-center justify-center inset-0 top-0 left-0 h-full w-full bg-black/30 z-30 py-32 w-full px-32';
+    containerSection.className = 'fixed flex items-center justify-center inset-0 top-0 left-0 h-full w-full bg-black/30 z-30 w-full py-14 px-4 lg:py-32 lg:px-32';
 
     containerSection.innerHTML = `
-        <div class="bg-white shadow relative flex flex-col gap-8 p-10 rounded-lg">
-                <h5 class="text-5xl border-b w-full pb-3">${mainTitle}</h5>
-                <h6 class="text-3xl text-primary">${secondTitle}</h6>
+        <div class="bg-white shadow relative max-h-[90vh] overflow-scroll flex flex-col gap-4 lg:gap-8 p-10 rounded-lg">
+                <h5 class="lg:text-5xl text-2xl mt-10 lg:mt-0 border-b w-full pb-1 lg:pb-3">${mainTitle}</h5>
+                <h6 class="text-base lg:text-3xl text-primary">${secondTitle}</h6>
                 <div class="font-light">${description}</div>
             <button class="text-primary cursor-pointer absolute right-8 top-4" id="close-button">
                 <ion-icon class="text-5xl" name="close-outline"></ion-icon>
