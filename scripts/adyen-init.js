@@ -8,7 +8,6 @@ const ENVIRONMENT = 'test';
 
 
 export const initDonationForm = (data, beforeSubmitData, onPaymentCompleted, onPaymentFailed) => {
-    console.log('beforeSubmitData', beforeSubmitData)
 
 
     Promise.all([
@@ -47,7 +46,18 @@ export const initDonationForm = (data, beforeSubmitData, onPaymentCompleted, onP
             onPaymentCompleted,
             onPaymentFailed,
             beforeSubmit: (data, component, actions) => {
-                data = {...beforeSubmitData}
+                data.shopperEmail = 'giacomo@vecchi.it'
+                data.shopperName = {
+                    firstName: 'giacomo',
+                    lastName: 'vecchi',
+                };
+                data.billingAddress = {
+                    "country": "IT",
+                    "city": "Milan",
+                    "street": "Via Example",
+                    "houseNumberOrName": "123",
+                    "postalCode": "20100"
+                };
 
                 actions.resolve(data);
             }
