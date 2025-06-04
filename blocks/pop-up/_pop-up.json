@@ -22,6 +22,24 @@
       "id": "pop-up-model",
       "fields": [
         {
+          "component": "text",
+          "name": "main-title",
+          "label": "Main Title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "second-title",
+          "label": "Second Title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "description",
+          "label": "Description",
+          "valueType": "string"
+        },
+        {
           "component": "aem-tag",
           "name": "focus-area-tags",
           "label": "Focus Area tags",
