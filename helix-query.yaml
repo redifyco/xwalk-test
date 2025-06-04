@@ -20,7 +20,7 @@ indices:
       - '/what-we-do/programmes/**'
     exclude:
       - '/what-we-do/programmes'
-    target: /programmes-index.json
+    target: /programs-index.json
     query:
       offset: 0
       perPage: 1
