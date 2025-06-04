@@ -1341,6 +1341,9 @@
       color: color-mix(in oklab, var(--color-black) 50%, transparent) !important;
     }
   }
+  .\!text-primary {
+    color: var(--color-primary) !important;
+  }
   .text-black {
     color: var(--color-black);
   }

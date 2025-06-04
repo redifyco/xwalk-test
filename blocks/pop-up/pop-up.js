@@ -1,4 +1,5 @@
 import {extractTagsByType, returnFocusAreaIcon} from "../../scripts/utils.js";
+import '../../scripts/customTag.js';
 
 export default function decorate(block) {
 
@@ -6,7 +7,12 @@ export default function decorate(block) {
     const secondTitle = block.querySelector(':scope > div:nth-child(2) div p')?.textContent;
     const description = block.querySelector(':scope > div:nth-child(3) div')?.innerHTML;
     const tags = block.querySelector(':scope > div:nth-child(4) div p')?.textContent;
+    const facebookLink = block.querySelector(':scope > div:nth-child(5) div p')?.textContent;
+    const instagramLink = block.querySelector(':scope > div:nth-child(6) div p')?.textContent;
+    const linkedinLink = block.querySelector(':scope > div:nth-child(7) div p')?.textContent;
+    const youtubeLink = block.querySelector(':scope > div:nth-child(8) div p')?.textContent;
     const extractedTags = extractTagsByType(tags, 'mscfoundation:focus-area/');
+    console.log('facebookLink', facebookLink)
 
 
     const containerSection = document.createElement('section');
@@ -20,11 +26,18 @@ export default function decorate(block) {
             <button class="text-primary cursor-pointer absolute right-8 top-4" id="close-button">
                 <ion-icon class="text-5xl" name="close-outline"></ion-icon>
             </button>
-            ${extractedTags.length > 0 ? `
             <div class="flex justify-end gap-2">
-                ${extractedTags.map(tag => returnFocusAreaIcon(tag)).join('')}
+                <div class="w-full">          
+                 <social-icons 
+                 className="!text-primary"
+                        facebook="${facebookLink}" 
+                        instagram="${instagramLink}" 
+                        linkedin="${linkedinLink}" 
+                        youtube="${youtubeLink}">
+                    </social-icons>
+</div>
+                ${extractedTags.length > 0 ? extractedTags.map(tag => returnFocusAreaIcon(tag)).join('') : ''}
             </div>
-            ` : ''}
         </div>
     `;
     console.log('block', block);
