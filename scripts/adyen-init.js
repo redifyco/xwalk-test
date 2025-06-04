@@ -45,38 +45,6 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             clientKey: ADYEN_CLIENT_KEY_JATIN_TEST,
             onPaymentCompleted,
             onPaymentFailed,
-            onSubmit: async (state, component, actions) => {
-                try {
-
-                    // Make a POST /payments request from your server.
-                    const result = await makePaymentsCall(state.data, countryCode, locale, amount);
-
-                    // If the /payments request from your server fails, or if an unexpected error occurs.
-                    if (!result.resultCode) {
-                        actions.reject();
-                        return;
-                    }
-
-                    const {
-                        resultCode,
-                        action,
-                        order,
-                        donationToken
-                    } = result;
-
-                    // If the /payments request request from your server is successful, you must call this to resolve whichever of the listed objects are available.
-                    // You must call this, even if the result of the payment is unsuccessful.
-                    actions.resolve({
-                        resultCode,
-                        action,
-                        order,
-                        donationToken,
-                    });
-                } catch (error) {
-                    console.error("onSubmit", error);
-                    actions.reject();
-                }
-            },
             beforeSubmit: (data, component, actions) => {
                 data.billingAddress = {
                     "country": "IT",
