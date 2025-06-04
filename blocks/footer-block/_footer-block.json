@@ -18,7 +18,7 @@
     },
     {
       "title": "Menu Item",
-      "id": "menu-item",
+      "id": "menu-item-footer",
       "plugins": {
         "xwalk": {
           "page": {
@@ -41,13 +41,6 @@
           "valueType": "string",
           "name": "logo-image-dark",
           "label": "Dark Logo Image",
-          "multi": false
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "logo-image-light",
-          "label": "Light Logo Image",
           "multi": false
         },
         {
@@ -553,7 +546,7 @@
     {
       "id": "footer-block-filter",
       "components": [
-        "menu-item"
+        "menu-item-footer"
       ]
     }
   ]

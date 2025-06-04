@@ -105,7 +105,7 @@
   {
     "id": "footer-block-filter",
     "components": [
-      "menu-item"
+      "menu-item-footer"
     ]
   },
   {

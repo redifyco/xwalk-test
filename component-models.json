@@ -1052,13 +1052,6 @@
         "multi": false
       },
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "logo-image-light",
-        "label": "Light Logo Image",
-        "multi": false
-      },
-      {
         "component": "aem-content",
         "name": "link-button",
         "label": "Button Link",
