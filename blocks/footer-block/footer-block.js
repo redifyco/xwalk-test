@@ -7,30 +7,36 @@ export default function decorate(block) {
         dark: block.querySelector(':scope > div:nth-child(1) div img')?.src,
     };
 
-    const button = {
-        link: block.querySelector(':scope > div:nth-child(3) div a')?.href,
-        text: block.querySelector(':scope > div:nth-child(4) div p')?.textContent
-    };
-
     const socialLinks = {
-        facebook: block.querySelector(':scope > div:nth-child(5) div a')?.href,
-        instagram: block.querySelector(':scope > div:nth-child(6) div a')?.href,
-        linkedin: block.querySelector(':scope > div:nth-child(7) div a')?.href,
-        youtube: block.querySelector(':scope > div:nth-child(8) div a')?.href
+        facebook: block.querySelector(':scope > div:nth-child(2) div a')?.href,
+        instagram: block.querySelector(':scope > div:nth-child(3) div a')?.href,
+        linkedin: block.querySelector(':scope > div:nth-child(3) div a')?.href,
+        youtube: block.querySelector(':scope > div:nth-child(4) div a')?.href
     };
 
-    const menuItemsDiv = block.querySelectorAll(':scope > div:nth-child(n+9) div');
+    const menuItemsDiv = block.querySelectorAll(':scope > div:nth-child(n+6) div');
     const menuItems = processDivsToObject(menuItemsDiv);
+
+    console.log('menuItems', menuItems)
 
     const containerSection = document.createElement('section');
     containerSection.innerHTML = `
   <div class="bg-primary px-4 lg:p-20 gap-10 w-full xl:flex-nowrap flex-wrap lg:flex-row lg:gap-20 flex items-center p-14 flex-col justify-center lg:justify-between text-white">
       <div>
-        <img class="max-w-80" src="${logo.dark}" alt="" />
+        <img class="max-w-40" src="${logo.dark}" alt="" />
       </div>
 
-      <div class="flex w-full lg:max-w-none max-w-96 items-center lg:items-start flex-col gap-10 lg:flex-row lg:justify-between">
-        menu
+      <div class="flex lg:flex-row lg:items-start text-center lg:text-start flex-col gap-8 items-center justify-center lg:justify-start w-full">
+        ${menuItems.length > 0 ? menuItems.map(item => `
+        <div class="flex flex-col gap-3">
+        <span class="text-2xl font-medium uppercase">${item.firstLevelMenuText}</span>
+        <div class="flex flex-col gap-2">
+        ${item.subMenuItems.length > 0 ? item.subMenuItems.map(subItem => `
+            <a class="text-white font-light cursor-pointer hover:text-secondary" href="${subItem.subMenuLink || '#'}">${subItem.subMenuText}</a>
+        `).join('') : ''}
+</div>
+</div>
+        `).join('') : ''}
       </div>
 
       <div class="text-white gap-2 flex items-center">
@@ -53,8 +59,7 @@ export default function decorate(block) {
 
     const aemEnv = block.getAttribute('data-aue-resource');
     if (!aemEnv) {
-        console.log('block', block);
-        // block.textContent = '';
+        block.textContent = '';
         block.append(containerSection);
 
     } else {
