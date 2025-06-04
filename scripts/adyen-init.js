@@ -63,10 +63,6 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
                 console.log('data Before Submit', data);
 
                 actions.resolve(data);
-            },
-            onSubmit: (data, component, actions) => {
-                console.log('data onSubmit', data);
-                actions.resolve(data);
             }
         };
 
