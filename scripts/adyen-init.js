@@ -54,7 +54,15 @@ export const initDonationForm = (data, onPaymentCompleted, onPaymentFailed) => {
             },
             metadata: {
                 test: 'test'
-            }
+            },
+            billingAddress: {
+                "country": "US",
+                "city": "New York",
+                "street": "Redwood Block",
+                "houseNumberOrName": "37C",
+                "stateOrProvince": "NY",
+                "postalCode": "10039"
+            },
         };
 
         const dropinConfiguration = {};
