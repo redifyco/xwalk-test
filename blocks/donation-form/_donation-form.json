@@ -38,6 +38,17 @@
           "valueType": "string",
           "name": "subTitle",
           "label": "Sub Title"
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "max-amount",
+          "label": "Max Amount"
+        },
+        {
+          "component": "aem-content",
+          "name": "redirect-max-amount-link",
+          "label": "Redirect Max Amount Link"
         }
       ]
     }

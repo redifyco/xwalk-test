@@ -368,6 +368,42 @@ const OwnerInformationForm = () => {
                                 <option value="emergency-Relief">Emergency Relief</option>
                             </select>
                         </div>
+                        <div class="flex flex-col gap-2">
+                        <div class="flex w-full items-center gap-2">
+                            <input
+                                type="checkbox"
+                                id="privacy"
+                                required
+                                checked
+                                class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
+                            />
+                            <label for="privacy" class="text-sm font-light cursor-pointer">
+                                Privacy (mandatory)
+                            </label>
+                        </div>
+                        <div class="flex w-full items-center gap-2">
+                            <input
+                                type="checkbox"
+                                id="marketing"
+                                required
+                                class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
+                            />
+                            <label for="marketing" class="text-sm font-light cursor-pointer">
+                                Marketing (optional)
+                            </label>
+                        </div>
+                        <div class="flex w-full items-center gap-2">
+                            <input
+                                type="checkbox"
+                                id="over-xxx"
+                                required
+                                class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
+                            />
+                            <label for="over-xxx" class="text-sm font-light cursor-pointer">
+                                Ricevuta se importo superiore a xxx
+                            </label>
+                        </div>
+</div>
                     </div>
                     <button type="button" class="border cursor-pointer mt-5 border-primary w-full py-2 text-primary" id="submit-owner-information-form">Continue</button>
                 </div>
