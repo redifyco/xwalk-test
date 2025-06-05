@@ -24,8 +24,14 @@ export default function decorate(block) {
       </div> 
   `
 
-    block.textContent = ''
-    block.append(containerSection);
+    const aemEnv = block.getAttribute('data-aue-resource');
+    if (!aemEnv) {
+        block.textContent = '';
+        block.append(containerSection);
+    } else {
+        block.querySelectorAll(':scope > div:nth-child(n+1)').forEach(div => div.classList.add('hidden'));
+        block.append(containerSection);
+    }
 }
 
 
