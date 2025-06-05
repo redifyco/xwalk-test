@@ -131,6 +131,12 @@
     "components": []
   },
   {
+    "id": "our-teams-filter",
+    "components": [
+      "team-item"
+    ]
+  },
+  {
     "id": "contact-info-filter",
     "components": [
       "contact-item"
