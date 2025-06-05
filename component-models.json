@@ -2615,8 +2615,15 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "team-description",
-        "label": "Team Description",
+        "name": "small-team-description",
+        "label": "Small Team Description",
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "long-team-description",
+        "label": "Long Team Description",
         "required": true
       }
     ]
