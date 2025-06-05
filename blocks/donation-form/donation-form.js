@@ -420,7 +420,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
 </div>
                     </div>
                     <button type="button" class="border cursor-pointer mt-5 border-primary w-full py-2 text-primary" id="submit-owner-information-form">Continue</button>
-                    <a href="${redirectLink}" type="button" class="border text-center cursor-pointer mt-5 border-primary w-full py-2 text-primary hidden" id="submit-owner-information-form-link">Continue</a>
+                    <a target="_blank" href="${redirectLink}" type="button" class="border text-center cursor-pointer mt-5 border-primary w-full py-2 text-primary hidden" id="submit-owner-information-form-link">Continue</a>
                 </div>
             </div>
         </div>
