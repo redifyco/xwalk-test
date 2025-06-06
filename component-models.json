@@ -2584,7 +2584,7 @@
     ]
   },
   {
-    "id": "our-teams-model",
+    "id": "our-team-model",
     "fields": [
       {
         "component": "text",

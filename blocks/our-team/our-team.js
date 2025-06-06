@@ -2,6 +2,7 @@ export default function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) p')?.textContent
     const teams = block.querySelectorAll(':scope > div:nth-child(n+2) div')
     const processedTeams = processDivsToObject(teams)
+    console.log('processedTeams', processedTeams)
 
     const containerSection = document.createElement('section');
     containerSection.className = 'container-layout-padding';
@@ -56,7 +57,7 @@ function processDivsToObject(divs) {
     const result = [];
 
     // Process the divs in groups of 3
-    for (let i = 0; i < divs.length; i += 4) {
+    for (let i = 0; i < divs.length; i += 5) {
         const imageDiv = divs[i];
         const titleDiv = divs[i + 1];
         const smallDescrDiv = divs[i + 2];

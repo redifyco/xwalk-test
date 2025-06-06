@@ -132,7 +132,7 @@
     "components": []
   },
   {
-    "id": "our-teams-filter",
+    "id": "our-team-filter",
     "components": [
       "team-item"
     ]

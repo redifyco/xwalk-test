@@ -1600,11 +1600,6 @@
       width: calc(1/2 * 100%);
     }
   }
-  .md\:w-\[330px\] {
-    @media (width >= 48rem) {
-      width: 330px;
-    }
-  }
   .md\:w-fit {
     @media (width >= 48rem) {
       width: fit-content;
@@ -1654,11 +1649,6 @@
   .md\:justify-end {
     @media (width >= 48rem) {
       justify-content: flex-end;
-    }
-  }
-  .md\:justify-start {
-    @media (width >= 48rem) {
-      justify-content: flex-start;
     }
   }
   .md\:gap-8 {
