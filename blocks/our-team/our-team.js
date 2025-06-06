@@ -1,7 +1,8 @@
 export default function decorate(block) {
+    const aemEnv = block.getAttribute('data-aue-resource');
     const title = block.querySelector(':scope > div:nth-child(1) p')?.textContent
     const teams = block.querySelectorAll(':scope > div:nth-child(n+2) div')
-    const processedTeams = processDivsToObject(teams)
+    const processedTeams = processDivsToObject(teams, aemEnv)
     console.log('processedTeams', processedTeams)
 
     const containerSection = document.createElement('section');
@@ -42,7 +43,6 @@ export default function decorate(block) {
     })
 
 
-    const aemEnv = block.getAttribute('data-aue-resource');
     if (!aemEnv) {
         block.textContent = '';
         block.append(containerSection);
@@ -53,11 +53,26 @@ export default function decorate(block) {
 }
 
 
-function processDivsToObject(divs) {
+const RenderPopUp = () => {
+    return `
+    <div class="fixed flex items-center justify-center inset-0 top-0 left-0 h-full bg-black/30 z-30 w-full py-14 px-4 lg:py-32 lg:px-32">
+            <div class="bg-white w-full shadow relative max-h-[90vh] overflow-scroll flex flex-col gap-4 lg:gap-8 p-10 rounded-lg">
+                <h5 class="lg:text-5xl text-2xl mt-10 lg:mt-0 border-b w-full pb-1 lg:pb-3" id="main-title"></h5>
+                <div class="font-light" id="long-descr"></div>
+                <button class="text-primary cursor-pointer absolute right-8 top-4" id="close-button-popup">
+                    <ion-icon class="text-5xl" name="close-outline"></ion-icon>
+                </button>
+            </div>
+        </div>
+    `
+}
+
+
+function processDivsToObject(divs, aemEnv) {
     const result = [];
 
     // Process the divs in groups of 3
-    for (let i = 0; i < divs.length; i += 5) {
+    for (let i = 0; i < divs.length; i += aemEnv ? 5 : 4) {
         const imageDiv = divs[i];
         const titleDiv = divs[i + 1];
         const smallDescrDiv = divs[i + 2];
@@ -77,19 +92,4 @@ function processDivsToObject(divs) {
     }
 
     return result;
-}
-
-
-const RenderPopUp = () => {
-    return `
-    <div class="fixed flex items-center justify-center inset-0 top-0 left-0 h-full bg-black/30 z-30 w-full py-14 px-4 lg:py-32 lg:px-32">
-            <div class="bg-white w-full shadow relative max-h-[90vh] overflow-scroll flex flex-col gap-4 lg:gap-8 p-10 rounded-lg">
-                <h5 class="lg:text-5xl text-2xl mt-10 lg:mt-0 border-b w-full pb-1 lg:pb-3" id="main-title"></h5>
-                <div class="font-light" id="long-descr"></div>
-                <button class="text-primary cursor-pointer absolute right-8 top-4" id="close-button-popup">
-                    <ion-icon class="text-5xl" name="close-outline"></ion-icon>
-                </button>
-            </div>
-        </div>
-    `
 }
