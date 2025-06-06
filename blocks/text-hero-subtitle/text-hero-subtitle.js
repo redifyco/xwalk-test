@@ -14,10 +14,10 @@ export default function decorate(block) {
     containerSection.innerHTML = `
         <div class="flex flex-col">
             <div 
-                class="relative h-[600px] flex justify-center items-center bg-cover bg-no-repeat w-full" 
+                class="relative h-[600px] flex md:justify-center items-end md:items-center justify-start bg-center bg-cover bg-no-repeat w-full" 
                 style="background-image: url('${data.backgroundImage}')"
             >
-                <h2 class="font-medium z-10 text-8xl uppercase text-white">
+                <h2 class="font-medium z-10 text-5xl pl-4 pb-10 md:p-0 md:text-8xl uppercase text-white">
                     ${data.heroTitle}
                 </h2>
                 <div class="absolute inset-0 bg-black/20"></div>
