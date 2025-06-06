@@ -1,12 +1,12 @@
+// ui.frontend/src/scripts/form.js
+
 import "../../scripts/customTag.js";
 import { createLead, validateEmail, loadScript } from "../../scripts/utils.js";
 
 export default async function decorate(block) {
   console.log("[form.js] › decorate() start");
 
-  // ───────────────────────────────────────────────────────────
-  // 1️⃣ Build the EDS form markup (unchanged)
-  // ───────────────────────────────────────────────────────────
+  // 1️⃣ Build the Adobe EDS form HTML (unchanged)
   const backgroundImage = block.querySelector(
     ":scope > div:nth-child(1) img"
   )?.src;
@@ -82,7 +82,10 @@ export default async function decorate(block) {
           </label>
         </div>
 
-        <div id="box-error" class="border hidden border-b-red-400 rounded-lg p-2 text-red-400 items-center justify-center gap-2 w-full"></div>
+        <div
+          id="box-error"
+          class="border hidden border-b-red-400 rounded-lg p-2 text-red-400 items-center justify-center gap-2 w-full">
+        </div>
 
         <!-- CUSTOM BUTTON -->
         <custom-button
@@ -103,13 +106,11 @@ export default async function decorate(block) {
     </div>
   `;
 
-  // Replace block content
+  // Replace the original block content entirely
   block.textContent = "";
   block.append(sectionContainer);
 
-  // ───────────────────────────────────────────────────────────
-  // 2️⃣ Grab <form> reference
-  // ───────────────────────────────────────────────────────────
+  // 2️⃣ Grab a reference to the <form> so `formEl` is in scope everywhere
   const formEl = sectionContainer.querySelector("form");
   if (!formEl) {
     console.error("[form.js] › Cannot find <form> inside block");
@@ -117,10 +118,9 @@ export default async function decorate(block) {
   }
   console.log("[form.js] › Found formEl");
 
-  // ───────────────────────────────────────────────────────────
-  // 3️⃣ Fetch the siteKey via an absolute URL
-  // ───────────────────────────────────────────────────────────
+  // 3️⃣ Fetch the siteKey using an absolute URL (fastly edge function)
   let siteKey = "";
+  // Note: use window.location.origin to guarantee same‐origin for the call
   const recaptchaConfigUrl = `${window.location.origin}/recaptchaConfig`;
   console.log("[form.js] › Fetching siteKey from:", recaptchaConfigUrl);
 
@@ -133,12 +133,7 @@ export default async function decorate(block) {
     });
     console.log("[form.js] › /recaptchaConfig status:", configResp.status);
 
-    if (!configResp.ok) {
-      console.error(
-        "[form.js] › recaptchaConfig returned HTTP",
-        configResp.status
-      );
-    } else {
+    if (configResp.ok) {
       const json = await configResp.json().catch((e) => {
         console.error("[form.js] › JSON parse error:", e);
         return {};
@@ -148,14 +143,17 @@ export default async function decorate(block) {
         "[form.js] › Retrieved siteKey:",
         siteKey ? "(present)" : "(empty)"
       );
+    } else {
+      console.error(
+        "[form.js] › recaptchaConfig returned HTTP",
+        configResp.status
+      );
     }
   } catch (err) {
     console.error("[form.js] › Fetch error fetching /recaptchaConfig:", err);
   }
 
-  // ───────────────────────────────────────────────────────────
-  // 4️⃣ Load the reCAPTCHA Enterprise script if siteKey is present
-  // ───────────────────────────────────────────────────────────
+  // 4️⃣ If we got a siteKey, load the reCAPTCHA Enterprise script dynamically
   if (siteKey) {
     try {
       console.log("[form.js] › Loading reCAPTCHA with siteKey", siteKey);
@@ -170,9 +168,7 @@ export default async function decorate(block) {
     console.warn("[form.js] › No siteKey available; proceeding without recaptcha.");
   }
 
-  // ───────────────────────────────────────────────────────────
-  // 5️⃣ Wire up the submit handler
-  // ───────────────────────────────────────────────────────────
+  // 5️⃣ Now wire up the form’s submit handler
   formEl.addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("[form.js] › form submit triggered");
@@ -194,7 +190,7 @@ export default async function decorate(block) {
       boxError.classList.add("hidden");
     }
 
-    // 5.2 – Build data
+    // 5.2 – Build the base data payload
     const data = {
       first_name: sectionContainer.querySelector("#first_name").value,
       last_name: sectionContainer.querySelector("#last_name").value,
@@ -205,7 +201,7 @@ export default async function decorate(block) {
         sectionContainer.querySelector("#marketing-consent").checked,
     };
 
-    // 5.3 – Guard against missing reCAPTCHA or siteKey
+    // 5.3 – If either grecaptcha.enterprise or siteKey is missing, bail out
     if (!(window.grecaptcha && grecaptcha.enterprise && siteKey)) {
       console.error("[form.js] › grecaptcha.enterprise or siteKey is missing");
       const containerPopup = sectionContainer.querySelector("#container-popup");
@@ -219,7 +215,7 @@ export default async function decorate(block) {
       return;
     }
 
-    // 5.4 – Execute reCAPTCHA
+    // 5.4 – Execute reCAPTCHA Enterprise v3
     grecaptcha.enterprise.ready(() => {
       grecaptcha.enterprise
         .execute(siteKey, { action: "newsletter_signup" })
@@ -227,7 +223,7 @@ export default async function decorate(block) {
           console.log("[form.js] › reCAPTCHA token received");
           data["g-recaptcha-response"] = token;
 
-          // 5.5 – Call createLead
+          // 5.5 – Submit the lead (unchanged)
           createLead(
             data,
             (msg) => {

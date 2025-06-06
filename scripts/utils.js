@@ -292,13 +292,19 @@ export function buildHeight(mobileHeight, desktopHeight) {
  * @returns {Promise} Promise che si risolve quando lo script è caricato
  */
 export function loadScript(url) {
-    return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = url;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-    });
+  return new Promise((resolve, reject) => {
+    // If the script is already in the page, resolve immediately
+    if (document.querySelector(`script[src="${url}"]`)) {
+      return resolve();
+    }
+    const s = document.createElement("script");
+    s.src = url;
+    s.async = true;
+    s.defer = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error(`Script failed to load: ${url}`));
+    document.head.appendChild(s);
+  });
 }
 
 
