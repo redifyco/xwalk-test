@@ -1,19 +1,23 @@
-import '../../scripts/customTag.js'
-import {createLead, validateEmail} from "../../scripts/utils.js";
-
+import "../../scripts/customTag.js";
+import { createLead, validateEmail } from "../../scripts/utils.js";
 
 export default async function decorate(block) {
-    const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
-    const title = block.querySelector(':scope > div:nth-child(2)')?.innerHTML
-    const subTitle = block.querySelector(':scope > div:nth-child(3) div')?.innerHTML
-    const buttonText = block.querySelector(':scope > div:nth-child(4) p ')?.textContent
+  const backgroundImage = block.querySelector(
+    ":scope > div:nth-child(1) img"
+  )?.src;
+  const title = block.querySelector(":scope > div:nth-child(2)")?.innerHTML;
+  const subTitle = block.querySelector(
+    ":scope > div:nth-child(3) div"
+  )?.innerHTML;
+  const buttonText = block.querySelector(
+    ":scope > div:nth-child(4) p "
+  )?.textContent;
 
+  const sectionContainer = document.createElement("section");
+  sectionContainer.className =
+    "bg-secondary relative flex flex-col lg:flex-row";
 
-    const sectionContainer = document.createElement('section')
-    sectionContainer.className = 'bg-secondary relative flex flex-col lg:flex-row'
-
-
-    sectionContainer.innerHTML = `
+  sectionContainer.innerHTML = `
       <div
         class="flex w-full justify-center flex-col  lg:gap-16 2xl:w-1/2 2xl:px-16 container-layout-padding"
       >
@@ -96,48 +100,91 @@ export default async function decorate(block) {
           alt=""
         />
       </div>
-    `
+    `;
 
+  sectionContainer
+    .querySelector("form")
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const boxError = sectionContainer.querySelector("#box-error");
+      const emailInput = sectionContainer.querySelector("#email");
 
-    sectionContainer.querySelector('form').addEventListener('submit', async (e) => {
-        e.preventDefault()
-        const boxError = sectionContainer.querySelector('#box-error');
-        const emailInput = sectionContainer.querySelector('#email');
+      if (!validateEmail(emailInput.value)) {
+        boxError.classList.remove("hidden");
+        boxError.classList.add("flex");
+        boxError.innerHTML = `<ion-icon size="large" name="information-circle"></ion-icon> Please enter a valid email address`;
+        return;
+      } else {
+        boxError.classList.remove("flex");
+        boxError.classList.add("hidden");
+      }
 
-        if (!validateEmail(emailInput.value)) {
-            boxError.classList.remove('hidden');
-            boxError.classList.add('flex');
-            boxError.innerHTML = `<ion-icon size="large" name="information-circle"></ion-icon> Please enter a valid email address`;
-            return;
-        } else {
-            boxError.classList.remove('flex');
-            boxError.classList.add('hidden');
-        }
+      const data = {
+        first_name: sectionContainer.querySelector("#first_name").value,
+        last_name: sectionContainer.querySelector("#last_name").value,
+        email: emailInput.value,
+        "00NVj000001XF69": sectionContainer.querySelector("#languages").value,
+        lead_source: "Web",
+        "00NVj000003rpfN":
+          sectionContainer.querySelector("#marketing-consent").checked,
+      };
 
-        const data = {
-            "first_name": sectionContainer.querySelector('#first_name').value,
-            "last_name": sectionContainer.querySelector('#last_name').value,
-            "email": emailInput.value,
-            "00NVj000001XF69": sectionContainer.querySelector('#languages').value,
-            "lead_source": 'Web',
-            "00NVj000003rpfN": sectionContainer.querySelector('#marketing-consent').checked
-        }
+      // 3️⃣ Run reCAPTCHA Enterprise v3
+      grecaptcha.enterprise.ready(() => {
+        grecaptcha.enterprise
+          .execute("AIzaSyAzo6o4BVCLZ91xZH_4lwmNKM0S4isG_VQ", {
+            action: "newsletter_signup",
+          })
+          .then((token) => {
+            // 4️⃣ Attach returned token to payload
+            data["g-recaptcha-response"] = token;
 
-        createLead(data, (msg) => {
-            const containerPopup = sectionContainer.querySelector('#container-popup');
-            const form = sectionContainer.querySelector('#form');
-            form.classList.toggle('hidden');
-            containerPopup.classList.remove('hidden')
-            containerPopup.innerHTML = `<popup-box extraClass="text-white" class="block" isSuccess="true" subtitle="We will contact you soon" title="Thank you for your interest"></popup-box>`
-        }, error => {
-            const containerPopup = sectionContainer.querySelector('#container-popup');
-            const form = sectionContainer.querySelector('#form');
-            form.classList.toggle('hidden');
-            containerPopup.classList.remove('hidden')
-            containerPopup.innerHTML = `<popup-box extraClass="text-white" class="block" isSuccess="false" title="${error}"></popup-box>`
-        })
-    })
+            // 5️⃣ Now submit the lead as before
+            createLead(
+              data,
+              (msg) => {
+                // Success callback: show “thank you” popup
+                const containerPopup =
+                  sectionContainer.querySelector("#container-popup");
+                formEl.classList.toggle("hidden");
+                containerPopup.classList.remove("hidden");
+                containerPopup.innerHTML = `
+                  <popup-box extraClass="text-white" class="block" isSuccess="true"
+                            subtitle="We will contact you soon"
+                            title="Thank you for your interest">
+                  </popup-box>
+                `;
+              },
+              (errorMsg) => {
+                // Error callback: show error popup
+                const containerPopup =
+                  sectionContainer.querySelector("#container-popup");
+                formEl.classList.toggle("hidden");
+                containerPopup.classList.remove("hidden");
+                containerPopup.innerHTML = `
+                  <popup-box extraClass="text-white" class="block" isSuccess="false"
+                            title="${errorMsg}">
+                  </popup-box>
+                `;
+              }
+            );
+          })
+          .catch((err) => {
+            console.error("reCAPTCHA execution failed:", err);
+            // Optional: show a generic error message if reCAPTCHA itself fails
+            const containerPopup =
+              sectionContainer.querySelector("#container-popup");
+            formEl.classList.toggle("hidden");
+            containerPopup.classList.remove("hidden");
+            containerPopup.innerHTML = `
+              <popup-box extraClass="text-white" class="block" isSuccess="false"
+                        title="We couldn’t validate your request. Please try again later.">
+              </popup-box>
+            `;
+          });
+      });
+    });
 
-    block.textContent = ''
-    block.append(sectionContainer)
+  block.textContent = "";
+  block.append(sectionContainer);
 }
