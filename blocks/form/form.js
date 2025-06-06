@@ -121,7 +121,7 @@ export default async function decorate(block) {
   // 3️⃣ Fetch the siteKey using an absolute URL (fastly edge function)
   let siteKey = "";
   // Note: use window.location.origin to guarantee same‐origin for the call
-  const recaptchaconfigUrl = `${window.location.origin}/recaptchaconfig`;
+  const recaptchaConfigUrl = `${window.location.origin}/recaptchaconfig`;
   console.log("[form.js] › Fetching siteKey from:", recaptchaConfigUrl);
 
   try {
