@@ -3,7 +3,7 @@ import { createLead, validateEmail, loadScript } from "../../scripts/utils.js";
 
 export default async function decorate(block) {
   // ───────────────────────────────────────────────────────────
-  // 1️⃣ Build the EDS form markup (same as before)
+  // 1️⃣ Build the EDS form markup (exactly as before)
   // ───────────────────────────────────────────────────────────
   const backgroundImage = block.querySelector(
     ":scope > div:nth-child(1) img"
@@ -106,43 +106,67 @@ export default async function decorate(block) {
   block.append(sectionContainer);
 
   // ───────────────────────────────────────────────────────────
-  // 2️⃣ Grab a reference to the <form> element (so formEl is in scope)
+  // 2️⃣ Grab a reference to the <form> element
   // ───────────────────────────────────────────────────────────
   const formEl = sectionContainer.querySelector("form");
+  if (!formEl) {
+    console.error("Unable to find <form> inside form block.");
+    return;
+  }
 
   // ───────────────────────────────────────────────────────────
   // 3️⃣ Fetch the siteKey, then load reCAPTCHA Enterprise
   // ───────────────────────────────────────────────────────────
   let siteKey = "";
+  const recaptchaConfigUrl = `${window.location.origin}/recaptchaConfig`;
+
+  console.log("[form.js] Fetching reCAPTCHA siteKey from:", recaptchaConfigUrl);
   try {
-    // Fetch your siteKey from the Fastly endpoint (or any endpoint you created)
-    const configResp = await fetch("/recaptchaConfig", { method: "GET" });
-    if (configResp.ok) {
-      const json = await configResp.json();
-      siteKey = json.siteKey || "";
+    const configResp = await fetch(recaptchaConfigUrl, {
+      method: "GET",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Accept": "application/json",
+      },
+    });
+
+    console.log("[form.js] recaptchaConfig status:", configResp.status);
+    if (!configResp.ok) {
+      console.error(
+        "[form.js] /recaptchaConfig responded with HTTP",
+        configResp.status
+      );
     } else {
-      console.error("[Error] recaptchaConfig HTTP status:", configResp.status);
+      const json = await configResp.json().catch((e) => {
+        console.error("[form.js] Failed to parse JSON:", e);
+        return {};
+      });
+      siteKey = json.siteKey || "";
+      console.log("[form.js] Retrieved siteKey:", siteKey ? "(present)" : "(empty)");
     }
   } catch (err) {
-    console.error("[Error] fetching recaptchaConfig:", err);
+    console.error("[form.js] Error fetching /recaptchaConfig:", err);
   }
 
   if (siteKey) {
     try {
+      console.log("[form.js] Loading reCAPTCHA script with siteKey:", siteKey);
       await loadScript(
         `https://www.google.com/recaptcha/enterprise.js?render=${siteKey}`
       );
+      console.log("[form.js] reCAPTCHA script loaded successfully.");
     } catch (err) {
-      console.error("Failed to load reCAPTCHA Enterprise:", err);
+      console.error("[form.js] Failed to load reCAPTCHA script:", err);
     }
   } else {
     console.warn(
-      "No reCAPTCHA siteKey available; form will submit without recaptcha."
+      "[form.js] No reCAPTCHA siteKey available; proceeding without recaptcha."
     );
   }
 
   // ───────────────────────────────────────────────────────────
-  // 4️⃣ Wire up the submit handler with proper scope
+  // 4️⃣ Wire up the submit handler, now that formEl & siteKey are in scope
   // ───────────────────────────────────────────────────────────
   formEl.addEventListener("submit", async (e) => {
     e.preventDefault();
