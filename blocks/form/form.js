@@ -2,6 +2,31 @@ import "../../scripts/customTag.js";
 import { createLead, validateEmail } from "../../scripts/utils.js";
 
 export default async function decorate(block) {
+  let siteKey = "";
+  try {
+    const configResp = await fetch("/recaptchaConfig", { method: "GET" });
+    if (configResp.ok) {
+      const { siteKey: fetchedKey } = await configResp.json();
+      siteKey = fetchedKey || "";
+    } else {
+      console.error("[Error] recaptchaConfig HTTP status:", configResp.status);
+    }
+  } catch (err) {
+    console.error("[Error] fetching recaptchaConfig:", err);
+  }
+  if (siteKey) {
+    try {
+      await loadScript(
+        `https://www.google.com/recaptcha/enterprise.js?render=${siteKey}`
+      );
+    } catch (err) {
+      console.error("Failed to load reCAPTCHA Enterprise:", err);
+    }
+  } else {
+    console.warn(
+      "No reCAPTCHA siteKey available; continuing without recaptcha."
+    );
+  }
   const backgroundImage = block.querySelector(
     ":scope > div:nth-child(1) img"
   )?.src;
@@ -129,12 +154,24 @@ export default async function decorate(block) {
           sectionContainer.querySelector("#marketing-consent").checked,
       };
 
-      // 3️⃣ Run reCAPTCHA Enterprise v3
+      // 3️⃣ Run reCAPTCHA Enterprise v3 using the dynamic siteKey
+      if (!(window.grecaptcha && grecaptcha.enterprise && siteKey)) {
+        console.error("grecaptcha.enterprise or siteKey is missing");
+        const containerPopup =
+          sectionContainer.querySelector("#container-popup");
+        formEl.classList.toggle("hidden");
+        containerPopup.classList.remove("hidden");
+        containerPopup.innerHTML = `
+      <popup-box extraClass="text-white" class="block" isSuccess="false"
+                 title="Security verification failed. Please try again later.">
+      </popup-box>
+    `;
+        return;
+      }
+
       grecaptcha.enterprise.ready(() => {
         grecaptcha.enterprise
-          .execute("AIzaSyAzo6o4BVCLZ91xZH_4lwmNKM0S4isG_VQ", {
-            action: "newsletter_signup",
-          })
+          .execute(siteKey, { action: "newsletter_signup" })
           .then((token) => {
             // 4️⃣ Attach returned token to payload
             data["g-recaptcha-response"] = token;
@@ -149,11 +186,11 @@ export default async function decorate(block) {
                 formEl.classList.toggle("hidden");
                 containerPopup.classList.remove("hidden");
                 containerPopup.innerHTML = `
-                  <popup-box extraClass="text-white" class="block" isSuccess="true"
-                            subtitle="We will contact you soon"
-                            title="Thank you for your interest">
-                  </popup-box>
-                `;
+              <popup-box extraClass="text-white" class="block" isSuccess="true"
+                         subtitle="We will contact you soon"
+                         title="Thank you for your interest">
+              </popup-box>
+            `;
               },
               (errorMsg) => {
                 // Error callback: show error popup
@@ -162,10 +199,10 @@ export default async function decorate(block) {
                 formEl.classList.toggle("hidden");
                 containerPopup.classList.remove("hidden");
                 containerPopup.innerHTML = `
-                  <popup-box extraClass="text-white" class="block" isSuccess="false"
-                            title="${errorMsg}">
-                  </popup-box>
-                `;
+              <popup-box extraClass="text-white" class="block" isSuccess="false"
+                         title="${errorMsg}">
+              </popup-box>
+            `;
               }
             );
           })
@@ -177,10 +214,10 @@ export default async function decorate(block) {
             formEl.classList.toggle("hidden");
             containerPopup.classList.remove("hidden");
             containerPopup.innerHTML = `
-              <popup-box extraClass="text-white" class="block" isSuccess="false"
-                        title="We couldn’t validate your request. Please try again later.">
-              </popup-box>
-            `;
+          <popup-box extraClass="text-white" class="block" isSuccess="false"
+                     title="We couldn’t validate your request. Please try again later.">
+          </popup-box>
+        `;
           });
       });
     });
