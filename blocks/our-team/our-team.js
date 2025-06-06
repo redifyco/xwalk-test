@@ -3,7 +3,6 @@ export default function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) p')?.textContent
     const teams = block.querySelectorAll(':scope > div:nth-child(n+2) div')
     const processedTeams = processDivsToObject(teams, aemEnv)
-    console.log('processedTeams', processedTeams)
 
     const containerSection = document.createElement('section');
     containerSection.className = 'container-layout-padding';
@@ -13,7 +12,7 @@ export default function decorate(block) {
           <span class="text-2xl font-semibold w-fit text-black lg:text-5xl">${title}</span>
           <div class="bg-black h-[0.5px] flex-grow"></div>
       </div>
-      <div class="md:px-14 flex gap-2 overflow-y-scroll md:flex-wrap md:overflow-hidden py-14">
+      <div class="md:px-14 flex gap-8 overflow-y-scroll justify-center md:flex-wrap md:overflow-hidden py-14">
           ${processedTeams.length > 0 ? processedTeams.map((team, index) => `
               <button data-index="${index}" id="open-popup" class="flex justify-end text-start flex-col h-[450px] min-w-[330px] w-[330px] relative bg-center bg-cover" style="background-image: url('${team.image}')">
                   <div class="bg-black/10 absolute inset-0"></div>
@@ -31,7 +30,6 @@ export default function decorate(block) {
     containerSection.querySelectorAll('#open-popup').forEach(button => button.addEventListener('click', (e) => {
             const index = e.currentTarget.getAttribute('data-index');
             const team = processedTeams[index];
-            console.log('team', team)
             containerSection.querySelector('#popup').classList.toggle('hidden');
             containerSection.querySelector('#long-descr').innerHTML = team.longDescr
             containerSection.querySelector('#main-title').textContent = team.title

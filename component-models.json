@@ -3298,6 +3298,47 @@
     ]
   },
   {
+    "id": "text-hero-subtitle-model",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "hero-image",
+        "label": "Hero Image",
+        "required": true,
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "hero-title",
+        "label": "Hero Title",
+        "value": ""
+      },
+      {
+        "component": "boolean",
+        "valueType": "string",
+        "name": "centered-subtitle-box",
+        "label": "Centered Subtitle Box",
+        "value": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "heading-subtitle-box",
+        "label": "Heading Subtitle Box",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content-subtitle-box",
+        "label": "Content Subtitle Box",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "title-subtitle-model",
     "fields": [
       {
