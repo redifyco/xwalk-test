@@ -12,13 +12,13 @@ export default function decorate(block) {
           <span class="text-2xl font-semibold w-fit text-black lg:text-5xl">${title}</span>
           <div class="bg-black h-[0.5px] flex-grow"></div>
       </div>
-      <div class="md:px-14 flex gap-8 overflow-y-scroll justify-center md:flex-wrap md:overflow-hidden py-14">
+      <div class="md:px-14 flex gap-8 overflow-y-scroll justify-start lg:justify-center md:flex-wrap md:overflow-hidden py-14">
           ${processedTeams.length > 0 ? processedTeams.map((team, index) => `
-              <button data-index="${index}" id="open-popup" class="flex justify-end text-start flex-col h-[450px] min-w-[330px] w-[330px] relative bg-center bg-cover" style="background-image: url('${team.image}')">
+              <button data-index="${index}" id="open-popup" class="flex justify-end text-start flex-col h-[350px] lg:h-[450px] min-w-[250px] w-[250px] lg:min-w-[330px] lg:w-[330px] relative bg-center bg-cover" style="background-image: url('${team.image}')">
                   <div class="bg-black/10 absolute inset-0"></div>
                   <div class="p-2 z-10 flex flex-col gap-2 text-white">
-                      <h5 class="border-b font-semibold text-3xl w-full">${team.title}</h5>
-                      <p class="font-light text-lg">${team.smallDescr}</p>
+                      <h5 class="border-b font-semibold text-xl lg:text-3xl w-full">${team.title}</h5>
+                      <p class="font-light text-base lg:text-lg">${team.smallDescr}</p>
                   </div>
               </button>
           `).join('') : ''}    
