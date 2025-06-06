@@ -2,8 +2,10 @@ import "../../scripts/customTag.js";
 import { createLead, validateEmail, loadScript } from "../../scripts/utils.js";
 
 export default async function decorate(block) {
+  console.log("[form.js] › decorate() start");
+
   // ───────────────────────────────────────────────────────────
-  // 1️⃣ Build the EDS form markup (exactly as before)
+  // 1️⃣ Build the EDS form markup (unchanged)
   // ───────────────────────────────────────────────────────────
   const backgroundImage = block.querySelector(
     ":scope > div:nth-child(1) img"
@@ -101,80 +103,84 @@ export default async function decorate(block) {
     </div>
   `;
 
-  // Always clear the original block before appending
+  // Replace block content
   block.textContent = "";
   block.append(sectionContainer);
 
   // ───────────────────────────────────────────────────────────
-  // 2️⃣ Grab a reference to the <form> element
+  // 2️⃣ Grab <form> reference
   // ───────────────────────────────────────────────────────────
   const formEl = sectionContainer.querySelector("form");
   if (!formEl) {
-    console.error("Unable to find <form> inside form block.");
+    console.error("[form.js] › Cannot find <form> inside block");
     return;
   }
+  console.log("[form.js] › Found formEl");
 
   // ───────────────────────────────────────────────────────────
-  // 3️⃣ Fetch the siteKey, then load reCAPTCHA Enterprise
+  // 3️⃣ Fetch the siteKey via an absolute URL
   // ───────────────────────────────────────────────────────────
   let siteKey = "";
   const recaptchaConfigUrl = `${window.location.origin}/recaptchaConfig`;
+  console.log("[form.js] › Fetching siteKey from:", recaptchaConfigUrl);
 
-  console.log("[form.js] Fetching reCAPTCHA siteKey from:", recaptchaConfigUrl);
   try {
     const configResp = await fetch(recaptchaConfigUrl, {
       method: "GET",
       cache: "no-cache",
       credentials: "same-origin",
-      headers: {
-        "Accept": "application/json",
-      },
+      headers: { Accept: "application/json" },
     });
+    console.log("[form.js] › /recaptchaConfig status:", configResp.status);
 
-    console.log("[form.js] recaptchaConfig status:", configResp.status);
     if (!configResp.ok) {
       console.error(
-        "[form.js] /recaptchaConfig responded with HTTP",
+        "[form.js] › recaptchaConfig returned HTTP",
         configResp.status
       );
     } else {
       const json = await configResp.json().catch((e) => {
-        console.error("[form.js] Failed to parse JSON:", e);
+        console.error("[form.js] › JSON parse error:", e);
         return {};
       });
       siteKey = json.siteKey || "";
-      console.log("[form.js] Retrieved siteKey:", siteKey ? "(present)" : "(empty)");
+      console.log(
+        "[form.js] › Retrieved siteKey:",
+        siteKey ? "(present)" : "(empty)"
+      );
     }
   } catch (err) {
-    console.error("[form.js] Error fetching /recaptchaConfig:", err);
+    console.error("[form.js] › Fetch error fetching /recaptchaConfig:", err);
   }
 
+  // ───────────────────────────────────────────────────────────
+  // 4️⃣ Load the reCAPTCHA Enterprise script if siteKey is present
+  // ───────────────────────────────────────────────────────────
   if (siteKey) {
     try {
-      console.log("[form.js] Loading reCAPTCHA script with siteKey:", siteKey);
+      console.log("[form.js] › Loading reCAPTCHA with siteKey", siteKey);
       await loadScript(
         `https://www.google.com/recaptcha/enterprise.js?render=${siteKey}`
       );
-      console.log("[form.js] reCAPTCHA script loaded successfully.");
+      console.log("[form.js] › reCAPTCHA script loaded.");
     } catch (err) {
-      console.error("[form.js] Failed to load reCAPTCHA script:", err);
+      console.error("[form.js] › Failed to load reCAPTCHA script:", err);
     }
   } else {
-    console.warn(
-      "[form.js] No reCAPTCHA siteKey available; proceeding without recaptcha."
-    );
+    console.warn("[form.js] › No siteKey available; proceeding without recaptcha.");
   }
 
   // ───────────────────────────────────────────────────────────
-  // 4️⃣ Wire up the submit handler, now that formEl & siteKey are in scope
+  // 5️⃣ Wire up the submit handler
   // ───────────────────────────────────────────────────────────
   formEl.addEventListener("submit", async (e) => {
     e.preventDefault();
+    console.log("[form.js] › form submit triggered");
 
     const boxError = sectionContainer.querySelector("#box-error");
     const emailInput = sectionContainer.querySelector("#email");
 
-    // 4.1 – Validate email
+    // 5.1 – Email validation
     if (!validateEmail(emailInput.value)) {
       boxError.classList.remove("hidden");
       boxError.classList.add("flex");
@@ -188,7 +194,7 @@ export default async function decorate(block) {
       boxError.classList.add("hidden");
     }
 
-    // 4.2 – Build the base data payload
+    // 5.2 – Build data
     const data = {
       first_name: sectionContainer.querySelector("#first_name").value,
       last_name: sectionContainer.querySelector("#last_name").value,
@@ -199,9 +205,9 @@ export default async function decorate(block) {
         sectionContainer.querySelector("#marketing-consent").checked,
     };
 
-    // 4.3 – Check that grecaptcha.enterprise and siteKey both exist
+    // 5.3 – Guard against missing reCAPTCHA or siteKey
     if (!(window.grecaptcha && grecaptcha.enterprise && siteKey)) {
-      console.error("grecaptcha.enterprise or siteKey is missing");
+      console.error("[form.js] › grecaptcha.enterprise or siteKey is missing");
       const containerPopup = sectionContainer.querySelector("#container-popup");
       formEl.classList.add("hidden");
       containerPopup.classList.remove("hidden");
@@ -213,19 +219,19 @@ export default async function decorate(block) {
       return;
     }
 
-    // 4.4 – Execute reCAPTCHA Enterprise v3
+    // 5.4 – Execute reCAPTCHA
     grecaptcha.enterprise.ready(() => {
       grecaptcha.enterprise
         .execute(siteKey, { action: "newsletter_signup" })
         .then((token) => {
-          // 4.4.1 – Attach the token
+          console.log("[form.js] › reCAPTCHA token received");
           data["g-recaptcha-response"] = token;
 
-          // 4.4.2 – Submit the lead
+          // 5.5 – Call createLead
           createLead(
             data,
             (msg) => {
-              // Success callback: show “thank you” popup
+              console.log("[form.js] › createLead SUCCESS");
               const containerPopup =
                 sectionContainer.querySelector("#container-popup");
               formEl.classList.add("hidden");
@@ -238,7 +244,7 @@ export default async function decorate(block) {
               `;
             },
             (errorMsg) => {
-              // Error callback: show error popup
+              console.error("[form.js] › createLead ERROR:", errorMsg);
               const containerPopup =
                 sectionContainer.querySelector("#container-popup");
               formEl.classList.add("hidden");
@@ -252,8 +258,7 @@ export default async function decorate(block) {
           );
         })
         .catch((err) => {
-          console.error("reCAPTCHA execution failed:", err);
-          // Show a generic error to the user
+          console.error("[form.js] › reCAPTCHA execution failed:", err);
           const containerPopup =
             sectionContainer.querySelector("#container-popup");
           formEl.classList.add("hidden");
