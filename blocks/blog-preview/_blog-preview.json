@@ -1,0 +1,88 @@
+{
+  "definitions": [
+    {
+      "title": "Blog Preview",
+      "id": "blog-preview",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Blog Preview",
+              "model": "blog-preview-model"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "blog-preview-model",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "label": "Title"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "load-more-button",
+          "label": "Load More Button",
+          "value": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "buttonText",
+          "label": "Button Text",
+          "condition": {
+            "===": [
+              {
+                "var": "load-more-button"
+              },
+              false
+            ]
+          }
+        },
+        {
+          "component": "aem-content",
+          "name": "buttonLink",
+          "label": "Button Link",
+          "condition": {
+            "===": [
+              {
+                "var": "load-more-button"
+              },
+              false
+            ]
+          }
+        },
+        {
+          "component": "number",
+          "valueType": "string",
+          "name": "items-to-show",
+          "label": "Items to Show"
+        },
+        {
+          "component": "select",
+          "name": "card-style",
+          "label": "Card Style",
+          "options": [
+            {
+              "name": "Primary",
+              "value": "primary"
+            },
+            {
+              "name": "Secondary",
+              "value": "secondary"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

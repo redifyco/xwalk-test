@@ -1,4 +1,5 @@
-const {AdyenCheckout, Dropin} = window.AdyenWeb;
+import {loadScriptSecure} from "./utils.js";
+import {loadCSS} from "./aem.js";
 
 const ADYEN_CLIENT_KEY_MSCFOUNDATION_TEST =
     "test_RECMBL5SWRCZBBE2OLQ57DZNNAK74JHQ";
@@ -14,7 +15,20 @@ export const initDonationForm = (
     onPaymentCompleted,
     onPaymentFailed
 ) => {
-    // 1) Fire both the “CREATE_SESSION” and “GET_PAYMENT_METHODS” calls.
+
+    // Verifica che AdyenWeb sia disponibile prima di usarlo
+    if (!window.AdyenWeb || !window.AdyenWeb.AdyenCheckout) {
+      console.error("❌ Adyen non è stato caricato correttamente");
+      onPaymentFailed("Adyen non disponibile");
+      return;
+    }
+
+    // Ora è sicuro fare il destructuring
+    const {AdyenCheckout, Dropin} = window.AdyenWeb;
+
+
+
+  // 1) Fire both the “CREATE_SESSION” and “GET_PAYMENT_METHODS” calls.
     Promise.all([
         fetch(CREATE_SESSION_API_URL, {
             method: "POST",
@@ -110,3 +124,73 @@ export const initDonationForm = (
             onPaymentFailed(err);
         });
 };
+
+
+/**
+ * Carica le librerie Adyen (JS e CSS)
+ * @returns {Promise} Promise che si risolve quando entrambe le risorse sono caricate
+ */
+export async function loadAdyen() {
+  const adyenVersion = '6.13.1';
+  const baseUrl = `https://checkoutshopper-test.cdn.adyen.com/checkoutshopper/sdk/${adyenVersion}`;
+
+  try {
+    // Carica CSS e JS in parallelo
+    await Promise.all([
+      loadAdyenCSS(`${baseUrl}/adyen.css`, {
+        integrity: 'sha384-Uc2+7uMS+7KgxjNMPhpVZquar2b655d1RaUPWe/mJMO94euXqphe5aEzlj70wNS4',
+        crossorigin: 'anonymous'
+      }),
+      loadScriptSecure(`${baseUrl}/adyen.js`, {
+        integrity: 'sha384-RxGQ2speO8mIr2OdCCtePyAvtV1Px+IabbiDa7f3EcYsU5vKOpVXV80/x21lAB4R',
+        crossorigin: 'anonymous'
+      })
+    ]);
+
+    // Aspetta che AdyenWeb sia disponibile
+    return new Promise((resolve, reject) => {
+      const checkAdyen = () => {
+        if (window.AdyenWeb && window.AdyenWeb.AdyenCheckout) {
+          console.log('✅ AdyenWeb disponibile:', window.AdyenWeb);
+          resolve();
+        } else {
+          setTimeout(checkAdyen, 100);
+        }
+      };
+      checkAdyen();
+
+      // Timeout dopo 10 secondi
+      setTimeout(() => {
+        reject(new Error('Adyen non caricato entro 10 secondi'));
+      }, 10000);
+    });
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
+/**
+ * Carica un file CSS dinamicamente
+ * @param {string} url URL del file CSS da caricare
+ * @param {Object} options Opzioni aggiuntive (integrity, crossorigin)
+ * @returns {Promise} Promise che si risolve quando il CSS è caricato
+ */
+export function loadAdyenCSS(url, options = {}) {
+  return new Promise((resolve, reject) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = url;
+
+    if (options.integrity) {
+      link.integrity = options.integrity;
+    }
+    if (options.crossorigin) {
+      link.crossOrigin = options.crossorigin;
+    }
+
+    link.onload = resolve;
+    link.onerror = reject;
+    document.head.appendChild(link);
+  });
+}
+

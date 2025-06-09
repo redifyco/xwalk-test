@@ -1,4 +1,4 @@
-import {initDonationForm} from "../../scripts/adyen-init.js";
+import { initDonationForm, loadAdyen } from '../../scripts/adyen-init.js';
 import {getFocusAreaFromTaxonomy} from "../../scripts/utils.js";
 
 const formValue = {
@@ -13,41 +13,50 @@ const formValue = {
 };
 
 export default async function decorate(block) {
-    const backgroundImage =
-        block.querySelector(":scope > div:nth-child(1) img")?.src;
-    const title = block.querySelector(":scope > div:nth-child(2) div")?.innerHTML;
-    const subtitle = block.querySelector(":scope > div:nth-child(3) div")?.innerHTML;
-    const maxAmount = Number(
-        block.querySelector(":scope > div:nth-child(4) div")?.textContent
+    try {
+        // Carica Adyen e aspetta che sia completamente disponibile
+        await loadAdyen();
+        console.log('✅ Adyen caricato con successo');
+    } catch (error) {
+        console.error('❌ Errore nel caricamento di Adyen:', error);
+        return;
+    }
+
+  // Carica entrambi CSS e JS di Adyen
+  const backgroundImage = block.querySelector(":scope > div:nth-child(1) img")?.src;
+  const title = block.querySelector(":scope > div:nth-child(2) div")?.innerHTML;
+  const subtitle = block.querySelector(":scope > div:nth-child(3) div")?.innerHTML;
+  const maxAmount = Number(
+    block.querySelector(":scope > div:nth-child(4) div")?.textContent
+  );
+  const APIUrl = block.querySelector(":scope > div:nth-child(6) div p")?.textContent;
+  const focusArea = await getFocusAreaFromTaxonomy(APIUrl);
+  const redirectMaxAmount = block.querySelector(":scope > div:nth-child(5) div a")?.href;
+  const sessionStorage = window.sessionStorage;
+
+  // Helper to reset in‐memory + sessionStorage state:
+  const resetSessionStorage = () => {
+    formValue.firstName = "";
+    formValue.lastName = "";
+    formValue.email = "";
+    formValue.currency = "USD";
+    formValue.amount = 25;
+    formValue.steps = 1;
+    formValue.country = "it-IT";
+    formValue.focusArea = "";
+
+    sessionStorage.setItem(
+      "formValue",
+      JSON.stringify({...formValue})
     );
-    const redirectMaxAmount = block.querySelector(":scope > div:nth-child(5) div a")?.href;
-    const APIUrl = block.querySelector(":scope > div:nth-child(6) div p")?.textContent;
-    const sessionStorage = window.sessionStorage;
-    const focusArea = await getFocusAreaFromTaxonomy(APIUrl);
+  };
+  resetSessionStorage();
 
-
-    // Helper to reset in‐memory + sessionStorage state:
-    const resetSessionStorage = () => {
-        formValue.lastName = "";
-        formValue.email = "";
-        formValue.currency = "USD";
-        formValue.amount = 25;
-        formValue.steps = 1;
-        formValue.country = "it-IT";
-        formValue.focusArea = "";
-
-        sessionStorage.setItem(
-            "formValue",
-            JSON.stringify({...formValue})
-        );
-    };
-    resetSessionStorage();
-
-    // ─── Build the three‐step wizard container ───────────────────────────────────────
-    const containerSection = document.createElement("section");
-    containerSection.className =
-        "bg-no-repeat relative bg-cover bg-center min-h-96 pb-14 lg:container-layout-padding";
-    containerSection.innerHTML = `
+  // ─── Build the three‐step wizard container ───────────────────────────────────────
+  const containerSection = document.createElement("section");
+  containerSection.className =
+    "bg-no-repeat relative bg-cover bg-center min-h-96 pb-14 lg:container-layout-padding";
+  containerSection.innerHTML = `
     <div class="flex flex-col items-end lg:flex-row gap-8 lg:gap-24 justify-between">
       <img src="${backgroundImage}" class="object-cover max-h-72 lg:hidden object-center inset-0 h-full w-full z-0" alt="">
       <img src="${backgroundImage}" class="absolute lg:block hidden object-cover object-center inset-0 h-full w-full z-0" alt="">
@@ -71,195 +80,195 @@ export default async function decorate(block) {
     </div>
   `;
 
-    // When we land or refresh, show/hide steps based on sessionStorage.formValue.steps
-    if (sessionStorage.length > 0) {
-        const stored = JSON.parse(sessionStorage.getItem("formValue")) || {};
-        const steps = stored.steps || 1;
-        containerSection.querySelector("#currency-amount-form").classList.toggle("hidden", steps !== 1);
-        containerSection.querySelector("#owner-information-form").classList.toggle("hidden", steps !== 2);
-        containerSection.querySelector("#adyen-form").classList.toggle("hidden", steps !== 3);
-    }
+  // When we land or refresh, show/hide steps based on sessionStorage.formValue.steps
+  if (sessionStorage.length > 0) {
+    const stored = JSON.parse(sessionStorage.getItem("formValue")) || {};
+    const steps = stored.steps || 1;
+    containerSection.querySelector("#currency-amount-form").classList.toggle("hidden", steps !== 1);
+    containerSection.querySelector("#owner-information-form").classList.toggle("hidden", steps !== 2);
+    containerSection.querySelector("#adyen-form").classList.toggle("hidden", steps !== 3);
+  }
 
-    // ─── 1) CURRENCY & AMOUNT LOGIC ─────────────────────────────────────────────────
-    const customAmountInput = containerSection.querySelector("#custom-amount");
-    const allAmountButtons = containerSection.querySelectorAll("[data-amount]");
-    const allCurrencyButtons = containerSection.querySelectorAll("[data-currency]");
+  // ─── 1) CURRENCY & AMOUNT LOGIC ─────────────────────────────────────────────────
+  const customAmountInput = containerSection.querySelector("#custom-amount");
+  const allAmountButtons = containerSection.querySelectorAll("[data-amount]");
+  const allCurrencyButtons = containerSection.querySelectorAll("[data-currency]");
 
-    // Highlight selected currency
-    const handleCurrencyClick = (button) => {
-        allCurrencyButtons.forEach((btn) => {
-            btn.classList.remove("bg-gray-100", "text-primary");
-            btn.classList.add("text-white");
-        });
-        button.classList.remove("text-white");
-        button.classList.add("bg-gray-100", "text-primary");
-
-        formValue.currency = button.dataset.currency;
-        containerSection
-            .querySelectorAll("#button-amount-span")
-            .forEach((span) => (span.innerHTML = button.innerHTML));
-    };
-    allCurrencyButtons.forEach((button) =>
-        button.addEventListener("click", (e) => handleCurrencyClick(e.currentTarget))
-    );
-    // Restore stored currency (if any)
-    {
-        const storedCurrency = JSON.parse(sessionStorage.getItem("formValue"))?.currency;
-        const currencyButton =
-            containerSection.querySelector(`[data-currency="${storedCurrency}"]`) ||
-            containerSection.querySelector('[data-currency="USD"]');
-        if (currencyButton) handleCurrencyClick(currencyButton);
-    }
-
-    // Highlight selected preset amount
-    const handleAmountClick = (button) => {
-        allAmountButtons.forEach((btn) => {
-            btn.classList.remove("bg-primary", "text-white");
-            btn.classList.add("bg-gray-100");
-        });
-        button.classList.remove("text-white");
-        button.classList.add("bg-primary", "text-white");
-
-        formValue.amount = Number(button.dataset.amount);
-        customAmountInput.value = "";
-    };
-    allAmountButtons.forEach((button) =>
-        button.addEventListener("click", (e) => handleAmountClick(e.currentTarget))
-    );
-    // Restore stored amount
-    {
-        const storedAmount = JSON.parse(sessionStorage.getItem("formValue"))?.amount;
-        const amountButton =
-            containerSection.querySelector(`[data-amount="${storedAmount}"]`) ||
-            containerSection.querySelector('[data-amount="25"]');
-        if (amountButton) handleAmountClick(amountButton);
-    }
-
-    // Custom-amount input overrides buttons
-    if (customAmountInput) {
-        customAmountInput.addEventListener("input", (e) => {
-            const v = e.target.value;
-            if (v) {
-                formValue.amount = Number(v);
-                allAmountButtons.forEach((btn) => {
-                    btn.classList.remove("bg-primary", "text-white");
-                    btn.classList.add("bg-gray-100");
-                });
-            } else {
-                formValue.amount = 0;
-            }
-        });
-    }
-
-    // “Continue” on step 1 → move to step 2
-    const submitCurrencyAmountButton = containerSection.querySelector(
-        "#submit-currency-amount-form"
-    );
-    if (submitCurrencyAmountButton) {
-        submitCurrencyAmountButton.addEventListener("click", () => {
-            formValue.steps = 2;
-            containerSection.querySelector("#currency-amount-form").classList.add("hidden");
-            containerSection.querySelector("#owner-information-form").classList.remove("hidden");
-            sessionStorage.setItem("formValue", JSON.stringify(formValue));
-        });
-    }
-
-    // ─── 2) OWNER INFORMATION LOGIC ─────────────────────────────────────────────────
-    const submitOwnerInformationForm = containerSection.querySelector('#form-owner-information')
-    submitOwnerInformationForm.addEventListener('submit', (e) => {
-        const formData = new FormData(submitOwnerInformationForm);
-
-
-        e.preventDefault();
-        containerSection.querySelector("#owner-information-form").classList.add("hidden");
-        containerSection.querySelector("#adyen-form").classList.remove("hidden");
-
-        formValue.firstName = formData.get("first_name");
-        formValue.lastName = formData.get("last_name");
-        formValue.email = formData.get("email");
-        formValue.country = formData.get("country");
-        formValue.focusArea = formData.get("focus-area");
-
-        sessionStorage.setItem("formValue", JSON.stringify(formValue));
-
-        const sessionData = JSON.parse(sessionStorage.getItem("formValue"));
-        const rawCountryCode = sessionData.country.split("-")[0].toUpperCase(); // e.g. "IT" from "it-IT"
-
-        const data = {
-            country: rawCountryCode,
-            amount: {
-                value: sessionData.amount * 100,
-                currency: sessionData.currency,
-            },
-            orderReference: `DONATION_${Date.now()}`,
-            metadata: {
-                focusArea: sessionData.focusArea || ""
-            }
-        };
-
-        const additionalData = {
-            shopperEmail: sessionData.email,
-            shopperName: {
-                firstName: sessionData.firstName,
-                lastName: sessionData.lastName,
-            },
-            countryCode: rawCountryCode,
-            locale: sessionData.country,
-        };
-
-        // 4) Call Drop-in
-        initDonationForm(
-            data,
-            additionalData,
-            (success) => {
-                console.log("✅ Donation succeeded:", success);
-                sessionStorage.clear();
-            },
-            (error) => {
-                console.error("❌ Donation failed:", error);
-                sessionStorage.clear();
-            }
-        );
-
-        // 5) Finally, reveal the Drop-in container so it renders
-        containerSection.querySelector("#dropin-container").classList.remove("hidden");
-    })
-
-
-    // ─── 3) “Back” Buttons ─────────────────────────────────────────────────────────────
-    const backButtonOwnerInformation = containerSection.querySelector(
-        "#back-owner-information-form"
-    );
-    if (backButtonOwnerInformation) {
-        backButtonOwnerInformation.addEventListener("click", () => {
-            formValue.steps = 1;
-            containerSection.querySelector("#currency-amount-form").classList.remove("hidden");
-            containerSection.querySelector("#owner-information-form").classList.add("hidden");
-        });
-    }
-
-    const backButtonAdyenForm = containerSection.querySelector("#back-adyen-form");
-    if (backButtonAdyenForm) {
-        backButtonAdyenForm.addEventListener("click", () => {
-            formValue.steps = 2;
-            containerSection.querySelector("#owner-information-form").classList.remove("hidden");
-            containerSection.querySelector("#adyen-form").classList.add("hidden");
-        });
-    }
-
-    // ─── 4) “Max Amount” Checkbox Logic ────────────────────────────────────────────────
-    containerSection.querySelector("#max-amount-checkbox").addEventListener("change", (e) => {
-        const checked = e.target.checked;
-        if (checked) {
-            containerSection.querySelector("#button-form-owner-information").classList.add("hidden");
-            containerSection.querySelector("#button-form-owner-information-link").classList.remove("hidden");
-            containerSection.querySelector("#button-form-owner-information-link").classList.add("block");
-        }
+  // Highlight selected currency
+  const handleCurrencyClick = (button) => {
+    allCurrencyButtons.forEach((btn) => {
+      btn.classList.remove("bg-gray-100", "text-primary");
+      btn.classList.add("text-white");
     });
+    button.classList.remove("text-white");
+    button.classList.add("bg-gray-100", "text-primary");
 
-    // Wipe out the original block and insert our new wizard
-    block.textContent = "";
-    block.append(containerSection);
+    formValue.currency = button.dataset.currency;
+    containerSection
+      .querySelectorAll("#button-amount-span")
+      .forEach((span) => (span.innerHTML = button.innerHTML));
+  };
+  allCurrencyButtons.forEach((button) =>
+    button.addEventListener("click", (e) => handleCurrencyClick(e.currentTarget))
+  );
+  // Restore stored currency (if any)
+  {
+    const storedCurrency = JSON.parse(sessionStorage.getItem("formValue"))?.currency;
+    const currencyButton =
+      containerSection.querySelector(`[data-currency="${storedCurrency}"]`) ||
+      containerSection.querySelector('[data-currency="USD"]');
+    if (currencyButton) handleCurrencyClick(currencyButton);
+  }
+
+  // Highlight selected preset amount
+  const handleAmountClick = (button) => {
+    allAmountButtons.forEach((btn) => {
+      btn.classList.remove("bg-primary", "text-white");
+      btn.classList.add("bg-gray-100");
+    });
+    button.classList.remove("text-white");
+    button.classList.add("bg-primary", "text-white");
+
+    formValue.amount = Number(button.dataset.amount);
+    customAmountInput.value = "";
+  };
+  allAmountButtons.forEach((button) =>
+    button.addEventListener("click", (e) => handleAmountClick(e.currentTarget))
+  );
+  // Restore stored amount
+  {
+    const storedAmount = JSON.parse(sessionStorage.getItem("formValue"))?.amount;
+    const amountButton =
+      containerSection.querySelector(`[data-amount="${storedAmount}"]`) ||
+      containerSection.querySelector('[data-amount="25"]');
+    if (amountButton) handleAmountClick(amountButton);
+  }
+
+  // Custom-amount input overrides buttons
+  if (customAmountInput) {
+    customAmountInput.addEventListener("input", (e) => {
+      const v = e.target.value;
+      if (v) {
+        formValue.amount = Number(v);
+        allAmountButtons.forEach((btn) => {
+          btn.classList.remove("bg-primary", "text-white");
+          btn.classList.add("bg-gray-100");
+        });
+      } else {
+        formValue.amount = 0;
+      }
+    });
+  }
+
+  // “Continue” on step 1 → move to step 2
+  const submitCurrencyAmountButton = containerSection.querySelector(
+    "#submit-currency-amount-form"
+  );
+  if (submitCurrencyAmountButton) {
+    submitCurrencyAmountButton.addEventListener("click", () => {
+      formValue.steps = 2;
+      containerSection.querySelector("#currency-amount-form").classList.add("hidden");
+      containerSection.querySelector("#owner-information-form").classList.remove("hidden");
+      sessionStorage.setItem("formValue", JSON.stringify(formValue));
+    });
+  }
+
+  // ─── 2) OWNER INFORMATION LOGIC ─────────────────────────────────────────────────
+  const submitOwnerInformationForm = containerSection.querySelector('#form-owner-information')
+  submitOwnerInformationForm.addEventListener('submit', (e) => {
+    const formData = new FormData(submitOwnerInformationForm);
+
+    e.preventDefault();
+    containerSection.querySelector("#owner-information-form").classList.add("hidden");
+    containerSection.querySelector("#adyen-form").classList.remove("hidden");
+
+    formValue.firstName = formData.get("first_name");
+    formValue.lastName = formData.get("last_name");
+    formValue.email = formData.get("email");
+    formValue.country = formData.get("country");
+    formValue.focusArea = formData.get("focus-area");
+
+    sessionStorage.setItem("formValue", JSON.stringify(formValue));
+
+    const sessionData = JSON.parse(sessionStorage.getItem("formValue"));
+    const rawCountryCode = sessionData.country.split("-")[0].toUpperCase(); // e.g. "IT" from "it-IT"
+
+    const data = {
+      country: rawCountryCode,
+      amount: {
+        // Minor units: e.g. 25 → 2500
+        value: sessionData.amount * 100,
+        currency: sessionData.currency,
+      },
+      orderReference: `DONATION_${Date.now()}`,
+      metadata: {
+        focusArea: sessionData.focusArea || ""
+      }
+    };
+
+    const additionalData = {
+      shopperEmail: sessionData.email,
+      shopperName: {
+        firstName: sessionData.firstName,
+        lastName: sessionData.lastName,
+      },
+      countryCode: rawCountryCode,
+      locale: sessionData.country,
+    };
+
+    // 4) Call Drop-in
+    initDonationForm(
+      data,
+      additionalData,
+      (success) => {
+        console.log("✅ Donation succeeded:", success);
+        sessionStorage.clear();
+      },
+      (error) => {
+        console.error("❌ Donation failed:", error);
+        sessionStorage.clear();
+      }
+    );
+
+    // 5) Finally, reveal the Drop-in container so it renders
+    containerSection.querySelector("#dropin-container").classList.remove("hidden");
+  })
+
+
+  // ─── 3) “Back” Buttons ─────────────────────────────────────────────────────────────
+  const backButtonOwnerInformation = containerSection.querySelector(
+    "#back-owner-information-form"
+  );
+  if (backButtonOwnerInformation) {
+    backButtonOwnerInformation.addEventListener("click", () => {
+      formValue.steps = 1;
+      containerSection.querySelector("#currency-amount-form").classList.remove("hidden");
+      containerSection.querySelector("#owner-information-form").classList.add("hidden");
+    });
+  }
+
+  const backButtonAdyenForm = containerSection.querySelector("#back-adyen-form");
+  if (backButtonAdyenForm) {
+    backButtonAdyenForm.addEventListener("click", () => {
+      formValue.steps = 2;
+      containerSection.querySelector("#owner-information-form").classList.remove("hidden");
+      containerSection.querySelector("#adyen-form").classList.add("hidden");
+    });
+  }
+
+  // ─── 4) “Max Amount” Checkbox Logic ────────────────────────────────────────────────
+  containerSection.querySelector("#max-amount-checkbox").addEventListener("change", (e) => {
+    const checked = e.target.checked;
+    if (checked) {
+      containerSection.querySelector("#button-form-owner-information").classList.add("hidden");
+      containerSection.querySelector("#button-form-owner-information-link").classList.remove("hidden");
+      containerSection.querySelector("#button-form-owner-information-link").classList.add("block");
+    }
+  });
+
+  // Wipe out the original block and insert our new wizard
+  block.textContent = "";
+  block.append(containerSection);
 };
 
 const CurrencyAmountForm = () => {

@@ -1,5 +1,6 @@
 # Your Project's Title...
 Your project's description...
+MSC Foundation
 
 ## Environments
 - Preview: https://main--{repo}--{owner}.aem.page/

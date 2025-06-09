@@ -58,22 +58,11 @@ export default async function decorate(block) {
     const aemEnv = block.getAttribute('data-aue-resource');
     if (!aemEnv) {
         block.textContent = '';
+        block.append(sectionContainer);
     } else {
-        pins.forEach(item => item.classList.add('hidden'));
-        const title = block.querySelector('div:nth-child(1)')
-        const subTitle = block.querySelector('div:nth-child(2)')
-        const centerLat = block.querySelector('div:nth-child(4)')
-        const centerLag = block.querySelector('div:nth-child(5)')
-        const apiKey = block.querySelector('div:nth-child(3)')
-        const zoom = block.querySelector('div:nth-child(6)')
-        zoom.classList.add('hidden');
-        apiKey.classList.add('hidden');
-        centerLag.classList.add('hidden');
-        centerLat.classList.add('hidden');
-        title.classList.add('hidden');
-        subTitle.classList.add('hidden');
+        block.querySelectorAll(':scope > div:nth-child(n+1)').forEach(item => item.classList.add('hidden'))
+        block.append(sectionContainer);
     }
-    block.append(sectionContainer);
 
 
 

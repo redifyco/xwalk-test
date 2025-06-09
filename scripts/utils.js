@@ -125,9 +125,9 @@ export function processDivsToObjectCarousel(divs) {
         const childDivs = parentDiv.querySelectorAll(':scope > div');
 
         const image = childDivs[0]?.querySelector('img')?.getAttribute('src') || '';
-        const title = childDivs[1]?.querySelector('p')?.textContent.trim() || 'Untitled';
-        const description = childDivs[2]?.querySelector('p')?.textContent.trim() || 'No description';
-        const buttonText = childDivs[3]?.querySelector('p')?.textContent.trim() || 'No button text';
+        const title = childDivs[1]?.querySelector('p')?.textContent.trim() || '';
+        const description = childDivs[2]?.querySelector('p')?.textContent.trim() || '';
+        const buttonText = childDivs[3]?.querySelector('p')?.textContent.trim() || '';
         const buttonLink = childDivs[4]?.querySelector('a')?.getAttribute('href') || '#';
 
         result.push({
@@ -149,10 +149,10 @@ export function processDivsToObjectTabSection(divs) {
     divs.forEach((parentDiv) => {
         const childDivs = parentDiv.querySelectorAll(':scope > div');
 
-        const tabTitle = childDivs[0]?.querySelector('p')?.textContent.trim() || 'Untitled';
-        const mainTitle = childDivs[1]?.querySelector('p')?.textContent.trim() || 'Untitled';
+        const tabTitle = childDivs[0]?.querySelector('p')?.textContent.trim() || '';
+        const mainTitle = childDivs[1]?.querySelector('p')?.textContent.trim() || '';
         const description = childDivs[2]?.innerHTML || 'No description';
-        const buttonText = childDivs[3]?.querySelector('p')?.textContent.trim() || 'No button text';
+        const buttonText = childDivs[3]?.querySelector('p')?.textContent.trim() || '';
         const buttonLink = childDivs[4]?.querySelector('a')?.getAttribute('href') || '#';
 
         result.push({
@@ -293,18 +293,36 @@ export function buildHeight(mobileHeight, desktopHeight) {
  */
 export function loadScript(url) {
     return new Promise((resolve, reject) => {
-        // If the script is already in the page, resolve immediately
-        if (document.querySelector(`script[src="${url}"]`)) {
-            return resolve();
-        }
-        const s = document.createElement("script");
-        s.src = url;
-        s.async = true;
-        s.defer = true;
-        s.onload = () => resolve();
-        s.onerror = () => reject(new Error(`Script failed to load: ${url}`));
-        document.head.appendChild(s);
+        const script = document.createElement('script');
+        script.src = url;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
     });
+}
+
+/**
+ * Carica uno script esterno dinamicamente con supporto per integrity e crossorigin
+ * @param {string} url URL dello script da caricare
+ * @param {Object} options Opzioni aggiuntive (integrity, crossorigin)
+ * @returns {Promise} Promise che si risolve quando lo script è caricato
+ */
+export function loadScriptSecure(url, options = {}) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = url;
+
+    if (options.integrity) {
+      script.integrity = options.integrity;
+    }
+    if (options.crossorigin) {
+      script.crossOrigin = options.crossorigin;
+    }
+
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
 }
 
 
@@ -363,16 +381,6 @@ export function createCase(data, onSuccess, onFailure) {
 
 /*Fetch Blog Preview Data */
 export async function getAllArticles(api) {
-
-    return await fetch(`${api.toString()}`, {
-        method: 'GET',
-    })
-        .then(response => response.json())
-        .catch(error => console.error('Error fetching articles:', error));
-}
-
-/*Fetch Focus Area from Taxonomy Page */
-export async function getFocusAreaFromTaxonomy(api) {
 
     return await fetch(`${api.toString()}`, {
         method: 'GET',
@@ -485,4 +493,43 @@ export const validateEmail = (email) => {
     return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 };
 
+/*Fetch Focus Area from Taxonomy Page */
+export async function getFocusAreaFromTaxonomy(api) {
+    if(api){
+    return await fetch(`${api.toString()}`, {
+        method: 'GET',
+    })
+      .then(response => response.json())
+      .catch(error => console.error('Error fetching articles:', error));
+    }
+}
 
+
+/**
+ * Carica Google reCAPTCHA Enterprise
+ * @returns {Promise} Promise che si risolve quando reCAPTCHA è caricato
+ */
+export async function loadGoogleRecaptcha() {
+    try {
+        if (window.grecaptcha) {
+            return Promise.resolve();
+        }
+
+        await loadScript('https://www.google.com/recaptcha/enterprise.js?render=AIzaSyAzo6o4BVCLZ91xZH_4lwmNKM0S4isG_VQ');
+
+        // Aspetta che grecaptcha sia disponibile
+        return new Promise((resolve) => {
+            const checkGrecaptcha = () => {
+                if (window.grecaptcha && window.grecaptcha.enterprise) {
+                    resolve();
+                } else {
+                    setTimeout(checkGrecaptcha, 100);
+                }
+            };
+            checkGrecaptcha();
+        });
+    } catch (error) {
+        console.error('Failed to load Google reCAPTCHA:', error);
+        throw error;
+    }
+}

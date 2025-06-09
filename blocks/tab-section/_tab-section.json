@@ -50,11 +50,10 @@
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
+          "component": "richtext",
           "name": "side-info-box-1-content",
           "label": "Filter tag 1",
-          "valueType": "string",
-          "rootPath": "/content/cq:tags/mscfoundation"
+          "valueType": "string"
         },
         {
           "component": "text",
@@ -63,11 +62,10 @@
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
+          "component": "richtext",
           "name": "side-info-box-2-content",
           "label": "Filter tag 2",
-          "valueType": "string",
-          "rootPath": "/content/cq:tags/mscfoundation"
+          "valueType": "string"
         },
         {
           "component": "text",

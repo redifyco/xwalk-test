@@ -41,6 +41,32 @@ indices:
         select: head > meta[name="published-time"]
         value: attribute(el, "content")
 
+  initiatives:
+    include:
+      - '/what-we-do/initiatives/**'
+    exclude:
+      - '/what-we-do/initiatives'
+    target: /initiatives-index.json
+    query:
+      offset: 0
+      perPage: 1
+    properties:
+      title:
+        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
+        value: innerHTML(el)
+      pageType:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
+      thumbImg:
+        select: main > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > picture > img
+        value: attribute(el, "src")
+      description:
+        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(3)
+        value: textContent(el)
+      published_time:
+        select: head > meta[name="published-time"]
+        value: attribute(el, "content")
+
   news:
     include:
       - '/news-and-media/news/**'
@@ -48,7 +74,7 @@ indices:
       - '/news-and-media/news'
     target: /news-index.json
     query:
-      limit: 10
+      limit: 30
       offset: 0
       filter: "properties.pageType eq 'article'"
     properties:
@@ -62,3 +88,65 @@ indices:
         selectFirst: main picture img
         value: attribute(el, "src")
 
+  stories:
+    include:
+      - '/news-and-media/stories/**'
+    exclude:
+      - '/news-and-media/stories'
+    target: /stories-index.json
+    query:
+      limit: 30
+      offset: 0
+      filter: "properties.pageType eq 'article'"
+    properties:
+      title:
+        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
+        value: innerHTML(el)
+      pageType:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
+      thumbImg:
+        selectFirst: main picture img
+        value: attribute(el, "src")
+
+  press-area:
+    include:
+      - '/news-and-media/press-area/**'
+    exclude:
+      - '/news-and-media/press-area'
+    target: /press-area-index.json
+    query:
+      limit: 30
+      offset: 0
+      filter: "properties.pageType eq 'article'"
+    properties:
+      title:
+        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
+        value: innerHTML(el)
+      pageType:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
+      thumbImg:
+        selectFirst: main picture img
+        value: attribute(el, "src")
+
+  publications:
+    include:
+      - '/news-and-media/publications/**'
+    exclude:
+      - '/news-and-media/publications'
+    target: /publications-index.json
+    query:
+      limit: 30
+      offset: 0
+      filter: "properties.pageType eq 'article'"
+    properties:
+      title:
+        select: main > div > div:nth-child(1) > div:nth-child(16) > div:nth-child(2)
+        value: innerHTML(el)
+      pageType:
+        select: head > meta[name="cq-tags"]
+        value: attribute(el, "content")
+      thumbImg:
+        selectFirst: main picture img
+        value: attribute(el, "src")

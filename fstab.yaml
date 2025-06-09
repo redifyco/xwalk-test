@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p153267-e1664864.adobeaemcloud.com/bin/franklin.delivery/redifyco/xwalk-test/main"
+    url: "https://author-p153267-e1585828.adobeaemcloud.com/bin/franklin.delivery/redifyco/xwalk-test/main"
     type: "markup"
     suffix: ".html"

@@ -23,8 +23,8 @@ export default async function decorate(block) {
         <div class="scrollbar scrollbar-thumb-primary scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-300 flex max-w-full justify-start gap-6 overflow-x-scroll pb-5 lg:flex-wrap lg:justify-center">
           ${resultData.data?.length > 0 ? resultData.data.map((item, index) => {
         const pageTypesObject = {
-            focusAreas: extractTagsByType(item.pageType, 'msc-foundation:focus-area'),
-            status: extractTagsByType(item.pageType, 'msc-foundation:status')
+            focusAreas: extractTagsByType(item.pageType, 'mscfoundation:focus-area'),
+            status: extractTagsByType(item.pageType, 'mscfoundation:status')
         };
 
         return `

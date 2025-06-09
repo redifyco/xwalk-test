@@ -409,6 +409,72 @@
     ]
   },
   {
+    "id": "blog-preview-model",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "load-more-button",
+        "label": "Load More Button",
+        "value": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "buttonText",
+        "label": "Button Text",
+        "condition": {
+          "===": [
+            {
+              "var": "load-more-button"
+            },
+            false
+          ]
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "buttonLink",
+        "label": "Button Link",
+        "condition": {
+          "===": [
+            {
+              "var": "load-more-button"
+            },
+            false
+          ]
+        }
+      },
+      {
+        "component": "number",
+        "valueType": "string",
+        "name": "items-to-show",
+        "label": "Items to Show"
+      },
+      {
+        "component": "select",
+        "name": "card-style",
+        "label": "Card Style",
+        "options": [
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "box-cards-model",
     "fields": [
       {
@@ -2110,6 +2176,70 @@
     ]
   },
   {
+    "id": "header",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo-image-dark",
+        "label": "Dark Logo Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo-image-light",
+        "label": "Light Logo Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "menu",
+        "label": "Menu",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "link-button",
+        "label": "Button Link",
+        "required": true
+      },
+      {
+        "component": "text",
+        "name": "link-text",
+        "label": "Button Text",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "facebook-social",
+        "label": "Facebook Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "instagram-social",
+        "label": "Instagram Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "linkedin-social",
+        "label": "Linkedin Link",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "youtube-social",
+        "label": "Youtube Link",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {
@@ -2943,11 +3073,10 @@
         "valueType": "string"
       },
       {
-        "component": "aem-tag",
+        "component": "richtext",
         "name": "side-info-box-1-content",
         "label": "Filter tag 1",
-        "valueType": "string",
-        "rootPath": "/content/cq:tags/mscfoundation"
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -2956,11 +3085,10 @@
         "valueType": "string"
       },
       {
-        "component": "aem-tag",
+        "component": "richtext",
         "name": "side-info-box-2-content",
         "label": "Filter tag 2",
-        "valueType": "string",
-        "rootPath": "/content/cq:tags/mscfoundation"
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -3428,6 +3556,126 @@
             "name": "400px",
             "value": "400"
           },
+          {
+            "name": "600px",
+            "value": "600"
+          },
+          {
+            "name": "800px",
+            "value": "800"
+          },
+          {
+            "name": "1000px",
+            "value": "1000"
+          },
+          {
+            "name": "1200px",
+            "value": "1200"
+          },
+          {
+            "name": "1400px",
+            "value": "1400"
+          },
+          {
+            "name": "1600px",
+            "value": "1600"
+          },
+          {
+            "name": "1800px",
+            "value": "1800"
+          },
+          {
+            "name": "2000px",
+            "value": "2000"
+          },
+          {
+            "name": "2200px",
+            "value": "2200"
+          },
+          {
+            "name": "24000px",
+            "value": "24000"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "title-subtitle-model",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "backgroundImage",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "subtitle",
+        "value": "",
+        "label": "Subtitle",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "mobile-height",
+        "label": "Mobile Height",
+        "options": [
+          {
+            "name": "200px",
+            "value": "200"
+          },
+          {
+            "name": "400px",
+            "value": "400"
+          },
+          {
+            "name": "600px",
+            "value": "600"
+          },
+          {
+            "name": "800px",
+            "value": "800"
+          },
+          {
+            "name": "1000px",
+            "value": "1000"
+          },
+          {
+            "name": "1200px",
+            "value": "1200"
+          },
+          {
+            "name": "1400px",
+            "value": "1400"
+          },
+          {
+            "name": "1600px",
+            "value": "1600"
+          },
+          {
+            "name": "1800px",
+            "value": "1800"
+          },
+          {
+            "name": "2000px",
+            "value": "2000"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "desktop-height",
+        "label": "Desktop Height",
+        "options": [
           {
             "name": "600px",
             "value": "600"

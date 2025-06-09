@@ -7,40 +7,6 @@ import {
 } from "../../scripts/utils.js";
 
 let currentPage = 1;
-const fallBackData = {
-    "columns": [
-        "path",
-        "title",
-        "pageType",
-        "thumbImg",
-        "description",
-        "title2",
-        "published_time"
-    ],
-    "data": [
-        {
-            "path": "",
-            "title": "Placeholder Title 1",
-            "pageType": "msc-foundation:focus-area/environmental-conservation",
-            "thumbImg": "",
-            "description": "Aenean eu magna orci. Praesent a condimentum velit. Sed hendrerit ex et porta sollicitudin. Nulla dui est, lacinia sed fermentum ut, suscipit sit amet tortor. Maecenas non odio imperdiet, pretium magna ut, auctor nisl. Nam rutrum euismod sodales. Sed aliquam libero vel mi auctor iaculis sed vel turpis. Ut sed leo in leo mollis ultrices at in lectus. Aliquam at rutrum dolor. Quisque gravida, nulla sit amet euismod feugiat, ex ante semper felis, viverra pellentesque est nunc vel augue. Curabitur turpis urna, maximus ac augue sit amet, viverra lacinia libero. Nulla iaculis semper sapien, id finibus ante posuere laoreet. Proin tempor neque nulla, eget tempus urna ",
-            "title2": "",
-            "published_time": ""
-        },
-        {
-            "path": "",
-            "title": "Placeholder Title 2",
-            "pageType": "msc-foundation:focus-area/environmental-conservation",
-            "thumbImg": "",
-            "description": "Aenean eu magna orci. Praesent a condimentum velit. Sed hendrerit ex et porta sollicitudin. Nulla dui est, lacinia sed fermentum ut, suscipit sit amet tortor. Maecenas non odio imperdiet, pretium magna ut, auctor nisl. Nam rutrum euismod sodales. Sed aliquam libero vel mi auctor iaculis sed vel turpis. Ut sed leo in leo mollis ultrices at in lectus. Aliquam at rutrum dolor. Quisque gravida, nulla sit amet euismod feugiat, ex ante semper felis, viverra pellentesque est nunc vel augue. Curabitur turpis urna, maximus ac augue sit amet, viverra lacinia libero. Nulla iaculis semper sapien, id finibus ante posuere laoreet. Proin tempor neque nulla, eget tempus urna scelerisque et. Suspendisse potenti. Integer fringilla ex id purus ultricies accumsan. Nullam et imperdiet augue, lobortis rutrum tortor.",
-            "published_time": "2025-05-20T13:41:06.809Z"
-        }
-    ],
-    "offset": 0,
-    "limit": 2,
-    "total": 2,
-    ":type": "sheet"
-}
 
 export default async function decorate(block) {
     const title = block.querySelector(':scope > div:nth-child(1) div p')?.textContent || ''
@@ -52,6 +18,7 @@ export default async function decorate(block) {
     const isFilterCategory = returnBoolean(block, 7)
     const aemEnv = block.getAttribute('data-aue-resource');
     const data = await getAllArticles(apiString)
+
 
     const resultData = getFilteredData(data.data, isFilterFocusArea, '', '')
     const sectionContainer = document.createElement('section');
@@ -84,7 +51,7 @@ export default async function decorate(block) {
             if (e.target.checked) {
                 currentPage = 1;
                 allCheckbox.forEach(item => item.id !== 'checkbox_emergencies' ? item.disabled = true : '')
-                const filteredData = getFilteredData(resultData, isFilterFocusArea, 'msc-foundation:categories/emergencies', dateFilter)
+                const filteredData = getFilteredData(resultData, isFilterFocusArea, 'mscfoundation:categories/emergencies', dateFilter)
                 sectionContainer.querySelector('#container-cards').innerHTML = RenderCards(filteredData, cardStyle, itemsToShow)
             } else {
                 const filteredData = getFilteredData(resultData, isFilterFocusArea, '', dateFilter)
@@ -95,9 +62,9 @@ export default async function decorate(block) {
     }
 
     const checkboxConfig = {
-        'events': 'msc-foundation:categories/events',
-        'milestones': 'msc-foundation:categories/milestones',
-        'programmes': 'msc-foundation:categories/programmes'
+        'events': 'mscfoundation:categories/events',
+        'milestones': 'mscfoundation:categories/milestones',
+        'programmes': 'mscfoundation:categories/programmes'
     };
 
     Object.entries(checkboxConfig).forEach(([type, category]) => {
@@ -137,7 +104,7 @@ export default async function decorate(block) {
         }
         const dateFilter = document.querySelector('#date-filter')?.value || '';
         const categoryCheckbox = Array.from(document.querySelectorAll('input[type="checkbox"]')).find(cb => cb.checked);
-        const categoryType = categoryCheckbox ? `msc-foundation:categories/${categoryCheckbox.id.replace('checkbox_', '')}` : '';
+        const categoryType = categoryCheckbox ? `mscfoundation:categories/${categoryCheckbox.id.replace('checkbox_', '')}` : '';
         const filteredData = getFilteredData(data.data, isFilterFocusArea, categoryType, dateFilter);
         document.querySelector('#container-cards').innerHTML = RenderCards(filteredData, cardStyle, itemsToShow);
     };
@@ -158,8 +125,8 @@ const RenderCards = (data, cardStyle, perPage) => {
         <div class="flex flex-col sm:flex-row flex-wrap h-full gap-2 justify-center md:justify-between">
             ${result.length > 0 ? result.map(item => {
         const pageTypesObject = {
-            focusAreas: extractTagsByType(item.pageType, 'msc-foundation:focus-area'),
-            status: extractTagsByType(item.pageType, 'msc-foundation:status')
+            focusAreas: extractTagsByType(item.pageType, 'mscfoundation:focus-area'),
+            status: extractTagsByType(item.pageType, 'mscfoundation:status')
         };
 
         return `
@@ -240,10 +207,10 @@ const FilterByFocusArea = () => {
     <div class="flex w-full flex-col mt-10 gap-8">
         <h4 class="text-primary text-3xl font-semibold">Filter by focus area</h4>
         <div class="flex flex-col gap-4 p-6 rounded-xl shadow-md">
-            <div class="flex gap-2 items-center">${returnFocusAreaIcon('msc-foundation:focus-area/environmental-conservation')}<p>Environmental Conservation</p></div>
-            <div class="flex gap-2 items-center">${returnFocusAreaIcon('msc-foundation:focus-area/community-support')}<p>Community Support</p></div>
-            <div class="flex gap-2 items-center">${returnFocusAreaIcon('msc-foundation:focus-area/education')}<p>Education</p></div>
-            <div class="flex gap-2 items-center">${returnFocusAreaIcon('msc-foundation:focus-area/emergency-relief')}<p>Emergency Relief</p></div>
+            <div class="flex gap-2 items-center">${returnFocusAreaIcon('mscfoundation:focus-area/environmental-conservation')}<p>Environmental Conservation</p></div>
+            <div class="flex gap-2 items-center">${returnFocusAreaIcon('mscfoundation:focus-area/community-support')}<p>Community Support</p></div>
+            <div class="flex gap-2 items-center">${returnFocusAreaIcon('mscfoundation:focus-area/education')}<p>Education</p></div>
+            <div class="flex gap-2 items-center">${returnFocusAreaIcon('mscfoundation:focus-area/emergency-relief')}<p>Emergency Relief</p></div>
         </div>
     </div>
     `
@@ -285,7 +252,7 @@ const DATE_FILTERS = {
 
 const getFilteredData = (data, isFocusArea, categoryType, dateFilter) => {
     const filters = []
-    if (isFocusArea) filters.push('msc-foundation:focus-area')
+    if (isFocusArea) filters.push('mscfoundation:focus-area')
     if (categoryType) filters.push(categoryType)
 
     const filteredData = data.filter(item => {
@@ -300,7 +267,7 @@ const getFilteredData = (data, isFocusArea, categoryType, dateFilter) => {
         if (categoryType) {
             passTypeFilter = extractedTags.map(item => item.toLowerCase()).includes(categoryType)
         } else if (isFocusArea) {
-            passTypeFilter = extractedTags.some(tag => tag.includes('msc-foundation:focus-area'))
+            passTypeFilter = extractedTags.some(tag => tag.includes('mscfoundation:focus-area'))
         }
 
         return passTypeFilter && passDateFilter

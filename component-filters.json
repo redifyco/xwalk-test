@@ -41,9 +41,8 @@
       "accordion",
       "two-images-text",
       "donation-form",
-      "caf-donation",
-      "pop-up",
       "footer-block",
+      "caf-donation",
       "our-team"
     ]
   },
@@ -114,6 +113,10 @@
     "components": [
       "menu-item"
     ]
+  },
+  {
+    "id": "header",
+    "components": []
   },
   {
     "id": "logo-showcase-filter",
