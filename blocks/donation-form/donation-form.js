@@ -160,10 +160,6 @@ export default async function decorate(block) {
             containerSection.querySelector("#currency-amount-form").classList.add("hidden");
             containerSection.querySelector("#owner-information-form").classList.remove("hidden");
             sessionStorage.setItem("formValue", JSON.stringify(formValue));
-            console.log(
-                "🔷 storedFormValue CURRENCY AMOUNT→",
-                JSON.parse(sessionStorage.getItem("formValue"))
-            );
         });
     }
 
@@ -172,7 +168,6 @@ export default async function decorate(block) {
     submitOwnerInformationForm.addEventListener('submit', (e) => {
         const formData = new FormData(submitOwnerInformationForm);
 
-        console.log('formData', formData)
 
         e.preventDefault();
         containerSection.querySelector("#owner-information-form").classList.add("hidden");
@@ -182,7 +177,7 @@ export default async function decorate(block) {
         formValue.lastName = formData.get("last_name");
         formValue.email = formData.get("email");
         formValue.country = formData.get("country");
-        formValue.focusArea = formData.get("focus_area");
+        formValue.focusArea = formData.get("focus-area");
 
         sessionStorage.setItem("formValue", JSON.stringify(formValue));
 
@@ -192,7 +187,6 @@ export default async function decorate(block) {
         const data = {
             country: rawCountryCode,
             amount: {
-                // Minor units: e.g. 25 → 2500
                 value: sessionData.amount * 100,
                 currency: sessionData.currency,
             },
@@ -369,7 +363,7 @@ const OwnerInformationForm = (redirectLink, maxAmount, focusArea) => {
         if (item.tag === 'mscfoundation:focus-area') {
             return `<option value="" disabled selected>*${item.title}...</option>`
         } else {
-            return `<option value="${item.tag}">${item.title}</option>`
+            return `<option value="${item.title}">${item.title}</option>`
         }
     }) : ''}
               </select>
