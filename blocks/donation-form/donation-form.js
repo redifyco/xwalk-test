@@ -21,8 +21,9 @@ export default async function decorate(block) {
         block.querySelector(":scope > div:nth-child(4) div")?.textContent
     );
     const redirectMaxAmount = block.querySelector(":scope > div:nth-child(5) div a")?.href;
+    const APIUrl = block.querySelector(":scope > div:nth-child(6) div p")?.textContent;
     const sessionStorage = window.sessionStorage;
-    const focusArea = await getFocusAreaFromTaxonomy('/focus-area.json');
+    const focusArea = await getFocusAreaFromTaxonomy(APIUrl);
 
 
     // Helper to reset in‐memory + sessionStorage state:

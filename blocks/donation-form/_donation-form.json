@@ -49,6 +49,12 @@
           "component": "aem-content",
           "name": "redirect-max-amount-link",
           "label": "Redirect Max Amount Link"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "API-URL",
+          "label": "API URL"
         }
       ]
     }
