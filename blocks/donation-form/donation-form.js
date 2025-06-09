@@ -165,90 +165,68 @@ export default function decorate(block) {
     }
 
     // ─── 2) OWNER INFORMATION LOGIC ─────────────────────────────────────────────────
-    const submitOwnerInformationForm = containerSection.querySelector(
-        "#submit-owner-information-form"
-    );
-    if (submitOwnerInformationForm) {
-        // Prefill any stored values
-        const storedFormData = JSON.parse(sessionStorage.getItem("formValue")) || {};
-        if (storedFormData) {
-            containerSection.querySelector("#first_name").value = storedFormData.firstName || "";
-            containerSection.querySelector("#last_name").value = storedFormData.lastName || "";
-            containerSection.querySelector("#email").value = storedFormData.email || "";
-            containerSection.querySelector("#country").value = storedFormData.country || "";
-            containerSection.querySelector("#focus-area").value = storedFormData.focusArea || "";
-        }
+    const submitOwnerInformationForm = containerSection.querySelector('#form-owner-information')
+    submitOwnerInformationForm.addEventListener('submit', (e) => {
+        const formData = new FormData(submitOwnerInformationForm);
 
-        submitOwnerInformationForm.addEventListener("click", (e) => {
-            e.preventDefault();
+        console.log('formData', formData)
 
-            // 1) Swap to step 3
-            formValue.steps = 3;
-            containerSection.querySelector("#owner-information-form").classList.add("hidden");
-            containerSection.querySelector("#adyen-form").classList.remove("hidden");
+        e.preventDefault();
+        containerSection.querySelector("#owner-information-form").classList.add("hidden");
+        containerSection.querySelector("#adyen-form").classList.remove("hidden");
 
-            // 2) Read whatever user typed
-            formValue.firstName = containerSection.querySelector("#first_name")?.value;
-            formValue.lastName = containerSection.querySelector("#last_name")?.value;
-            formValue.email = containerSection.querySelector("#email")?.value;
-            formValue.country = containerSection.querySelector("#country")?.value;
-            formValue.focusArea = containerSection.querySelector("#focus-area")?.value;
+        formValue.firstName = formData.get("first_name");
+        formValue.lastName = formData.get("last_name");
+        formValue.email = formData.get("email");
+        formValue.country = formData.get("country");
+        formValue.focusArea = formData.get("focus_area");
 
-            sessionStorage.setItem("formValue", JSON.stringify(formValue));
-            console.log("🔷 storedFormValue OWNER INFO→", JSON.parse(sessionStorage.getItem("formValue")));
+        sessionStorage.setItem("formValue", JSON.stringify(formValue));
 
-            // 3) Build `data` and `additionalData` now that we have everything
-            const sessionData = JSON.parse(sessionStorage.getItem("formValue"));
-            const rawCountryCode = sessionData.country.split("-")[0].toUpperCase(); // e.g. "IT" from "it-IT"
+        const sessionData = JSON.parse(sessionStorage.getItem("formValue"));
+        const rawCountryCode = sessionData.country.split("-")[0].toUpperCase(); // e.g. "IT" from "it-IT"
 
-            const data = {
-                country: rawCountryCode,
-                amount: {
-                    // Minor units: e.g. 25 → 2500
-                    value: sessionData.amount * 100,
-                    currency: sessionData.currency,
-                },
-                orderReference: `DONATION_${Date.now()}`,
-                metadata: {
-                    focusArea: sessionData.focusArea || ""
-                }
-            };
+        const data = {
+            country: rawCountryCode,
+            amount: {
+                // Minor units: e.g. 25 → 2500
+                value: sessionData.amount * 100,
+                currency: sessionData.currency,
+            },
+            orderReference: `DONATION_${Date.now()}`,
+            metadata: {
+                focusArea: sessionData.focusArea || ""
+            }
+        };
 
-            const additionalData = {
-                shopperEmail: sessionData.email,
-                shopperName: {
-                    firstName: sessionData.firstName,
-                    lastName: sessionData.lastName,
-                },
-                billingAddress: {
-                    country: rawCountryCode,
-                    city: "N/A",
-                    street: "N/A",
-                    houseNumberOrName: "N/A",
-                    postalCode: "00000",
-                },
-                countryCode: rawCountryCode,
-                locale: sessionData.country, // e.g. "it-IT"
-            };
+        const additionalData = {
+            shopperEmail: sessionData.email,
+            shopperName: {
+                firstName: sessionData.firstName,
+                lastName: sessionData.lastName,
+            },
+            countryCode: rawCountryCode,
+            locale: sessionData.country,
+        };
 
-            // 4) Call Drop-in
-            initDonationForm(
-                data,
-                additionalData,
-                (success) => {
-                    console.log("✅ Donation succeeded:", success);
-                    sessionStorage.clear();
-                },
-                (error) => {
-                    console.error("❌ Donation failed:", error);
-                    sessionStorage.clear();
-                }
-            );
+        // 4) Call Drop-in
+        initDonationForm(
+            data,
+            additionalData,
+            (success) => {
+                console.log("✅ Donation succeeded:", success);
+                sessionStorage.clear();
+            },
+            (error) => {
+                console.error("❌ Donation failed:", error);
+                sessionStorage.clear();
+            }
+        );
 
-            // 5) Finally, reveal the Drop-in container so it renders
-            containerSection.querySelector("#dropin-container").classList.remove("hidden");
-        });
-    }
+        // 5) Finally, reveal the Drop-in container so it renders
+        containerSection.querySelector("#dropin-container").classList.remove("hidden");
+    })
+
 
     // ─── 3) “Back” Buttons ─────────────────────────────────────────────────────────────
     const backButtonOwnerInformation = containerSection.querySelector(
@@ -275,9 +253,9 @@ export default function decorate(block) {
     containerSection.querySelector("#max-amount-checkbox").addEventListener("change", (e) => {
         const checked = e.target.checked;
         if (checked) {
-            containerSection.querySelector("#submit-owner-information-form").classList.add("hidden");
-            containerSection.querySelector("#submit-owner-information-form-link").classList.remove("hidden");
-            containerSection.querySelector("#submit-owner-information-form-link").classList.add("block");
+            containerSection.querySelector("#button-form-owner-information").classList.add("hidden");
+            containerSection.querySelector("#button-form-owner-information-link").classList.remove("hidden");
+            containerSection.querySelector("#button-form-owner-information-link").classList.add("block");
         }
     });
 
@@ -286,9 +264,6 @@ export default function decorate(block) {
     block.append(containerSection);
 };
 
-/* ─── TEMPLATES FOR EACH STEP ─────────────────────────────────────────────────── */
-
-// Step 1: Currency & Amount UI
 const CurrencyAmountForm = () => {
     return `
     <div class="bg-white h-full w-full px-4 lg:p-8 flex flex-col gap-4">
@@ -338,19 +313,19 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
           <ion-icon size="small" name="chevron-back-outline"></ion-icon>
           <span>Back</span>
         </button>
-        <div class="mt-3 flex flex-col gap-8">
+        <form id="form-owner-information" class="mt-3 flex flex-col gap-8">
           <span class="border-b w-full text-xl border-b-black">Your Information</span>
           <div class="flex flex-col gap-8">
             <div class="flex gap-8">
               <input
-                id="first_name"
+                name="first_name"
                 type="text"
                 required
                 placeholder="*First Name..."
                 class="border-primary w-full border-r-2 border-b-2 p-1 focus-visible:translate-x-1 focus-visible:outline-0"
               />
               <input
-                id="last_name"
+                name="last_name"
                 type="text"
                 required
                 placeholder="*Last Name..."
@@ -359,7 +334,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
             </div>
             <div>
               <input
-                id="email"
+                name="email"
                 type="email"
                 required
                 placeholder="*Email..."
@@ -368,7 +343,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
             </div>
             <div>
               <select
-                id="country"
+                name="country"
                 class="border-primary w-full border-r-2 border-b-2 p-1 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
               >
                 <option value="" disabled selected>*Country...</option>
@@ -382,7 +357,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
             </div>
             <div>
               <select
-                id="focus-area"
+                name="focus-area"
                 class="border-primary w-full border-r-2 border-b-2 p-1 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
               >
                 <option value="" disabled selected>*Focus Area...</option>
@@ -396,7 +371,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
               <div class="flex w-full items-center gap-2">
                 <input
                   type="checkbox"
-                  id="privacy"
+                  name="privacy"
                   required
                   checked
                   class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
@@ -408,7 +383,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
               <div class="flex w-full items-center gap-2">
                 <input
                   type="checkbox"
-                  id="marketing"
+                  name="marketing"
                   class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
                 />
                 <label for="marketing" class="text-sm font-light cursor-pointer">
@@ -418,6 +393,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
               <div class="flex w-full items-center gap-2">
                 <input
                   type="checkbox"
+                    name="max-amount-checkbox"
                   id="max-amount-checkbox"
                   class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
                 />
@@ -428,9 +404,9 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
             </div>
           </div>
           <button
-            type="button"
+            type="submit"
             class="border cursor-pointer mt-5 border-primary w-full py-2 text-primary"
-            id="submit-owner-information-form"
+            id="button-form-owner-information"
           >
             Continue
           </button>
@@ -439,11 +415,11 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
             href="${redirectLink}"
             type="button"
             class="border text-center cursor-pointer mt-5 border-primary w-full py-2 text-primary hidden"
-            id="submit-owner-information-form-link"
+            id="button-form-owner-information-link"
           >
             Continue
           </a>
-        </div>
+        </form>
       </div>
     </div>
   `;
