@@ -1,4 +1,5 @@
 import {initDonationForm} from "../../scripts/adyen-init.js";
+import {getFocusAreaFromTaxonomy} from "../../scripts/utils.js";
 
 const formValue = {
     firstName: "",
@@ -11,7 +12,7 @@ const formValue = {
     focusArea: "",
 };
 
-export default function decorate(block) {
+export default async function decorate(block) {
     const backgroundImage =
         block.querySelector(":scope > div:nth-child(1) img")?.src;
     const title = block.querySelector(":scope > div:nth-child(2) div")?.innerHTML;
@@ -21,10 +22,11 @@ export default function decorate(block) {
     );
     const redirectMaxAmount = block.querySelector(":scope > div:nth-child(5) div a")?.href;
     const sessionStorage = window.sessionStorage;
+    const focusArea = await getFocusAreaFromTaxonomy('/focus-area.json');
+
 
     // Helper to reset in‐memory + sessionStorage state:
     const resetSessionStorage = () => {
-        formValue.firstName = "";
         formValue.lastName = "";
         formValue.email = "";
         formValue.currency = "USD";
@@ -60,7 +62,8 @@ export default function decorate(block) {
         <div id="currency-amount-form" class="block">${CurrencyAmountForm()}</div>
         <div id="owner-information-form" class="hidden">${OwnerInformationForm(
         redirectMaxAmount,
-        maxAmount
+        maxAmount,
+        focusArea
     )}</div>
         <div id="adyen-form" class="hidden">${AdyenForm()}</div>
       </div>
@@ -305,7 +308,7 @@ const CurrencyAmountForm = () => {
 };
 
 // Step 2: Owner Information UI
-const OwnerInformationForm = (redirectLink, maxAmount) => {
+const OwnerInformationForm = (redirectLink, maxAmount, focusArea) => {
     return `
     <div class="bg-white flex h-full w-full px-4 lg:p-8 flex-col gap-4">
       <div class="flex flex-col">
@@ -343,6 +346,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
             </div>
             <div>
               <select
+              required
                 name="country"
                 class="border-primary w-full border-r-2 border-b-2 p-1 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
               >
@@ -357,14 +361,17 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
             </div>
             <div>
               <select
+              required
                 name="focus-area"
                 class="border-primary w-full border-r-2 border-b-2 p-1 focus-visible:translate-x-1 focus-visible:outline-0 bg-transparent"
               >
-                <option value="" disabled selected>*Focus Area...</option>
-                <option value="environmental-conservation">Environmental Conservation</option>
-                <option value="community-support">Community Support</option>
-                <option value="education">Education</option>
-                <option value="emergency-relief">Emergency Relief</option>
+                ${focusArea.data.length > 0 ? focusArea.data.map((item) => {
+        if (item.tag === 'mscfoundation:focus-area') {
+            return `<option value="" disabled selected>*${item.title}...</option>`
+        } else {
+            return `<option value="${item.tag}">${item.title}</option>`
+        }
+    }) : ''}
               </select>
             </div>
             <div class="flex flex-col gap-2">
@@ -393,7 +400,7 @@ const OwnerInformationForm = (redirectLink, maxAmount) => {
               <div class="flex w-full items-center gap-2">
                 <input
                   type="checkbox"
-                    name="max-amount-checkbox"
+                  name="max-amount-checkbox"
                   id="max-amount-checkbox"
                   class="size-4 min-w-4 checked:bg-primary border-primary accent-primary cursor-pointer"
                 />

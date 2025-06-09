@@ -292,19 +292,19 @@ export function buildHeight(mobileHeight, desktopHeight) {
  * @returns {Promise} Promise che si risolve quando lo script è caricato
  */
 export function loadScript(url) {
-  return new Promise((resolve, reject) => {
-    // If the script is already in the page, resolve immediately
-    if (document.querySelector(`script[src="${url}"]`)) {
-      return resolve();
-    }
-    const s = document.createElement("script");
-    s.src = url;
-    s.async = true;
-    s.defer = true;
-    s.onload = () => resolve();
-    s.onerror = () => reject(new Error(`Script failed to load: ${url}`));
-    document.head.appendChild(s);
-  });
+    return new Promise((resolve, reject) => {
+        // If the script is already in the page, resolve immediately
+        if (document.querySelector(`script[src="${url}"]`)) {
+            return resolve();
+        }
+        const s = document.createElement("script");
+        s.src = url;
+        s.async = true;
+        s.defer = true;
+        s.onload = () => resolve();
+        s.onerror = () => reject(new Error(`Script failed to load: ${url}`));
+        document.head.appendChild(s);
+    });
 }
 
 
@@ -363,6 +363,16 @@ export function createCase(data, onSuccess, onFailure) {
 
 /*Fetch Blog Preview Data */
 export async function getAllArticles(api) {
+
+    return await fetch(`${api.toString()}`, {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .catch(error => console.error('Error fetching articles:', error));
+}
+
+/*Fetch Focus Area from Taxonomy Page */
+export async function getFocusAreaFromTaxonomy(api) {
 
     return await fetch(`${api.toString()}`, {
         method: 'GET',
