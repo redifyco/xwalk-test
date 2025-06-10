@@ -259,8 +259,8 @@ export default async function decorate(block) {
     // ─── 4) “Max Amount” Checkbox Logic ────────────────────────────────────────────────
     containerSection.querySelector("#max-amount-checkbox").addEventListener("change", (e) => {
         const checked = e.target.checked;
-        containerSection.querySelector("#button-form-owner-information").classList.toggle("hidden", !checked);
-        containerSection.querySelector("#button-form-owner-information-link").classList.toggle("hidden", checked);
+        containerSection.querySelector("#button-form-owner-information").classList.toggle("hidden", checked);
+        containerSection.querySelector("#button-form-owner-information-link").classList.toggle("hidden", !checked);
     });
 
     // Wipe out the original block and insert our new wizard
@@ -425,7 +425,7 @@ const OwnerInformationForm = (redirectLink, maxAmount, focusArea) => {
             class="border text-center cursor-pointer mt-5 border-primary w-full py-2 text-primary hidden"
             id="button-form-owner-information-link"
           >
-            Continue
+            Continue link
           </a>
         </form>
       </div>
