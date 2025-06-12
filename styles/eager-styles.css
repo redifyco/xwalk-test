@@ -58,6 +58,7 @@
     --radius-2xl: 1rem;
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --animate-spin: spin 1s linear infinite;
     --blur-sm: 8px;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -535,6 +536,9 @@
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
+  .h-12 {
+    height: calc(var(--spacing) * 12);
+  }
   .h-20 {
     height: calc(var(--spacing) * 20);
   }
@@ -628,6 +632,9 @@
   .min-h-96 {
     min-height: calc(var(--spacing) * 96);
   }
+  .min-h-\[400px\] {
+    min-height: 400px;
+  }
   .w-0\.5 {
     width: calc(var(--spacing) * 0.5);
   }
@@ -642,6 +649,9 @@
   }
   .w-9\/12 {
     width: calc(9/12 * 100%);
+  }
+  .w-12 {
+    width: calc(var(--spacing) * 12);
   }
   .w-20 {
     width: calc(var(--spacing) * 20);
@@ -762,6 +772,9 @@
   }
   .animate-\[slide_10s_linear_infinite\] {
     animation: slide 10s linear infinite;
+  }
+  .animate-spin {
+    animation: var(--animate-spin);
   }
   .cursor-pointer {
     cursor: pointer;
@@ -1077,6 +1090,9 @@
   .bg-no-repeat {
     background-repeat: no-repeat;
   }
+  .fill-primary {
+    fill: var(--color-primary);
+  }
   .object-contain {
     object-fit: contain;
   }
@@ -1315,6 +1331,9 @@
   }
   .text-current {
     color: currentcolor;
+  }
+  .text-gray-200 {
+    color: var(--color-gray-200);
   }
   .text-gray-400 {
     color: var(--color-gray-400);
@@ -2747,6 +2766,12 @@ option {
   color: #fff;
   padding: 0.5em;
 }
+:root {
+  --adyen-sdk-color-background-primary: none;
+}
+.adyen-checkout__payment-method--selected {
+  background: none !important;
+}
 @layer base {
   * {
     scrollbar-color: initial;
@@ -3023,6 +3048,11 @@ option {
 @property --tw-tracking {
   syntax: "*";
   inherits: false;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes slide {
   0% {

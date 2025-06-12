@@ -1078,8 +1078,14 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "API-URL",
-        "label": "API URL"
+        "name": "focus-area-api-url",
+        "label": "Focus Area API URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "countries-api-url",
+        "label": "Countries API URL"
       }
     ]
   },

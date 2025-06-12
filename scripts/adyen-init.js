@@ -33,7 +33,7 @@ export const initDonationForm = (
         fetch(CREATE_SESSION_API_URL, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(data),
+            body: JSON.stringify({...data, returnUrl:additionalData.returnUrl}),
         }).then((res) => res.json()),
         fetch(GET_PAYMENT_METHODS_API_URL, {
             method: "POST",
@@ -42,8 +42,6 @@ export const initDonationForm = (
         }).then((res) => res.json()),
     ])
         .then(async ([sessionResp, pmResp]) => {
-            console.log("🔷 Create Session Response:", sessionResp);
-            console.log("🔷 Get PaymentMethods Response:", pmResp);
 
             // 2) sessionResp.data is a string like:
             //    "{\"id\":\"CS980E79DFF16EF272\",\"session\":\"Ab02b4c0!BQA…\"}"
@@ -97,6 +95,7 @@ export const initDonationForm = (
                     value: data.amount.value,
                     currency: data.amount.currency,
                 },
+
                 locale: additionalData.locale || "en-US",
                 countryCode: additionalData.countryCode,
                 onPaymentCompleted: onPaymentCompleted,
@@ -110,9 +109,12 @@ export const initDonationForm = (
             };
 
             // 6) Now we can safely initialize Drop-in
-            try {
+          try {
                 const checkout = await AdyenCheckout(globalConfiguration);
                 new Dropin(checkout, {}).mount("#dropin-container");
+
+              const loaderDiv = document.querySelector('#adyen-loader');
+              loaderDiv.classList.add('hidden');
             } catch (err) {
                 console.error("❌ Error creating AdyenCheckout:", err);
                 onPaymentFailed(err);

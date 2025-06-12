@@ -5,7 +5,8 @@
     "/content/mscfoundation/metadata:/metadata.json",
     "/content/mscfoundation/focus-area:/focus-area.json",
     "/content/mscfoundation/news-categories:/news-categories.json",
-    "/content/mscfoundation/headers,:/.helix/headers.json"
+    "/content/mscfoundation/headers:/.helix/headers.json",
+    "/content/mscfoundation/countries:/countries.json"
   ],
   "includes": [
     "/content/mscfoundation/"

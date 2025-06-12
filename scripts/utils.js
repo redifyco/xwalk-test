@@ -494,13 +494,13 @@ export const validateEmail = (email) => {
 };
 
 /*Fetch Focus Area from Taxonomy Page */
-export async function getFocusAreaFromTaxonomy(api) {
+export async function getDataFromJson(api) {
     if(api){
     return await fetch(`${api.toString()}`, {
         method: 'GET',
     })
       .then(response => response.json())
-      .catch(error => console.error('Error fetching articles:', error));
+      .catch(error => console.error('Error fetching:', error));
     }
 }
 

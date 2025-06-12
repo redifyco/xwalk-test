@@ -239,8 +239,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   
   // Load critical CSS
-  await loadCSS('/styles/stylecompiled.css');
-  
+  loadCSS(`${window.hlx.codeBasePath}/styles/eager-styles.css`);
   // Load Ionicons
   loadIonicons();
   
@@ -281,7 +280,6 @@ async function loadLazy(doc) {
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
-  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 }
 

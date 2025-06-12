@@ -1,6 +1,1 @@
-:root {
-    --adyen-sdk-color-background-primary: none
-}
-.adyen-checkout__payment-method--selected {
-    background: none !important;
-}
+
