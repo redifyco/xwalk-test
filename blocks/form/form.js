@@ -75,7 +75,7 @@ export default async function decorate(block) {
 
   // 3️⃣ Fetch the public siteKey from your Fastly edge route
   let siteKey = "";
-  const recaptchaConfigUrl = `${window.location.origin}/recaptchaConfig`;
+  const recaptchaConfigUrl = `${window.location.origin}/recaptchaconfig`;
   console.log("[form.js] › Fetching siteKey from:", recaptchaConfigUrl);
 
   try {
