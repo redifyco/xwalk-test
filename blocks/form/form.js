@@ -4,7 +4,7 @@ import "../../scripts/customTag.js";
 import { createLead, validateEmail, loadScript } from "../../scripts/utils.js";
 
 export default async function decorate(block) {
-  console.log("[form.js] › decorate() start");
+  console.log("[form.js] › decorate() start ---");
 
   // 1️⃣ Build the Adobe EDS form HTML
   const backgroundImage = block.querySelector(":scope > div:nth-child(1) img")?.src;
