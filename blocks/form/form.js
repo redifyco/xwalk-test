@@ -1,7 +1,7 @@
 // ui.frontend/src/scripts/form.js
 
-import "./customTag.js";
-import { createLead, validateEmail, loadScript } from "./utils.js";
+import "../../scripts/customTag.js";
+import { createLead, validateEmail, loadScript } from "../../scripts/utils.js";
 
 export default async function decorate(block) {
   console.log("[form.js] › decorate() start");
