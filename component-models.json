@@ -118,7 +118,7 @@
       },
       {
         "component": "container",
-        "label": "Focus Area 1",
+        "label": "Element 1",
         "collapsible": true,
         "name": "focus-area-1",
         "valueType": "string",
@@ -127,7 +127,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "focus-area-1-image",
-            "label": "Focus Area 1 Image",
+            "label": "Element 1 Image",
             "multi": false,
             "required": true
           },
@@ -135,7 +135,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "focus-area-1-icon",
-            "label": "Focus Area 1 Icon",
+            "label": "Element 1 Icon",
             "multi": false,
             "required": true
           },
@@ -143,7 +143,7 @@
             "component": "text",
             "valueType": "string",
             "name": "focus-area-1-title",
-            "label": "Focus Area 1 Title",
+            "label": "Element 1 Title",
             "value": "",
             "required": true
           },
@@ -151,7 +151,7 @@
             "component": "richtext",
             "valueType": "string",
             "name": "focus-area-1-description",
-            "label": "Focus Area 1 Description",
+            "label": "Element 1 Description",
             "value": "",
             "required": true
           }
@@ -159,7 +159,7 @@
       },
       {
         "component": "container",
-        "label": "Focus Area 2",
+        "label": "Element 2",
         "collapsible": true,
         "name": "focus-area-2",
         "valueType": "string",
@@ -168,7 +168,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "focus-area-2-image",
-            "label": "Focus Area 2 Image",
+            "label": "Element 2 Image",
             "multi": false,
             "required": true
           },
@@ -176,7 +176,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "focus-area-2-icon",
-            "label": "Focus Area 2 Icon",
+            "label": "Element 2 Icon",
             "multi": false,
             "required": true
           },
@@ -184,7 +184,7 @@
             "component": "text",
             "valueType": "string",
             "name": "focus-area-2-title",
-            "label": "Focus Area 2 Title",
+            "label": "Element 2 Title",
             "value": "",
             "required": true
           },
@@ -192,7 +192,7 @@
             "component": "richtext",
             "valueType": "string",
             "name": "focus-area-2-description",
-            "label": "Focus Area 2 Description",
+            "label": "Element 2 Description",
             "value": "",
             "required": true
           }
@@ -200,7 +200,7 @@
       },
       {
         "component": "container",
-        "label": "Focus Area 3",
+        "label": "Element 3",
         "collapsible": true,
         "name": "focus-area-3",
         "valueType": "string",
@@ -209,7 +209,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "focus-area-3-image",
-            "label": "Focus Area 3 Image",
+            "label": "Element 3 Image",
             "multi": false,
             "required": true
           },
@@ -217,7 +217,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "focus-area-3-icon",
-            "label": "Focus Area 3 Icon",
+            "label": "Element 3 Icon",
             "multi": false,
             "required": true
           },
@@ -225,7 +225,7 @@
             "component": "text",
             "valueType": "string",
             "name": "focus-area-3-title",
-            "label": "Focus Area 3 Title",
+            "label": "Element 3 Title",
             "value": "",
             "required": true
           },
@@ -233,7 +233,7 @@
             "component": "richtext",
             "valueType": "string",
             "name": "focus-area-3-description",
-            "label": "Focus Area 3 Description",
+            "label": "Element 3 Description",
             "value": "",
             "required": true
           }
@@ -250,7 +250,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "focus-area-4-image",
-            "label": "Focus Area 4 Image",
+            "label": "Element 4 Image",
             "multi": false,
             "required": true
           },
@@ -258,7 +258,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "focus-area-4-icon",
-            "label": "Focus Area 4 Icon",
+            "label": "Element 4 Icon",
             "multi": false,
             "required": true
           },
@@ -266,7 +266,7 @@
             "component": "text",
             "valueType": "string",
             "name": "focus-area-4-title",
-            "label": "Focus Area 4 Title",
+            "label": "Element 4 Title",
             "value": "",
             "required": true
           },
@@ -274,7 +274,7 @@
             "component": "richtext",
             "valueType": "string",
             "name": "focus-area-4-description",
-            "label": "Focus Area 4 Description",
+            "label": "Element 4 Description",
             "value": "",
             "required": true
           }
@@ -347,6 +347,25 @@
         "name": "filter-category",
         "label": "Filter By Category",
         "value": false
+      },
+      {
+        "component": "select",
+        "name": "card-behaviour",
+        "label": "Card behaviour",
+        "options": [
+          {
+            "name": "Open page link",
+            "value": "page-link"
+          },
+          {
+            "name": "Open download link if present",
+            "value": "download-link"
+          },
+          {
+            "name": "Open popup",
+            "value": "popup"
+          }
+        ]
       }
     ]
   },

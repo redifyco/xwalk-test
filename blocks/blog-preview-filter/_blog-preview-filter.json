@@ -82,6 +82,25 @@
           "name": "filter-category",
           "label": "Filter By Category",
           "value": false
+        },
+        {
+          "component": "select",
+          "name": "card-behaviour",
+          "label": "Card behaviour",
+          "options": [
+            {
+              "name": "Open page link",
+              "value": "page-link"
+            },
+            {
+              "name": "Open download link if present",
+              "value": "download-link"
+            },
+            {
+              "name": "Open popup",
+              "value": "popup"
+            }
+          ]
         }
       ]
     }
