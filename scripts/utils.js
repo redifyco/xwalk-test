@@ -504,32 +504,3 @@ export async function getDataFromJson(api) {
     }
 }
 
-
-/**
- * Carica Google reCAPTCHA Enterprise
- * @returns {Promise} Promise che si risolve quando reCAPTCHA è caricato
- */
-export async function loadGoogleRecaptcha() {
-    try {
-        if (window.grecaptcha) {
-            return Promise.resolve();
-        }
-
-        await loadScript('https://www.google.com/recaptcha/enterprise.js?render=AIzaSyAzo6o4BVCLZ91xZH_4lwmNKM0S4isG_VQ');
-
-        // Aspetta che grecaptcha sia disponibile
-        return new Promise((resolve) => {
-            const checkGrecaptcha = () => {
-                if (window.grecaptcha && window.grecaptcha.enterprise) {
-                    resolve();
-                } else {
-                    setTimeout(checkGrecaptcha, 100);
-                }
-            };
-            checkGrecaptcha();
-        });
-    } catch (error) {
-        console.error('Failed to load Google reCAPTCHA:', error);
-        throw error;
-    }
-}
