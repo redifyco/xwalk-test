@@ -505,7 +505,7 @@ export async function getDataFromJson(api) {
 export function loadScript(url) {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src="${url}"]`)) return resolve();
-    const s = document.createElement('script');
+    const s = document.createElement("script");
     s.src = url;
     s.async = true;
     s.defer = true;
@@ -521,16 +521,16 @@ export function loadScript(url) {
  */
 export async function fetchRecaptchaSiteKey() {
   const resp = await fetch(`${window.location.origin}/recaptchaconfig`, {
-    method: 'GET',
-    cache: 'no-cache',
-    credentials: 'same-origin',
-    headers: { Accept: 'application/json' },
+    method: "GET",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: { Accept: "application/json" },
   });
   if (!resp.ok) {
     throw new Error(`/recaptchaconfig → HTTP ${resp.status}`);
   }
-  const { siteKey = '' } = await resp.json();
-  if (!siteKey) throw new Error('Empty siteKey from /recaptchaconfig');
+  const { siteKey = "" } = await resp.json();
+  if (!siteKey) throw new Error("Empty siteKey from /recaptchaconfig");
   return siteKey;
 }
 
@@ -554,9 +554,7 @@ export async function loadGoogleRecaptcha(siteKey) {
   await loadScript(
     `https://www.google.com/recaptcha/enterprise.js?render=${siteKey}`
   );
-  // 4️⃣ Wait until the key registers
-  await new Promise((resolve) => {
-    grecaptcha.enterprise.ready(resolve);
-  });
+  // 4️⃣ Wait for it to be ready
+  await new Promise((resolve) => grecaptcha.enterprise.ready(resolve));
   return siteKey;
 }
