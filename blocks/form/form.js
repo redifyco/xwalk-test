@@ -1,24 +1,31 @@
-import '../../scripts/customTag.js'
-import {createLead,
+import "../../scripts/customTag.js";
+import {
+  createLead,
   validateEmail,
   fetchRecaptchaSiteKey,
-  loadGoogleRecaptcha,} from "../../scripts/utils.js";
-
+  loadGoogleRecaptcha,
+} from "../../scripts/utils.js";
 
 export default async function decorate(block) {
-      console.log('[form.js] › decorate() start');
-    const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src
-    const title = block.querySelector(':scope > div:nth-child(2)')?.innerHTML
-    const subTitle = block.querySelector(':scope > div:nth-child(3) div')?.innerHTML
-    const buttonText = block.querySelector(':scope > div:nth-child(4) p ')?.textContent
+  console.log("[form.js] › decorate() start");
+  const backgroundImage = block.querySelector(
+    ":scope > div:nth-child(1) img"
+  )?.src;
+  const title = block.querySelector(":scope > div:nth-child(2)")?.innerHTML;
+  const subTitle = block.querySelector(
+    ":scope > div:nth-child(3) div"
+  )?.innerHTML;
+  const buttonText = block.querySelector(
+    ":scope > div:nth-child(4) p "
+  )?.textContent;
 
-    await loadGoogleRecaptcha();
+  await loadGoogleRecaptcha();
 
-    const sectionContainer = document.createElement('section')
-    sectionContainer.className = 'bg-secondary relative flex flex-col lg:flex-row'
+  const sectionContainer = document.createElement("section");
+  sectionContainer.className =
+    "bg-secondary relative flex flex-col lg:flex-row";
 
-
-    sectionContainer.innerHTML = `
+  sectionContainer.innerHTML = `
       <div
         class="flex w-full justify-center flex-col  lg:gap-16 2xl:w-1/2 2xl:px-16 container-layout-padding"
       >
@@ -101,92 +108,89 @@ export default async function decorate(block) {
           alt=""
         />
       </div>
-    `
+    `;
 
-
-    block.textContent = '';
+  block.textContent = "";
   block.append(sectionContainer);
 
-  const formEl = sectionContainer.querySelector('#form');
+  const formEl = sectionContainer.querySelector("#form");
   if (!formEl) {
-    console.error('[form.js] › <form> not found');
+    console.error("[form.js] › Cannot find <form>");
     return;
   }
-  console.log('[form.js] › Found formEl');
+  console.log("[form.js] › Found formEl");
 
-  /* ───────────── 1️⃣  fetch site-key & load reCAPTCHA ───────────── */
-  let siteKey = '';
+  /* ---------- 1️⃣  Init reCAPTCHA ---------- */
+  let siteKey = "";
   try {
-    siteKey = await fetchRecaptchaSiteKey();
-    console.log('[form.js] › siteKey:', siteKey);
-    await loadGoogleRecaptcha(siteKey);
-    console.log('[form.js] › reCAPTCHA loaded');
-  } catch (err) {
-    console.error('[form.js] › Failed to init reCAPTCHA:', err);
+    siteKey = await fetchRecaptchaSiteKey(); // <-- pull from Fastly
+    console.log("[form.js] › siteKey:", siteKey);
+    await loadGoogleRecaptcha(siteKey); // <-- load script
+    console.log("[form.js] › reCAPTCHA ready");
+  } catch (e) {
+    console.error("[form.js] › reCAPTCHA init failed:", e);
   }
 
-  /* ───────────── 2️⃣  submit handler ───────────── */
-  formEl.addEventListener('submit', async (e) => {
+  /* ---------- 2️⃣  Submit ---------- */
+  formEl.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log('[form.js] › form submit triggered');
+    console.log("[form.js] › form submit triggered");
 
-    const boxError = sectionContainer.querySelector('#box-error');
-    const emailInput = sectionContainer.querySelector('#email');
+    const email = sectionContainer.querySelector("#email").value;
+    const boxError = sectionContainer.querySelector("#box-error");
 
-    if (!validateEmail(emailInput.value)) {
-      boxError.classList.remove('hidden');
-      boxError.classList.add('flex');
-      boxError.innerHTML =
-        '<ion-icon size="large" name="information-circle"></ion-icon> Please enter a valid email address';
+    if (!validateEmail(email)) {
+      boxError.textContent = "Please enter a valid email address";
+      boxError.classList.remove("hidden");
       return;
     }
-    boxError.classList.add('hidden');
+    boxError.classList.add("hidden");
 
-    const payload = {
-      first_name: sectionContainer.querySelector('#first_name').value,
-      last_name:  sectionContainer.querySelector('#last_name').value,
-      email:      emailInput.value,
-      '00NVj000001XF69': sectionContainer.querySelector('#languages').value,
-      lead_source:       'Web',
-      '00NVj000003rpfN': sectionContainer.querySelector('#marketing-consent').checked,
+    const data = {
+      first_name: sectionContainer.querySelector("#first_name").value,
+      last_name: sectionContainer.querySelector("#last_name").value,
+      email,
+      "00NVj000001XF69": sectionContainer.querySelector("#languages").value,
+      lead_source: "Web",
+      "00NVj000003rpfN":
+        sectionContainer.querySelector("#marketing-consent").checked,
     };
 
-    /* Guard: reCAPTCHA must be ready */
     if (!(window.grecaptcha && grecaptcha.enterprise && siteKey)) {
-      console.error('[form.js] › grecaptcha.enterprise or siteKey missing');
-      /* … show fallback error popup … */
+      console.error("[form.js] › grecaptcha.enterprise or siteKey missing");
       return;
     }
 
-    /* 3️⃣  run Enterprise v3 */
     grecaptcha.enterprise
-      .execute(siteKey, { action: 'newsletter_signup' })
+      .execute(siteKey, { action: "newsletter_signup" })
       .then((token) => {
-        payload['g-recaptcha-response'] = token;
-
+        data["g-recaptcha-response"] = token;
         createLead(
-          payload,
-          /* onSuccess */  () => showPopup(true),
-          /* onFailure */  (msg) => showPopup(false, msg)
+          data,
+          () =>
+            showPopup(
+              true,
+              "Thank you for your interest",
+              "We will contact you soon"
+            ),
+          (msg) => showPopup(false, msg)
         );
       })
       .catch((err) => {
-        console.error('reCAPTCHA execution failed:', err);
-        showPopup(false, 'We couldn’t validate your request. Please try again later.');
+        console.error("[form.js] › reCAPTCHA exec failed:", err);
+        showPopup(false, "Verification failed. Please try again later.");
       });
 
-    /* helper to render the <popup-box> */
-    function showPopup(isSuccess, message = 'Thank you for your interest') {
-      const container = sectionContainer.querySelector('#container-popup');
-      formEl.classList.add('hidden');
-      container.classList.remove('hidden');
+    function showPopup(isSuccess, title, subtitle = "") {
+      const container = sectionContainer.querySelector("#container-popup");
+      formEl.classList.add("hidden");
+      container.classList.remove("hidden");
       container.innerHTML = `
         <popup-box extraClass="text-white" class="block"
                    isSuccess="${isSuccess}"
-                   title="${message}"
-                   ${isSuccess ? 'subtitle="We will contact you soon"' : ''}>
+                   title="${title}"
+                   ${subtitle ? `subtitle="${subtitle}"` : ""}>
         </popup-box>`;
     }
   });
-
 }

@@ -515,42 +515,58 @@ export async function getDataFromJson(api) {
 }
 
 /**
- * GETs the public reCAPTCHA-Enterprise site-key from the Fastly route.
- * @returns {Promise<string>} resolves to the site-key or throws.
+ * Dynamically inject a <script> tag and resolve once it finishes loading.
+ */
+export function loadScript(url) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${url}"]`)) return resolve();
+    const s = document.createElement('script');
+    s.src = url;
+    s.async = true;
+    s.defer = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error(`Script load error: ${url}`));
+    document.head.appendChild(s);
+  });
+}
+
+/* ------------------------------------------------------------------
+   reCAPTCHA helpers  ––  NEW + REWRITTEN
+------------------------------------------------------------------ */
+
+/**
+ * GET the public site-key from Fastly (/recaptchaconfig).
+ * Throws if the key is missing or endpoint fails.
  */
 export async function fetchRecaptchaSiteKey() {
-  const url = `${window.location.origin}/recaptchaconfig`;
-  const resp = await fetch(url, {
-    method: "GET",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: { Accept: "application/json" },
+  const resp = await fetch(`${window.location.origin}/recaptchaconfig`, {
+    method: 'GET',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: { Accept: 'application/json' },
   });
-
   if (!resp.ok) {
     throw new Error(`/recaptchaconfig → HTTP ${resp.status}`);
   }
-  const { siteKey = "" } = await resp.json();
-  if (!siteKey) throw new Error("Empty siteKey in /recaptchaconfig response");
+  const { siteKey = '' } = await resp.json();
+  if (!siteKey) throw new Error('Empty siteKey from /recaptchaconfig');
   return siteKey;
 }
 
 /**
- * Dynamically loads Google reCAPTCHA Enterprise for the given site-key and waits
- * until `grecaptcha.enterprise.ready()` fires once.
- * @param {string} siteKey public key returned by `fetchRecaptchaSiteKey()`
+ * Load Google reCAPTCHA Enterprise for the given site-key and wait until
+ * grecaptcha.enterprise.ready() fires.
  */
 export async function loadGoogleRecaptcha(siteKey) {
-  if (!siteKey) throw new Error("siteKey missing");
+  if (!siteKey) throw new Error('siteKey missing');
 
-  // Already loaded?
   if (window.grecaptcha && window.grecaptcha.enterprise) return;
 
   await loadScript(
     `https://www.google.com/recaptcha/enterprise.js?render=${siteKey}`
   );
 
-  // Wait until the library finishes boot-strapping
+  // Wait until the library registers the key
   await new Promise((resolve) => {
     grecaptcha.enterprise.ready(resolve);
   });
