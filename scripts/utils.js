@@ -515,10 +515,6 @@ export function loadScript(url) {
   });
 }
 
-/* ------------------------------------------------------------------
-   reCAPTCHA helpers  ––  NEW + REWRITTEN
------------------------------------------------------------------- */
-
 /**
  * GET the public site-key from Fastly (/recaptchaconfig).
  * Throws if the key is missing or endpoint fails.
@@ -539,20 +535,28 @@ export async function fetchRecaptchaSiteKey() {
 }
 
 /**
- * Load Google reCAPTCHA Enterprise for the given site-key and wait until
- * grecaptcha.enterprise.ready() fires.
+ * Load Google reCAPTCHA Enterprise for the given site-key (or fetch it),
+ * wait until grecaptcha.enterprise.ready(), and then return the siteKey.
+ *
+ * @param {string=} siteKey  Optional public key; if omitted, we'll fetch it.
+ * @returns {Promise<string>}  Resolves to the siteKey.
  */
 export async function loadGoogleRecaptcha(siteKey) {
-  if (!siteKey) throw new Error('siteKey missing');
-
-  if (window.grecaptcha && window.grecaptcha.enterprise) return;
-
+  // 1️⃣ Fetch if not passed in
+  if (!siteKey) {
+    siteKey = await fetchRecaptchaSiteKey();
+  }
+  // 2️⃣ No-op if already loaded
+  if (window.grecaptcha && window.grecaptcha.enterprise) {
+    return siteKey;
+  }
+  // 3️⃣ Load the Enterprise library
   await loadScript(
     `https://www.google.com/recaptcha/enterprise.js?render=${siteKey}`
   );
-
-  // Wait until the library registers the key
+  // 4️⃣ Wait until the key registers
   await new Promise((resolve) => {
     grecaptcha.enterprise.ready(resolve);
   });
+  return siteKey;
 }

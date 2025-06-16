@@ -2,7 +2,6 @@ import "../../scripts/customTag.js";
 import {
   createLead,
   validateEmail,
-  fetchRecaptchaSiteKey,
   loadGoogleRecaptcha,
 } from "../../scripts/utils.js";
 
@@ -113,6 +112,7 @@ export default async function decorate(block) {
   block.textContent = "";
   block.append(sectionContainer);
 
+  // ─── 3️⃣  Grab the form & wire up submit ───────────────────────
   const formEl = sectionContainer.querySelector("#form");
   if (!formEl) {
     console.error("[form.js] › Cannot find <form>");
@@ -120,51 +120,53 @@ export default async function decorate(block) {
   }
   console.log("[form.js] › Found formEl");
 
-  /* ---------- 1️⃣  Init reCAPTCHA ---------- */
-  let siteKey = "";
-  try {
-    siteKey = await fetchRecaptchaSiteKey(); // <-- pull from Fastly
-    console.log("[form.js] › siteKey:", siteKey);
-    await loadGoogleRecaptcha(siteKey); // <-- load script
-    console.log("[form.js] › reCAPTCHA ready");
-  } catch (e) {
-    console.error("[form.js] › reCAPTCHA init failed:", e);
-  }
-
-  /* ---------- 2️⃣  Submit ---------- */
   formEl.addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("[form.js] › form submit triggered");
 
-    const email = sectionContainer.querySelector("#email").value;
     const boxError = sectionContainer.querySelector("#box-error");
+    const emailVal = sectionContainer.querySelector("#email").value;
 
-    if (!validateEmail(email)) {
+    // → Email validation
+    if (!validateEmail(emailVal)) {
       boxError.textContent = "Please enter a valid email address";
       boxError.classList.remove("hidden");
       return;
     }
     boxError.classList.add("hidden");
 
+    // → Build payload
     const data = {
       first_name: sectionContainer.querySelector("#first_name").value,
       last_name: sectionContainer.querySelector("#last_name").value,
-      email,
+      email: emailVal,
       "00NVj000001XF69": sectionContainer.querySelector("#languages").value,
       lead_source: "Web",
       "00NVj000003rpfN":
         sectionContainer.querySelector("#marketing-consent").checked,
     };
 
+    // → Guard: need grecaptcha and a valid key
     if (!(window.grecaptcha && grecaptcha.enterprise && siteKey)) {
       console.error("[form.js] › grecaptcha.enterprise or siteKey missing");
+      const popup = sectionContainer.querySelector("#container-popup");
+      formEl.classList.add("hidden");
+      popup.classList.remove("hidden");
+      popup.innerHTML = `
+        <popup-box extraClass="text-white" isSuccess="false"
+                   title="Security verification failed. Please try again later.">
+        </popup-box>`;
       return;
     }
 
+    // ─── 4️⃣  Execute reCAPTCHA Enterprise v3 ────────────────────
     grecaptcha.enterprise
       .execute(siteKey, { action: "newsletter_signup" })
       .then((token) => {
+        console.log("[form.js] › reCAPTCHA token received");
         data["g-recaptcha-response"] = token;
+
+        // ─── 5️⃣  Finally, submit your lead
         createLead(
           data,
           () =>
@@ -182,14 +184,12 @@ export default async function decorate(block) {
       });
 
     function showPopup(isSuccess, title, subtitle = "") {
-      const container = sectionContainer.querySelector("#container-popup");
+      const popup = sectionContainer.querySelector("#container-popup");
       formEl.classList.add("hidden");
-      container.classList.remove("hidden");
-      container.innerHTML = `
-        <popup-box extraClass="text-white" class="block"
-                   isSuccess="${isSuccess}"
-                   title="${title}"
-                   ${subtitle ? `subtitle="${subtitle}"` : ""}>
+      popup.classList.remove("hidden");
+      popup.innerHTML = `
+        <popup-box extraClass="text-white" isSuccess="${isSuccess}"
+                   title="${title}" ${subtitle ? `subtitle="${subtitle}"` : ""}>
         </popup-box>`;
     }
   });
