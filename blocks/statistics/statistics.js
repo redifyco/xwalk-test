@@ -154,6 +154,15 @@ export default async function decorate(block) {
     }
   }, 20);
 
-  block.textContent = '';
-  block.append(containerSection);
+  const aemEnv = block.getAttribute('data-aue-resource');
+  if (!aemEnv) {
+    block.textContent = '';
+    block.append(containerSection);
+  } else {
+    block.append(containerSection);
+    block.querySelectorAll(':scope > div:nth-child(n+1) div')
+      .classList
+      .add('hidden');
+  }
+
 }
