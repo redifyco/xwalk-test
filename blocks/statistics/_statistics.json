@@ -47,6 +47,13 @@
       "id": "statistic-item-model",
       "fields": [
         {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "inverted",
+          "label": "Image Inverted",
+          "value": false
+        },
+        {
           "component": "reference",
           "valueType": "string",
           "name": "image",
