@@ -2,7 +2,7 @@ export const isEditorMode = () => {
   // Verifica sessionStorage per chiavi che iniziano con "aue"
   for (let i = 0; i < sessionStorage.length; i++) {
     const key = sessionStorage.key(i);
-    if (key && key.startsWith("aue")) {
+    if (key && key.startsWith('aue')) {
       return true;
     }
   }
@@ -13,7 +13,7 @@ export const isEditorMode = () => {
 export const returnBoolean = (block, childNode) => {
   return (
     block.querySelector(`:scope > div:nth-child(${childNode}) div p`)
-      ?.textContent === "true"
+      ?.textContent === 'true'
   );
 };
 
@@ -21,7 +21,7 @@ export function classNames(classes) {
   return Object.entries(classes)
     .filter(([_, value]) => Boolean(value))
     .map(([key]) => key)
-    .join(" ");
+    .join(' ');
 }
 
 export function handleScrollClasses(
@@ -32,7 +32,7 @@ export function handleScrollClasses(
 ) {
   const classes = Array.isArray(cssClasses) ? cssClasses : [cssClasses];
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener('scroll', () => {
     if (window.scrollY > threshold) {
       node.classList.add(...classes);
     } else if (removeOnScroll) {
@@ -45,29 +45,33 @@ export function getJsonFromHtml(htmlList) {
   const result = [];
 
   if (!htmlList || !(htmlList instanceof HTMLElement)) {
-    console.warn("Invalid HTML list provided.");
+    console.warn('Invalid HTML list provided.');
     return result;
   }
 
   try {
-    htmlList.querySelectorAll(":scope > li").forEach((item) => {
-      const title = item.querySelector("p")?.textContent.trim() || "Untitled";
-      const subItems = [];
+    htmlList.querySelectorAll(':scope > li')
+      .forEach((item) => {
+        const title = item.querySelector('p')
+          ?.textContent
+          .trim() || 'Untitled';
+        const subItems = [];
 
-      item.querySelectorAll("ul > li > a").forEach((link) => {
-        subItems.push({
-          href: link.getAttribute("href") || "#",
-          title: link.getAttribute("title") || "No title",
+        item.querySelectorAll('ul > li > a')
+          .forEach((link) => {
+            subItems.push({
+              href: link.getAttribute('href') || '#',
+              title: link.getAttribute('title') || 'No title',
+            });
+          });
+
+        result.push({
+          title,
+          subItems,
         });
       });
-
-      result.push({
-        title,
-        subItems,
-      });
-    });
   } catch (error) {
-    console.error("Error parsing HTML list:", error);
+    console.error('Error parsing HTML list:', error);
   }
 
   return result;
@@ -85,12 +89,14 @@ export function processDivsToObjectCardsWithImages(divs) {
     const iconDiv = divs[i + 3];
     const styleDiv = divs[i + 4];
 
-    const image = imageDiv?.querySelector("img")?.getAttribute("src") || "";
-    const title = titleDiv.querySelector("div p")?.textContent || "Untitled";
+    const image = imageDiv?.querySelector('img')
+      ?.getAttribute('src') || '';
+    const title = titleDiv.querySelector('div p')?.textContent || 'Untitled';
     const description =
-      descriptionDiv.querySelector("div p")?.textContent || "No description";
-    const icon = iconDiv?.querySelector("img")?.getAttribute("src") || "";
-    const style = styleDiv.querySelector("div p")?.textContent || null;
+      descriptionDiv.querySelector('div p')?.textContent || 'No description';
+    const icon = iconDiv?.querySelector('img')
+      ?.getAttribute('src') || '';
+    const style = styleDiv.querySelector('div p')?.textContent || null;
 
     result.push({
       image,
@@ -112,8 +118,8 @@ export function processDivsToObjectStatisticsData(divs) {
     const valueDiv = divs[i];
     const labelDiv = divs[i + 1];
 
-    const value = valueDiv.querySelector("div p")?.textContent || "0";
-    const label = labelDiv.querySelector("div p")?.textContent || "No label";
+    const value = valueDiv.querySelector('div p')?.textContent || '0';
+    const label = labelDiv.querySelector('div p')?.textContent || 'No label';
 
     result.push({
       value,
@@ -129,16 +135,24 @@ export function processDivsToObjectCarousel(divs) {
   const result = [];
 
   divs.forEach((parentDiv) => {
-    const childDivs = parentDiv.querySelectorAll(":scope > div");
+    const childDivs = parentDiv.querySelectorAll(':scope > div');
 
-    const image = childDivs[0]?.querySelector("img")?.getAttribute("src") || "";
-    const title = childDivs[1]?.querySelector("p")?.textContent.trim() || "";
+    const image = childDivs[0]?.querySelector('img')
+      ?.getAttribute('src') || '';
+    const title = childDivs[1]?.querySelector('p')
+      ?.textContent
+      .trim() || '';
     const description =
-      childDivs[2]?.querySelector("p")?.textContent.trim() || "";
+      childDivs[2]?.querySelector('p')
+        ?.textContent
+        .trim() || '';
     const buttonText =
-      childDivs[3]?.querySelector("p")?.textContent.trim() || "";
+      childDivs[3]?.querySelector('p')
+        ?.textContent
+        .trim() || '';
     const buttonLink =
-      childDivs[4]?.querySelector("a")?.getAttribute("href") || "#";
+      childDivs[4]?.querySelector('a')
+        ?.getAttribute('href') || '#';
 
     result.push({
       image,
@@ -157,16 +171,23 @@ export function processDivsToObjectTabSection(divs) {
   const result = [];
 
   divs.forEach((parentDiv) => {
-    const childDivs = parentDiv.querySelectorAll(":scope > div");
+    const childDivs = parentDiv.querySelectorAll(':scope > div');
 
-    const tabTitle = childDivs[0]?.querySelector("p")?.textContent.trim() || "";
+    const tabTitle = childDivs[0]?.querySelector('p')
+      ?.textContent
+      .trim() || '';
     const mainTitle =
-      childDivs[1]?.querySelector("p")?.textContent.trim() || "";
-    const description = childDivs[2]?.innerHTML || "No description";
+      childDivs[1]?.querySelector('p')
+        ?.textContent
+        .trim() || '';
+    const description = childDivs[2]?.innerHTML || 'No description';
     const buttonText =
-      childDivs[3]?.querySelector("p")?.textContent.trim() || "";
+      childDivs[3]?.querySelector('p')
+        ?.textContent
+        .trim() || '';
     const buttonLink =
-      childDivs[4]?.querySelector("a")?.getAttribute("href") || "#";
+      childDivs[4]?.querySelector('a')
+        ?.getAttribute('href') || '#';
 
     result.push({
       tabTitle,
@@ -185,23 +206,25 @@ export function processDivsToObjectTabSectionInfo(divs) {
   const result = [];
 
   for (let i = 0; i < divs.length; i += 2) {
-    const title = divs[i].querySelector("div p")?.textContent || "";
-    let description = divs[i + 1].querySelector("div p")?.textContent || "";
+    const title = divs[i].querySelector('div p')?.textContent || '';
+    let description = divs[i + 1].querySelector('div p')?.textContent || '';
 
     // Aggiungi al risultato solo se entrambi i valori sono presenti
     if (title && description) {
       // Se la description inizia con "mscfoundation:"
-      if (description.startsWith("mscfoundation:")) {
+      if (description.startsWith('mscfoundation:')) {
         // Prendi l'ultima parte dopo l'ultimo "/"
-        const lastPart = description.split("/").pop();
+        const lastPart = description.split('/')
+          .pop();
         // Sostituisci i "-" con spazi
-        description = lastPart.replace(/-/g, " ");
+        description = lastPart.replace(/-/g, ' ');
       }
 
       // Trasforma la prima lettera della description in maiuscolo
       if (description.length > 0) {
         description =
-          description.charAt(0).toUpperCase() + description.slice(1);
+          description.charAt(0)
+            .toUpperCase() + description.slice(1);
       }
 
       // Esegui il push solo se entrambi title e description sono valorizzati
@@ -221,22 +244,32 @@ export function processDivsToObjectMapPins(divs) {
   const result = [];
 
   divs.forEach((parentDiv) => {
-    const childDivs = parentDiv.querySelectorAll(":scope > div");
+    const childDivs = parentDiv.querySelectorAll(':scope > div');
 
     const latitude =
-      childDivs[0]?.querySelector("p")?.textContent.trim() || "Untitled";
+      childDivs[0]?.querySelector('p')
+        ?.textContent
+        .trim() || 'Untitled';
     const longitude =
-      childDivs[1]?.querySelector("p")?.textContent.trim() || "Untitled";
+      childDivs[1]?.querySelector('p')
+        ?.textContent
+        .trim() || 'Untitled';
     const title =
-      childDivs[2]?.querySelector("p")?.textContent.trim() || "Untitled";
+      childDivs[2]?.querySelector('p')
+        ?.textContent
+        .trim() || 'Untitled';
     const description =
-      childDivs[3]?.querySelector("p")?.textContent.trim() || "Untitled";
+      childDivs[3]?.querySelector('p')
+        ?.textContent
+        .trim() || 'Untitled';
     const linkText =
-      childDivs[4]?.querySelector("p")?.textContent.trim() || "No link text";
-    const linkURL = childDivs[5]?.querySelector("a")?.href || "No link url";
-    const label1 = childDivs[6]?.querySelector("img")?.src || "";
-    const label2 = childDivs[7]?.querySelector("img")?.src || "";
-    const label3 = childDivs[8]?.querySelector("img")?.src || "";
+      childDivs[4]?.querySelector('p')
+        ?.textContent
+        .trim() || 'No link text';
+    const linkURL = childDivs[5]?.querySelector('a')?.href || 'No link url';
+    const label1 = childDivs[6]?.querySelector('img')?.src || '';
+    const label2 = childDivs[7]?.querySelector('img')?.src || '';
+    const label3 = childDivs[8]?.querySelector('img')?.src || '';
 
     result.push({
       latitude,
@@ -259,12 +292,14 @@ export function processDivsToObjectContactsItems(divs) {
   const result = [];
 
   divs.forEach((parentDiv) => {
-    const childDivs = parentDiv.querySelectorAll(":scope > div");
+    const childDivs = parentDiv.querySelectorAll(':scope > div');
 
-    const image = childDivs[0]?.querySelector("img")?.src || "";
+    const image = childDivs[0]?.querySelector('img')?.src || '';
     const label =
-      childDivs[1]?.querySelector("p")?.textContent.trim() || "Untitled";
-    const link = childDivs[2]?.querySelector("a")?.href || "";
+      childDivs[1]?.querySelector('p')
+        ?.textContent
+        .trim() || 'Untitled';
+    const link = childDivs[2]?.querySelector('a')?.href || '';
 
     result.push({
       image,
@@ -278,28 +313,28 @@ export function processDivsToObjectContactsItems(divs) {
 
 export function buildHeight(mobileHeight, desktopHeight) {
   return classNames({
-    ["h-[200px]"]: mobileHeight === "200",
-    ["h-[400px]"]: mobileHeight === "400",
-    ["h-[600px]"]: mobileHeight === "600",
-    ["h-[800px]"]: mobileHeight === "800",
-    ["h-[1000px]"]: mobileHeight === "1000",
-    ["h-[1200px]"]: mobileHeight === "1200",
-    ["h-[1400px]"]: mobileHeight === "1400",
-    ["h-[1600px]"]: mobileHeight === "1600",
-    ["h-[1800px]"]: mobileHeight === "1800",
-    ["h-[2000px]"]: mobileHeight === "2000",
-    ["lg:h-[200px]"]: desktopHeight === "200",
-    ["lg:h-[400px]"]: desktopHeight === "400",
-    ["lg:h-[600px]"]: desktopHeight === "600",
-    ["lg:h-[800px]"]: desktopHeight === "800",
-    ["lg:h-[1000px]"]: desktopHeight === "1000",
-    ["lg:h-[1200px]"]: desktopHeight === "1200",
-    ["lg:h-[1400px]"]: desktopHeight === "1400",
-    ["lg:h-[1600px]"]: desktopHeight === "1600",
-    ["lg:h-[1800px]"]: desktopHeight === "1800",
-    ["lg:h-[2000px]"]: desktopHeight === "2000",
-    ["lg:h-[2200px]"]: desktopHeight === "2200",
-    ["lg:h-[2400px]"]: desktopHeight === "2400",
+    ['h-[200px]']: mobileHeight === '200',
+    ['h-[400px]']: mobileHeight === '400',
+    ['h-[600px]']: mobileHeight === '600',
+    ['h-[800px]']: mobileHeight === '800',
+    ['h-[1000px]']: mobileHeight === '1000',
+    ['h-[1200px]']: mobileHeight === '1200',
+    ['h-[1400px]']: mobileHeight === '1400',
+    ['h-[1600px]']: mobileHeight === '1600',
+    ['h-[1800px]']: mobileHeight === '1800',
+    ['h-[2000px]']: mobileHeight === '2000',
+    ['lg:h-[200px]']: desktopHeight === '200',
+    ['lg:h-[400px]']: desktopHeight === '400',
+    ['lg:h-[600px]']: desktopHeight === '600',
+    ['lg:h-[800px]']: desktopHeight === '800',
+    ['lg:h-[1000px]']: desktopHeight === '1000',
+    ['lg:h-[1200px]']: desktopHeight === '1200',
+    ['lg:h-[1400px]']: desktopHeight === '1400',
+    ['lg:h-[1600px]']: desktopHeight === '1600',
+    ['lg:h-[1800px]']: desktopHeight === '1800',
+    ['lg:h-[2000px]']: desktopHeight === '2000',
+    ['lg:h-[2200px]']: desktopHeight === '2200',
+    ['lg:h-[2400px]']: desktopHeight === '2400',
   });
 }
 
@@ -308,7 +343,8 @@ export function buildHeight(mobileHeight, desktopHeight) {
  * @param {string} url URL dello script da caricare
  * @returns {Promise} Promise che si risolve quando lo script è caricato
  */
-export function loadScript(url) {
+
+/* export function loadScript(url) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
     script.src = url;
@@ -316,7 +352,7 @@ export function loadScript(url) {
     script.onerror = reject;
     document.head.appendChild(script);
   });
-}
+} */
 
 /**
  * Carica uno script esterno dinamicamente con supporto per integrity e crossorigin
@@ -326,7 +362,7 @@ export function loadScript(url) {
  */
 export function loadScriptSecure(url, options = {}) {
   return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src = url;
 
     if (options.integrity) {
@@ -355,18 +391,18 @@ export async function loadGoogleMaps(apiKey) {
 }
 
 export function createLead(data, onSuccess, onFailure) {
-  fetch("/createlead", {
-    method: "POST",
+  fetch('/createlead', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ ...data }),
   })
     .then((response) => {
       if (response.ok) {
-        onSuccess("Lead successfully created");
+        onSuccess('Lead successfully created');
       } else {
-        onFailure("Failed to create lead");
+        onFailure('Failed to create lead');
       }
     })
     .catch((error) => {
@@ -375,18 +411,18 @@ export function createLead(data, onSuccess, onFailure) {
 }
 
 export function createCase(data, onSuccess, onFailure) {
-  fetch("/createcase", {
-    method: "POST",
+  fetch('/createcase', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   })
     .then((response) => {
       if (response.ok) {
-        onSuccess("Lead successfully created");
+        onSuccess('Lead successfully created');
       } else {
-        onFailure("Failed to create lead");
+        onFailure('Failed to create lead');
       }
     })
     .catch((error) => {
@@ -397,10 +433,10 @@ export function createCase(data, onSuccess, onFailure) {
 /*Fetch Blog Preview Data */
 export async function getAllArticles(api) {
   return await fetch(`${api.toString()}`, {
-    method: "GET",
+    method: 'GET',
   })
     .then((response) => response.json())
-    .catch((error) => console.error("Error fetching articles:", error));
+    .catch((error) => console.error('Error fetching articles:', error));
 }
 
 /*Fetch Blog Preview Data */
@@ -410,22 +446,22 @@ export async function getBlogPreviewData(api, itemToShow = 3) {
   });
 
   return await fetch(`${api.toString()}?${queryParams.toString()}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      Accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET",
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET',
     },
-    mode: "cors",
-    credentials: "include",
+    mode: 'cors',
+    credentials: 'include',
   })
     .then((response) => response.json())
-    .catch((error) => console.error("Error fetching articles:", error));
+    .catch((error) => console.error('Error fetching articles:', error));
 }
 
 export const returnFocusAreaIcon = (focusArea) => {
   const logoObj = {
-    "mscfoundation:focus-area/environmental-conservation": `
+    'mscfoundation:focus-area/environmental-conservation': `
 <svg width="31" height="37" viewBox="0 0 31 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="30.575" height="36.5075" fill="url(#pattern0_2029_1334)"/>
 <defs>
@@ -436,7 +472,7 @@ export const returnFocusAreaIcon = (focusArea) => {
 </defs>
 </svg>
 `,
-    "mscfoundation:focus-area/community-support": `
+    'mscfoundation:focus-area/community-support': `
             <svg width="31" height="37" viewBox="0 0 53 47" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <rect x="0.168945" width="52" height="47" fill="url(#pattern0_405_10733)"/>
             <defs>
@@ -447,12 +483,12 @@ export const returnFocusAreaIcon = (focusArea) => {
 </defs>
 </svg>
             `,
-    "mscfoundation:focus-area/education": `
+    'mscfoundation:focus-area/education': `
 <svg width="31" height="37" viewBox="0 0 53 47" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M51.445 5.40283C51.445 5.40283 51.335 5.40283 51.313 5.40283L44.6267 6.98643V1.59779C44.6267 1.42183 44.5607 1.24588 44.4508 1.11391C44.3408 0.981946 44.1648 0.915963 44.0109 0.915963H43.9889C43.9889 0.915963 43.7689 0.937957 43.681 0.981946L26.0634 10.5275H26.0194L8.42387 0.981946C8.2919 0.915963 8.15994 0.893968 8.00598 0.915963C7.69805 0.981946 7.45611 1.24588 7.47811 1.5538V6.96443H7.39013L0.769805 5.40283C0.747811 5.40283 0.703822 5.40283 0.659833 5.40283C0.637839 5.40283 0.59385 5.40283 0.571855 5.40283C0.241939 5.46881 0 5.73275 0 6.06266V40.396C0 40.7039 0.19795 40.9458 0.505872 41.0118L25.9094 46.9943C25.9094 46.9943 26.1074 47.0163 26.1954 46.9943L51.5989 41.0118C51.9069 40.9458 52.1048 40.6819 52.1048 40.374V6.06266C52.1048 5.71075 51.8189 5.40283 51.467 5.38083M8.77578 2.65352L8.88575 2.71951L23.864 10.8355L8.77578 7.29435V2.65352ZM25.4036 45.5207H25.3156L1.29767 39.8681V6.85446H1.38565L25.4036 12.529V45.4987V45.5207ZM43.329 2.65352V7.29435H43.2631L28.2189 10.8355L43.307 2.65352H43.329ZM50.8072 39.8681H50.7412L26.7012 45.5207V12.529H26.7672L50.8072 6.85446V39.8461V39.8681Z" fill="#009BAC"/>
 </svg>
 `,
-    "mscfoundation:focus-area/emergency-relief": `
+    'mscfoundation:focus-area/emergency-relief': `
 <svg width="31" height="37" viewBox="0 0 53 46" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0_405_10734" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="53" height="46">
 <path d="M52.0869 0H0V45.8364H52.0869V0Z" fill="white"/>
@@ -478,8 +514,8 @@ export const returnFocusAreaIcon = (focusArea) => {
 
 export const returnStatusLabel = (status) => {
   const statusObj = {
-    "mscfoundation:status/ongoing": "ONGOING",
-    "mscfoundation:status/complete": "COMPLETE",
+    'mscfoundation:status/ongoing': 'ONGOING',
+    'mscfoundation:status/complete': 'COMPLETE',
   };
 
   return statusObj[status];
@@ -488,13 +524,15 @@ export const returnStatusLabel = (status) => {
 /*Util Function to extract Tags by type*/
 export const extractTagsByType = (pageType, type) => {
   return pageType
-    .split(",")
+    .split(',')
     .map((item) => item.trim())
     .filter((item) => {
       if (Array.isArray(type)) {
-        return type.some((t) => item.toLowerCase().includes(t));
+        return type.some((t) => item.toLowerCase()
+          .includes(t));
       }
-      return item.toLowerCase().includes(type);
+      return item.toLowerCase()
+        .includes(type);
     });
 };
 
@@ -507,10 +545,10 @@ export const validateEmail = (email) => {
 export async function getDataFromJson(api) {
   if (api) {
     return await fetch(`${api.toString()}`, {
-      method: "GET",
+      method: 'GET',
     })
       .then((response) => response.json())
-      .catch((error) => console.error("Error fetching:", error));
+      .catch((error) => console.error('Error fetching:', error));
   }
 }
 

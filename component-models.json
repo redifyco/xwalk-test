@@ -3015,57 +3015,28 @@
         "component": "text",
         "name": "section-title",
         "label": "Section Title"
-      },
+      }
+    ]
+  },
+  {
+    "id": "statistic-item-model",
+    "fields": [
       {
         "component": "reference",
         "valueType": "string",
-        "name": "statistics-image-1",
-        "label": "Stat Image 1",
+        "name": "image",
+        "label": "Image",
         "multi": false
       },
       {
         "component": "text",
-        "name": "statistics-value-1",
-        "label": "Stat Value 1"
+        "name": "value",
+        "label": "Value"
       },
       {
         "component": "text",
-        "name": "statistics-description-1",
-        "label": "Stat Description 1"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "statistics-image-2",
-        "label": "Stat Image 2",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "statistics-value-2",
-        "label": "Stat Value 2"
-      },
-      {
-        "component": "text",
-        "name": "statistics-description-2",
-        "label": "Stat Description 2"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "statistics-image-3",
-        "label": "Stat Image 3",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "statistics-value-3",
-        "label": "Stat Value 3"
-      },
-      {
-        "component": "text",
-        "name": "statistics-description-3",
-        "label": "Stat Description 3"
+        "name": "description",
+        "label": "Description"
       }
     ]
   },

@@ -655,6 +655,21 @@
           }
         },
         {
+          "title": "Statistics Item",
+          "id": "statistic-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Statistics Item",
+                  "model": "statistic-item-model"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Tab Section",
           "id": "tab-section",
           "plugins": {

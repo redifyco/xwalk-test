@@ -152,7 +152,9 @@
   },
   {
     "id": "statistics-filter",
-    "components": []
+    "components": [
+      "statistic-item"
+    ]
   },
   {
     "id": "tab-section-filter",
