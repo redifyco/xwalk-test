@@ -514,21 +514,6 @@ export async function getDataFromJson(api) {
   }
 }
 
-/**
- * Dynamically inject a <script> tag and resolve once it finishes loading.
- */
-export function loadScript(url) {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[src="${url}"]`)) return resolve();
-    const s = document.createElement('script');
-    s.src = url;
-    s.async = true;
-    s.defer = true;
-    s.onload = () => resolve();
-    s.onerror = () => reject(new Error(`Script load error: ${url}`));
-    document.head.appendChild(s);
-  });
-}
 
 /* ------------------------------------------------------------------
    reCAPTCHA helpers  ––  NEW + REWRITTEN
