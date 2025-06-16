@@ -49,18 +49,6 @@
           "component": "aem-content",
           "name": "redirect-max-amount-link",
           "label": "Redirect Max Amount Link"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "focus-area-api-url",
-          "label": "Focus Area API URL"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "countries-api-url",
-          "label": "Countries API URL"
         }
       ]
     }
