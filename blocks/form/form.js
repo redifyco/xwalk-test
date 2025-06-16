@@ -18,7 +18,13 @@ export default async function decorate(block) {
     ":scope > div:nth-child(4) p "
   )?.textContent;
 
-  await loadGoogleRecaptcha();
+  let siteKey = '';
+  try {
+    siteKey = await loadGoogleRecaptcha();
+    console.log('[form.js] › reCAPTCHA ready, siteKey:', siteKey);
+  } catch (err) {
+    console.error('[form.js] › reCAPTCHA init failed:', err);
+  }
 
   const sectionContainer = document.createElement("section");
   sectionContainer.className =
