@@ -146,10 +146,16 @@
           ]
         },
         {
-          "component": "text",
+          "component": "number",
           "valueType": "string",
           "name": "value-stats-1",
           "label": "Stat1 - Value"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "unit-stats-1",
+          "label": "Stat1 - Unit"
         },
         {
           "component": "text",
@@ -158,40 +164,58 @@
           "label": "Stat1 - Label"
         },
         {
-          "component": "text",
+          "component": "number",
           "valueType": "string",
           "name": "value-stats-2",
-          "label": "Stat2 - Value"
+          "label": "Stat1 - Value"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "unit-stats-2",
+          "label": "Stat1 - Unit"
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "label-stats-2",
-          "label": "Stat2 - Label"
+          "label": "Stat1 - Label"
+        },
+        {
+          "component": "number",
+          "valueType": "string",
+          "name": "value-stats-3",
+          "label": "Stat1 - Value"
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "value-stats-3",
-          "label": "Stat3 - Value"
+          "name": "unit-stats-3",
+          "label": "Stat1 - Unit"
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "label-stats-3",
-          "label": "Stat3 - Label"
+          "label": "Stat1 - Label"
+        },
+        {
+          "component": "number",
+          "valueType": "string",
+          "name": "value-stats-4",
+          "label": "Stat1 - Value"
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "value-stats-4",
-          "label": "Stat4 - Value"
+          "name": "unit-stats-4",
+          "label": "Stat1 - Unit"
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "label-stats-4",
-          "label": "Stat4 - Label"
+          "label": "Stat1 - Label"
         }
       ]
     }

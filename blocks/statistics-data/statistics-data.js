@@ -1,5 +1,5 @@
 import '../../scripts/customTag.js';
-import { buildHeight, processDivsToObjectStatisticsData, returnBoolean } from '../../scripts/utils.js';
+import { buildHeight, returnBoolean } from '../../scripts/utils.js';
 
 export default function decorate(block) {
   const backgroundImage = block.querySelector(':scope > div:nth-child(1) img')?.src;
@@ -29,12 +29,12 @@ export default function decorate(block) {
   // Sezione titolo - solo se presente
   if (title) {
     innerHTML += `
-        <div class="flex flex-col items-center lg:items-start">
-          <div class="relative prose-em:font-joyful prose-em:not-italic prose-em:text-7xl lg:prose-em:text-8xl  block px-4 text-center text-3xl font-semibold lg:px-16 lg:text-start lg:text-6xl 2xl:text-7xl ${isWhiteText ? 'text-white' : 'text-primary'}">
-            ${title}
-            <span class="absolute left-0 mt-5 hidden border-b-2 lg:block lg:w-[50%] xl:w-[90%] ${isWhiteText ? 'border-b-white' : 'border-b-primary'}"></span>
-          </div>
-        </div>`;
+      <div class="flex flex-col items-center lg:items-start">
+        <div id="statistics-title" class="relative opacity-0 -translate-x-10 transition-all duration-700 prose-em:font-joyful prose-em:not-italic prose-em:text-7xl lg:prose-em:text-8xl block px-4 text-center text-3xl font-semibold lg:px-16 lg:text-start lg:text-6xl 2xl:text-7xl ${isWhiteText ? 'text-white' : 'text-primary'}">
+          ${title}
+          <span class="absolute left-0 mt-5 hidden border-b-2 lg:block lg:w-[50%] xl:w-[90%] ${isWhiteText ? 'border-b-white' : 'border-b-primary'}"></span>
+        </div>
+      </div>`;
   }
 
   // Sezione statistiche e bottone - solo se ci sono dati o bottone
@@ -71,6 +71,24 @@ export default function decorate(block) {
   containerSection.innerHTML = innerHTML;
   block.textContent = '';
   block.append(containerSection);
+
+  // Animate title when section enters viewport
+  const titleEl = containerSection.querySelector('#statistics-title');
+  if (titleEl) {
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            titleEl.classList.remove('opacity-0', '-translate-x-10');
+            titleEl.classList.add('opacity-100', 'translate-x-0');
+            obs.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(titleEl);
+  }
 
   const statisticsContainer = document.querySelector('#container-statistics');
   const gridStatistics = document.querySelector('#grid-statistics');
@@ -117,4 +135,25 @@ export default function decorate(block) {
       window.removeEventListener('scroll', handleScroll);
     };
   }
+}
+
+function processDivsToObjectStatisticsData(divs) {
+  const result = [];
+
+  for (let i = 0; i < divs.length; i += 3) {
+    const valueDiv = divs[i];
+    const unitDiv = divs[i + 1];
+    const labelDiv = divs[i + 2];
+
+    const value = valueDiv.querySelector('div p')?.textContent || '0';
+    const unit = unitDiv.querySelector('div p')?.textContent || '0';
+    const label = labelDiv.querySelector('div p')?.textContent || 'No label';
+
+    result.push({
+      value,
+      label,
+    });
+  }
+
+  return result;
 }
