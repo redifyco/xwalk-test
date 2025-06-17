@@ -146,7 +146,7 @@
           ]
         },
         {
-          "component": "number",
+          "component": "text",
           "valueType": "string",
           "name": "value-stats-1",
           "label": "Stat 1 - Value"
