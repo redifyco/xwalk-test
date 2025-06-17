@@ -12,6 +12,8 @@ export default function decorate(block) {
   const statsList = Array.from(block.querySelectorAll(':scope > div:nth-child(n+8)'));
   const JSONStatisticsData = processDivsToObjectStatisticsData(statsList);
 
+  console.log('JSONStatisticsData', JSONStatisticsData);
+
   const containerSection = document.createElement('section');
   containerSection.className = `
     flex flex-col gap-14 bg-cover bg-center justify-center bg-no-repeat py-30
@@ -48,7 +50,7 @@ export default function decorate(block) {
       innerHTML += JSONStatisticsData.map((item) => `
             <div class="flex flex-col items-center h-fit lg:flex-row lg:items-end lg:gap-6 ${isWhiteText ? 'text-white' : 'text-primary'}">
               <h6 class="text-6xl md:text-7xl leading-tight font-semibold 2xl:text-9xl 2xl:leading-24">
-                ${item.value || ''}
+                <span class="stat-value" data-value="${item.value || 0}">0</span>${item.unit || ''}
               </h6>
               <span class="w-full text-center lg:translate-y-5 lg:text-start lg:max-w-lg text-base 2xl:text-3xl ${isWhiteText ? 'text-white' : 'text-black'}">
                 ${item.label || ''}
@@ -71,6 +73,39 @@ export default function decorate(block) {
   containerSection.innerHTML = innerHTML;
   block.textContent = '';
   block.append(containerSection);
+
+// Animate numbers for statistics when section enters viewport
+  const animateStats = () => {
+    const statValues = containerSection.querySelectorAll('.stat-value');
+    statValues.forEach((el) => {
+      const endValue = Number(el.dataset.value) || 0;
+      const duration = 1000; // ms
+      const frameRate = 30;
+      const totalFrames = Math.round(duration / (1000 / frameRate));
+      let frame = 0;
+
+      const counter = setInterval(() => {
+        frame++;
+        const progress = Math.min(frame / totalFrames, 1);
+        const value = Math.floor(progress * endValue);
+        el.textContent = value;
+        if (progress === 1) clearInterval(counter);
+      }, 1000 / frameRate);
+    });
+  };
+
+  const statsObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateStats();
+          obs.disconnect();
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+  statsObserver.observe(containerSection);
 
   // Animate title when section enters viewport
   const titleEl = containerSection.querySelector('#statistics-title');
@@ -145,12 +180,13 @@ function processDivsToObjectStatisticsData(divs) {
     const unitDiv = divs[i + 1];
     const labelDiv = divs[i + 2];
 
-    const value = valueDiv.querySelector('div p')?.textContent || '0';
-    const unit = unitDiv.querySelector('div p')?.textContent || '0';
+    const value = Number(valueDiv.querySelector('div p')?.textContent) || 0;
+    const unit = unitDiv.querySelector('div p')?.textContent || 'No Unit';
     const label = labelDiv.querySelector('div p')?.textContent || 'No label';
 
     result.push({
       value,
+      unit,
       label,
     });
   }

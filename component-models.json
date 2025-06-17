@@ -2960,7 +2960,7 @@
       },
       {
         "component": "number",
-        "valueType": "number",
+        "valueType": "string",
         "name": "value-stats-1",
         "label": "Stat 1 - Value"
       },
