@@ -2960,7 +2960,7 @@
       },
       {
         "component": "number",
-        "valueType": "string",
+        "valueType": "number",
         "name": "value-stats-1",
         "label": "Stat1 - Value"
       },
@@ -2978,7 +2978,7 @@
       },
       {
         "component": "number",
-        "valueType": "string",
+        "valueType": "number",
         "name": "value-stats-2",
         "label": "Stat1 - Value"
       },
@@ -2996,7 +2996,7 @@
       },
       {
         "component": "number",
-        "valueType": "string",
+        "valueType": "number",
         "name": "value-stats-3",
         "label": "Stat1 - Value"
       },
@@ -3014,7 +3014,7 @@
       },
       {
         "component": "number",
-        "valueType": "string",
+        "valueType": "number",
         "name": "value-stats-4",
         "label": "Stat1 - Value"
       },
