@@ -3012,7 +3012,7 @@
     "id": "statistics-model",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
         "name": "section-title",
         "label": "Section Title"
       }
