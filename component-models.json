@@ -2959,8 +2959,7 @@
         ]
       },
       {
-        "component": "text",
-        "valueType": "string",
+        "component": "number",
         "name": "value-stats-1",
         "label": "Stat 1 - Value"
       },
