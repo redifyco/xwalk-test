@@ -52,7 +52,7 @@ export default async function decorate(block) {
               <div
                 class="bg-secondary flex h-full w-full items-center justify-center rounded-full text-xl text-white"
               >
-                <div class="size-48 bg-transparent p-4 size-60 lg:size-64 xl:size-80">
+                <div class="bg-transparent p-4 size-60 lg:size-64 xl:size-80">
                   <img
                     class="h-full w-full object-cover object-center rounded-full"
                     src="${item.image}"
@@ -67,7 +67,6 @@ export default async function decorate(block) {
     }
   )
     .join('') : ''}
-     
     </div>
   `;
 
@@ -123,8 +122,9 @@ export default async function decorate(block) {
   } else {
     block.append(containerSection);
     block.querySelectorAll(':scope > div:nth-child(n+1) div')
-      .classList
-      .add('hidden');
+      .forEach((div) => {
+        div.classList.add('hidden');
+      });
   }
 
 }
