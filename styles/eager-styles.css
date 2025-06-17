@@ -2811,6 +2811,14 @@
       font-style: normal;
     }
   }
+  .lg\:prose-em\:text-8xl {
+    @media (width >= 64rem) {
+      & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+        font-size: var(--text-8xl);
+        line-height: var(--tw-leading, var(--text-8xl--line-height));
+      }
+    }
+  }
   .lg\:prose-em\:text-9xl {
     @media (width >= 64rem) {
       & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {

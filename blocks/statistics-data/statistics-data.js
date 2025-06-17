@@ -30,7 +30,7 @@ export default function decorate(block) {
   if (title) {
     innerHTML += `
         <div class="flex flex-col items-center lg:items-start">
-          <div class="relative prose-em:font-joyful prose-em:not-italic block px-4 text-center text-3xl font-semibold uppercase lg:px-16 lg:text-start lg:text-6xl 2xl:text-7xl ${isWhiteText ? 'text-white' : 'text-primary'}">
+          <div class="relative prose-em:font-joyful prose-em:not-italic prose-em:text-7xl lg:prose-em:text-8xl  block px-4 text-center text-3xl font-semibold lg:px-16 lg:text-start lg:text-6xl 2xl:text-7xl ${isWhiteText ? 'text-white' : 'text-primary'}">
             ${title}
             <span class="absolute left-0 mt-5 hidden border-b-2 lg:block lg:w-[50%] xl:w-[90%] ${isWhiteText ? 'border-b-white' : 'border-b-primary'}"></span>
           </div>
