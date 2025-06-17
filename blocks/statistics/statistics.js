@@ -78,38 +78,40 @@ export default async function decorate(block) {
 
   let observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
-      const interval = setInterval(() => {
-        progress += 1;
-        const remaining = total - progress;
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          progress += 1;
+          const remaining = total - progress;
 
-        // Progress Bar Logic
-        bar.forEach((item) => {
-          if (progress === 25) {
-            item.style.width = `100%`;
-          }
-        });
-
-        // Progress Ring Logic
-        if (window.innerWidth >= 772) {
-          ring.forEach((item, index) => {
-            if (reversedElements[index]) {
-              const isReversed = reversedElements[index].getAttribute('data-reverse') === 'true';
-              console.log('isReversed', isReversed);
-              if (isReversed) {
-                item.style.background = `conic-gradient(from 0deg, #00000000 0%, #00000000 ${remaining}%, #ffffff ${remaining}%, #ffffff 100%)`;
-              } else {
-                item.style.background = `conic-gradient(from 0deg, #ffffff 0%, #ffffff ${progress}%, #00000000 ${progress}%, #00000000 100%)`;
-              }
+          // Progress Bar Logic
+          bar.forEach((item) => {
+            if (progress === 25) {
+              item.style.width = `100%`;
             }
           });
-        }
 
-        // Termination condition:
-        if (progress >= 25) {
-          clearInterval(interval);
-          observer.disconnect();
-        }
-      }, 20);
+          // Progress Ring Logic
+          if (window.innerWidth >= 772) {
+            ring.forEach((item, index) => {
+              if (reversedElements[index]) {
+                const isReversed = reversedElements[index].getAttribute('data-reverse') === 'true';
+                console.log('isReversed', isReversed);
+                if (isReversed) {
+                  item.style.background = `conic-gradient(from 0deg, #00000000 0%, #00000000 ${remaining}%, #ffffff ${remaining}%, #ffffff 100%)`;
+                } else {
+                  item.style.background = `conic-gradient(from 0deg, #ffffff 0%, #ffffff ${progress}%, #00000000 ${progress}%, #00000000 100%)`;
+                }
+              }
+            });
+          }
+
+          // Termination condition:
+          if (progress >= 25) {
+            clearInterval(interval);
+            observer.disconnect();
+          }
+        }, 20);
+      }, 1000);
     }
   });
 

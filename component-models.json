@@ -2849,7 +2849,7 @@
         "value": false
       },
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "title",
         "label": "Title"
