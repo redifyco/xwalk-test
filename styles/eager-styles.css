@@ -2897,6 +2897,11 @@
       padding-block: calc(var(--spacing) * 2);
     }
   }
+  .prose-em\:mx-2 {
+    & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      margin-inline: calc(var(--spacing) * 2);
+    }
+  }
   .prose-em\:font-joyful-sm {
     & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
       font-family: 'Joyful';
@@ -2922,16 +2927,33 @@
       font-family: 'Joyful', sans-serif;
     }
   }
+  .prose-em\:text-6xl {
+    & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      font-size: var(--text-6xl);
+      line-height: var(--tw-leading, var(--text-6xl--line-height));
+    }
+  }
   .prose-em\:text-7xl {
     & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
       font-size: var(--text-7xl);
       line-height: var(--tw-leading, var(--text-7xl--line-height));
     }
   }
+  .prose-em\:text-8xl {
+    & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      font-size: var(--text-8xl);
+      line-height: var(--tw-leading, var(--text-8xl--line-height));
+    }
+  }
   .prose-em\:text-9xl {
     & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
       font-size: var(--text-9xl);
       line-height: var(--tw-leading, var(--text-9xl--line-height));
+    }
+  }
+  .prose-em\:not-italic {
+    & :is(:where(em):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+      font-style: normal;
     }
   }
   .lg\:prose-em\:text-9xl {
