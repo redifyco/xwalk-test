@@ -11,7 +11,7 @@ export default async function decorate(block) {
 
   containerSection.innerHTML = `
     <div class="relative w-full">
-      <div class="hidden prose-em:font-joyful prose-em:mx-2 prose-em:not-italic prose-em:text-8xl w-full px-16 text-start text-7xl font-semibold text-white uppercase lg:block">
+      <div class="hidden prose-em:font-joyful  prose-em:not-italic prose-em:text-8xl w-full px-16 text-start text-7xl font-semibold text-white lg:block">
         ${titleSection}
       </div>
       <div class="hidden w-8/12 border-t-[3px] border-t-white lg:block"></div>
