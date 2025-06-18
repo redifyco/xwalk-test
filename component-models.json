@@ -2959,7 +2959,7 @@
         ]
       },
       {
-        "component": "number",
+        "component": "text",
         "name": "value-stats-1",
         "label": "Stat 1 - Value"
       },
@@ -2976,8 +2976,7 @@
         "label": "Stat 1 - Label"
       },
       {
-        "component": "number",
-        "valueType": "number",
+        "component": "text",
         "name": "value-stats-2",
         "label": "Stat 2 - Value"
       },
@@ -2994,10 +2993,10 @@
         "label": "Stat 2 - Label"
       },
       {
-        "component": "number",
-        "valueType": "number",
+        "component": "text",
         "name": "value-stats-3",
-        "label": "Stat 3 - Value"
+        "label": "Stat 3 - Value",
+        "description": "Please enter a numeric or decimal value, separated by the ."
       },
       {
         "component": "text",
@@ -3012,10 +3011,10 @@
         "label": "Stat 3- Label"
       },
       {
-        "component": "number",
-        "valueType": "number",
+        "component": "text",
         "name": "value-stats-4",
-        "label": "Stat 4 - Value"
+        "label": "Stat 4 - Value",
+        "description": "Please enter a numeric or decimal value, separated by the ."
       },
       {
         "component": "text",

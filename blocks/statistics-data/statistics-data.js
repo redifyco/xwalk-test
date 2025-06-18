@@ -12,8 +12,6 @@ export default function decorate(block) {
   const statsList = Array.from(block.querySelectorAll(':scope > div:nth-child(n+8)'));
   const JSONStatisticsData = processDivsToObjectStatisticsData(statsList);
 
-  console.log('JSONStatisticsData', JSONStatisticsData);
-
   const containerSection = document.createElement('section');
   containerSection.className = `
     flex flex-col gap-14 bg-cover bg-center justify-center bg-no-repeat py-30
@@ -87,7 +85,10 @@ export default function decorate(block) {
       const counter = setInterval(() => {
         frame++;
         const progress = Math.min(frame / totalFrames, 1);
-        const value = Math.floor(progress * endValue);
+        // Show decimals if endValue is not an integer
+        const value = Number.isInteger(endValue)
+          ? Math.floor(progress * endValue)
+          : (progress * endValue).toFixed(1);
         el.textContent = value;
         if (progress === 1) clearInterval(counter);
       }, 1000 / frameRate);
@@ -180,8 +181,8 @@ function processDivsToObjectStatisticsData(divs) {
     const unitDiv = divs[i + 1];
     const labelDiv = divs[i + 2];
 
-    const value = Number(valueDiv.querySelector('div p')?.textContent) || 0;
-    const unit = unitDiv.querySelector('div p')?.textContent || 'No Unit';
+    const value = Number(valueDiv.querySelector('div p')?.textContent) || 2.4;
+    const unit = unitDiv.querySelector('div p')?.textContent || '';
     const label = labelDiv.querySelector('div p')?.textContent || 'No label';
 
     result.push({
