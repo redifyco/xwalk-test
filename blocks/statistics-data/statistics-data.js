@@ -181,7 +181,7 @@ function processDivsToObjectStatisticsData(divs) {
     const unitDiv = divs[i + 1];
     const labelDiv = divs[i + 2];
 
-    const value = Number(valueDiv.querySelector('div p')?.textContent) || 2.4;
+    const value = Number(valueDiv.querySelector('div p')?.textContent) || 0;
     const unit = unitDiv.querySelector('div p')?.textContent || '';
     const label = labelDiv.querySelector('div p')?.textContent || 'No label';
 
