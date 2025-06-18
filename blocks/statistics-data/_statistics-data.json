@@ -148,7 +148,8 @@
         {
           "component": "text",
           "name": "value-stats-1",
-          "label": "Stat 1 - Value"
+          "label": "Stat 1 - Value",
+          "description": "Please enter a numeric or decimal value, separated by the ."
         },
         {
           "component": "text",
@@ -165,7 +166,8 @@
         {
           "component": "text",
           "name": "value-stats-2",
-          "label": "Stat 2 - Value"
+          "label": "Stat 2 - Value",
+          "description": "Please enter a numeric or decimal value, separated by the ."
         },
         {
           "component": "text",
