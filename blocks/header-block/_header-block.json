@@ -107,15 +107,7 @@
             {
               "component": "aem-content",
               "name": "first-level-menu-link",
-              "label": "First Level Menu Link",
-              "condition": {
-                "===": [
-                  {
-                    "var": "submenu-toggle"
-                  },
-                  false
-                ]
-              }
+              "label": "First Level Menu Link"
             }
           ]
         },
