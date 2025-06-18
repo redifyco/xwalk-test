@@ -46,11 +46,11 @@ export default function decorate(block) {
     // Statistiche - solo se presenti
     if (JSONStatisticsData.length > 0) {
       innerHTML += JSONStatisticsData.map((item) => `
-            <div class="flex flex-col items-center h-fit lg:flex-row lg:items-end lg:gap-6 ${isWhiteText ? 'text-white' : 'text-primary'}">
+            <div class="flex flex-col items-center max-w-64 lg:max-w-none h-fit lg:items-end lg:flex-row lg:gap-6 ${isWhiteText ? 'text-white' : 'text-primary'}">
               <h6 class="text-6xl md:text-7xl leading-tight font-semibold 2xl:text-9xl 2xl:leading-24">
                 <span class="stat-value" data-value="${item.value || 0}">0</span>${item.unit || ''}
               </h6>
-              <span class="w-full text-center lg:translate-y-5 lg:text-start lg:max-w-lg text-base 2xl:text-3xl ${isWhiteText ? 'text-white' : 'text-black'}">
+              <span class="w-full text-center lg:-translate-y-5 lg:text-start lg:max-w-lg text-base 2xl:text-3xl ${isWhiteText ? 'text-white' : 'text-black'}">
                 ${item.label || ''}
               </span>
             </div>
