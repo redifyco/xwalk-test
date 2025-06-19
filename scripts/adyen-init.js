@@ -198,7 +198,7 @@ export async function loadAdyen() {
     return new Promise((resolve, reject) => {
       const checkAdyen = () => {
         if (window.AdyenWeb && window.AdyenWeb.AdyenCheckout) {
-          console.log('✅ AdyenWeb disponibile:', window.AdyenWeb);
+          //console.log('✅ AdyenWeb disponibile:', window.AdyenWeb);
           resolve();
         } else {
           setTimeout(checkAdyen, 100);

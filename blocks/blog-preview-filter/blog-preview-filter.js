@@ -259,8 +259,8 @@ async function renderComponent(block, config, resultData, isMockData = false) {
     block.textContent = '';
     block.append(sectionContainer);
 
-    // Aggiungi CSS personalizzato per il layout responsivo - CHIAMATA CORRETTA
-    addMasonryStyles(block);
+    /* // Aggiungi CSS personalizzato per il layout responsivo - CHIAMATA CORRETTA
+    addMasonryStyles(block); */
 
     // Setup degli event listeners per i filtri
     setupFilterEventListeners(sectionContainer, config, articles, isMockData);
@@ -413,7 +413,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
     };
 
     return `
-      <div class="cards-grid-item">
+      <div class="">
         <article-card 
           data-card='${JSON.stringify(cardData).replace(/'/g, '&apos;')}'
           data-behaviour="${cardBehaviour}"
@@ -425,7 +425,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
 
   return `
     <div class="w-full">
-      <div class="cards-grid-container">
+      <div class="grid grid-cols-2">
         ${articlesHTML}
       </div>
       ${totalPages > 1 ? generatePagination(totalPages) : ''}

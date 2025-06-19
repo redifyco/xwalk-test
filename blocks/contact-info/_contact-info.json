@@ -65,31 +65,6 @@
           "value": 15
         },
         {
-          "component": "select",
-          "valueType": "string",
-          "name": "mapStyle",
-          "label": "Map Style",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "silver",
-              "label": "Silver"
-            },
-            {
-              "value": "dark",
-              "label": "Dark"
-            },
-            {
-              "value": "retro",
-              "label": "Retro"
-            }
-          ],
-          "value": "default"
-        },
-        {
           "component": "text",
           "valueType": "string",
           "name": "title",

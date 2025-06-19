@@ -116,18 +116,16 @@ export default async function decorate(block) {
     zoom: parseInt(block.querySelector('div:nth-child(4)')
       ?.textContent
       .trim() || '15', 10),
-    mapStyle: block.querySelector('div:nth-child(5)')
-      ?.textContent
-      .trim() || 'default',
+    mapStyle: 'default',
   };
 
-  const sectionTitle = block.querySelector('div:nth-child(6)')
+  const sectionTitle = block.querySelector('div:nth-child(5)')
     ?.textContent
     .trim() || '';
-  const boxTitle = block.querySelector('div:nth-child(7)')
+  const boxTitle = block.querySelector('div:nth-child(6)')
     ?.textContent
     .trim() || '';
-  const contactInfoItems = block.querySelectorAll('div:nth-child(n+8)');
+  const contactInfoItems = block.querySelectorAll('div:nth-child(n+7)');
   const resultItems = processDivsToObjectContactsItems(contactInfoItems) || [];
 
   const sectionContainer = document.createElement('section');
@@ -142,6 +140,7 @@ export default async function decorate(block) {
                 </div>
             `;
     }
+
     return `
             <div class=" w-full pt-10 flex flex-col gap-8 border-0 lg:border-t border-t-black">
                 ${sectionTitle ? `<h3 class="font-semibold text-5xl contact-map border-b lg:border-none">${sectionTitle}</h3>` : ''}

@@ -236,10 +236,10 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
-  decorateTemplateAndTheme();
-  
   // Load critical CSS
   loadCSS(`${window.hlx.codeBasePath}/styles/eager-styles.css`);
+  decorateTemplateAndTheme();
+
   // Load Ionicons
   loadIonicons();
   

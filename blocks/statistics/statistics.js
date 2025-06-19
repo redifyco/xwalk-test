@@ -3,9 +3,6 @@ export default async function decorate(block) {
   const items = block.querySelectorAll(':scope > div:nth-child(n+2) div');
   const resultItems = processDivsToObject(items);
 
-  console.log('block', block);
-  console.log('resultItems', resultItems);
-
   const containerSection = document.createElement('section');
   containerSection.className = 'bg-secondary flex flex-col items-center justify-center py-8 lg:gap-20 lg:py-40';
 
@@ -19,9 +16,7 @@ export default async function decorate(block) {
 
     <!-- STATS CONTAINER -->
     <div class=" w-full text-white mt-20">
-
       ${resultItems.length > 0 ? resultItems.map((item, index) => {
-
       return `
       <div
       id="stat-container"
@@ -78,40 +73,40 @@ export default async function decorate(block) {
 
   let observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
-      setTimeout(() => {
-        const interval = setInterval(() => {
-          progress += 1;
-          const remaining = total - progress;
+      setTimeout(()=> {
 
-          // Progress Bar Logic
-          bar.forEach((item) => {
-            if (progress === 25) {
-              item.style.width = `100%`;
+      const interval = setInterval(() => {
+        progress += 1;
+        const remaining = total - progress;
+
+        // Progress Bar Logic
+        bar.forEach((item) => {
+          if (progress === 25) {
+            item.style.width = `100%`;
+          }
+        });
+
+        // Progress Ring Logic
+        if (window.innerWidth >= 772) {
+          ring.forEach((item, index) => {
+            if (reversedElements[index]) {
+              const isReversed = reversedElements[index].getAttribute('data-reverse') === 'true';
+              if (isReversed) {
+                item.style.background = `conic-gradient(from 0deg, #00000000 0%, #00000000 ${remaining}%, #ffffff ${remaining}%, #ffffff 100%)`;
+              } else {
+                item.style.background = `conic-gradient(from 0deg, #ffffff 0%, #ffffff ${progress}%, #00000000 ${progress}%, #00000000 100%)`;
+              }
             }
           });
+        }
 
-          // Progress Ring Logic
-          if (window.innerWidth >= 772) {
-            ring.forEach((item, index) => {
-              if (reversedElements[index]) {
-                const isReversed = reversedElements[index].getAttribute('data-reverse') === 'true';
-                console.log('isReversed', isReversed);
-                if (isReversed) {
-                  item.style.background = `conic-gradient(from 0deg, #00000000 0%, #00000000 ${remaining}%, #ffffff ${remaining}%, #ffffff 100%)`;
-                } else {
-                  item.style.background = `conic-gradient(from 0deg, #ffffff 0%, #ffffff ${progress}%, #00000000 ${progress}%, #00000000 100%)`;
-                }
-              }
-            });
-          }
-
-          // Termination condition:
-          if (progress >= 25) {
-            clearInterval(interval);
-            observer.disconnect();
-          }
-        }, 20);
-      }, 1000);
+        // Termination condition:
+        if (progress >= 25) {
+          clearInterval(interval);
+          observer.disconnect();
+        }
+      }, 20);
+      }, 1000)
     }
   });
 

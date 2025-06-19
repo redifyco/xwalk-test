@@ -17,7 +17,7 @@ export default function decorate(block) {
     const menuItemsDiv = block.querySelectorAll(':scope > div:nth-child(n+6) div');
     const menuItems = processDivsToObject(menuItemsDiv);
 
-    console.log('menuItems', menuItems)
+    //console.log('menuItems', menuItems)
 
     const containerSection = document.createElement('section');
     containerSection.innerHTML = `

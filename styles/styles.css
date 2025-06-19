@@ -3,19 +3,16 @@
 @plugin 'tailwind-scrollbar';
 @plugin "@tailwindcss/typography";
 
+
 @font-face {
     font-family: 'Joyful';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
     src: url('../fonts/Joyful.woff2') format('woff2'),
-    url('../fonts/Joyful.woff') format('woff');
+    url('../fonts/Joyful.woff') format('woff'),
+    url('../fonts/Joyful.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
-
-@utility font-joyful {
-    font-family: 'Joyful', sans-serif;
-}
-
 
 @theme {
     --container-max-width: 120px;
@@ -43,7 +40,6 @@
 @utility container-layout-padding {
     @apply px-4 py-14 lg:py-24 xl:px-16 xl:py-30
 }
-
 @utility font-joyful {
     line-height: 20px;
     @apply font-['Joyful'] text-[70px] md:text-[150px]
@@ -58,7 +54,6 @@
 @utility font-joyful-lg {
     @apply font-['Joyful'] text-[310px] leading-[80px] tracking-wide;
 }
-
 @utility black-gradient-from-bottom {
     @apply bg-gradient-to-t from-black/40 to-transparent;
 }
@@ -103,4 +98,175 @@ option {
 }
 .adyen-checkout__payment-method--selected {
     background: none !important;
+}
+/* POPUP MGMT */
+@media (min-width: 1024px) {
+    .masonry-grid {
+        columns: 3;
+        column-gap: 1.5rem;
+        column-fill: balance;
+    }
+
+    .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+/* Utility classes per line-clamp se non disponibili */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Fix per scrollbar personalizzata */
+.scrollbar-thin::-webkit-scrollbar {
+    height: 6px;
+}
+
+.scrollbar-thumb-primary::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color, #0066cc);
+    border-radius: 3px;
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+}
+
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Popup z-index fix - MASSIMA PRIORITÀ */
+.popup-overlay {
+    z-index: 99999 !important;
+    position: fixed !important;
+}
+
+.popup-content {
+    position: relative !important;
+    z-index: 100000 !important;
+}
+
+/* Layout Masonry - 3 colonne usando CSS columns con padding aumentato */
+@media (min-width: 1024px) {
+    [data-component="blog-preview-single"][data-layout-style="masonry"] .lg\:grid {
+        display: block !important;
+        columns: 3 !important;
+        column-gap: 3rem !important; /* Aumentato da 1.5rem a 3rem */
+        column-fill: balance !important;
+        padding: 0 4rem !important; /* Aggiunto padding laterale */
+    }
+
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card {
+        display: inline-block !important;
+        width: 100% !important;
+        height: fit-content !important;
+        break-inside: avoid !important;
+        margin-bottom: 2rem !important; /* Aumentato da 1.5rem a 2rem */
+        page-break-inside: avoid !important;
+    }
+
+    /* Forza le dimensioni del contenuto interno nel layout masonry */
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card > div {
+        min-width: unset !important;
+        max-width: unset !important;
+        width: 100% !important;
+    }
+
+    /* Disabilita il troncamento del titolo nel layout masonry */
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card .title,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card h1,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card h2,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card h3,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card h5,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card [class*="title"],
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card [class*="heading"] {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: initial !important;
+        -webkit-line-clamp: unset !important;
+        line-clamp: unset !important;
+        display: block !important;
+        -webkit-box-orient: initial !important;
+        word-wrap: break-word !important;
+        hyphens: auto !important;
+    }
+
+    /* Rimuovi eventuali classi di troncamento Tailwind nel layout masonry */
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card .truncate,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card .line-clamp-1,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card .line-clamp-2,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card .line-clamp-3,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card .line-clamp-4,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card .line-clamp-5,
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card .line-clamp-6 {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: initial !important;
+        display: block !important;
+        -webkit-line-clamp: unset !important;
+        line-clamp: unset !important;
+        -webkit-box-orient: initial !important;
+    }
+}
+
+/* Breakpoint per schermi molto grandi */
+@media (min-width: 1440px) {
+    [data-component="blog-preview-single"][data-layout-style="masonry"] .lg\:grid {
+        padding: 0 6rem !important; /* Padding ancora maggiore per schermi grandi */
+        column-gap: 4rem !important; /* Gap ancora maggiore per schermi grandi */
+    }
+}
+
+/* Per schermi più piccoli, mantieni il comportamento orizzontale */
+@media (max-width: 1023px) {
+    [data-component="blog-preview-single"][data-layout-style="masonry"] .lg\:grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        gap: 1.5rem !important;
+        padding: 0 1rem !important; /* Padding ridotto per mobile */
+    }
+
+    [data-component="blog-preview-single"][data-layout-style="masonry"] article-card {
+        flex-shrink: 0 !important;
+        width: 280px !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+/* Layout Flexible - larghezza uniforme (invariato) */
+@media (min-width: 1024px) {
+    [data-component="blog-preview-single"][data-layout-style="flexible"] .lg\:flex-wrap {
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+    }
+
+    [data-component="blog-preview-single"][data-layout-style="flexible"] article-card {
+        width: 320px !important;
+        height: fit-content !important;
+        flex-shrink: 0 !important;
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+/* Stili comuni per entrambi i layout */
+[data-component="blog-preview-single"] article-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-component="blog-preview-single"] article-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

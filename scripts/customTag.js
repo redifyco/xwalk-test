@@ -150,85 +150,97 @@ export class SocialIcons extends HTMLElement {
 customElements.define('social-icons', SocialIcons);
 
 
+
+
 /*Card Style 1*/
 export class ArticleCard extends HTMLElement {
-    connectedCallback() {
-        const cardVariant = this.getAttribute('variant').toLowerCase() || 'primary';
-        const title = this.getAttribute('title') || '';
-        const subTitle = this.getAttribute('subTitle') || '';
-        const topLabel = this.getAttribute('topLabel') ? this.getAttribute('topLabel').split(',') : [];
-        const backgroundImage = this.getAttribute('backgroundImage');
-        const icons = this.getAttribute('icons') ? this.getAttribute('icons').split(',') : [];
-        const date = this.getAttribute('date') ? new Date(this.getAttribute('date')) : null;
-        const href = this.getAttribute('href') || [];
+  connectedCallback() {
+    // Ottieni i dati dal JSON
+    const cardDataAttr = this.getAttribute('data-card');
+    if (!cardDataAttr) return;
 
-        const formatDate = (dateString) => {
-            if (!dateString) return 'No date';
-            const day = date.getDate().toString().padStart(2, '0');
-            const month = date.toLocaleString('en', {month: 'short'}).toUpperCase();
-            const year = date.getFullYear();
-            return `${day} ${month} ${year}`;
-        };
-
-        const buildTopLabelBox = topLabel => {
-            const label = topLabel.toUpperCase();
-            const baseClass = 'px-3 py-1 text-xl font-medium';
-            const labelClasses = {
-                'ONGOING': 'bg-white text-primary',
-                'COMPLETE': 'bg-primary text-white'
-            };
-            return `${baseClass} ${labelClasses[label] || 'bg-gray-200 text-gray-700'}`;
-        }
-
-
-        this.innerHTML = `
-            <div class="min-w-80 max-w-full sm:max-w-80 lg:max-w-[350px] xl:max-w-[400px]">
-                <a
-                    href="${href}"
-                >
-                    <div class="relative">
-                    ${backgroundImage !== "" ? `<img class="w-full h-60 lg:h-72 object-cover" src="${backgroundImage}" alt="" />` : '<div class="w-full bg-gray-200 h-60 lg:h-72"></div>'}
-                        ${topLabel.length > 0 ? topLabel.map(item => {
-            const convertedLabel = returnStatusLabel(item)
-            return `
-                            <div class="absolute left-2 top-0 flex gap-1 ${buildTopLabelBox(convertedLabel)}">
-                                ${convertedLabel}
-                            </div>
-                        `
-        }).join('') : ''}
-                        <div class="absolute right-2 bottom-2 flex gap-1">
-                            ${icons.length > 0 ? icons.map(icon => {
-            return `
-                                <div class="flex size-10 p-2 rounded-full items-center justify-center bg-white">
-                                    ${returnFocusAreaIcon(icon)}
-                                </div>
-                            `
-        }).join('') : ''}
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-start gap-4 pt-6 ${
-            {
-                primary: '',
-                secondary: 'border border-black/30 p-4 border-t-0'
-            }[cardVariant] || ''
-        }">
-                        ${
-            {
-                primary: `<h5 class="text-primary text-base font-semibold lg:text-xl line-clamp-2 max-w-prose">${title}</h5>`,
-                secondary: `<h5 class="text-primary text-base font-semibold lg:text-3xl line-clamp-2 max-w-prose">${title}</h5>`
-            }[cardVariant] || ''
-        }
-                        
-                        ${cardVariant === 'primary' ? `<p class="text-base w-full border-t border-t-black/30 line-clamp-1 pt-2">${subTitle}</p>` : ''}
-                        ${cardVariant === 'secondary' ? `<div class="w-full">
-<arrow-button href="${href}" class="w-full" className="pb-2">Go to the page</arrow-button>
-<p class="text-xl w-full border-t text-black/30 border-solid  text-end border-t-black/30 pt-2 font-medium">${formatDate(date)}</p>
-</div>` : ''}
-                    </div>
-                </a>
-            </div>
-        `;
+    let cardData;
+    try {
+      cardData = JSON.parse(cardDataAttr);
+    } catch (e) {
+      console.error('Error parsing card data:', e);
+      return;
     }
+
+    const { title, subTitle, topLabel, backgroundImage, icons, date, href, variant, isMockData } = cardData;
+
+    const formatDate = (dateString) => {
+      if (!dateString) return 'No date';
+      const parsedDate = new Date(dateString);
+      const day = parsedDate.getDate().toString().padStart(2, '0');
+      const month = parsedDate.toLocaleString('en', {month: 'short'}).toUpperCase();
+      const year = parsedDate.getFullYear();
+      return `${day} ${month} ${year}`;
+    };
+
+    const buildTopLabelBox = (label) => {
+      if (!label || label.trim() === '') return 'px-3 py-1 text-xl font-medium bg-gray-200 text-gray-700';
+      const upperLabel = label.toString().trim().toUpperCase();
+      const baseClass = 'px-3 py-1 text-xl font-medium';
+      const labelClasses = {
+        'ONGOING': 'bg-white text-primary',
+        'COMPLETE': 'bg-primary text-white',
+        'PUBLISHED': 'bg-green-100 text-green-800',
+        'DRAFT': 'bg-yellow-100 text-yellow-800'
+      };
+      return `${baseClass} ${labelClasses[upperLabel] || 'bg-gray-200 text-gray-700'}`;
+    };
+
+    const renderImage = () => {
+      if (isMockData) {
+        return `<div class="w-full bg-gray-200 h-60 lg:h-72 flex items-center justify-center">
+          <span class="text-gray-500 text-sm">Image Placeholder (Mock Mode)</span>
+        </div>`;
+      }
+
+      if (!backgroundImage || backgroundImage.trim() === '') {
+        return `<div class="w-full bg-gray-200 h-60 lg:h-72 flex items-center justify-center">
+          <span class="text-gray-500 text-sm">No Image Available</span>
+        </div>`;
+      }
+
+      return `<div class="w-full h-60 lg:h-72 overflow-hidden">
+        <img src="${backgroundImage}" alt="${title}" class="w-full h-full object-cover"/>
+      </div>`;
+    };
+
+    const linkOpen = isMockData
+      ? `<a href="#" onclick="alert('Mock mode'); return false;">`
+      : `<a href="${href || '#'}">`;
+
+    this.innerHTML = `
+      <div class="min-w-80 max-w-full sm:max-w-80 lg:max-w-[350px] xl:max-w-[400px]">
+        ${linkOpen}
+          <div class="relative">
+            ${renderImage()}
+            ${topLabel ? `<div class="absolute left-2 top-0 flex gap-1 ${buildTopLabelBox(returnStatusLabel(topLabel) || topLabel)}">
+              ${returnStatusLabel(topLabel) || topLabel}
+            </div>` : ''}
+            ${icons ? `<div class="absolute right-2 bottom-2 flex gap-1">
+              <div class="flex size-10 p-2 rounded-full items-center justify-center bg-white">
+                ${returnFocusAreaIcon(icons)}
+              </div>
+            </div>` : ''}
+          </div>
+          <div class="flex flex-col items-start gap-4 pt-6 ${variant === 'secondary' ? 'border border-black/30 p-4 border-t-0' : ''}">
+            <h5 class="text-primary ${variant === 'secondary' ? 'text-base font-semibold lg:text-3xl' : 'text-base font-semibold lg:text-xl'} line-clamp-2 max-w-prose">
+              ${title}
+            </h5>
+            ${variant === 'primary' ? `<p class="text-base w-full border-t border-t-black/30 line-clamp-1 pt-2">${subTitle}</p>` : ''}
+            ${variant === 'secondary' ? `<div class="w-full">
+              <arrow-button href="${href || '#'}" class="w-full" className="pb-2">Go to the page</arrow-button>
+              <p class="text-xl w-full border-t text-black/30 border-solid text-end border-t-black/30 pt-2 font-medium">${formatDate(date)}</p>
+            </div>` : ''}
+          </div>
+        </a>
+      </div>
+    `;
+  }
 }
 
 customElements.define('article-card', ArticleCard);

@@ -48,7 +48,7 @@ export default function decorate(block) {
             `<p>${current.description}</p>` : '';
         
         const buttonHTML = current?.buttonLink && current?.buttonText ? 
-            `<a href="${current.buttonLink}" class="flex items-center gap-2">
+            `<a href="${current.buttonLink}" class="downloadlink flex items-center gap-2">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="Download">
                         <circle id="Ellipse 11" cx="20" cy="20" r="19" stroke="#009BAC" stroke-width="2"/>

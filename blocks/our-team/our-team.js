@@ -12,7 +12,7 @@ export default function decorate(block) {
           <span class="text-2xl font-semibold w-fit text-black lg:text-5xl">${title}</span>
           <div class="bg-black h-[0.5px] flex-grow"></div>
       </div>
-     <div class="md:px-14 flex overflow-y-scroll sm:grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 py-14">
+     <div class="md:px-14 flex overflow-y-scroll sm:grid md:grid-cols-2 xl:grid-cols-4 gap-8 py-14">
           ${processedTeams.length > 0 ? processedTeams.map((team, index) => `
               <button 
               data-index="${index}" 

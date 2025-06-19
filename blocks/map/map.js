@@ -65,7 +65,6 @@ export default async function decorate(block) {
     }
 
 
-
     await loadGoogleMaps(config.apiKey);
 
     const mapElement = document.getElementById('map');

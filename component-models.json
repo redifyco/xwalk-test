@@ -396,25 +396,52 @@
         ]
       },
       {
-        "component": "container",
-        "label": "API Configuration",
-        "collapsible": false,
-        "name": "api-configuration",
-        "valueType": "string",
-        "fields": [
+        "component": "select",
+        "name": "card-behaviour",
+        "label": "Card Behaviour",
+        "options": [
           {
-            "component": "text",
-            "valueType": "string",
-            "name": "API-URL",
-            "label": "API URL"
+            "name": "Page Link",
+            "value": "page-link"
           },
           {
-            "component": "number",
-            "valueType": "string",
-            "name": "items-to-show",
-            "label": "Items to Show"
+            "name": "Download Link",
+            "value": "download-link"
+          },
+          {
+            "name": "Open Popup",
+            "value": "popup"
           }
-        ]
+        ],
+        "value": "page-link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "API-URL",
+        "label": "API URL"
+      },
+      {
+        "component": "number",
+        "valueType": "string",
+        "name": "items-to-show",
+        "label": "Items to Show"
+      },
+      {
+        "component": "select",
+        "name": "layout-style",
+        "label": "Layout Style",
+        "options": [
+          {
+            "name": "Masonry (3 columns)",
+            "value": "masonry"
+          },
+          {
+            "name": "Flexible (no limit)",
+            "value": "flexible"
+          }
+        ],
+        "value": "masonry"
       }
     ]
   },
@@ -946,31 +973,6 @@
         "value": 15
       },
       {
-        "component": "select",
-        "valueType": "string",
-        "name": "mapStyle",
-        "label": "Map Style",
-        "options": [
-          {
-            "value": "default",
-            "label": "Default"
-          },
-          {
-            "value": "silver",
-            "label": "Silver"
-          },
-          {
-            "value": "dark",
-            "label": "Dark"
-          },
-          {
-            "value": "retro",
-            "label": "Retro"
-          }
-        ],
-        "value": "default"
-      },
-      {
         "component": "text",
         "valueType": "string",
         "name": "title",
@@ -1110,6 +1112,18 @@
         "component": "aem-content",
         "name": "redirect-max-amount-link",
         "label": "Redirect Max Amount Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "focus-area-api-url",
+        "label": "Focus Area API URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "countries-api-url",
+        "label": "Countries API URL"
       }
     ]
   },

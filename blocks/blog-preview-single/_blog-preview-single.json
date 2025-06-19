@@ -53,25 +53,52 @@
           ]
         },
         {
-          "component": "container",
-          "label": "API Configuration",
-          "collapsible": false,
-          "name": "api-configuration",
-          "valueType": "string",
-          "fields": [
+          "component": "select",
+          "name": "card-behaviour",
+          "label": "Card Behaviour",
+          "options": [
             {
-              "component": "text",
-              "valueType": "string",
-              "name": "API-URL",
-              "label": "API URL"
+              "name": "Page Link",
+              "value": "page-link"
             },
             {
-              "component": "number",
-              "valueType": "string",
-              "name": "items-to-show",
-              "label": "Items to Show"
+              "name": "Download Link",
+              "value": "download-link"
+            },
+            {
+              "name": "Open Popup",
+              "value": "popup"
             }
-          ]
+          ],
+          "value": "page-link"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "API-URL",
+          "label": "API URL"
+        },
+        {
+          "component": "number",
+          "valueType": "string",
+          "name": "items-to-show",
+          "label": "Items to Show"
+        },
+        {
+          "component": "select",
+          "name": "layout-style",
+          "label": "Layout Style",
+          "options": [
+            {
+              "name": "Masonry (3 columns)",
+              "value": "masonry"
+            },
+            {
+              "name": "Flexible (no limit)",
+              "value": "flexible"
+            }
+          ],
+          "value": "masonry"
         }
       ]
     }
