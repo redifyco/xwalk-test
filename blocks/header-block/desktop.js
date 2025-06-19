@@ -128,13 +128,13 @@ export default function getDesktopHeaderBlock(block, menuItems, logo, button,) {
 
 function generateMenuItem(item) {
   return `
-        <li class="flex items-center gap-1 relative">
-            ${item.isSubMenu
-    ? `<button class="cursor-pointer text-lg text-white font-medium flex items-center gap-1" id="subMenuButton">
+        <li class="flex py-4 items-center gap-1 relative">
+            ${item.firstLevelMenuLink
+    ? `<a id="subMenuButton" class="cursor-pointer text-white text-lg flex items-center gap-1 font-medium" href="${item.firstLevelMenuLink}">${item.firstLevelMenuText}${item.isSubMenu ? `<ion-icon id="chevron-down-outline" name="chevron-down-outline"></ion-icon>` : ''}</a>`
+    : `<button class="cursor-pointer text-lg text-white font-medium flex items-center gap-1" id="subMenuButton">
                 ${item.firstLevelMenuText}
                 <ion-icon id="chevron-down-outline" name="chevron-down-outline"></ion-icon>
-            </button>`
-    : `<a id="submenuText" class="cursor-pointer text-white text-lg font-medium" href="${item.firstLevelMenuLink}">${item.firstLevelMenuText}</a>`}
+            </button>`}
             ${generateSubMenu(item)}
         </li>
     `;
