@@ -142,7 +142,6 @@ export default async function decorate(block) {
                 </div>
             `;
     }
-
     return `
             <div class=" w-full pt-10 flex flex-col gap-8 border-0 lg:border-t border-t-black">
                 ${sectionTitle ? `<h3 class="font-semibold text-5xl contact-map border-b lg:border-none">${sectionTitle}</h3>` : ''}

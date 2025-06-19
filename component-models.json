@@ -307,25 +307,16 @@
         ]
       },
       {
-        "component": "container",
-        "label": "API Configuration",
-        "collapsible": false,
-        "name": "api-configuration",
+        "component": "text",
         "valueType": "string",
-        "fields": [
-          {
-            "component": "text",
-            "valueType": "string",
-            "name": "API-URL",
-            "label": "API URL"
-          },
-          {
-            "component": "number",
-            "valueType": "string",
-            "name": "items-to-show-per-page",
-            "label": "Items to Show Per Page"
-          }
-        ]
+        "name": "API-URL",
+        "label": "API URL"
+      },
+      {
+        "component": "number",
+        "valueType": "string",
+        "name": "items-to-show-per-page",
+        "label": "Items to Show Per Page"
       },
       {
         "component": "boolean",
