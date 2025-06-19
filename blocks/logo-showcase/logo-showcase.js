@@ -85,23 +85,9 @@ export default function decorate(block) {
     block.textContent = '';
     block.append(containerSection);
   } else {
+    block.querySelectorAll(':scope > div:nth-child(n+1) div')
+      .forEach(item => item.classList.add('hidden'));
     block.append(containerSection);
-    block.querySelector(':scope > div:nth-child(1) div')
-      .classList
-      .add('hidden');
-    block.querySelector(':scope > div:nth-child(2) div')
-      .classList
-      .add('hidden');
-    block.querySelector(':scope > div:nth-child(3) div')
-      .classList
-      .add('hidden');
-    block.querySelector(':scope > div:nth-child(4) div')
-      .classList
-      .add('hidden');
-    block.querySelector(':scope > div:nth-child(4) div')
-      .classList
-      .add('hidden');
-    items.forEach(item => item.classList.add('hidden'));
   }
 
   block.append(containerSection);
