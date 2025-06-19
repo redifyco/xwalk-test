@@ -39,7 +39,7 @@ export default function decorate(block) {
             ${resultItems
     .map((item, index) => {
       if (!item.image || !item.title || !item.link) return '';
-      const translation = index % 2 === 0 ? 'translate-y-0' : '-translate-y-20';
+      const translation = index % 2 === 0 ? 'translate-y-0 hover:-translate-y-8' : '-translate-y-20 hover:-translate-y-8';
       // Add transition class and initial transform class
       return `
                     <a class="size-48 flex ${translation} opacity-0 translate-y-20 transition-all duration-700 ease-out carousel-item" 
