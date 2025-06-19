@@ -339,48 +339,55 @@ export async function loadGoogleMaps(apiKey) {
   return Promise.resolve();
 }
 
-export function createLead(data, onSuccess, onFailure) {
-  fetch("/createlead", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then(async (resp) => {
-      if (!resp.ok) {
-        // try to read text for a message
-        const text = await resp.text().catch(() => "");
-        throw new Error(text || `HTTP ${resp.status}`);
-      }
-      return resp.text();
-    })
-    .then((text) => onSuccess(text))
-    .catch((err) => {
-      onError(err.message || "Unknown error");   // <-- never null
+/**
+ * Submits the lead data to /createlead and invokes the callbacks.
+ *
+ * @param {Object} data            – Form data plus g-recaptcha-response
+ * @param {(responseText: string)=>void} onSuccess
+ * @param {(errorMessage: string)=>void} onError
+ */
+export async function createLead(data, onSuccess, onError) {
+  try {
+    const resp = await fetch("/createlead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
+
+    const text = await resp.text().catch(() => "");
+
+    if (resp.ok) {
+      onSuccess(text);
+    } else {
+      // Use the returned text or fallback to status code
+      onError(text || `Server returned ${resp.status}`);
+    }
+  } catch (err) {
+    // Network or other fetch error
+    onError(err.message || "Network error");
+  }
 }
 
-export function createCase(data, onSuccess, onFailure) {
-  fetch("/createcase", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then(async (resp) => {
-      if (!resp.ok) {
-        // try to read text for a message
-        const text = await resp.text().catch(() => "");
-        throw new Error(text || `HTTP ${resp.status}`);
-      }
-      return resp.text();
-    })
-    .then((text) => onSuccess(text))
-    .catch((err) => {
-      onError(err.message || "Unknown error");   // <-- never null
+export async function createCase(data, onSuccess, onError) {
+  try {
+    const resp = await fetch("/createcase", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
+
+    const text = await resp.text().catch(() => "");
+
+    if (resp.ok) {
+      onSuccess(text);
+    } else {
+      // Use the returned text or fallback to status code
+      onError(text || `Server returned ${resp.status}`);
+    }
+  } catch (err) {
+    // Network or other fetch error
+    onError(err.message || "Network error");
+  }
 }
 
 /*Fetch Blog Preview Data */
