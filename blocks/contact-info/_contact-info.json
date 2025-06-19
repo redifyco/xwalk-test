@@ -44,24 +44,50 @@
           "value": ""
         },
         {
-        "component": "text",
-        "valueType": "string",
-        "name": "center-latitude",
-        "label": "Center Latitude",
-        "value": ""
-      },
+          "component": "text",
+          "valueType": "string",
+          "name": "latitude",
+          "label": "Latitude",
+          "value": "41.9028"
+        },
         {
           "component": "text",
           "valueType": "string",
-          "name": "center-longitude",
-          "label": "Center Longitude",
-          "value": ""
+          "name": "longitude",
+          "label": "Longitude",
+          "value": "12.4964"
         },
         {
           "component": "number",
           "valueType": "number",
           "name": "zoom",
-          "label": "Zoom Level"
+          "label": "Zoom Level",
+          "value": 15
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "mapStyle",
+          "label": "Map Style",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "silver",
+              "label": "Silver"
+            },
+            {
+              "value": "dark",
+              "label": "Dark"
+            },
+            {
+              "value": "retro",
+              "label": "Retro"
+            }
+          ],
+          "value": "default"
         },
         {
           "component": "text",
