@@ -1532,6 +1532,9 @@
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
   }
+  .will-change-transform {
+    will-change: transform;
+  }
   .perspective-\[1000px\] {
     perspective: 1000px;
   }
