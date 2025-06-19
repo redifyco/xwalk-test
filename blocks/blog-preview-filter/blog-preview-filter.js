@@ -413,19 +413,17 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
     };
 
     return `
-      <div class="">
         <article-card 
           data-card='${JSON.stringify(cardData).replace(/'/g, '&apos;')}'
           data-behaviour="${cardBehaviour}"
         >
         </article-card>
-      </div>
     `;
   }).join('');
 
   return `
     <div class="w-full">
-      <div class="grid grid-cols-2">
+      <div class="grid grid-cols-3">
         ${articlesHTML}
       </div>
       ${totalPages > 1 ? generatePagination(totalPages) : ''}
