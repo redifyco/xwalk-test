@@ -345,17 +345,19 @@ export function createLead(data, onSuccess, onFailure) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ ...data }),
+    body: JSON.stringify(data),
   })
-    .then((response) => {
-      if (response.ok) {
-        onSuccess("Lead successfully created");
-      } else {
-        onFailure("Failed to create lead");
+    .then(async (resp) => {
+      if (!resp.ok) {
+        // try to read text for a message
+        const text = await resp.text().catch(() => "");
+        throw new Error(text || `HTTP ${resp.status}`);
       }
+      return resp.text();
     })
-    .catch((error) => {
-      onFailure(error.message);
+    .then((text) => onSuccess(text))
+    .catch((err) => {
+      onError(err.message || "Unknown error");   // <-- never null
     });
 }
 
@@ -367,15 +369,17 @@ export function createCase(data, onSuccess, onFailure) {
     },
     body: JSON.stringify(data),
   })
-    .then((response) => {
-      if (response.ok) {
-        onSuccess("Lead successfully created");
-      } else {
-        onFailure("Failed to create lead");
+    .then(async (resp) => {
+      if (!resp.ok) {
+        // try to read text for a message
+        const text = await resp.text().catch(() => "");
+        throw new Error(text || `HTTP ${resp.status}`);
       }
+      return resp.text();
     })
-    .catch((error) => {
-      onFailure(error.message);
+    .then((text) => onSuccess(text))
+    .catch((err) => {
+      onError(err.message || "Unknown error");   // <-- never null
     });
 }
 
