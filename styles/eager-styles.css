@@ -2274,11 +2274,6 @@
       max-width: 30%;
     }
   }
-  .lg\:max-w-\[350px\] {
-    @media (width >= 64rem) {
-      max-width: 350px;
-    }
-  }
   .lg\:max-w-lg {
     @media (width >= 64rem) {
       max-width: var(--container-lg);
@@ -2704,9 +2699,9 @@
       width: 500px;
     }
   }
-  .xl\:max-w-\[400px\] {
+  .xl\:max-w-\[350px\] {
     @media (width >= 80rem) {
-      max-width: 400px;
+      max-width: 350px;
     }
   }
   .xl\:-translate-y-\[29\.5px\] {
@@ -2929,6 +2924,11 @@
   .\32 xl\:w-9\/12 {
     @media (width >= 96rem) {
       width: calc(9/12 * 100%);
+    }
+  }
+  .\32 xl\:max-w-\[400px\] {
+    @media (width >= 96rem) {
+      max-width: 400px;
     }
   }
   .\32 xl\:items-start {
