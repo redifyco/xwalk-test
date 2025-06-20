@@ -214,7 +214,7 @@ export class ArticleCard extends HTMLElement {
       : `<a href="${href || '#'}">`;
 
     this.innerHTML = `
-      <div class="max-w-[500px]">
+      <div class="w-full md:max-w-[500px]">
         ${linkOpen}
           <div class="relative">
             ${renderImage()}
