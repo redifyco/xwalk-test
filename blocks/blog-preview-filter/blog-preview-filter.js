@@ -332,7 +332,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
     return renderEmptyState();
   }
 
-  const totalPages = Math.ceil(data.length / perPage);
+  const totalPages = Math.ceil(data.length / 4);
   console.log('totalPages', totalPages)
   const startIndex = (currentPage - 1) * perPage;
   const endIndex = startIndex + perPage;
