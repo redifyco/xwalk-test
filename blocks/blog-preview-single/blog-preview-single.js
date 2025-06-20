@@ -561,7 +561,7 @@ function renderArticlesGrid(articles, cardStyle, cardBehaviour, layoutStyle, isM
   const isMasonry = layoutStyle === 'masonry';
 
   const gridClasses = isMasonry
-    ? 'grid grid-cols-1 gap-4 lg:grid-cols-3'
+    ? ' md:grid gap-4 md:grid-cols-3'
     : 'flex max-w-full justify-start gap-6 overflow-x-auto pb-5 lg:overflow-x-visible lg:flex lg:flex-wrap lg:justify-start lg:pb-0 scrollbar-thin scrollbar-thumb-primary scrollbar-thumb-rounded scrollbar-track-transparent lg:scrollbar-none';
 
   console.log('Rendering articles grid:', {
