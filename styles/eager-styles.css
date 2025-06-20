@@ -822,9 +822,6 @@
   .min-w-72 {
     min-width: calc(var(--spacing) * 72);
   }
-  .min-w-80 {
-    min-width: calc(var(--spacing) * 80);
-  }
   .min-w-\[280px\] {
     min-width: 280px;
   }
@@ -1890,9 +1887,9 @@
       height: calc(var(--spacing) * 32);
     }
   }
-  .sm\:max-w-80 {
+  .sm\:max-w-72 {
     @media (width >= 40rem) {
-      max-width: calc(var(--spacing) * 80);
+      max-width: calc(var(--spacing) * 72);
     }
   }
   .sm\:gap-20 {
