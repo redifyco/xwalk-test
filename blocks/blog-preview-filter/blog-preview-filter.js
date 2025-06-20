@@ -199,7 +199,7 @@ function renderErrorState(block, errorMessage = 'Error loading content') {
   errorContainer.className = 'bg-white'; // Aggiunto sfondo bianco
 
   errorContainer.innerHTML = `
-    <section class="flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-20 lg:px-20 lg:py-14 bg-white">
+    <section class="flex flex-col items-center justify-center gap-8  bg-white">
       <div class="text-center">
         <div class="text-6xl text-red-500 mb-4">⚠️</div>
         <h3 class="text-xl font-semibold text-red-600 mb-2">Error</h3>
@@ -423,7 +423,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
 
   return `
     <div class="w-full">
-      <div class="grid grid-cols-3">
+      <div class="grid sm:grid-cols-2 md:grid-cols-3">
         ${articlesHTML}
       </div>
       ${totalPages > 1 ? generatePagination(totalPages) : ''}
