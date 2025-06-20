@@ -33,12 +33,13 @@ export default function decorate(block) {
     sectionContainer.className = ''
 
     sectionContainer.innerHTML = `
-      <section class="flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-32 lg:px-20 lg:py-14">
+      <section class="flex flex-col items-center justify-center gap-8 container-layout-padding">
         <h2 class="text-primary text-center text-3xl uppercase lg:text-7xl">
           ${title}
         </h2>
         <!--RELATED PROGRAMMES-->
-        <div class="scrollbar scrollbar-thumb-primary scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-300 flex max-w-full justify-start gap-6 overflow-x-scroll pb-5 lg:flex-wrap lg:justify-center">
+        <div 
+        class="scrollbar scrollbar-thumb-primary scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-300 flex max-w-full justify-start gap-6 overflow-x-scroll pb-5  sm:grid sm:grid-cols-2">
           ${mockCardsData.length > 0 && mockCardsData.map((item, index) => `
             <article-card 
               variant="${cardStyle}"

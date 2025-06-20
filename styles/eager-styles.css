@@ -1887,6 +1887,11 @@
       height: calc(var(--spacing) * 32);
     }
   }
+  .sm\:grid-cols-2 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
   .sm\:gap-20 {
     @media (width >= 40rem) {
       gap: calc(var(--spacing) * 20);
@@ -2400,11 +2405,6 @@
   .lg\:justify-between {
     @media (width >= 64rem) {
       justify-content: space-between;
-    }
-  }
-  .lg\:justify-center {
-    @media (width >= 64rem) {
-      justify-content: center;
     }
   }
   .lg\:justify-start {
