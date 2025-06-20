@@ -29,19 +29,7 @@ export default async function decorate(block) {
     // Usa isEditorMode() da utils.js come in blog-preview-single
     const isAuthorMode = isEditorMode();
 
-    console.log('Blog Preview Filter configuration:', {
-      isAuthorMode,
-      apiString: config.apiString,
-      itemsToShow: config.itemsToShow,
-      filters: {
-        focusArea: config.isFilterFocusArea,
-        date: config.isFilterDate,
-        category: config.isFilterCategory
-      }
-    });
-
     if (isAuthorMode) {
-      console.log('Using mock data in author mode');
       const mockData = generateMockData(config.itemsToShow);
       await renderComponent(block, config, mockData, true);
       return;
@@ -55,12 +43,10 @@ export default async function decorate(block) {
     }
 
     // Rendering dello stato di caricamento
-    console.log('Loading data from API:', config.apiString);
     renderLoadingState(block);
 
     // Caricamento dei dati usando getDataFromJson - stessa logica di blog-preview-single
     const resultData = await getDataFromJson(config.apiString);
-    console.log('Raw API data received:', resultData);
 
     if (!resultData) {
       throw new Error('No data received from API');
@@ -83,8 +69,6 @@ export default async function decorate(block) {
       }
     }
 
-    console.log('Extracted articles:', articles.length, 'items');
-
     if (articles.length === 0) {
       console.warn('No articles found in API response');
       // Mostra stato vuoto invece di errore
@@ -97,7 +81,6 @@ export default async function decorate(block) {
       data: articles
     };
 
-    console.log('Rendering', structuredData.data.length, 'articles for filtering');
 
     // Rendering del componente
     await renderComponent(block, config, structuredData, false);
@@ -117,7 +100,6 @@ function generateMockData(count = 6) {
   const validCount = parseInt(count) || 6;
   const mockArticles = [];
 
-  console.log(`Generating ${validCount} mock articles for filter component`);
 
   const mockCategories = ['Technology', 'Education', 'Healthcare', 'Environment'];
   const mockFocusAreas = ['education', 'healthcare', 'technology', 'environment'];
@@ -241,8 +223,6 @@ async function renderComponent(block, config, resultData, isMockData = false) {
     displayArticles = articles.slice(0, config.itemsToShow);
   }
 
-  console.log(`Rendering ${displayArticles.length} articles out of ${articles.length} available (limit: ${config.itemsToShow})`);
-
   // Rendering del contenuto con caricamento asincrono dei filtri
   try {
     const filtersAndContentHTML = await renderFiltersAndContent(config, displayArticles, articles, isMockData);
@@ -277,7 +257,6 @@ async function renderComponent(block, config, resultData, isMockData = false) {
 
 // Modifica la funzione createSectionContainer per usare FilterByFocusArea asincrona e sfondo bianco
 const createSectionContainer = async (config, data, isMockData = false) => {
-  console.log('Creating section container with config:', config);
 
   // Crea il container principale con sfondo bianco
   const container = document.createElement('section');
@@ -349,14 +328,6 @@ const createSectionContainer = async (config, data, isMockData = false) => {
  * Rendering delle card con layout responsivo - VERSIONE AGGIORNATA SENZA MASONRY
  */
 const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMockData = false) => {
-  console.log('RenderCards called with:', {
-    dataLength: data?.length,
-    cardStyle,
-    perPage,
-    cardBehaviour,
-    isMockData
-  });
-
   if (!Array.isArray(data) || data.length === 0) {
     return renderEmptyState();
   }
@@ -366,18 +337,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
   const endIndex = startIndex + perPage;
   const result = data.slice(startIndex, endIndex);
 
-  console.log('Rendering articles:', {
-    totalItems: data.length,
-    currentPage,
-    totalPages,
-    itemsThisPage: result.length
-  });
-
   const articlesHTML = result.map((item, index) => {
-    console.log(`Rendering card ${index + 1}:`, {
-      title: item.title,
-      pageType: item.pageType
-    });
 
     // Gestione sicura dell'estrazione dei tag
     let pageTypesObject = {
@@ -421,6 +381,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
     `;
   }).join('');
 
+  console.log('generatePagination(totalPages)', generatePagination(totalPages))
   return `
     <div class="w-full">
       <div class="grid  md:grid-cols-2 gap-4 xl:grid-cols-3">
@@ -480,7 +441,6 @@ function FilterByCategory() {
 
 function attachEventListeners(container, config, data, originalData) {
   // Implementa gli event listeners per i filtri
-  console.log('Attaching event listeners for filters');
 }
 
 function generatePagination(totalPages) {
@@ -506,7 +466,6 @@ function generatePagination(totalPages) {
 window.changePage = function(page) {
   currentPage = page;
   // Re-render dei card con la nuova pagina
-  console.log('Changing to page:', page);
 };
 
 /**
@@ -525,7 +484,6 @@ async function loadCategories(isMockData = false) {
   }
 
   try {
-    console.log('Loading categories from /news-categories.json');
     const categoriesData = await getDataFromJson('/news-categories.json');
 
     if (!categoriesData) {
@@ -552,7 +510,6 @@ async function loadCategories(isMockData = false) {
     // ESCLUDE IL PRIMO ELEMENTO prima della trasformazione
     if (categories.length > 1) {
       categories = categories.slice(1);
-      console.log('Categories: removed first element, remaining:', categories.length);
     }
 
 
@@ -593,7 +550,6 @@ async function loadFocusAreas(isMockData = false) {
   }
 
   try {
-    console.log('Loading focus areas from /focus-area.json');
     const focusAreaData = await getDataFromJson('/focus-area.json');
 
     if (!focusAreaData) {
@@ -625,7 +581,6 @@ async function loadFocusAreas(isMockData = false) {
     // ESCLUDE IL PRIMO ELEMENTO prima della trasformazione
     if (focusAreas.length > 1) {
       focusAreas = focusAreas.slice(1);
-      console.log('Focus Areas: removed first element, remaining:', focusAreas.length);
     }
 
 
@@ -716,7 +671,6 @@ async function renderFiltersSection(config, articles, isMockData) {
  * Rendering del filtro per Focus Area - VERSIONE CON BOX STYLING
  */
 async function renderFocusAreaFilter(focusAreas, isMockData) {
-  console.log('renderFocusAreaFilter called with:', { focusAreas, isMockData });
 
   if (!focusAreas || focusAreas.length === 0) {
     console.warn('No focus areas available for filtering');
@@ -724,7 +678,6 @@ async function renderFocusAreaFilter(focusAreas, isMockData) {
   }
 
   const focusAreaOptions = focusAreas.map(area => {
-    console.log('Creating focus area option:', area);
 
     // Verifica che abbiamo name e value validi
     const name = area.name || 'Unknown Focus Area';
@@ -786,7 +739,6 @@ function renderDateFilter(isMockData) {
  * Rendering del filtro per categoria - VERSIONE CON BOX STYLING
  */
 async function renderCategoryFilter(categories, isMockData) {
-  console.log('renderCategoryFilter called with:', { categories, isMockData });
 
   if (!categories || categories.length === 0) {
     console.warn('No categories available for filtering');
@@ -794,7 +746,6 @@ async function renderCategoryFilter(categories, isMockData) {
   }
 
   const categoryOptions = categories.map(category => {
-    console.log('Creating category option:', category);
 
     // Verifica che abbiamo name e value validi
     const name = category.name || 'Unknown Category';
@@ -910,23 +861,12 @@ function renderAuthorModeNotice() {
  * @returns {string} HTML della griglia
  */
 function renderArticlesGrid(articles, cardStyle, cardBehaviour, isMockData = false) {
-  console.log('renderArticlesGrid called with:', {
-    articlesCount: articles?.length || 0,
-    cardStyle,
-    cardBehaviour,
-    isMockData
-  });
 
   if (!Array.isArray(articles) || articles.length === 0) {
     return renderEmptyState();
   }
 
   const articlesHTML = articles.map((article, index) => {
-    console.log(`Rendering article ${index + 1}:`, {
-      title: article.title,
-      pageType: article.pageType,
-      category: article.category
-    });
 
     // Gestione sicura dell'estrazione dei tag
     let focusAreas = '';
@@ -1016,7 +956,6 @@ function renderArticleCard(item, cardStyle, cardBehaviour, index, isMockData = f
  * @returns {Object} Proprietà della card
  */
 function getCardProps(item, cardBehaviour, isMockData) {
-  console.log('getCardProps called with:', { item, cardBehaviour, isMockData });
   if (isMockData) {
     return {
       href: '#',
@@ -1106,7 +1045,6 @@ function setupEventListeners(container, isMockData = false) {
         alert('This is a mock popup in author mode');
       } else {
         // Implementa qui la logica del popup reale
-        console.log('Popup functionality not yet implemented');
       }
     });
   });
@@ -1288,13 +1226,11 @@ function extractBlockConfig(block) {
  * @param {boolean} isMockData - Se true, indica dati fittizi
  */
 function setupFilterEventListeners(container, config, allArticles, isMockData) {
-  console.log('Setting up filter event listeners');
 
   // Event listeners per focus area checkboxes
   const focusAreaCheckboxes = container.querySelectorAll('.focus-area-filter');
   focusAreaCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
-      console.log('Focus area filter changed:', checkbox.value, checkbox.checked);
       applyFilters(container, config, allArticles, isMockData);
     });
   });
@@ -1303,7 +1239,6 @@ function setupFilterEventListeners(container, config, allArticles, isMockData) {
   const categoryCheckboxes = container.querySelectorAll('.category-filter');
   categoryCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
-      console.log('Category filter changed:', checkbox.value, checkbox.checked);
       applyFilters(container, config, allArticles, isMockData);
     });
   });
@@ -1312,12 +1247,9 @@ function setupFilterEventListeners(container, config, allArticles, isMockData) {
   const dateSelect = container.querySelector('.date-filter');
   if (dateSelect) {
     dateSelect.addEventListener('change', () => {
-      console.log('Date filter changed:', dateSelect.value);
       applyFilters(container, config, allArticles, isMockData);
     });
   }
-
-  console.log('Filter event listeners setup complete');
 }
 
 /**
@@ -1375,10 +1307,6 @@ function normalizeTagString(tagString) {
       .replace(/\s+/g, ' ')    // Multipli spazi in uno singolo
       .trim();
 
-    console.log('Tag normalization:', {
-      original: tagString,
-      normalized: normalized
-    });
 
     return normalized;
   } catch (error) {
@@ -1408,11 +1336,6 @@ function extractTagsOfType(pageType, tagType) {
     // Filtra i tag che iniziano con il tipo richiesto
     const matchingTags = tags.filter(tag => tag.startsWith(normalizedTagType));
 
-    console.log('Tag extraction:', {
-      pageType: pageType,
-      tagType: tagType,
-      extracted: matchingTags
-    });
 
     return matchingTags;
   } catch (error) {
@@ -1428,19 +1351,11 @@ function extractTagsOfType(pageType, tagType) {
  * @returns {Array} Articoli filtrati
  */
 function filterArticles(articles, selectedFilters) {
-  console.log('=== FILTER ARTICLES DEBUG (OR Logic) ===');
-  console.log('Articles to filter:', articles.length);
-  console.log('Selected filters:', selectedFilters);
 
   return articles.filter(article => {
-    console.log('\n--- Filtering article:', article.title);
-    console.log('Article pageType:', article.pageType);
-    console.log('Article category:', article.category);
 
     const articlePageType = article.pageType || '';
     const normalizedPageType = normalizeTagString(articlePageType);
-
-    console.log('Normalized pageType:', normalizedPageType);
 
     let passedFocusArea = true;
     let passedCategory = true;
@@ -1448,23 +1363,17 @@ function filterArticles(articles, selectedFilters) {
 
     // Filtro Focus Area con logica OR (almeno uno deve essere presente)
     if (selectedFilters.focusAreas.length > 0) {
-      console.log('Checking focus areas (OR logic):', selectedFilters.focusAreas);
 
       passedFocusArea = selectedFilters.focusAreas.some(selectedFocusArea => {
         const normalizedSelected = normalizeTagString(selectedFocusArea);
         const found = normalizedPageType.includes(normalizedSelected);
 
-        console.log(`  - Focus area '${selectedFocusArea}' (normalized: '${normalizedSelected}') found: ${found}`);
-
         return found;
       });
-
-      console.log('Passed focus area filter (OR):', passedFocusArea);
     }
 
     // Filtro Category con logica OR (almeno una deve essere presente)
     if (selectedFilters.categories.length > 0) {
-      console.log('Checking categories (OR logic):', selectedFilters.categories);
 
       const articleCategory = article.category || '';
       const normalizedCategory = normalizeTagString(articleCategory);
@@ -1474,19 +1383,12 @@ function filterArticles(articles, selectedFilters) {
         const foundInCategory = normalizedCategory.includes(normalizedSelected);
         const foundInPageType = normalizedPageType.includes(normalizedSelected);
 
-        console.log(`  - Category '${selectedCategory}' (normalized: '${normalizedSelected}')`);
-        console.log(`    Found in category field: ${foundInCategory}`);
-        console.log(`    Found in pageType field: ${foundInPageType}`);
-
         return foundInCategory || foundInPageType;
       });
-
-      console.log('Passed category filter (OR):', passedCategory);
     }
 
     // Filtro Data (rimane uguale)
     if (selectedFilters.dateRange && selectedFilters.dateRange !== 'all') {
-      console.log('Checking date filter:', selectedFilters.dateRange);
 
       const articleDate = new Date(article.published_time);
       const now = new Date();
@@ -1496,22 +1398,12 @@ function filterArticles(articles, selectedFilters) {
         const cutoffDate = new Date(now.getTime() - (daysBack * 24 * 60 * 60 * 1000));
         passedDate = articleDate >= cutoffDate;
 
-        console.log(`  - Article date: ${articleDate.toISOString()}`);
-        console.log(`  - Cutoff date: ${cutoffDate.toISOString()}`);
-        console.log(`  - Date filter passed: ${passedDate}`);
       }
     }
 
     // L'articolo passa il filtro se passa TUTTI i tipi di filtro attivi
     // Ma per ogni tipo di filtro (focus area, category) usa logica OR
     const finalResult = passedFocusArea && passedCategory && passedDate;
-
-    console.log('Final filter result:', {
-      passedFocusArea,
-      passedCategory,
-      passedDate,
-      finalResult
-    });
 
     if (finalResult) {
       console.log('✅ Article passed all filters');
@@ -1560,18 +1452,14 @@ function getSelectedFilters(container) {
  * @param {boolean} isMockData - Se true, indica dati fittizi
  */
 function applyFilters(container, config, allArticles, isMockData) {
-  console.log('=== APPLYING FILTERS ===');
-  console.log('Total articles before filtering:', allArticles.length);
 
   // Raccogli tutti i filtri selezionati
   const selectedFilters = getSelectedFilters(container);
-  console.log('Selected filters:', selectedFilters);
 
   // Se non ci sono filtri selezionati, mostra tutti gli articoli
   if (selectedFilters.focusAreas.length === 0 &&
     selectedFilters.categories.length === 0 &&
     !selectedFilters.dateRange) {
-    console.log('No filters selected, showing all articles');
     currentPage = 1;
     const articlesContainer = container.querySelector('#articles-container');
     if (articlesContainer) {
@@ -1588,8 +1476,6 @@ function applyFilters(container, config, allArticles, isMockData) {
 
   // Filtra gli articoli in base ai criteri selezionati
   let filteredArticles = filterArticles(allArticles, selectedFilters);
-  console.log('=== FILTERING COMPLETE ===');
-  console.log('Filtered articles:', filteredArticles.length, 'out of', allArticles.length);
 
   // Reset della paginazione
   currentPage = 1;
