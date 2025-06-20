@@ -29,7 +29,7 @@ export default async function decorate(block) {
     // Usa isEditorMode() da utils.js come in blog-preview-single
     const isAuthorMode = isEditorMode();
 
-    if (isAuthorMode) {
+    if (true) {
       const mockData = generateMockData(config.itemsToShow);
       await renderComponent(block, config, mockData, true);
       return;
