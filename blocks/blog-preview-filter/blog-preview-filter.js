@@ -333,6 +333,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
   }
 
   const totalPages = Math.ceil(data.length / perPage);
+  console.log('totalPages', totalPages)
   const startIndex = (currentPage - 1) * perPage;
   const endIndex = startIndex + perPage;
   const result = data.slice(startIndex, endIndex);
@@ -381,7 +382,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
     `;
   }).join('');
 
-  console.log('generatePagination(totalPages)', generatePagination(totalPages))
+  console.log('generatePagination(totalPages)',  generatePagination(totalPages))
   return `
     <div class="w-full">
       <div class="grid  md:grid-cols-2 gap-4 xl:grid-cols-3">
