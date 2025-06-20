@@ -423,7 +423,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
 
   return `
     <div class="w-full">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid lg:grid-cols-2 xl:grid-cols-3">
         ${articlesHTML}
       </div>
       ${totalPages > 1 ? generatePagination(totalPages) : ''}
