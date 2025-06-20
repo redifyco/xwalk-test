@@ -9,6 +9,10 @@ import {
 
 let currentPage = 1;
 
+// Stato globale per gli articoli filtrati e la config corrente
+let currentFilteredArticles = [];
+let currentConfig = {};
+
 // Costanti per i valori di default - allineate con blog-preview-single
 const DEFAULT_CONFIG = {
   TITLE: '',
@@ -97,7 +101,8 @@ export default async function decorate(block) {
  * @returns {Object} Dati fittizi
  */
 function generateMockData(count = 6) {
-  const validCount = parseInt(count) || 6;
+  // Always generate 20 items for pagination test
+  const validCount = 20;
   const mockArticles = [];
 
 
@@ -217,11 +222,16 @@ async function renderComponent(block, config, resultData, isMockData = false) {
 
   if (resultData.data) {
     articles = Array.isArray(resultData.data) ? resultData.data : [];
-    displayArticles = resultData.displayData || articles.slice(0, config.itemsToShow);
+    displayArticles = resultData.displayData || articles;
   } else if (Array.isArray(resultData)) {
     articles = resultData;
-    displayArticles = articles.slice(0, config.itemsToShow);
+    displayArticles = articles;
   }
+
+  // Imposta gli articoli filtrati globali all'inizio (nessun filtro applicato)
+  currentFilteredArticles = displayArticles;
+  currentConfig = config;
+  currentPage = 1;
 
   // Rendering del contenuto con caricamento asincrono dei filtri
   try {
@@ -327,14 +337,14 @@ const createSectionContainer = async (config, data, isMockData = false) => {
 /**
  * Rendering delle card con layout responsivo - VERSIONE AGGIORNATA SENZA MASONRY
  */
-const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMockData = false) => {
+const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMockData = false, page = null) => {
   if (!Array.isArray(data) || data.length === 0) {
     return renderEmptyState();
   }
-
-  const totalPages = Math.ceil(data.length / 4);
-  console.log('totalPages', totalPages)
-  const startIndex = (currentPage - 1) * perPage;
+  // Usa il page passato o il currentPage globale
+  const pageToUse = page || currentPage;
+  const totalPages = Math.ceil(data.length / perPage);
+  const startIndex = (pageToUse - 1) * perPage;
   const endIndex = startIndex + perPage;
   const result = data.slice(startIndex, endIndex);
 
@@ -388,63 +398,13 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
       <div class="grid  md:grid-cols-2 gap-4 xl:grid-cols-3">
         ${articlesHTML}
       </div>
-      ${totalPages > 1 ? generatePagination(totalPages) : ''}
+      ${totalPages > 1 ? generatePagination(totalPages, pageToUse) : ''}
     </div>
   `;
 };
 
 
-// Funzione helper per renderizzare stato vuoto come HTML
-function renderEmptyStateHTML() {
-  return `
-    <div class="flex flex-col justify-center items-center w-full text-center py-16">
-      <div class="text-2xl font-semibold text-gray-600 mb-2">No data to display</div>
-    </div>
-  `;
-}
-
-// Le altre funzioni (FilterByFocusArea, FilterByDate, FilterByCategory, attachEventListeners, generatePagination)
-// rimangono uguali al codice originale...
-
-// Placeholder per le funzioni di filtro - implementa secondo le tue specifiche
-async function FilterByFocusArea() {
-  return `
-    <div class="mb-6">
-      <h3 class="font-semibold text-lg mb-3">Focus Area</h3>
-      <div class="space-y-2">
-        <!-- Implementa i filtri focus area -->
-      </div>
-    </div>
-  `;
-}
-
-function FilterByDate() {
-  return `
-    <div class="mb-6">
-      <h3 class="font-semibold text-lg mb-3">Date</h3>
-      <div class="space-y-2">
-        <!-- Implementa i filtri data -->
-      </div>
-    </div>
-  `;
-}
-
-function FilterByCategory() {
-  return `
-    <div class="mb-6">
-      <h3 class="font-semibold text-lg mb-3">Category</h3>
-      <div class="space-y-2">
-        <!-- Implementa i filtri categoria -->
-      </div>
-    </div>
-  `;
-}
-
-function attachEventListeners(container, config, data, originalData) {
-  // Implementa gli event listeners per i filtri
-}
-
-function generatePagination(totalPages) {
+function generatePagination(totalPages, currentPage) {
   if (totalPages <= 1) return '';
 
   return `
@@ -453,7 +413,7 @@ function generatePagination(totalPages) {
         ${Array.from({length: totalPages}, (_, i) => i + 1).map(page => `
           <button 
             class="px-4 py-2 border ${page === currentPage ? 'bg-primary text-white' : 'bg-white text-primary'} rounded hover:bg-primary hover:text-white transition-colors"
-            onclick="changePage(${page})"
+            onclick="window.changePage(${page})"
           >
             ${page}
           </button>
@@ -465,8 +425,39 @@ function generatePagination(totalPages) {
 
 // Funzione globale per cambio pagina
 window.changePage = function(page) {
+  // Update the current page
   currentPage = page;
-  // Re-render dei card con la nuova pagina
+  console.log('Changing to page:', page);
+  console.log('Total filtered articles:', currentFilteredArticles.length);
+  console.log('Items per page:', currentConfig.itemsToShow);
+
+  const container = document.querySelector('[data-component="blog-preview-filter"]');
+  if (!container) {
+    console.error('Container not found');
+    return;
+  }
+
+  // Check if we're in mock mode to preserve this status
+  const isMockMode = container.getAttribute('data-mock-mode') === 'true';
+
+  const articlesContainer = container.querySelector('#articles-container');
+  if (articlesContainer) {
+    // Force itemsToShow to be 6 if not properly set
+    const itemsPerPage = parseInt(currentConfig.itemsToShow) || 6;
+
+    articlesContainer.innerHTML = RenderCards(
+      currentFilteredArticles,
+      currentConfig.cardStyle,
+      itemsPerPage, // Explicitly use the numeric value
+      currentConfig.cardBehaviour,
+      isMockMode, // Pass the correct mock mode flag
+      page // Pass the exact page number
+    );
+
+    articlesContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    console.error('Articles container not found');
+  }
 };
 
 /**
@@ -1462,6 +1453,7 @@ function applyFilters(container, config, allArticles, isMockData) {
       selectedFilters.categories.length === 0 &&
       !selectedFilters.dateRange) {
     currentPage = 1;
+    currentFilteredArticles = allArticles; // Update the global filtered articles array
     const articlesContainer = container.querySelector('#articles-container');
     if (articlesContainer) {
       articlesContainer.innerHTML = RenderCards(
@@ -1477,6 +1469,9 @@ function applyFilters(container, config, allArticles, isMockData) {
 
   // Filtra gli articoli in base ai criteri selezionati
   let filteredArticles = filterArticles(allArticles, selectedFilters);
+
+  // Update the global filtered articles array
+  currentFilteredArticles = filteredArticles;
 
   // Reset della paginazione
   currentPage = 1;
@@ -1511,4 +1506,3 @@ function showNoResultsMessage(container) {
     </div>
   `;
 }
-
