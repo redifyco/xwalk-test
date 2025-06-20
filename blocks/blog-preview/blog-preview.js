@@ -39,7 +39,7 @@ export default function decorate(block) {
         </h2>
         <!--RELATED PROGRAMMES-->
         <div 
-        class="grid grid-cols-2">
+        class="grid grid-cols-2 lg:grid-cols-3 gap-4">
           ${mockCardsData.length > 0 && mockCardsData.map((item, index) => `
             <article-card 
               variant="${cardStyle}"
