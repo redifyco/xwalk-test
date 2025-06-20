@@ -1017,6 +1017,9 @@
   .overflow-x-auto {
     overflow-x: auto;
   }
+  .overflow-x-scroll {
+    overflow-x: scroll;
+  }
   .overflow-y-auto {
     overflow-y: auto;
   }
@@ -1709,6 +1712,9 @@
   .scrollbar-thumb-primary {
     --scrollbar-thumb: #009BAC;
   }
+  .scrollbar-track-gray-300 {
+    --scrollbar-track: oklch(0.872 0.01 258.338);
+  }
   .scrollbar-track-transparent {
     --scrollbar-track: transparent;
   }
@@ -2394,6 +2400,11 @@
   .lg\:justify-between {
     @media (width >= 64rem) {
       justify-content: space-between;
+    }
+  }
+  .lg\:justify-center {
+    @media (width >= 64rem) {
+      justify-content: center;
     }
   }
   .lg\:justify-start {
