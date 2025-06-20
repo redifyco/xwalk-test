@@ -751,7 +751,7 @@ async function renderFocusAreaFilter(focusAreas, isMockData) {
       <h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
         Filter By Focus Area
       </h3>
-      <div class="border border-gray-200 rounded-l-lg p-4 bg-white shadow-sm">
+      <div class="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
         <div class="space-y-2">
           ${focusAreaOptions}
         </div>
@@ -770,7 +770,7 @@ function renderDateFilter(isMockData) {
         Filter By Date
       </h3>
       <div class="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
-        <select class="date-filter w-full px-3 py-2 border border-gray-300 rounded-l-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
+        <select class="date-filter w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
           <option value="">All Time</option>
           <option value="7">Last 7 days</option>
           <option value="30">Last 30 days</option>
@@ -813,7 +813,7 @@ async function renderCategoryFilter(categories, isMockData) {
       <h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
         Filter By Category
       </h3>
-      <div class="border border-gray-200 rounded-l-lg p-4 bg-white shadow-sm">
+      <div class="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
         <div class="space-y-2">
           ${categoryOptions}
         </div>
