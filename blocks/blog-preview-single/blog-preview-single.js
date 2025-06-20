@@ -175,7 +175,7 @@ function extractBlockConfig(block) {
  */
 function parseApiConfiguration(configString) {
     if (!configString) return {};
-    
+
     try {
         // Tentativo di parsing JSON
         const parsed = JSON.parse(configString);
@@ -200,11 +200,11 @@ function validateConfiguration(config) {
     if (!config.apiString || config.apiString.trim() === '') {
         throw new Error('API path is required');
     }
-    
+
     if (config.itemsToShow <= 0 || config.itemsToShow > 50) {
         throw new Error('Items to show must be between 1 and 50');
     }
-    
+
     // Validazione per path JSON o URL
     if (config.apiString.startsWith('http')) {
         try {
@@ -253,7 +253,7 @@ function generateMockData(count = 3) {
 function renderConfigurationMessage(block) {
     const configContainer = document.createElement('section');
     configContainer.className = 'flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-20 lg:px-20 lg:py-14';
-    
+
     configContainer.innerHTML = `
         <div class="flex flex-col items-center justify-center gap-4 py-16 text-center">
             <div class="text-6xl text-orange-500 mb-4">⚙️</div>
@@ -261,7 +261,7 @@ function renderConfigurationMessage(block) {
             <p class="text-gray-600 max-w-md">This component requires a JSON API path to be configured (e.g., "/programs-index.json"). Please add the API configuration in the authoring environment.</p>
         </div>
     `;
-    
+
     block.textContent = '';
     block.append(configContainer);
 }
@@ -273,7 +273,7 @@ function renderConfigurationMessage(block) {
 function renderLoadingState(block) {
     const loadingContainer = document.createElement('section');
     loadingContainer.className = 'flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-20 lg:px-20 lg:py-14';
-    
+
     loadingContainer.innerHTML = `
         <div class="flex flex-col items-center justify-center gap-4 py-16 text-center">
             <div class="animate-spin text-6xl text-blue-500 mb-4">🔄</div>
@@ -281,7 +281,7 @@ function renderLoadingState(block) {
             <p class="text-gray-600">Please wait while we fetch the latest articles.</p>
         </div>
     `;
-    
+
     block.textContent = '';
     block.append(loadingContainer);
 }
@@ -294,7 +294,7 @@ function renderLoadingState(block) {
 function renderErrorState(block, errorMessage = 'An error occurred while loading content') {
     const errorContainer = document.createElement('section');
     errorContainer.className = 'flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-20 lg:px-20 lg:py-14';
-    
+
     errorContainer.innerHTML = `
         <div class="flex flex-col items-center justify-center gap-4 py-16 text-center">
             <div class="text-6xl text-red-500 mb-4">⚠️</div>
@@ -305,7 +305,7 @@ function renderErrorState(block, errorMessage = 'An error occurred while loading
             </button>
         </div>
     `;
-    
+
     block.textContent = '';
     block.append(errorContainer);
 }
@@ -540,7 +540,7 @@ function addMasonryStyles(block) {
  */
 function renderTitle(title) {
     if (!title) return '';
-    
+
     return `
         <div class="text-center mb-8">
             <h2 class="text-3xl lg:text-5xl font-bold text-primary mb-4">${title}</h2>
@@ -561,7 +561,7 @@ function renderArticlesGrid(articles, cardStyle, cardBehaviour, layoutStyle, isM
   const isMasonry = layoutStyle === 'masonry';
 
   const gridClasses = isMasonry
-    ? 'flex max-w-full justify-start gap-6 overflow-x-auto pb-5 lg:overflow-x-visible lg:grid lg:grid-cols-3 lg:gap-6 lg:pb-0 lg:auto-rows-min scrollbar-thin scrollbar-thumb-primary scrollbar-thumb-rounded scrollbar-track-transparent lg:scrollbar-none'
+    ? 'flex max-w-full justify-start gap-6 overflow-x-auto pb-5 lg:overflow-x-visible lg:grid lg:grid-cols-3 lg:gap-6 lg:pb-0 scrollbar-thin scrollbar-thumb-primary scrollbar-thumb-rounded scrollbar-track-transparent lg:scrollbar-none'
     : 'flex max-w-full justify-start gap-6 overflow-x-auto pb-5 lg:overflow-x-visible lg:flex lg:flex-wrap lg:justify-start lg:pb-0 scrollbar-thin scrollbar-thumb-primary scrollbar-thumb-rounded scrollbar-track-transparent lg:scrollbar-none';
 
   console.log('Rendering articles grid:', {
