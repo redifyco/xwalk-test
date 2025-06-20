@@ -39,7 +39,7 @@ export default function decorate(block) {
         </h2>
         <!--RELATED PROGRAMMES-->
         <div 
-        class="scrollbar scrollbar-thumb-primary scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-300 flex max-w-full justify-start gap-6 overflow-x-scroll pb-5  sm:grid sm:grid-cols-2">
+        class="grid grid-cols-2">
           ${mockCardsData.length > 0 && mockCardsData.map((item, index) => `
             <article-card 
               variant="${cardStyle}"

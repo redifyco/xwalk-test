@@ -1017,9 +1017,6 @@
   .overflow-x-auto {
     overflow-x: auto;
   }
-  .overflow-x-scroll {
-    overflow-x: scroll;
-  }
   .overflow-y-auto {
     overflow-y: auto;
   }
@@ -1712,9 +1709,6 @@
   .scrollbar-thumb-primary {
     --scrollbar-thumb: #009BAC;
   }
-  .scrollbar-track-gray-300 {
-    --scrollbar-track: oklch(0.872 0.01 258.338);
-  }
   .scrollbar-track-transparent {
     --scrollbar-track: transparent;
   }
@@ -1885,11 +1879,6 @@
   .sm\:h-32 {
     @media (width >= 40rem) {
       height: calc(var(--spacing) * 32);
-    }
-  }
-  .sm\:grid-cols-2 {
-    @media (width >= 40rem) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   .sm\:gap-20 {
