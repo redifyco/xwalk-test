@@ -199,7 +199,7 @@ function renderErrorState(block, errorMessage = 'Error loading content') {
   errorContainer.className = 'bg-white'; // Aggiunto sfondo bianco
 
   errorContainer.innerHTML = `
-    <section class="flex flex-col items-center justify-center gap-8  bg-white container-layout-padding">
+    <section class="flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-20 lg:px-20 lg:py-14 bg-white">
       <div class="text-center">
         <div class="text-6xl text-red-500 mb-4">⚠️</div>
         <h3 class="text-xl font-semibold text-red-600 mb-2">Error</h3>
@@ -249,7 +249,7 @@ async function renderComponent(block, config, resultData, isMockData = false) {
 
     sectionContainer.innerHTML = `
       ${isMockData ? renderAuthorModeNotice() : ''}
-      <section class="flex flex-col items-center justify-center gap-8 px-4 pb-14 lg:gap-20 lg:px-20 lg:py-14 bg-white">
+      <section class="flex flex-col items-center justify-center gap-8 container-layout-padding bg-white">
         ${renderTitle(config.title)}
         ${filtersAndContentHTML}
         ${renderActionButton(config.buttonText || '', config.buttonLink || '#', isMockData)}
