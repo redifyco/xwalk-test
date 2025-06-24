@@ -3185,6 +3185,17 @@
         "component": "aem-content",
         "name": "cta-box-link",
         "label": "CTA box URL"
+      },
+      {
+        "component": "text",
+        "name": "download-button-text",
+        "label": "Download Button Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "download-button-link",
+        "label": "Download Button link"
       }
     ]
   },
@@ -3208,17 +3219,6 @@
         "name": "description",
         "label": "Description",
         "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "download-text",
-        "label": "Download Button Text",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "download-link",
-        "label": "Download Button Link"
       }
     ]
   },

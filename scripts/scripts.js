@@ -11,6 +11,7 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
+import {isEditorMode} from "./utils.js";
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -242,12 +243,15 @@ async function loadEager(doc) {
 
   // Load Ionicons
   loadIonicons();
-  
+
   // Initialize tracking and analytics
   initDataLayer();
-  loadDidomi();
-  loadGTM();
-  
+
+  if (!isEditorMode()) {
+    loadDidomi();
+    loadGTM();
+  }
+
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);

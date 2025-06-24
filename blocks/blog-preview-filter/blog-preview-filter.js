@@ -29,11 +29,10 @@ export default async function decorate(block) {
   try {
     // Estrazione e validazione della configurazione
     const config = extractBlockConfig(block);
-
     // Usa isEditorMode() da utils.js come in blog-preview-single
     const isAuthorMode = isEditorMode();
 
-    if (true) {
+    if (isAuthorMode) {
       const mockData = generateMockData(config.itemsToShow);
       await renderComponent(block, config, mockData, true);
       return;
@@ -51,6 +50,7 @@ export default async function decorate(block) {
 
     // Caricamento dei dati usando getDataFromJson - stessa logica di blog-preview-single
     const resultData = await getDataFromJson(config.apiString);
+    console.log('resultData', resultData);
 
     if (!resultData) {
       throw new Error('No data received from API');
@@ -256,12 +256,22 @@ async function renderComponent(block, config, resultData, isMockData = false) {
     setupFilterEventListeners(sectionContainer, config, articles, isMockData);
 
     // Setup degli event listeners generali
-    setupEventListeners(sectionContainer, isMockData);
+    // setupEventListeners(sectionContainer, isMockData);
 
   } catch (error) {
     console.error('Error rendering filters and content:', error);
     renderErrorState(block, 'Error loading filter options');
   }
+}
+
+
+window.openArticlePopup = function(data) {
+const overlayPopup = document.querySelector('#popup-box');
+  const { title, subTitle } = JSON.parse(data);
+
+  overlayPopup.innerHTML = `
+    <overlay-popup title="${title}" subtitle="${subTitle}"></overlay-popup>
+  `;
 }
 
 
@@ -312,7 +322,7 @@ const createSectionContainer = async (config, data, isMockData = false) => {
     // Contenuto principale
     sectionHTML += `
       <main class="lg:w-3/4">
-        <div id="articles-container">
+        <div class="h-full" id="articles-container">
           ${RenderCards(data, config.cardStyle, config.itemsToShow, config.cardBehaviour, isMockData)}
         </div>
       </main>
@@ -322,7 +332,7 @@ const createSectionContainer = async (config, data, isMockData = false) => {
   } else {
     // Senza filtri, mostra solo gli articoli
     sectionHTML += `
-      <div id="articles-container" class="w-full">
+      <div id="articles-container" class="w-full h-full">
         ${RenderCards(data, config.cardStyle, config.itemsToShow, config.cardBehaviour, isMockData)}
       </div>
     `;
@@ -347,6 +357,7 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
   const startIndex = (pageToUse - 1) * perPage;
   const endIndex = startIndex + perPage;
   const result = data.slice(startIndex, endIndex);
+
 
   const articlesHTML = result.map((item, index) => {
 
@@ -380,11 +391,12 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
       variant: cardStyle,
       isMockData: isMockData,
       download: cardProps.download || '',
-      onclick: cardProps.onclick || ''
+      isOnclick: cardProps.isOnclick || ''
     };
 
     return `
         <article-card 
+        class="flex justify-center"
           data-card='${JSON.stringify(cardData).replace(/'/g, '&apos;')}'
           data-behaviour="${cardBehaviour}"
         >
@@ -392,9 +404,8 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
     `;
   }).join('');
 
-  console.log('generatePagination(totalPages)',  generatePagination(totalPages))
   return `
-    <div class="w-full">
+    <div class="w-full flex h-full flex-col justify-between">
       <div class="grid  md:grid-cols-2 gap-4 xl:grid-cols-3">
         ${articlesHTML}
       </div>
@@ -407,29 +418,76 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
 function generatePagination(totalPages, currentPage) {
   if (totalPages <= 1) return '';
 
-  return `
-    <div class="w-full flex justify-center mt-8">
-      <div class="flex gap-2">
-        ${Array.from({length: totalPages}, (_, i) => i + 1).map(page => `
-          <button 
-            class="px-4 py-2 border ${page === currentPage ? 'bg-primary text-white' : 'bg-white text-primary'} rounded hover:bg-primary hover:text-white transition-colors"
-            onclick="window.changePage(${page})"
-          >
-            ${page}
-          </button>
-        `).join('')}
-      </div>
-    </div>
-  `;
+  let paginationHTML = '';
+
+  // Container for pagination
+  paginationHTML = '<div class="w-full flex justify-center lg:justify-end mt-8"><div class="flex gap-2 items-center">';
+
+  // Determine which page numbers to show based on current page position
+  let startPage = 1;
+  let endPage = totalPages;
+
+  // Logic for showing maximum 3 pages at a time
+  if (totalPages > 3) {
+    if (currentPage <= 2) {
+      // Near start: show first 3 pages
+      endPage = 3;
+    } else if (currentPage >= totalPages - 1) {
+      // Near end: show last 3 pages
+      startPage = totalPages - 2;
+    } else {
+      // In middle: current page is centered
+      startPage = currentPage - 1;
+      endPage = currentPage + 1;
+    }
+  }
+
+  // Previous arrow - only show if not on first page
+  if (currentPage > 1) {
+    paginationHTML += `
+      <button 
+        class="flex items-center justify-center size-12 text-lg border border-gray-300 bg-white text-gray-300 "
+        onclick="window.changePage(${currentPage - 1})"
+        aria-label="Previous page"
+      >
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>`;
+  }
+
+  // Page numbers
+  for (let page = startPage; page <= endPage; page++) {
+    paginationHTML += `
+      <button 
+        class="flex items-center justify-center size-12 text-lg border ${page === currentPage ? 'border-secondary bg-secondary text-white' : 'border-gray-300 bg-white text-gray-300'}"
+        onclick="window.changePage(${page})"
+        aria-label="Page ${page} ${page === currentPage ? '(current)' : ''}"
+        ${page === currentPage ? 'aria-current="page"' : ''}
+      >
+        ${page}
+      </button>`;
+  }
+
+  // Next arrow - only show if not on last page
+  if (currentPage < totalPages) {
+    paginationHTML += `
+      <button 
+        class="flex items-center justify-center size-12 text-lg border border-gray-300 bg-white text-gray-300 "
+        onclick="window.changePage(${currentPage + 1})"
+        aria-label="Next page"
+      >
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </button>`;
+  }
+
+  paginationHTML += '</div></div>';
+
+  return paginationHTML;
 }
 
 // Funzione globale per cambio pagina
 window.changePage = function(page) {
   // Update the current page
   currentPage = page;
-  console.log('Changing to page:', page);
-  console.log('Total filtered articles:', currentFilteredArticles.length);
-  console.log('Items per page:', currentConfig.itemsToShow);
 
   const container = document.querySelector('[data-component="blog-preview-filter"]');
   if (!container) {
@@ -682,7 +740,7 @@ async function renderFocusAreaFilter(focusAreas, isMockData) {
 
     return `
       <label class="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors">
-        <input type="checkbox" value="${value}" class="focus-area-filter rounded-lg border-gray-300 text-blue-600 focus:ring-blue-500">
+        <input type="checkbox" value="${value}" class="focus-area-filter hidden rounded-lg border-gray-300 text-blue-600 focus:ring-blue-500">
         <div class="w-6 h-6 flex items-center justify-center">
           ${iconHTML}
         </div>
@@ -714,8 +772,8 @@ function renderDateFilter(isMockData) {
      <h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
         Filter By Date
       </h3>
-      <div class="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
-        <select class="date-filter w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
+      <div class="p-4 border border-gray-300 rounded-lg shadow-sm">
+        <select class="date-filter w-full  focus:outline-none text-sm">
           <option value="">All Time</option>
           <option value="7">Last 7 days</option>
           <option value="30">Last 30 days</option>
@@ -793,13 +851,13 @@ async function renderFiltersAndContent(config, displayArticles, allArticles, isM
 
     filtersHTML += '</aside>';
     filtersHTML += '<main class="lg:w-3/4">';
-    filtersHTML += '<div id="articles-container">';
+    filtersHTML += '<div class="h-full" id="articles-container">';
     filtersHTML += RenderCards(displayArticles, config.cardStyle, config.itemsToShow, config.cardBehaviour, isMockData);
     filtersHTML += '</div>';
     filtersHTML += '</main>';
     filtersHTML += '</div>';
   } else {
-    filtersHTML = '<div id="articles-container" class="w-full">';
+    filtersHTML = '<div id="articles-container" class="w-full h-full">';
     filtersHTML += RenderCards(displayArticles, config.cardStyle, config.itemsToShow, config.cardBehaviour, isMockData);
     filtersHTML += '</div>';
   }
@@ -843,6 +901,7 @@ function renderAuthorModeNotice() {
     </div>
   `;
 }
+
 
 /**
  * Rendering della griglia di articoli con supporto masonry
@@ -952,7 +1011,7 @@ function getCardProps(item, cardBehaviour, isMockData) {
     return {
       href: '#',
       download: '',
-      onclick: 'alert("Mock mode"); return false;'
+      isOnclick: true
     };
   }
 
@@ -961,25 +1020,25 @@ function getCardProps(item, cardBehaviour, isMockData) {
       return {
         href: item.path || '#',
         download: '',
-        onclick: ''
+        isOnclick: false
       };
     case 'download':
       return {
         href: item.path || '#',
         download: 'download',
-        onclick: ''
+        isOnclick: false
       };
     case 'popup':
       return {
-        href: '#',
+        href: '',
         download: '',
-        onclick: `openArticlePopup('${item.path || '#'}')`
+        isOnclick: true
       };
     default:
       return {
         href: item.path || '#',
         download: '',
-        onclick: ''
+        isOnclick: false
       };
   }
 }
@@ -1019,27 +1078,6 @@ function renderEmptyState() {
       <div class="text-gray-500">There are no articles to display at the moment.</div>
     </div>
   `;
-}
-
-/**
- * Setup degli event listeners se necessario - adattata da blog-preview-single
- * @param {HTMLElement} container - Container principale
- * @param {boolean} isMockData - Se true, indica dati fittizi
- */
-function setupEventListeners(container, isMockData = false) {
-  // Event listeners specifici per il comportamento popup se necessario
-  const popupLinks = container.querySelectorAll('[onclick*="openArticlePopup"]');
-
-  popupLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (isMockData) {
-        alert('This is a mock popup in author mode');
-      } else {
-        // Implementa qui la logica del popup reale
-      }
-    });
-  });
 }
 
 /**
@@ -1396,6 +1434,18 @@ function filterArticles(articles, selectedFilters) {
     // L'articolo passa il filtro se passa TUTTI i tipi di filtro attivi
     // Ma per ogni tipo di filtro (focus area, category) usa logica OR
     const finalResult = passedFocusArea && passedCategory && passedDate;
+
+   // Add styling to parent label based on checkbox state
+   document.querySelectorAll('.focus-area-filter').forEach(checkbox => {
+     const parentLabel = checkbox.closest('label');
+     if (parentLabel) {
+       if (checkbox.checked) {
+         parentLabel.classList.add('bg-blue-50');
+       } else {
+         parentLabel.classList.remove('bg-blue-50');
+       }
+     }
+   });
 
     if (finalResult) {
       console.log('✅ Article passed all filters');

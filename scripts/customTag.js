@@ -167,7 +167,7 @@ export class ArticleCard extends HTMLElement {
       return;
     }
 
-    const { title, subTitle, topLabel, backgroundImage, icons, date, href, variant, isMockData } = cardData;
+    const { title, subTitle, topLabel, backgroundImage, icons, date, href, variant, isMockData, isOnclick, download } = cardData;
 
     const formatDate = (dateString) => {
       if (!dateString) return 'No date';
@@ -209,12 +209,25 @@ export class ArticleCard extends HTMLElement {
       </div>`;
     };
 
+    const dataPopUp = {
+      title: title,
+      subTitle: subTitle,
+    };
+
     const linkOpen = isMockData
       ? `<a href="#" onclick="alert('Mock mode'); return false;">`
-      : `<a href="${href || '#'}">`;
+      : isOnclick
+        ? `<button class="text-left w-full" onclick='openArticlePopup(${JSON.stringify(JSON.stringify(dataPopUp))})'>`
+        : `<a href="${href}">`;
+
+    window.closeOverlayPopUp = (e) => {
+      const overlayPopup = document.querySelector('#popup-box')
+      overlayPopup.innerHTML = ''
+    }
 
     this.innerHTML = `
-      <div class="w-full md:max-w-[500px]">
+      <div class="min-w-full max-w-full sm:max-w-80 lg:max-w-[350px] xl:max-w-[400px]">
+      <div id="popup-box" ></div>
         ${linkOpen}
           <div class="relative">
             ${renderImage()}
@@ -231,13 +244,13 @@ export class ArticleCard extends HTMLElement {
             <h5 class="text-primary ${variant === 'secondary' ? 'text-base font-semibold lg:text-3xl' : 'text-base font-semibold lg:text-xl'} line-clamp-2 max-w-prose">
               ${title}
             </h5>
-            ${variant === 'primary' ? `<p class="text-base w-full border-t border-t-black/30 line-clamp-1 pt-2">${subTitle}</p>` : ''}
+            ${variant === 'primary' ? `<div class="text-base w-full border-t max-h-[32px] border-t-black/30 py-2 line-clamp-1 max-w-prose">${subTitle}</div>` : ''}
             ${variant === 'secondary' ? `<div class="w-full">
               <arrow-button href="${href || '#'}" class="w-full" className="pb-2">Go to the page</arrow-button>
               <p class="text-xl w-full border-t text-black/30 border-solid text-end border-t-black/30 pt-2 font-medium">${formatDate(date)}</p>
             </div>` : ''}
           </div>
-        </a>
+          ${isOnclick ? `</button>` : `</a>`}
       </div>
     `;
   }
@@ -281,3 +294,27 @@ export class PopUpBox extends HTMLElement {
 }
 
 customElements.define('popup-box', PopUpBox);
+
+/*Overlay Pop-Up*/
+export class OverlayPopUp extends HTMLElement {
+  connectedCallback() {
+    const title = this.getAttribute('title') || '';
+    const subtitle = this.getAttribute('subtitle') || '';
+    const extraClass = this.getAttribute('extraClass') || '';
+
+
+    this.innerHTML = `
+           <div class="fixed flex items-center justify-center inset-0 top-0 left-0 h-full bg-black/30 z-30 w-full py-14 px-4 lg:py-32 lg:px-32 ${extraClass}">
+            <div class="bg-white w-full shadow relative max-h-[90vh] overflow-y-scroll flex flex-col gap-4 lg:gap-8 p-10 rounded-lg">
+                <h5 class="lg:text-5xl text-2xl mt-10 lg:mt-0 border-b w-full pb-1 lg:pb-3">${title}</h5>
+                <div class="font-light">${subtitle}</div>
+                <button class="text-primary cursor-pointer absolute right-8 top-4" onclick="closeOverlayPopUp()" id="close-button-popup">
+                    <ion-icon class="text-5xl" name="close-outline"></ion-icon>
+                </button>
+            </div>
+        </div>
+        `;
+  }
+}
+
+customElements.define('overlay-popup', OverlayPopUp);
