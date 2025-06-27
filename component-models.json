@@ -104,6 +104,13 @@
         "name": "background-image",
         "label": "Background Image",
         "multi": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "parallax",
+        "label": "Parallax Effect",
+        "value": false
       }
     ]
   },
