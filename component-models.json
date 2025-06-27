@@ -106,6 +106,12 @@
         "multi": false
       },
       {
+        "component": "number",
+        "valueType": "number",
+        "name": "parallax-speed",
+        "label": "Parallax Speed"
+      },
+      {
         "component": "boolean",
         "valueType": "boolean",
         "name": "parallax",
