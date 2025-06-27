@@ -63,6 +63,13 @@
           "value": false
         },
         {
+          "component": "boolean",
+          "valueType": "string",
+          "name": "cover-screen-image",
+          "label": "Cover Screen Image",
+          "value": false
+        },
+        {
           "component": "aem-content",
           "name": "facebookLink",
           "label": "Facebook Link",
@@ -118,6 +125,14 @@
           "component": "select",
           "name": "mobile-height",
           "label": "Mobile Height",
+          "condition": {
+            "===": [
+              {
+                "var": "cover-screen-image"
+              },
+              false
+            ]
+          },
           "options": [
             {
               "name": "200px",
@@ -165,6 +180,14 @@
           "component": "select",
           "name": "desktop-height",
           "label": "Desktop Height",
+          "condition": {
+            "===": [
+              {
+                "var": "cover-screen-image"
+              },
+              false
+            ]
+          },
           "options": [
             {
               "name": "600px",

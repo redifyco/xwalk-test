@@ -288,6 +288,23 @@ async function loadLazy(doc) {
 }
 
 /**
+ * Loads everything that doesn't need to be delayed.
+ * @param {Element} doc The container element
+ */
+export async function load404() {
+  //const main = document.querySelector('main');
+  //await loadSections(main);
+
+  const { hash } = window.location;
+  const element = hash ? document.getElementById(hash.substring(1)) : false;
+  if (hash && element) element.scrollIntoView();
+  loadFonts();
+
+  //loadHeader(document.querySelector('header'));
+  //loadFooter(document.querySelector('footer'));
+}
+
+/**
  * Loads everything that happens a lot later,
  * without impacting the user experience.
  */

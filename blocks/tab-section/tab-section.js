@@ -4,20 +4,22 @@ import {
 } from "../../scripts/utils.js";
 
 export default function decorate(block) {
-  console.log('block', block);
-    const tabsItems = block.querySelectorAll(":scope > div:nth-child(n+18)");
-    const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+2):nth-child(-n+11)");
-    const CTABox = block.querySelectorAll(":scope > div:nth-child(n+12):nth-child(-n+15)");
+    const tabsItems = block.querySelectorAll(":scope > div:nth-child(n+19)");
+    const firstInfoBoxes = block.querySelectorAll(":scope > div:nth-child(n+3):nth-child(-n+12)");
+    const CTABox = block.querySelectorAll(":scope > div:nth-child(n+13):nth-child(-n+16)");
 
     const titleCTABox = CTABox[0]?.querySelector('p')?.textContent || '';
     const descriptionCTABox = CTABox[1]?.querySelector('p')?.textContent || '';
     const buttonTextCTABox = CTABox[2]?.querySelector('p')?.textContent || '';
     const buttonLinkCTABox = CTABox[3]?.querySelector('a')?.href || '';
     const backgroundImage = block.querySelector(":scope > div:nth-child(1) img")?.src;
-    const buttonText = block.querySelector(":scope > div:nth-child(16) p")?.textContent;
-    const buttonLink = block.querySelector(":scope > div:nth-child(17) a")?.href;
-  console.log('buttonLink', buttonLink);
-  console.log('buttonText', buttonText);
+    const dateTime = block.querySelector(":scope > div:nth-child(2) div p")?.textContent;
+    const buttonText = block.querySelector(":scope > div:nth-child(17) p")?.textContent;
+    const buttonLink = block.querySelector(":scope > div:nth-child(18) a")?.href;
+
+  const formattedDate = dateTime ? new Date(dateTime).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+  console.log('dateTime', dateTime, 'formatted:', formattedDate);
+
 
     const result = processDivsToObjectTabSection(tabsItems) || [];
     const resultInfoBox = processDivsToObjectTabSectionInfo(firstInfoBoxes) || [];
@@ -91,7 +93,7 @@ export default function decorate(block) {
                 </a>` : '';
 
             ctaBoxHTML = `
-                <div class="bg-primary relative flex flex-col gap-2 overflow-hidden rounded-2xl p-6 text-white shadow-2xl 2xl:p-12">
+                <div class="bg-primary relative flex lg:w-[400px] xl:w-[500px] flex-col gap-2 overflow-hidden rounded-2xl p-6 text-white shadow-2xl 2xl:p-12">
                     <img class="absolute -right-16 -bottom-14" src="/assets/icons/tavola-disegno.svg" alt="" />
                     ${ctaTitleHTML}
                     ${ctaDescriptionHTML}
@@ -103,12 +105,12 @@ export default function decorate(block) {
         // Costruiamo l'HTML completo con controlli condizionali
         containerSection.innerHTML = `
             <div class="small-layout-padding flex flex-col relative">
-            <div class="flex justify-between lg:!flex-row lg:!gap-14 xl:!gap-32 2xl:!gap-64">
+            <div class="flex justify-between flex-col lg:!flex-row lg:!gap-14 xl:!gap-32 2xl:!gap-64">
                 <div class="absolute left-0 md:left-auto rounded-t-md md:w-fit w-screen overflow-x-auto bg-white/50 -top-[39px] flex font-semibold 2xl:-top-[60px]">
                     ${result.map((tab, index) => `
                         <button
                             data-tab-index="${index}"
-                            class="cursor-pointer ${state.currentTab === index
+                            class="cursor-pointer mt-2 ${state.currentTab === index
                                 ? 'text-primary rounded-t-md bg-white px-8 py-2 2xl:py-4 2xl:text-2xl'
                                 : 'px-8 py-2 text-black/40 2xl:py-4 2xl:text-2xl'}"
                         >
@@ -157,7 +159,8 @@ export default function decorate(block) {
 
     const aemEnv = block.getAttribute('data-aue-resource');
     if (!aemEnv) {
-        block.textContent = '';
+      block.textContent = ''
+      // block.querySelectorAll(':scope > div:nth-child(n+1)').forEach(div => div.classList.add('hidden'));
     } else {
       block.querySelectorAll(':scope > div:nth-child(n+1)').forEach(div => div.classList.add('hidden'));
     }

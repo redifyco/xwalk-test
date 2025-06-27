@@ -1,4 +1,4 @@
-import {buildHeight, returnBoolean} from "../../scripts/utils.js";
+import { buildHeight, isEditorMode, returnBoolean } from '../../scripts/utils.js';
 import "../../scripts/customTag.js";
 
 export default async function decorate(block) {
@@ -64,32 +64,37 @@ export default async function decorate(block) {
     // Safe DOM element data extraction
     const backgroundImageRaw = block.querySelector(':scope > div:nth-child(1) img')?.src;
     const backgroundImage = handleMissingImage(backgroundImageRaw);
-    
+
     const titleRaw = block.querySelector(':scope > div:nth-child(2) div')?.innerHTML;
     const title = sanitizeText(titleRaw, DEFAULT_VALUES.text.title);
-    
+
     const subTitleRaw = block.querySelector(':scope > div:nth-child(3)')?.innerHTML;
     const subTitle = sanitizeText(subTitleRaw, DEFAULT_VALUES.text.subTitle);
-    
+
     // Boolean values handling with fallback
     const isSocialBox = returnBoolean(block, 4) ?? false;
     const isCenteredTitle = returnBoolean(block, 5) ?? false;
     const isArrowDown = returnBoolean(block, 6) ?? false;
-    
+    const isCoverScreenImage = returnBoolean(block, 7) ?? false;
+
     // Social links handling with validation
-    const facebookLink = sanitizeLink(block.querySelector(":scope > div:nth-child(7) a")?.href);
-    const linkedinLink = sanitizeLink(block.querySelector(":scope > div:nth-child(8) a")?.href);
-    const instagramLink = sanitizeLink(block.querySelector(":scope > div:nth-child(9) a")?.href);
-    const youtubeLink = sanitizeLink(block.querySelector(":scope > div:nth-child(10) a")?.href);
-    
+    const facebookLink = sanitizeLink(block.querySelector(":scope > div:nth-child(8) a")?.href);
+    const linkedinLink = sanitizeLink(block.querySelector(":scope > div:nth-child(9) a")?.href);
+    const instagramLink = sanitizeLink(block.querySelector(":scope > div:nth-child(10) a")?.href);
+    const youtubeLink = sanitizeLink(block.querySelector(":scope > div:nth-child(11) a")?.href);
+
     // Heights handling with fallback
-    const mobileHeightRaw = block.querySelector(":scope > div:nth-child(11) p")?.textContent;
+    const mobileHeightRaw = block.querySelector(":scope > div:nth-child(12) p")?.textContent;
     const mobileHeight = sanitizeText(mobileHeightRaw, DEFAULT_VALUES.heights.mobile);
-    
-    const desktopHeightRaw = block.querySelector(":scope > div:nth-child(12) p")?.textContent;
+
+    const desktopHeightRaw = block.querySelector(":scope > div:nth-child(13) p")?.textContent;
     const desktopHeight = sanitizeText(desktopHeightRaw, DEFAULT_VALUES.heights.desktop);
-    
-    const calculatedSectionHeight = buildHeight(mobileHeight, desktopHeight) ?? 'h-screen';
+
+    const calculatedSectionHeight = buildHeight(mobileHeight, desktopHeight) ?? '';
+
+    const isAuthorMode = isEditorMode();
+
+    console.log('!isAuthorMode && isCoverScreenImage', !isAuthorMode && isCoverScreenImage);
 
     // Check if there are valid social links
     const hasValidSocialLinks = [facebookLink, linkedinLink, instagramLink, youtubeLink]
@@ -98,7 +103,7 @@ export default async function decorate(block) {
     // Main container creation
     const containerSection = document.createElement('section');
     containerSection.className = 'flex flex-col bg-cover bg-center bg-no-repeat text-white';
-    
+
     // Conditional background image handling
     if (backgroundImage && backgroundImage !== DEFAULT_VALUES.image.placeholder) {
         containerSection.style.backgroundImage = `url('${backgroundImage}')`;
@@ -162,7 +167,7 @@ export default async function decorate(block) {
 
     // Final HTML construction
     containerSection.innerHTML = `
-        <div class="relative z-10 flex w-full flex-col justify-end gap-3 px-4 pb-14 md:justify-center xl:px-16 xl:py-11 ${calculatedSectionHeight}">
+        <div class="relative z-10 flex w-full flex-col justify-end gap-3 px-4 pb-14 md:justify-center xl:px-16 xl:py-11 ${!isAuthorMode && isCoverScreenImage ? 'h-dvh' : calculatedSectionHeight}">
             ${createTitleContent()}
             
             <div class="text-sm flex font-light lg:text-xl 2xl:text-2xl ${

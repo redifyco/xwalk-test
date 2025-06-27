@@ -21,14 +21,7 @@ export default async function decorate(block) {
     // Usa isEditorMode() da utils.js
     const isAuthorMode = isEditorMode();
 
-    console.log('Component configuration:', {
-      isAuthorMode,
-      apiString: config.apiString,
-      itemsToShow: config.itemsToShow
-    });
-
     if (isAuthorMode) {
-      console.log('Using mock data in author mode');
       const mockData = generateMockData(config.itemsToShow);
       await renderComponent(block, config, mockData, true);
       return;
@@ -36,18 +29,15 @@ export default async function decorate(block) {
 
     // In modalità publish, controlla se l'API è configurata
     if (!config.apiString || config.apiString === DEFAULT_CONFIG.API_STRING) {
-      console.log('API not configured, showing configuration message');
       renderConfigurationMessage(block);
       return;
     }
 
     // Rendering dello stato di caricamento
-    console.log('Loading data from API:', config.apiString);
     renderLoadingState(block);
 
     // Caricamento dei dati usando getDataFromJson
     const resultData = await getDataFromJson(config.apiString);
-    console.log('Raw API data received:', resultData);
 
     if (!resultData) {
       throw new Error('No data received from API');
@@ -70,7 +60,6 @@ export default async function decorate(block) {
       }
     }
 
-    console.log('Extracted articles:', articles.length, 'items');
 
     if (articles.length === 0) {
       console.warn('No articles found in API response');
@@ -84,7 +73,6 @@ export default async function decorate(block) {
       data: articles.slice(0, config.itemsToShow)
     };
 
-    console.log('Rendering', limitedData.data.length, 'articles');
 
     // Rendering del componente
     await renderComponent(block, config, limitedData, false);
@@ -227,7 +215,6 @@ function generateMockData(count = 3) {
   const validCount = parseInt(count) || 3;
   const mockArticles = [];
 
-  console.log(`Generating ${validCount} mock articles`);
 
   for (let i = 0; i < validCount; i++) {
     mockArticles.push({
@@ -365,18 +352,6 @@ async function renderComponent(block, config, resultData, isMockData = false) {
   // Applica il limite di elementi da mostrare
   const limitedArticles = articles.slice(0, config.itemsToShow);
 
-  console.log(`Rendering ${limitedArticles.length} articles out of ${articles.length} available (limit: ${config.itemsToShow})`);
-  console.log('Mode check - isMockData:', isMockData);
-
-  // Debug per le immagini
-  limitedArticles.forEach((article, index) => {
-    console.log(`Article ${index + 1} details:`, {
-      title: article.title,
-      thumbImg: article.thumbImg,
-      path: article.path,
-      pageType: article.pageType
-    });
-  });
 
   sectionContainer.innerHTML = `
         ${isMockData ? renderAuthorModeNotice() : ''}
@@ -564,12 +539,6 @@ function renderArticlesGrid(articles, cardStyle, cardBehaviour, layoutStyle, isM
     ? 'flex overflow-x-scroll pb-4 scrollbar scrollbar-thumb-primary scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gray-300 md:grid gap-4 md:grid-cols-3'
     : 'flex max-w-full justify-start gap-6 overflow-x-auto pb-5 lg:overflow-x-visible lg:flex lg:flex-wrap lg:justify-start lg:pb-0 scrollbar-thin scrollbar-thumb-primary scrollbar-thumb-rounded scrollbar-track-transparent lg:scrollbar-none';
 
-  console.log('Rendering articles grid:', {
-    articlesCount: articles.length,
-    isMockData: isMockData,
-    cardBehaviour: cardBehaviour
-  });
-
   return `
         <div class="${gridClasses}" data-layout-style="${layoutStyle}">
             ${articles.map((item, index) => renderArticleCard(item, cardStyle, cardBehaviour, index, isMockData, layoutStyle)).join('')}
@@ -636,12 +605,6 @@ function renderArticleCard(item, cardStyle, cardBehaviour, index, isMockData = f
  * @returns {Object} Props della card
  */
 function getCardProps(item, cardBehaviour, isMockData = false) {
-  console.log('Getting card props:', {
-    isMockData,
-    cardBehaviour,
-    itemPath: item.path,
-    itemDownloadLink: item.downloadLink
-  });
 
   const baseProps = {
     href: item.path || '#',
@@ -652,7 +615,6 @@ function getCardProps(item, cardBehaviour, isMockData = false) {
 
   // Se siamo in modalità mock, restituisci props di mock
   if (isMockData) {
-    console.log('Returning mock props');
     return {
       ...baseProps,
       href: item.path || '/mock-article-path'
@@ -662,14 +624,12 @@ function getCardProps(item, cardBehaviour, isMockData = false) {
   // Gestione del comportamento in modalità live
   switch (cardBehaviour) {
     case 'page-link':
-      console.log('Page link behavior - using path:', item.path);
       return {
         ...baseProps,
         href: item.path || '#'
       };
 
     case 'download-link':
-      console.log('Download link behavior');
       return {
         ...baseProps,
         href: item.downloadLink || item.path || '#',
@@ -677,7 +637,6 @@ function getCardProps(item, cardBehaviour, isMockData = false) {
       };
 
     case 'popup':
-      console.log('Popup behavior');
       return {
         ...baseProps,
         href: '#',
@@ -685,7 +644,6 @@ function getCardProps(item, cardBehaviour, isMockData = false) {
       };
 
     default:
-      console.log('Default behavior - page link');
       return {
         ...baseProps,
         href: item.path || '#'

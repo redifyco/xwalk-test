@@ -31,6 +31,16 @@ export default function decorate(block) {
         buttonLink: defaults.buttonLink
     }];
 
+    // Function to check if a field value is meaningful (not empty/default)
+    const isValueMeaningful = (value, defaultValue) => {
+        if (!value || value === null || value === undefined) return false;
+        if (typeof value === 'string') {
+            const trimmed = value.trim();
+            return trimmed !== '' && trimmed !== defaultValue;
+        }
+        return value !== defaultValue;
+    };
+
     // Function to get a safe item with fallback
     const getSafeItem = (index) => {
         if (!result || result.length === 0) {
@@ -66,6 +76,7 @@ export default function decorate(block) {
         const carouselTitle = document.getElementById('carousel-title');
         const carouselDescription = document.getElementById('carousel-description');
         const carouselButton = document.getElementById('carousel-button');
+        const carouselDivider = document.getElementById('carousel-divider');
 
         // Safety checks for DOM elements
         if (!carouselDiv || !carouselTitle || !carouselDescription || !carouselButton) {
@@ -94,20 +105,54 @@ export default function decorate(block) {
             handleImageError(carouselDiv, defaults.fallbackImageStyle);
         }
 
-        // Safe text content update
-        carouselTitle.textContent = safeItem.title;
-        carouselDescription.textContent = safeItem.description;
-        carouselButton.textContent = safeItem.buttonText;
-        
-        // Safe link handling
-        if (safeItem.buttonLink && safeItem.buttonLink !== '#') {
-            carouselButton.href = safeItem.buttonLink;
-            carouselButton.style.pointerEvents = 'auto';
-            carouselButton.style.opacity = '1';
+        // Check if values are meaningful and show/hide elements accordingly
+        const hasMeaningfulTitle = isValueMeaningful(safeItem.title, defaults.title);
+        const hasMeaningfulDescription = isValueMeaningful(safeItem.description, defaults.description);
+        const hasMeaningfulButtonText = isValueMeaningful(safeItem.buttonText, defaults.buttonText);
+
+        // Show/hide title
+        if (hasMeaningfulTitle) {
+            carouselTitle.textContent = safeItem.title;
+            carouselTitle.style.display = 'block';
         } else {
-            carouselButton.href = '#';
-            carouselButton.style.pointerEvents = 'none';
-            carouselButton.style.opacity = '0.6';
+            carouselTitle.style.display = 'none';
+        }
+
+        // Show/hide description
+        if (hasMeaningfulDescription) {
+            carouselDescription.textContent = safeItem.description;
+            carouselDescription.style.display = 'block';
+        } else {
+            carouselDescription.style.display = 'none';
+        }
+
+        // Show/hide button
+        if (hasMeaningfulButtonText) {
+            carouselButton.textContent = safeItem.buttonText;
+            carouselButton.style.display = 'flex';
+            
+            // Safe link handling
+            if (safeItem.buttonLink && safeItem.buttonLink !== '#') {
+                carouselButton.href = safeItem.buttonLink;
+                carouselButton.style.pointerEvents = 'auto';
+                carouselButton.style.opacity = '1';
+            } else {
+                carouselButton.href = '#';
+                carouselButton.style.pointerEvents = 'none';
+                carouselButton.style.opacity = '0.6';
+            }
+        } else {
+            carouselButton.style.display = 'none';
+        }
+
+        // Show/hide divider based on content visibility
+        const hasVisibleContent = hasMeaningfulTitle || hasMeaningfulDescription || hasMeaningfulButtonText;
+        if (carouselDivider) {
+            if (hasVisibleContent) {
+                carouselDivider.style.display = 'block';
+            } else {
+                carouselDivider.style.display = 'none';
+            }
         }
     };
 
@@ -137,6 +182,12 @@ export default function decorate(block) {
         return `background-image: url('${imageUrl}')`;
     };
 
+    // Check initial visibility for rendering
+    const initialHasMeaningfulTitle = isValueMeaningful(currentItem.title, defaults.title);
+    const initialHasMeaningfulDescription = isValueMeaningful(currentItem.description, defaults.description);
+    const initialHasMeaningfulButtonText = isValueMeaningful(currentItem.buttonText, defaults.buttonText);
+    const initialHasVisibleContent = initialHasMeaningfulTitle || initialHasMeaningfulDescription || initialHasMeaningfulButtonText;
+
     containerSection.innerHTML = `
     <div
       ${getBackgroundImageStyle(currentItem.image)}
@@ -160,25 +211,32 @@ export default function decorate(block) {
       <h6
         id="carousel-title"
         class="text-sm font-semibold text-white lg:px-8 lg:text-4xl"
+        ${!initialHasMeaningfulTitle ? 'style="display: none;"' : ''}
       >
-        ${currentItem.title}
+        ${initialHasMeaningfulTitle ? currentItem.title : ''}
       </h6>
-      <div class="w-full border-t-2 border-t-white"></div>
+      <div 
+        id="carousel-divider"
+        class="w-full border-t-2 border-t-white"
+        ${!initialHasVisibleContent ? 'style="display: none;"' : ''}
+      ></div>
       <div
         class="flex flex-col items-start justify-between gap-4 text-white lg:flex-row lg:items-center lg:px-8"
       >
         <p
           id="carousel-description"
           class="w-9/12 text-sm lg:text-xl"
+          ${!initialHasMeaningfulDescription ? 'style="display: none;"' : ''}
         >
-          ${currentItem.description}
+          ${initialHasMeaningfulDescription ? currentItem.description : ''}
         </p>
         <a 
           href="${currentItem.buttonLink}" 
           id="carousel-button" 
           class="flex items-center gap-2 text-sm lg:text-xl ${currentItem.buttonLink === '#' ? 'pointer-events-none opacity-60' : ''}"
+          ${!initialHasMeaningfulButtonText ? 'style="display: none;"' : ''}
         >
-          ${currentItem.buttonText} <ion-icon name="arrow-forward-outline"></ion-icon>
+          ${initialHasMeaningfulButtonText ? `${currentItem.buttonText} <ion-icon name="arrow-forward-outline"></ion-icon>` : ''}
         </a>
       </div>
     </div>

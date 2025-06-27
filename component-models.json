@@ -2321,6 +2321,13 @@
         "value": false
       },
       {
+        "component": "boolean",
+        "valueType": "string",
+        "name": "cover-screen-image",
+        "label": "Cover Screen Image",
+        "value": false
+      },
+      {
         "component": "aem-content",
         "name": "facebookLink",
         "label": "Facebook Link",
@@ -2376,6 +2383,14 @@
         "component": "select",
         "name": "mobile-height",
         "label": "Mobile Height",
+        "condition": {
+          "===": [
+            {
+              "var": "cover-screen-image"
+            },
+            false
+          ]
+        },
         "options": [
           {
             "name": "200px",
@@ -2423,6 +2438,14 @@
         "component": "select",
         "name": "desktop-height",
         "label": "Desktop Height",
+        "condition": {
+          "===": [
+            {
+              "var": "cover-screen-image"
+            },
+            false
+          ]
+        },
         "options": [
           {
             "name": "600px",
@@ -3104,6 +3127,12 @@
         "multi": false
       },
       {
+        "component": "date-time",
+        "name": "article-date",
+        "label": "Article Date",
+        "valueType": "date"
+      },
+      {
         "component": "text",
         "name": "side-info-box-1-title",
         "label": "Filter tag 1 Title",
@@ -3193,9 +3222,10 @@
         "valueType": "string"
       },
       {
-        "component": "aem-content",
-        "name": "download-button-link",
-        "label": "Download Button link"
+        "component": "reference",
+        "valueType": "string",
+        "name": "hero-image",
+        "label": "Hero Image"
       }
     ]
   },

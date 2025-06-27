@@ -218,7 +218,7 @@ export class ArticleCard extends HTMLElement {
       ? `<a href="#" onclick="alert('Mock mode'); return false;">`
       : isOnclick
         ? `<button class="text-left w-full" onclick='openArticlePopup(${JSON.stringify(JSON.stringify(dataPopUp))})'>`
-        : `<a href="${href}">`;
+        : `<a href="${download ? download : href || '#'}" ${download ? 'download' : ''} class="text-left w-full">`;
 
     window.closeOverlayPopUp = (e) => {
       const overlayPopup = document.querySelector('#popup-box')
@@ -305,9 +305,9 @@ export class OverlayPopUp extends HTMLElement {
 
     this.innerHTML = `
            <div class="fixed flex items-center justify-center inset-0 top-0 left-0 h-full bg-black/30 z-30 w-full py-14 px-4 lg:py-32 lg:px-32 ${extraClass}">
-            <div class="bg-white w-full shadow relative max-h-[90vh] overflow-y-scroll flex flex-col gap-4 lg:gap-8 p-10 rounded-lg">
+            <div class="bg-white w-full shadow relative max-h-[90vh] flex flex-col gap-4 lg:gap-8 p-10 rounded-lg">
                 <h5 class="lg:text-5xl text-2xl mt-10 lg:mt-0 border-b w-full pb-1 lg:pb-3">${title}</h5>
-                <div class="font-light">${subtitle}</div>
+                <div class="font-light max-h-96 overflow-y-auto">${subtitle}</div>
                 <button class="text-primary cursor-pointer absolute right-8 top-4" onclick="closeOverlayPopUp()" id="close-button-popup">
                     <ion-icon class="text-5xl" name="close-outline"></ion-icon>
                 </button>

@@ -386,11 +386,11 @@ const RenderCards = (data, cardStyle, perPage, cardBehaviour = 'page-link', isMo
       topLabel: pageTypesObject.status,
       backgroundImage: item.thumbImg || '',
       icons: pageTypesObject.focusAreas,
-      date: item.published_time || '',
+      date: item.articleDate || '',
       href: cardProps.href,
       variant: cardStyle,
       isMockData: isMockData,
-      download: cardProps.download || '',
+      download: item.downloadLink || '',
       isOnclick: cardProps.isOnclick || ''
     };
 
@@ -1007,6 +1007,7 @@ function renderArticleCard(item, cardStyle, cardBehaviour, index, isMockData = f
  * @returns {Object} Proprietà della card
  */
 function getCardProps(item, cardBehaviour, isMockData) {
+  console.log('item', item);
   if (isMockData) {
     return {
       href: '#',
@@ -1025,7 +1026,7 @@ function getCardProps(item, cardBehaviour, isMockData) {
     case 'download':
       return {
         href: item.path || '#',
-        download: 'download',
+        download: item.downloadLink,
         isOnclick: false
       };
     case 'popup':

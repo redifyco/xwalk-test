@@ -2,66 +2,59 @@
 <html>
 
 <head>
-  <title>Page not found</title>
-  <script type="text/javascript">
-    window.isErrorPage = true;
-    window.errorCode = '404';
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Page not found">
-  <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
-  <script type="module">
-    window.addEventListener('load', () => {
-      if (document.referrer) {
-        const { origin, pathname } = new URL(document.referrer);
-        if (origin === window.location.origin) {
-          const backBtn = document.createElement('a');
-          backBtn.classList.add('button', 'error-button-back');
-          backBtn.href = pathname;
-          backBtn.textContent = 'Go back';
-          backBtn.title = 'Go back';
-          const btnContainer = document.querySelector('.button-container');
-          btnContainer.append(backBtn);
-        }
-      }
-    });
-  </script>
-  <script type="module">
-    import { sampleRUM } from '/scripts/aem.js';
-    sampleRUM('404', { source: document.referrer });
-  </script>
-  <link rel="stylesheet" href="/styles/styles.css">
-  <style>
-    main.error {
-      min-height: calc(100vh - var(--nav-height));
-      display: flex;
-      align-items: center;
-    }
+    <title>Page not found</title>
+    <script type="text/javascript">
+        window.isErrorPage = true;
+        window.errorCode = '404';
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Page not found">
+    <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
+    <script type="module">
+        //import { sampleRUM } from '/scripts/aem.js';
+        import {load404} from '/scripts/scripts.js';
+        //sampleRUM('404', { source: document.referrer });
 
-    main.error .error-number {
-      width: 100%;
-    }
-
-    main.error .error-number text {
-      font-family: monospace;
-    }
-  </style>
+        await load404();
+    </script>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/eager-styles.css">
 </head>
 
-<body>
-  <header></header>
-  <main class="error">
-    <div class="section">
-      <svg viewBox="1 0 38 18" class="error-number">
-        <text x="0" y="17">404</text>
-      </svg>
-      <h2 class="error-message">Page Not Found</h2>
-      <p class="button-container">
-        <a href="/" class="button secondary error-button-home">Go home</a>
-      </p>
+<body class="error">
+<header></header>
+<main class="loading">
+    <div class="hero-wrapper">
+        <div data-aue-resource="urn:aemconnection:/content/mscfoundation/index/jcr:content/root/section/block"
+             data-aue-type="component" data-aue-behavior="component" data-aue-model="hero" data-aue-label="Hero"
+             class="hero block" data-block-name="hero" data-block-status="loaded">
+            <section class="flex flex-col bg-cover bg-center bg-no-repeat text-white hero-placeholder-bg" style="background-image: url('https://publish-p153430-e1601878.adobeaemcloud.com/about-us/media_1661de86f6db71af07afbdd2888dc49bfa170765b.jpg?width=750&format=jpg&optimize=medium');">
+                <div class="relative z-10 flex w-full flex-col justify-center items-center gap-3 px-4 pb-14 md:justify-center xl:px-16 xl:py-11 h-[400px] lg:h-[800px]">
+                    <div class="text-sm flex font-light lg:text-lg 2xl:text-xl justify-center text-center">
+                        <p>ERROR 404</p>
+                    </div>
+                    <div class="text-3xl prose-em:font-joyful flex font-semibold lg:text-6xl 2xl:text-7xl justify-center">
+                        <div data-aue-prop="title" data-aue-label="Title" data-aue-filter="text"
+                             data-aue-type="richtext"><p>PAGE NOT FOUND</p></div>
+                    </div>
+                    <div class="text-sm flex font-light lg:text-lg 2xl:text-xl justify-center text-center">
+                        <div>
+                            <div data-aue-prop="subtitle" data-aue-label="Subtitle/Description" data-aue-filter="text"
+                                 data-aue-type="richtext"><p>The page you tried to access could not be found.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-20">
+                    <div class="text-sm flex font-light lg:text-lg 2xl:text-xl justify-center text-center">
+                        <div class="mt-6">
+                            <custom-link color="white" href="/">Go to Homepage</custom-link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-  </main>
-  <footer></footer>
+</main>
+<footer></footer>
 </body>
-
 </html>

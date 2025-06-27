@@ -10,7 +10,8 @@ export default function decorate(block) {
   const mobileHeight = block.querySelector(':scope > div:nth-child(6) div p')?.textContent;
   const desktopHeight = block.querySelector(':scope > div:nth-child(7) div p')?.textContent;
   const statsList = Array.from(block.querySelectorAll(':scope > div:nth-child(n+8)'));
-  const JSONStatisticsData = processDivsToObjectStatisticsData(statsList);
+  const aemEnv = block.getAttribute('data-aue-resource');
+  const JSONStatisticsData = processDivsToObjectStatisticsData(statsList, aemEnv);
 
   const containerSection = document.createElement('section');
   containerSection.className = `
@@ -173,7 +174,7 @@ export default function decorate(block) {
   }
 }
 
-function processDivsToObjectStatisticsData(divs) {
+function processDivsToObjectStatisticsData(divs, aemEnv) {
   const result = [];
 
   for (let i = 0; i < divs.length; i += 3) {

@@ -95,7 +95,7 @@ export const initDonationForm = (data, additionalData, onPaymentCompleted, onPay
         paymentMethodsResponse: parsedPaymentMethods, // e.g. { paymentMethods: [ … ] }
         environment: ENVIRONMENT,
         clientKey: ADYEN_CLIENT_KEY_MSCFOUNDATION_TEST,
-        origin: window.location.origin,
+        // origin: window.location.origin,
         amount: {
           // Must exactly match the same minor‐units you used to create the session:
           value: data.amount.value,

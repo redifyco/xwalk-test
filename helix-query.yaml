@@ -14,9 +14,12 @@ indices:
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
-      downloadlink:
-        select: .downloadlink
+      downloadLink:
+        select: .tab-section > div:nth-child(17) div a
         value: attribute(el, "href")
+      articleDate:
+        select: .tab-section > div:nth-child(2)
+        value: textContent(el)
 
   programs:
     include:
@@ -29,7 +32,7 @@ indices:
       perPage: 1
     properties:
       title:
-        select: head > meta[name="og:title"]
+        select: head > meta[property="og:title"]
         value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
@@ -43,9 +46,12 @@ indices:
       published_time:
         select: head > meta[name="published-time"]
         value: attribute(el, "content")
-      downloadlink:
-        select: .downloadlink
+      downloadLink:
+        select: .tab-section > div:nth-child(17) div a
         value: attribute(el, "href")
+      articleDate:
+        select: .tab-section > div:nth-child(2)
+        value: textContent(el)
 
   initiatives:
     include:
@@ -58,7 +64,7 @@ indices:
       perPage: 1
     properties:
       title:
-        select: head > meta[name="og:title"]
+        select: head > meta[property="og:title"]
         value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
@@ -72,9 +78,12 @@ indices:
       published_time:
         select: head > meta[name="published-time"]
         value: attribute(el, "content")
-      downloadlink:
-        select: .downloadlink
+      downloadLink:
+        select: .tab-section > div:nth-child(17) div a
         value: attribute(el, "href")
+      articleDate:
+        select: .tab-section > div:nth-child(2)
+        value: textContent(el)
 
   news:
     include:
@@ -88,7 +97,7 @@ indices:
       filter: "properties.pageType eq 'article'"
     properties:
       title:
-        select: head > meta[name="og:title"]
+        select: head > meta[property="og:title"]
         value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
@@ -102,9 +111,15 @@ indices:
       published_time:
         select: head > meta[name="published-time"]
         value: attribute(el, "content")
-      downloadlink:
-        select: .downloadlink
+      downloadLink:
+        select: .tab-section > div:nth-child(18) div a
         value: attribute(el, "href")
+      downloadLinkTest:
+        select: .tab-section > div:nth-child(18) div img
+        value: innerHTML(el)
+      articleDate:
+        select: .tab-section > div:nth-child(2)
+        value: textContent(el)
 
   stories:
     include:
@@ -118,7 +133,7 @@ indices:
       filter: "properties.pageType eq 'article'"
     properties:
       title:
-        select: head > meta[name="og:title"]
+        select: head > meta[property="og:title"]
         value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
@@ -132,9 +147,12 @@ indices:
       published_time:
         select: head > meta[name="published-time"]
         value: attribute(el, "content")
-      downloadlink:
-        select: .downloadlink
+      downloadLink:
+        select: .tab-section > div:nth-child(17) div a
         value: attribute(el, "href")
+      articleDate:
+        select: .tab-section > div:nth-child(2)
+        value: textContent(el)
 
   press-area:
     include:
@@ -148,7 +166,7 @@ indices:
       filter: "properties.pageType eq 'article'"
     properties:
       title:
-        select: head > meta[name="og:title"]
+        select: head > meta[property="og:title"]
         value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
@@ -162,9 +180,12 @@ indices:
       published_time:
         select: head > meta[name="published-time"]
         value: attribute(el, "content")
-      downloadlink:
-        select: .downloadlink
+      downloadLink:
+        select: .tab-section > div:nth-child(17) div a
         value: attribute(el, "href")
+      articleDate:
+        select: .tab-section > div:nth-child(2)
+        value: textContent(el)
 
   publications:
     include:
@@ -178,7 +199,7 @@ indices:
       filter: "properties.pageType eq 'article'"
     properties:
       title:
-        select: head > meta[name="og:title"]
+        select: head > meta[property="og:title"]
         value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
@@ -192,6 +213,9 @@ indices:
       published_time:
         select: head > meta[name="published-time"]
         value: attribute(el, "content")
-      downloadlink:
-        select: .downloadlink
+      downloadLink:
+        select: .tab-section > div:nth-child(17) div a
         value: attribute(el, "href")
+      articleDate:
+        select: .tab-section > div:nth-child(2)
+        value: textContent(el)

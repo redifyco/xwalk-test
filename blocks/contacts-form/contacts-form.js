@@ -215,7 +215,8 @@ export default async function decorate(block) {
             // Build payload
             const data = {
                 first_name: sectionContainer.querySelector('#name').value.trim(),
-                last_name: sectionContainer.querySelector('#surname').value.trim(),
+                "00N7R000009Jcc5": sectionContainer.querySelector('#name').value.trim(),
+                "00N7R000009JccA": sectionContainer.querySelector('#surname').value.trim(),
                 email: emailInput.value.trim(),
                 phone: sectionContainer.querySelector('#phone').value.trim(),
                 type: sectionContainer.querySelector('#type').value,
@@ -225,7 +226,8 @@ export default async function decorate(block) {
                 recordType: sectionContainer.querySelector('#type').value === 'unsubscribe'
                     ? '0127R0000007LeP'
                     : '0127R0000007LeR',
-                "00N7R000009JccP": sectionContainer.querySelector('#policy').checked
+                "00N7R000009JccP": sectionContainer.querySelector('#policy').checked,
+                origin: "Web Contact Us"
             };
 
             // 3️⃣ Guard: ensure grecaptcha + siteKey
